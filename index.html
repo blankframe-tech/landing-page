@@ -12,40 +12,54 @@
 <meta property="og:url" content="https://www.blankframe.tech/">
 <meta property="og:type" content="website">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' fill='none' stroke='%23ffffff' stroke-width='6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23111213'/%3E%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23ffffff' stroke-width='7'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg: #090909;
-    --fg: #FFFFFF;
-    --secondary: #8B8B8B;
-    --accent: #D6D6D6;
-    --line: rgba(255,255,255,0.08);
-    --line-strong: rgba(255,255,255,0.16);
-    --max-w: 1200px;
+    --bg: #F2F1ED;
+    --card: #FFFFFF;
+    --ink: #131313;
+    --ink-soft: #2A2A28;
+    --muted: #6F6E6A;
+    --faint: #A5A39D;
+    --line: #E6E4DE;
+    --accent: #FF4A1F;
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --max-w: 1140px;
+    --shadow-card: 0 1px 2px rgba(19,19,19,0.04), 0 10px 30px -12px rgba(19,19,19,0.10);
+    --shadow-pill: 0 1px 2px rgba(19,19,19,0.06), 0 12px 32px -14px rgba(19,19,19,0.18);
   }
 
   *{ box-sizing: border-box; }
-
   html{ scroll-behavior: smooth; }
 
   body{
-    margin:0;
+    margin: 0;
     background: var(--bg);
-    color: var(--fg);
+    color: var(--ink);
     font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  h1,h2,h3,.wordmark{
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: -0.02em;
+  h1, h2, h3, .display{
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+    letter-spacing: -0.035em;
     margin: 0;
+    font-weight: 700;
+  }
+
+  .serif-accent{
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   a{ color: inherit; }
@@ -53,540 +67,800 @@
   .wrap{
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 24px;
   }
 
   @media (max-width: 640px){
-    .wrap{ padding: 0 20px; }
+    .wrap{ padding: 0 16px; }
   }
 
   /* motion reduction */
   @media (prefers-reduced-motion: reduce){
     *{ animation: none !important; transition: none !important; }
+    .marquee-track{ transform: none !important; }
   }
 
-  /* -------- Fade up reveal -------- */
+  /* -------- Reveal -------- */
   .reveal{
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 500ms ease, transform 500ms ease;
+    transform: translateY(26px);
+    transition: opacity 650ms cubic-bezier(.22,.61,.36,1), transform 650ms cubic-bezier(.22,.61,.36,1);
   }
-  .reveal.in{
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+  .reveal.d1{ transition-delay: 80ms; }
+  .reveal.d2{ transition-delay: 160ms; }
+  .reveal.d3{ transition-delay: 240ms; }
 
-  /* -------- Nav -------- */
-  header{
+  /* -------- Floating pill nav -------- */
+  .nav-shell{
     position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 50;
-    background: rgba(9,9,9,0.7);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 300ms ease;
+    top: 16px; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+    pointer-events: none;
   }
-  header.scrolled{ border-bottom-color: var(--line); }
 
-  nav.wrap{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height: 76px;
+  .nav-pill{
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: rgba(255,255,255,0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(19,19,19,0.06);
+    border-radius: 999px;
+    padding: 10px 10px 10px 18px;
+    box-shadow: var(--shadow-pill);
+    transition: box-shadow 300ms ease;
+    max-width: 720px;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .brand{
-    display:flex;
-    align-items:center;
-    gap: 12px;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration:none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 16.5px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
   }
 
   .brand-mark{
-    width: 20px; height: 20px;
-    border: 1.5px solid var(--fg);
-    flex-shrink:0;
+    width: 30px; height: 30px;
+    border-radius: 9px;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .brand-mark::after{
+    content: '';
+    width: 12px; height: 12px;
+    border: 2px solid #fff;
   }
 
-  .nav-status{
-    display:flex;
-    align-items:center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--secondary);
-    letter-spacing: 0.02em;
+  .nav-links{
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .nav-links a{
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .nav-links a:hover{ color: var(--ink); }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 999px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+    white-space: nowrap;
+  }
+  .btn:hover{
+    background: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -10px rgba(19,19,19,0.45);
+  }
+  .btn:active{ transform: translateY(0); }
+
+  .btn.light{
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .btn.light:hover{
+    background: #fff;
+    box-shadow: 0 10px 24px -12px rgba(19,19,19,0.25);
   }
 
-  .dot{
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--fg);
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-
-  @keyframes pulse{
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.25; }
+  @media (max-width: 720px){
+    .nav-links{ display: none; }
+    .nav-pill{ max-width: none; width: auto; gap: 16px; }
   }
 
   /* -------- Hero -------- */
   .hero{
-    min-height: 100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+    padding: 168px 0 84px;
+    text-align: center;
     position: relative;
-    padding-top: 76px;
-    overflow: hidden;
   }
 
-  .hero-frame{
-    position:absolute;
+  .chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--card);
     border: 1px solid var(--line);
-    pointer-events:none;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--muted);
+    box-shadow: 0 1px 2px rgba(19,19,19,0.04);
   }
 
-  .hero-eyebrow{
-    font-size: 13px;
-    color: var(--secondary);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    display:flex;
-    align-items:center;
-    gap: 12px;
+  .dot{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    animation: pulse 2.4s ease-in-out infinite;
   }
-
-  .hero-eyebrow::before{
-    content:'';
-    width: 32px; height: 1px;
-    background: var(--line-strong);
+  @keyframes pulse{
+    0%, 100%{ opacity: 1; transform: scale(1); }
+    50%{ opacity: 0.45; transform: scale(0.82); }
   }
 
   .hero h1{
-    font-size: clamp(2.4rem, 6vw, 5rem);
-    font-weight: 600;
-    line-height: 1.08;
+    margin: 30px auto 0;
+    font-size: clamp(2.7rem, 7.4vw, 5.4rem);
+    font-weight: 700;
+    line-height: 1.02;
     max-width: 15ch;
+    color: var(--ink);
+  }
+  .hero h1 .dim{ color: var(--faint); }
+  .hero h1 .serif-accent{ font-size: 1.04em; }
+
+  .hero .sub{
+    margin: 28px auto 0;
+    max-width: 46ch;
+    font-size: clamp(1rem, 1.5vw, 1.14rem);
+    color: var(--muted);
   }
 
-  .hero p{
-    margin-top: 28px;
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
-    color: var(--secondary);
-    max-width: 52ch;
-  }
-
-  .cta-row{
-    margin-top: 44px;
-    display:flex;
-    align-items:center;
-    gap: 20px;
+  .hero .cta-row{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
     flex-wrap: wrap;
   }
 
-  .cta-badge{
-    display:inline-flex;
-    align-items:center;
-    gap: 10px;
-    padding: 12px 22px;
-    border: 1px solid var(--line-strong);
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    color: var(--fg);
+  .micro-status{
+    margin-top: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
   }
 
-  .cta-badge .dot{ background: var(--fg); }
+  /* -------- Marquee -------- */
+  .marquee{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 20px 0;
+    position: relative;
+    background: rgba(255,255,255,0.4);
+  }
+  .marquee::before, .marquee::after{
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .marquee::before{ left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+  .marquee::after{ right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
 
-  .hero-note{
+  .marquee-track{
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: scroll 36s linear infinite;
+  }
+  @keyframes scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  .marquee-group{
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .m-item{
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 28px;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 14px;
-    color: var(--secondary);
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+  .m-item::after{
+    content: '✳';
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.65;
   }
 
   /* -------- Section shell -------- */
-  section{
-    padding: 140px 0;
-    border-top: 1px solid var(--line);
-    position: relative;
-  }
+  section{ padding: 110px 0; }
+  section.tight{ padding: 84px 0; }
 
-  .section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap: 40px;
-    margin-bottom: 64px;
-    flex-wrap: wrap;
-  }
-
-  .eyebrow{
-    font-size: 13px;
-    color: var(--secondary);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-
-  .section-head h2{
-    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  .label-chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
     font-weight: 600;
-    max-width: 20ch;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+    margin-bottom: 26px;
+  }
+  .label-chip::before{
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
   }
 
-  .section-lede{
-    max-width: 34ch;
-    color: var(--secondary);
-    font-size: 1rem;
-    text-align: right;
+  .section-h{
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 1.08;
+    max-width: 22ch;
+  }
+  .section-h .dim{ color: var(--faint); }
+
+  .section-sub{
+    margin-top: 18px;
+    color: var(--muted);
+    max-width: 52ch;
+    font-size: 1.02rem;
   }
 
-  @media (max-width: 800px){
-    .section-lede{ text-align:left; max-width: 100%; }
-  }
+  .center{ text-align: center; }
+  .center .section-h, .center .section-sub{ margin-left: auto; margin-right: auto; }
 
   /* -------- Philosophy -------- */
   .philosophy-statement{
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.5rem, 3.4vw, 2.4rem);
-    font-weight: 500;
-    line-height: 1.4;
-    max-width: 18ch;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.14;
+    max-width: 21ch;
+    margin: 0 auto;
+    text-align: center;
   }
+  .philosophy-statement .dim{ color: var(--faint); }
+  .philosophy-statement .serif-accent{ font-size: 1.05em; }
 
-  .philosophy-statement .dim{ color: var(--secondary); }
-
-  .philosophy-grid{
-    display:grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
-    align-items: start;
-  }
-
-  @media (max-width: 800px){
-    .philosophy-grid{ grid-template-columns: 1fr; gap: 40px; }
-  }
-
-  .philosophy-list{
-    display:flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .philosophy-list li{
-    list-style:none;
-    padding: 18px 0;
-    border-top: 1px solid var(--line);
-    color: var(--secondary);
-    font-size: 0.95rem;
-    display:flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .philosophy-list li:last-child{ border-bottom: 1px solid var(--line); }
-  .philosophy-list li span.label{ color: var(--fg); }
-
-  /* -------- Capabilities -------- */
-  .cap-grid{
-    display:grid;
+  .philosophy-cards{
+    margin-top: 64px;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
+    gap: 16px;
+  }
+  @media (max-width: 800px){
+    .philosophy-cards{ grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 800px){
+  .p-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .p-card .k{
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--faint);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .p-card p{
+    margin: 0;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* -------- Capabilities bento -------- */
+  .cap-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 56px;
+  }
+  @media (max-width: 900px){
     .cap-grid{ grid-template-columns: 1fr; }
   }
 
   .cap-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 30px 28px 32px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: transform 300ms cubic-bezier(.22,.61,.36,1), box-shadow 300ms ease;
+  }
+  .cap-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 2px 4px rgba(19,19,19,0.04), 0 24px 48px -18px rgba(19,19,19,0.16);
+  }
+
+  .cap-visual{
+    height: 150px;
+    border-radius: var(--radius-md);
     background: var(--bg);
-    padding: 44px 36px;
-    display:flex;
-    flex-direction:column;
-    gap: 28px;
-    transition: background 300ms ease;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 26px;
+    color: var(--ink);
+    overflow: hidden;
+    position: relative;
   }
-
-  .cap-card:hover{ background: #0d0d0d; }
-
-  .cap-icon{
-    width: 40px; height: 40px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color: var(--fg);
-  }
-  .cap-icon svg{ width: 26px; height: 26px; }
+  .cap-visual svg{ width: 76px; height: 76px; }
 
   .cap-card h3{
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.22rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .cap-card > p{
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0 0 20px;
+    flex: 1;
   }
 
-  .cap-card p{
-    color: var(--secondary);
-    font-size: 0.92rem;
-    margin: 0;
+  .tag-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag{
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 12px;
   }
 
   /* -------- Principles -------- */
   .principles-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 56px;
   }
-
-  @media (max-width: 900px){
-    .principles-grid{ grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 520px){
+  @media (max-width: 720px){
     .principles-grid{ grid-template-columns: 1fr; }
   }
 
   .principle{
-    padding-top: 24px;
-    border-top: 1px solid var(--line-strong);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-card);
   }
 
-  .principle-icon{
-    width: 32px; height:32px;
-    margin-bottom: 22px;
-    color: var(--secondary);
+  .principle-num{
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--faint);
+    line-height: 1.2;
+    flex-shrink: 0;
+    min-width: 34px;
   }
-  .principle-icon svg{ width: 100%; height:100%; }
 
   .principle h3{
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
   }
-
   .principle p{
-    color: var(--secondary);
-    font-size: 0.9rem;
+    color: var(--muted);
+    font-size: 0.92rem;
     margin: 0;
   }
 
-  /* -------- Vision -------- */
-  .vision{
-    display:flex;
-    justify-content:center;
-    text-align:center;
+  /* -------- Vision (dark card) -------- */
+  .vision-card{
+    background: #141413;
+    border-radius: var(--radius-lg);
+    padding: clamp(56px, 8vw, 100px) clamp(24px, 6vw, 80px);
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .vision-card::before{
+    content: '';
+    position: absolute;
+    top: -40%; left: 50%;
+    transform: translateX(-50%);
+    width: 70%; height: 80%;
+    background: radial-gradient(ellipse at center, rgba(255,74,31,0.14), transparent 70%);
+    pointer-events: none;
   }
 
-  .vision-inner{ max-width: 780px; }
-
-  .vision p.big{
-    font-family:'Space Grotesk', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2.1rem);
-    font-weight: 500;
-    line-height: 1.5;
+  .vision-card .label-chip{
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
   }
 
-  .vision .dim{ color: var(--secondary); }
+  .vision-card .big{
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    max-width: 24ch;
+    margin: 0 auto;
+    position: relative;
+  }
+  .vision-card .big .dim{ color: rgba(255,255,255,0.42); }
+  .vision-card .big .serif-accent{ font-size: 1.06em; }
 
   .vision-tags{
-    margin-top: 40px;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
+    margin-top: 42px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
+    position: relative;
   }
-
   .vtag{
     font-size: 13px;
-    color: var(--secondary);
-    border: 1px solid var(--line-strong);
-    padding: 7px 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.05);
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background 250ms ease, color 250ms ease;
   }
+  .vtag:hover{ background: rgba(255,255,255,0.12); color: #fff; }
 
   /* -------- Current focus -------- */
-  .focus-list{
-    display:flex;
-    flex-direction:column;
+  .focus-card{
+    margin-top: 56px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
   }
 
   .focus-item{
-    display:grid;
-    grid-template-columns: 100px 1fr 1fr;
+    display: grid;
+    grid-template-columns: 64px 130px 1fr 1.1fr auto;
     gap: 24px;
-    padding: 28px 0;
+    padding: 30px 32px;
+    align-items: center;
     border-top: 1px solid var(--line);
-    align-items:baseline;
+    transition: background 250ms ease;
   }
-  .focus-item:last-child{ border-bottom: 1px solid var(--line); }
+  .focus-item:first-child{ border-top: none; }
+  .focus-item:hover{ background: #FCFBF9; }
+
+  .focus-num{
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--faint);
+  }
 
   .focus-tag{
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    color: var(--secondary);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 12px;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .focus-item h3{
-    font-size: 1.05rem;
+    font-size: 1.06rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  .focus-item .desc{
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .status-chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
     font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+    white-space: nowrap;
   }
+  .status-chip .dot{ width: 6px; height: 6px; }
 
-  .focus-item p{
-    margin:0;
-    color: var(--secondary);
-    font-size: 0.92rem;
-  }
-
-  @media (max-width: 700px){
+  @media (max-width: 900px){
     .focus-item{
       grid-template-columns: 1fr;
-      gap: 8px;
+      gap: 12px;
+      padding: 26px 24px;
     }
+    .focus-num{ display: none; }
+    .focus-tag{ justify-self: start; }
+    .status-chip{ justify-self: start; }
+  }
+
+  /* -------- Footer CTA -------- */
+  .footer-cta{
+    padding: 130px 0 110px;
+    text-align: center;
+  }
+  .footer-cta h2{
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.04;
+    max-width: 14ch;
+    margin: 0 auto;
+  }
+  .footer-cta h2 .dim{ color: var(--faint); }
+  .footer-cta .sub{
+    margin: 24px auto 0;
+    color: var(--muted);
+    max-width: 42ch;
+  }
+  .footer-cta .cta-row{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
   }
 
   /* -------- Footer -------- */
   footer{
     border-top: 1px solid var(--line);
-    padding: 56px 0 40px;
+    padding: 36px 0;
   }
-
-  .footer-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  .footer-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     flex-wrap: wrap;
-    gap: 24px;
-    padding-bottom: 40px;
+    font-size: 13px;
+    color: var(--faint);
   }
+  .footer-inner .brand{ font-size: 14.5px; }
+  .footer-inner a{ text-decoration: none; transition: color 200ms ease; }
+  .footer-inner a:hover{ color: var(--ink); }
 
-  .footer-tagline{
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 1.3rem;
-    max-width: 22ch;
-  }
-
-  .footer-contact{
-    text-align: right;
-    font-size: 0.92rem;
-    color: var(--secondary);
-  }
-  .footer-contact a{
-    color: var(--fg);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line-strong);
-    padding-bottom: 2px;
-  }
-  .footer-contact a:hover{ border-color: var(--fg); }
-
-  @media (max-width: 700px){
-    .footer-contact{ text-align:left; }
-  }
-
-  .footer-bottom{
-    display:flex;
-    justify-content:space-between;
-    padding-top: 32px;
-    border-top: 1px solid var(--line);
-    font-size: 12px;
-    color: var(--secondary);
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  /* focus visibility for keyboard nav */
+  /* focus visibility */
   a:focus-visible, button:focus-visible{
-    outline: 1px solid var(--fg);
-    outline-offset: 4px;
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 </style>
 </head>
 <body>
 
-<header id="site-header">
-  <nav class="wrap">
+<div class="nav-shell">
+  <nav class="nav-pill" aria-label="Main">
     <a href="#top" class="brand">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span class="wordmark">BlankFrame Technologies</span>
+      <span>BlankFrame</span>
     </a>
-    <div class="nav-status">
-      <span class="dot" aria-hidden="true"></span>
-      <span>Building</span>
+    <div class="nav-links">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#focus">Focus</a>
     </div>
+    <a class="btn" href="mailto:hello@blankframe.tech">Get in touch</a>
   </nav>
-</header>
+</div>
 
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero" style="border-top:none; padding-top:76px;">
-    <svg class="hero-frame" style="top: 8%; right: 6%; width: 30vw; height: 30vw; max-width:420px; max-height:420px;" viewBox="0 0 100 100" aria-hidden="true">
-      <rect x="1" y="1" width="98" height="98" fill="none" stroke="currentColor" stroke-width="0.5" id="frame-rect"/>
-    </svg>
+  <section class="hero" style="padding-bottom: 96px;">
     <div class="wrap">
-      <p class="hero-eyebrow reveal">Infrastructure, not another app</p>
-      <h1 class="reveal">We build the infrastructure that lets people think less and create more.</h1>
-      <p class="reveal">BlankFrame designs AI-assisted software, embedded hardware, and agentic systems that absorb repetitive work quietly — so the humans behind them can spend their attention on what actually matters to them.</p>
-      <div class="cta-row reveal">
-        <span class="cta-badge"><span class="dot"></span> Coming soon</span>
-        <span class="hero-note">blankframe.tech</span>
+      <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Currently building — Dhaka, Bangladesh</span>
+      <h1 class="reveal d1">We build the frame. <span class="dim">You create what</span> <span class="serif-accent">matters.</span></h1>
+      <p class="sub reveal d2">BlankFrame designs AI-assisted software, embedded hardware, and agentic systems that quietly absorb repetitive work — so your attention goes to the things only you can do.</p>
+      <div class="cta-row reveal d3">
+        <a class="btn" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
+        <a class="btn light" href="#capabilities">See what we build</a>
       </div>
+      <div class="micro-status reveal d3"><span class="dot" aria-hidden="true"></span> Infrastructure that removes human cognitive load</div>
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span class="m-item">Agentic workflows</span>
+        <span class="m-item">Embedded systems</span>
+        <span class="m-item">On-device LLMs</span>
+        <span class="m-item">Ambient intelligence</span>
+        <span class="m-item">Edge computing</span>
+        <span class="m-item">Cognitive load, reduced</span>
+      </div>
+      <div class="marquee-group">
+        <span class="m-item">Agentic workflows</span>
+        <span class="m-item">Embedded systems</span>
+        <span class="m-item">On-device LLMs</span>
+        <span class="m-item">Ambient intelligence</span>
+        <span class="m-item">Edge computing</span>
+        <span class="m-item">Cognitive load, reduced</span>
+      </div>
+    </div>
+  </div>
+
   <!-- PHILOSOPHY -->
   <section id="philosophy">
-    <div class="wrap">
-      <div class="eyebrow reveal">Philosophy</div>
-      <div class="philosophy-grid">
-        <p class="philosophy-statement reveal">
-          <span class="dim">The frame is invisible.</span><br>
-          We build it. <span class="dim">You create what matters.</span>
-        </p>
-        <ul class="philosophy-list reveal">
-          <li><span class="label">What we build</span> <span>Infrastructure that carries context, so you don't have to repeat yourself</span></li>
-          <li><span class="label">What it does</span> <span>Automates the repetitive thinking that sits between you and the work</span></li>
-          <li><span class="label">What you get back</span> <span>Time — for building, exploring, riding, making, and living</span></li>
-        </ul>
+    <div class="wrap center">
+      <span class="label-chip reveal">Philosophy</span>
+      <p class="philosophy-statement reveal d1">
+        <span class="dim">The best infrastructure is</span> <span class="serif-accent">invisible.</span><br>
+        We build it, it disappears, <span class="dim">and what's left is your time.</span>
+      </p>
+
+      <div class="philosophy-cards">
+        <div class="p-card reveal">
+          <span class="k">What we build</span>
+          <p>Infrastructure that carries context, so you don't have to repeat yourself.</p>
+        </div>
+        <div class="p-card reveal d1">
+          <span class="k">What it does</span>
+          <p>Automates the repetitive thinking that sits between you and the work.</p>
+        </div>
+        <div class="p-card reveal d2">
+          <span class="k">What you get back</span>
+          <p>Time — for building, exploring, riding, making, and living.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CAPABILITIES -->
-  <section id="capabilities">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow reveal">Capabilities</div>
-          <h2 class="reveal">Three layers, one intent: reduce cognitive load.</h2>
-        </div>
-        <p class="section-lede reveal">Software, hardware, and the systems that connect them — designed to disappear once they're working.</p>
-      </div>
+  <section id="capabilities" class="tight">
+    <div class="wrap center">
+      <span class="label-chip reveal">Capabilities</span>
+      <h2 class="section-h reveal d1">Three layers, one intent — <span class="dim">reduce cognitive load.</span></h2>
+      <p class="section-sub reveal d2">Software, hardware, and the systems that connect them — designed to disappear once they're working.</p>
 
-      <div class="cap-grid reveal">
-        <div class="cap-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+      <div class="cap-grid" style="text-align:left;">
+        <div class="cap-card reveal">
+          <div class="cap-visual" aria-hidden="true">
+            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="14" y="20" width="40" height="10" rx="5" opacity="0.28"/>
+              <rect x="14" y="34" width="48" height="10" rx="5"/>
+              <rect x="14" y="48" width="30" height="10" rx="5" opacity="0.55"/>
+              <circle cx="61" cy="25" r="4" fill="currentColor" stroke="none" opacity="0.85"/>
+            </svg>
           </div>
-          <div>
-            <h3>Intelligent Software</h3>
-            <p>Agentic workflows and AI-assisted tools that handle the decisions and busywork standing between an idea and its execution.</p>
+          <h3>Intelligent Software</h3>
+          <p>Agentic workflows and AI-assisted tools that handle the decisions and busywork standing between an idea and its execution.</p>
+          <div class="tag-row">
+            <span class="tag">Agents</span>
+            <span class="tag">Automation</span>
+            <span class="tag">AI tooling</span>
           </div>
         </div>
-        <div class="cap-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+
+        <div class="cap-card reveal d1">
+          <div class="cap-visual" aria-hidden="true">
+            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="22" y="22" width="32" height="32" rx="6"/>
+              <rect x="32" y="32" width="12" height="12" rx="2" opacity="0.55"/>
+              <path d="M30 12v10M38 12v10M46 12v10M30 54v10M38 54v10M46 54v10M12 30h10M12 38h10M12 46h10M54 30h10M54 38h10M54 46h10"/>
+            </svg>
           </div>
-          <div>
-            <h3>Embedded Systems</h3>
-            <p>Sensors, controllers, and edge devices built to run reliably in the physical world — from a single board to a full deployment.</p>
+          <h3>Embedded Systems</h3>
+          <p>Sensors, controllers, and edge devices built to run reliably in the physical world — from a single board to a full deployment.</p>
+          <div class="tag-row">
+            <span class="tag">Sensors</span>
+            <span class="tag">Edge devices</span>
+            <span class="tag">Firmware</span>
           </div>
         </div>
-        <div class="cap-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><path d="M2 18c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg>
+
+        <div class="cap-card reveal d2">
+          <div class="cap-visual" aria-hidden="true">
+            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="38" cy="38" r="6" fill="currentColor" stroke="none" opacity="0.85"/>
+              <circle cx="38" cy="38" r="15" opacity="0.6"/>
+              <circle cx="38" cy="38" r="24" opacity="0.35"/>
+              <circle cx="38" cy="38" r="33" opacity="0.15"/>
+            </svg>
           </div>
-          <div>
-            <h3>Ambient Intelligence</h3>
-            <p>Devices and services that coordinate with each other in the background, surfacing only when a decision actually needs a human.</p>
+          <h3>Ambient Intelligence</h3>
+          <p>Devices and services that coordinate with each other in the background, surfacing only when a decision actually needs a human.</p>
+          <div class="tag-row">
+            <span class="tag">Coordination</span>
+            <span class="tag">Quiet systems</span>
+            <span class="tag">Context</span>
           </div>
         </div>
       </div>
@@ -594,51 +868,54 @@
   </section>
 
   <!-- PRINCIPLES -->
-  <section id="principles">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow reveal">Principles</div>
-          <h2 class="reveal">What we optimize for.</h2>
-        </div>
-        <p class="section-lede reveal">Not features. Commitments that decide what we build and what we say no to.</p>
-      </div>
+  <section id="principles" class="tight">
+    <div class="wrap center">
+      <span class="label-chip reveal">Principles</span>
+      <h2 class="section-h reveal d1">What we optimize for.</h2>
+      <p class="section-sub reveal d2">Not features — commitments that decide what we build and what we say no to.</p>
 
-      <div class="principles-grid reveal">
-        <div class="principle">
-          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
-          <h3>Human First</h3>
-          <p>Systems answer to the person using them, not the other way around.</p>
+      <div class="principles-grid" style="text-align:left;">
+        <div class="principle reveal">
+          <span class="principle-num" aria-hidden="true">01</span>
+          <div>
+            <h3>Human first</h3>
+            <p>Systems answer to the person using them, not the other way around.</p>
+          </div>
         </div>
-        <div class="principle">
-          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" opacity="0.35"/><path d="M1 1l22 22"/></svg></div>
-          <h3>Invisible by Design</h3>
-          <p>The best infrastructure is the kind you stop noticing.</p>
+        <div class="principle reveal d1">
+          <span class="principle-num" aria-hidden="true">02</span>
+          <div>
+            <h3>Invisible by design</h3>
+            <p>The best infrastructure is the kind you stop noticing.</p>
+          </div>
         </div>
-        <div class="principle">
-          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg></div>
-          <h3>Built to Last</h3>
-          <p>Reliability over novelty. Calm over hype.</p>
+        <div class="principle reveal d2">
+          <span class="principle-num" aria-hidden="true">03</span>
+          <div>
+            <h3>Built to last</h3>
+            <p>Reliability over novelty. Calm over hype.</p>
+          </div>
         </div>
-        <div class="principle">
-          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><path d="M7 7h.01M7 17h.01"/></svg></div>
-          <h3>Own Your Infrastructure</h3>
-          <p>Long-term ownership over vendor lock-in, always.</p>
+        <div class="principle reveal d3">
+          <span class="principle-num" aria-hidden="true">04</span>
+          <div>
+            <h3>Own your infrastructure</h3>
+            <p>Long-term ownership over vendor lock-in, always.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- VISION -->
-  <section id="vision">
-    <div class="wrap vision">
-      <div class="vision-inner">
-        <div class="eyebrow reveal" style="text-align:center;">Vision</div>
-        <p class="big reveal">
-          A future where intelligent systems quietly coordinate in the background —
-          <span class="dim">so people can spend their attention on life, creativity, travel, riding, music, and each other.</span>
+  <section id="vision" class="tight">
+    <div class="wrap">
+      <div class="vision-card reveal">
+        <span class="label-chip">Vision</span>
+        <p class="big">
+          A future where intelligent systems quietly coordinate in the background — <span class="dim">so people can spend their attention on</span> <span class="serif-accent">life itself.</span>
         </p>
-        <div class="vision-tags reveal">
+        <div class="vision-tags">
           <span class="vtag">Create</span>
           <span class="vtag">Explore</span>
           <span class="vtag">Travel</span>
@@ -652,32 +929,52 @@
   </section>
 
   <!-- CURRENT FOCUS -->
-  <section id="focus">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow reveal">Current Focus</div>
-          <h2 class="reveal">What we're building right now.</h2>
-        </div>
-        <p class="section-lede reveal">Early, hands-on, domain-specific — proving the philosophy on real hardware first.</p>
-      </div>
+  <section id="focus" class="tight">
+    <div class="wrap center">
+      <span class="label-chip reveal">Current Focus</span>
+      <h2 class="section-h reveal d1">What we're building <span class="dim">right now.</span></h2>
+      <p class="section-sub reveal d2">Early, hands-on, domain-specific — proving the philosophy on real hardware first.</p>
 
-      <div class="focus-list reveal">
+      <div class="focus-card reveal d2" style="text-align:left;">
         <div class="focus-item">
+          <span class="focus-num" aria-hidden="true">01</span>
           <span class="focus-tag">Hardware</span>
-          <h3>Anti-lock braking for two- and three-wheelers</h3>
-          <p>Wheel-speed sensing and interrupt-driven lockup detection, moving from a single motorcycle build toward a dual-sensor concept for electric rickshaws.</p>
+          <h3>Anti-roll for the three-wheelers of Dhaka</h3>
+          <p class="desc">Stability sensing and control that keeps electric rickshaws upright on real roads — built and tested where they actually run.</p>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
         </div>
         <div class="focus-item">
+          <span class="focus-num" aria-hidden="true">02</span>
+          <span class="focus-tag">Mobility</span>
+          <h3>Throttle IQ</h3>
+          <p class="desc">A smarter relationship between rider and machine. That's all we're saying for now.</p>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Under wraps</span>
+        </div>
+        <div class="focus-item">
+          <span class="focus-num" aria-hidden="true">03</span>
           <span class="focus-tag">Systems</span>
           <h3>Edge intelligence, on-device</h3>
-          <p>Running language models locally so analysis and automation work stay private, fast, and independent of any one vendor.</p>
+          <p class="desc">Running language models locally so analysis and automation stay private, fast, and independent of any one vendor.</p>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
         </div>
         <div class="focus-item">
+          <span class="focus-num" aria-hidden="true">04</span>
           <span class="focus-tag">Automation</span>
           <h3>Ambient home &amp; environment systems</h3>
-          <p>Multi-zone sensing and control that keeps the everyday things — like the plants — cared for without asking for attention.</p>
+          <p class="desc">Multi-zone sensing and control that keeps the everyday things — like the plants — cared for without asking for attention.</p>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="footer-cta">
+    <div class="wrap">
+      <h2 class="reveal">Let's build the <span class="serif-accent">invisible.</span></h2>
+      <p class="sub reveal d1">We're early, and we like it that way. If quiet, dependable systems are your kind of thing — say hello.</p>
+      <div class="cta-row reveal d2">
+        <a class="btn" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
       </div>
     </div>
   </section>
@@ -685,29 +982,18 @@
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <p class="footer-tagline">We build the frame.<br><span style="color:var(--secondary);">You create what matters.</span></p>
-      <div class="footer-contact">
-        <p style="margin:0 0 6px;">Get in touch</p>
-        <a href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> BlankFrame Technologies</span>
-      <span>blankframe.tech</span>
-    </div>
+  <div class="wrap footer-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>BlankFrame</span>
+    </a>
+    <span>© <span id="year"></span> BlankFrame Technologies</span>
+    <a href="https://www.blankframe.tech/">blankframe.tech</a>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // header border on scroll
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
 
   // fade-up reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
@@ -719,21 +1005,10 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
   } else {
     revealEls.forEach(el => el.classList.add('in'));
-  }
-
-  // subtle parallax on the hero frame — respects reduced motion
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const frame = document.getElementById('frame-rect');
-  if (!prefersReduced && frame) {
-    window.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 6;
-      const y = (e.clientY / window.innerHeight - 0.5) * 6;
-      frame.setAttribute('transform', `translate(${x}, ${y})`);
-    }, { passive: true });
   }
 </script>
 
