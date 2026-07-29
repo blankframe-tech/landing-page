@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BlankFrame Technologies — We build the frame. You create what matters.</title>
-<meta name="description" content="BlankFrame Technologies builds infrastructure that reduces human cognitive load — AI-assisted software, embedded hardware, and ambient intelligence that disappears into everyday life.">
+<meta name="description" content="BlankFrame Technologies builds infrastructure that reduces human cognitive load — AI-assisted software, embedded hardware, and ambient intelligence.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="BlankFrame Technologies">
@@ -72,12 +72,6 @@
 
   @media (max-width: 640px){
     .wrap{ padding: 0 16px; }
-  }
-
-  /* motion reduction */
-  @media (prefers-reduced-motion: reduce){
-    *{ animation: none !important; transition: none !important; }
-    .marquee-track{ transform: none !important; }
   }
 
   /* -------- Reveal -------- */
@@ -181,16 +175,11 @@
     transform: translateY(-1px);
     box-shadow: 0 10px 24px -10px rgba(19,19,19,0.45);
   }
-  .btn:active{ transform: translateY(0); }
 
   .btn.light{
     background: #fff;
     color: var(--ink);
     border: 1px solid var(--line);
-  }
-  .btn.light:hover{
-    background: #fff;
-    box-shadow: 0 10px 24px -12px rgba(19,19,19,0.25);
   }
 
   @media (max-width: 720px){
@@ -216,7 +205,6 @@
     font-size: 13.5px;
     font-weight: 500;
     color: var(--muted);
-    box-shadow: 0 1px 2px rgba(19,19,19,0.04);
   }
 
   .dot{
@@ -234,40 +222,16 @@
   .hero h1{
     margin: 30px auto 0;
     font-size: clamp(2.7rem, 7.4vw, 5.4rem);
-    font-weight: 700;
     line-height: 1.02;
     max-width: 15ch;
-    color: var(--ink);
   }
   .hero h1 .dim{ color: var(--faint); }
-  .hero h1 .serif-accent{ font-size: 1.04em; }
 
   .hero .sub{
     margin: 28px auto 0;
     max-width: 46ch;
     font-size: clamp(1rem, 1.5vw, 1.14rem);
     color: var(--muted);
-  }
-
-  .hero .cta-row{
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .micro-status{
-    margin-top: 26px;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--faint);
   }
 
   /* -------- Marquee -------- */
@@ -279,20 +243,8 @@
     position: relative;
     background: rgba(255,255,255,0.4);
   }
-  .marquee::before, .marquee::after{
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 120px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .marquee::before{ left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-  .marquee::after{ right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
-
   .marquee-track{
     display: flex;
-    gap: 0;
     width: max-content;
     animation: scroll 36s linear infinite;
   }
@@ -300,17 +252,7 @@
     from{ transform: translateX(0); }
     to{ transform: translateX(-50%); }
   }
-
-  .marquee-group{
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
   .m-item{
-    display: flex;
-    align-items: center;
-    gap: 28px;
     padding: 0 28px;
     font-family: 'Inter Tight', sans-serif;
     font-size: 14px;
@@ -318,16 +260,13 @@
     letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--faint);
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 28px;
   }
-  .m-item::after{
-    content: '✳';
-    font-size: 12px;
-    color: var(--accent);
-    opacity: 0.65;
-  }
+  .m-item::after{ content: '✳'; color: var(--accent); opacity: 0.65; }
 
-  /* -------- Section shell -------- */
+  /* -------- Section Shell -------- */
   section{ padding: 110px 0; }
   section.tight{ padding: 84px 0; }
 
@@ -346,252 +285,14 @@
     padding: 7px 14px;
     margin-bottom: 26px;
   }
-  .label-chip::before{
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
+  .label-chip::before{ content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-  .section-h{
-    font-size: clamp(1.9rem, 4vw, 3rem);
-    line-height: 1.08;
-    max-width: 22ch;
-  }
+  .section-h{ font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; }
   .section-h .dim{ color: var(--faint); }
-
-  .section-sub{
-    margin-top: 18px;
-    color: var(--muted);
-    max-width: 52ch;
-    font-size: 1.02rem;
-  }
-
+  .section-sub{ margin-top: 18px; color: var(--muted); max-width: 52ch; margin-left: auto; margin-right: auto; }
   .center{ text-align: center; }
-  .center .section-h, .center .section-sub{ margin-left: auto; margin-right: auto; }
 
-  /* -------- Philosophy -------- */
-  .philosophy-statement{
-    font-family: 'Inter Tight', sans-serif;
-    font-size: clamp(1.8rem, 4.4vw, 3.2rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.14;
-    max-width: 21ch;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .philosophy-statement .dim{ color: var(--faint); }
-  .philosophy-statement .serif-accent{ font-size: 1.05em; }
-
-  .philosophy-cards{
-    margin-top: 64px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  @media (max-width: 800px){
-    .philosophy-cards{ grid-template-columns: 1fr; }
-  }
-
-  .p-card{
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    padding: 28px;
-    box-shadow: var(--shadow-card);
-  }
-  .p-card .k{
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--faint);
-    display: block;
-    margin-bottom: 12px;
-  }
-  .p-card p{
-    margin: 0;
-    font-size: 1rem;
-    color: var(--ink-soft);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-
-  /* -------- Capabilities bento -------- */
-  .cap-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 56px;
-  }
-  @media (max-width: 900px){
-    .cap-grid{ grid-template-columns: 1fr; }
-  }
-
-  .cap-card{
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    padding: 30px 28px 32px;
-    box-shadow: var(--shadow-card);
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    transition: transform 300ms cubic-bezier(.22,.61,.36,1), box-shadow 300ms ease;
-  }
-  .cap-card:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 2px 4px rgba(19,19,19,0.04), 0 24px 48px -18px rgba(19,19,19,0.16);
-  }
-
-  .cap-visual{
-    height: 150px;
-    border-radius: var(--radius-md);
-    background: var(--bg);
-    border: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 26px;
-    color: var(--ink);
-    overflow: hidden;
-    position: relative;
-  }
-  .cap-visual svg{ width: 76px; height: 76px; }
-
-  .cap-card h3{
-    font-size: 1.22rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-  }
-  .cap-card > p{
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin: 0 0 20px;
-    flex: 1;
-  }
-
-  .tag-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .tag{
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 5px 12px;
-  }
-
-  /* -------- Principles -------- */
-  .principles-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 56px;
-  }
-  @media (max-width: 720px){
-    .principles-grid{ grid-template-columns: 1fr; }
-  }
-
-  .principle{
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    padding: 26px 28px;
-    box-shadow: var(--shadow-card);
-  }
-
-  .principle-num{
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.5rem;
-    color: var(--faint);
-    line-height: 1.2;
-    flex-shrink: 0;
-    min-width: 34px;
-  }
-
-  .principle h3{
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    margin-bottom: 6px;
-  }
-  .principle p{
-    color: var(--muted);
-    font-size: 0.92rem;
-    margin: 0;
-  }
-
-  /* -------- Vision (dark card) -------- */
-  .vision-card{
-    background: #141413;
-    border-radius: var(--radius-lg);
-    padding: clamp(56px, 8vw, 100px) clamp(24px, 6vw, 80px);
-    text-align: center;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-  .vision-card::before{
-    content: '';
-    position: absolute;
-    top: -40%; left: 50%;
-    transform: translateX(-50%);
-    width: 70%; height: 80%;
-    background: radial-gradient(ellipse at center, rgba(255,74,31,0.14), transparent 70%);
-    pointer-events: none;
-  }
-
-  .vision-card .label-chip{
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.6);
-  }
-
-  .vision-card .big{
-    font-family: 'Inter Tight', sans-serif;
-    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    max-width: 24ch;
-    margin: 0 auto;
-    position: relative;
-  }
-  .vision-card .big .dim{ color: rgba(255,255,255,0.42); }
-  .vision-card .big .serif-accent{ font-size: 1.06em; }
-
-  .vision-tags{
-    margin-top: 42px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    position: relative;
-  }
-  .vtag{
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.72);
-    border: 1px solid rgba(255,255,255,0.16);
-    background: rgba(255,255,255,0.05);
-    padding: 8px 16px;
-    border-radius: 999px;
-    transition: background 250ms ease, color 250ms ease;
-  }
-  .vtag:hover{ background: rgba(255,255,255,0.12); color: #fff; }
-
-  /* -------- Current focus -------- */
+  /* -------- Products Card Grid -------- */
   .focus-card{
     margin-top: 56px;
     background: var(--card);
@@ -603,7 +304,7 @@
 
   .focus-item{
     display: grid;
-    grid-template-columns: 64px 130px 1fr 1.1fr auto;
+    grid-template-columns: 64px 130px 1.5fr 1fr auto;
     gap: 24px;
     padding: 30px 32px;
     align-items: center;
@@ -613,404 +314,134 @@
   .focus-item:first-child{ border-top: none; }
   .focus-item:hover{ background: #FCFBF9; }
 
-  .focus-num{
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--faint);
-  }
-
+  .focus-num{ font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.4rem; color: var(--faint); }
   .focus-tag{
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 6px 12px;
-    text-align: center;
-    white-space: nowrap;
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; text-align: center;
   }
-
-  .focus-item h3{
-    font-size: 1.06rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-  }
-  .focus-item .desc{
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
+  .focus-item h3{ font-size: 1.06rem; font-weight: 700; margin-bottom: 4px; }
+  .focus-item .desc{ margin: 0; color: var(--muted); font-size: 0.9rem; }
 
   .status-chip{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 7px 14px;
-    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;
+    color: var(--ink-soft); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px;
   }
-  .status-chip .dot{ width: 6px; height: 6px; }
 
   @media (max-width: 900px){
-    .focus-item{
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 26px 24px;
-    }
+    .focus-item{ grid-template-columns: 1fr; gap: 12px; padding: 26px 24px; }
     .focus-num{ display: none; }
-    .focus-tag{ justify-self: start; }
-    .status-chip{ justify-self: start; }
-  }
-
-  /* -------- Footer CTA -------- */
-  .footer-cta{
-    padding: 130px 0 110px;
-    text-align: center;
-  }
-  .footer-cta h2{
-    font-size: clamp(2.4rem, 6vw, 4.4rem);
-    line-height: 1.04;
-    max-width: 14ch;
-    margin: 0 auto;
-  }
-  .footer-cta h2 .dim{ color: var(--faint); }
-  .footer-cta .sub{
-    margin: 24px auto 0;
-    color: var(--muted);
-    max-width: 42ch;
-  }
-  .footer-cta .cta-row{
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
+    .focus-tag, .status-chip{ justify-self: start; }
   }
 
   /* -------- Footer -------- */
-  footer{
-    border-top: 1px solid var(--line);
-    padding: 36px 0;
-  }
-  .footer-inner{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: var(--faint);
-  }
-  .footer-inner .brand{ font-size: 14.5px; }
-  .footer-inner a{ text-decoration: none; transition: color 200ms ease; }
-  .footer-inner a:hover{ color: var(--ink); }
-
-  /* focus visibility */
-  a:focus-visible, button:focus-visible{
-    outline: 2px solid var(--ink);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
+  footer{ border-top: 1px solid var(--line); padding: 36px 0; }
+  .footer-inner{ display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--faint); }
+  .footer-inner a{ text-decoration: none; }
 </style>
 </head>
 <body>
 
 <div class="nav-shell">
-  <nav class="nav-pill" aria-label="Main">
+  <nav class="nav-pill">
     <a href="#top" class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-mark"></span>
       <span>BlankFrame</span>
     </a>
     <div class="nav-links">
       <a href="#philosophy">Philosophy</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#focus">Focus</a>
+      <a href="#products">Products</a>
+      <a href="mailto:hello@blankframe.tech">Contact</a>
     </div>
     <a class="btn" href="mailto:hello@blankframe.tech">Get in touch</a>
   </nav>
 </div>
 
 <main id="top">
-
-  <!-- HERO -->
-  <section class="hero" style="padding-bottom: 96px;">
+  <section class="hero">
     <div class="wrap">
-      <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Currently building — Dhaka, Bangladesh</span>
+      <span class="chip reveal"><span class="dot"></span> Currently building in Dhaka</span>
       <h1 class="reveal d1">We build the frame. <span class="dim">You create what</span> <span class="serif-accent">matters.</span></h1>
-      <p class="sub reveal d2">BlankFrame designs AI-assisted software, embedded hardware, and agentic systems that quietly absorb repetitive work — so your attention goes to the things only you can do.</p>
-      <div class="cta-row reveal d3">
-        <a class="btn" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
-        <a class="btn light" href="#capabilities">See what we build</a>
-      </div>
-      <div class="micro-status reveal d3"><span class="dot" aria-hidden="true"></span> Infrastructure that removes human cognitive load</div>
+      <p class="sub reveal d2">BlankFrame designs AI-assisted software and embedded hardware that absorb repetitive work — so your attention goes to life itself.</p>
     </div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <div class="marquee-group">
-        <span class="m-item">Agentic workflows</span>
-        <span class="m-item">Embedded systems</span>
-        <span class="m-item">On-device LLMs</span>
-        <span class="m-item">Ambient intelligence</span>
-        <span class="m-item">Edge computing</span>
-        <span class="m-item">Cognitive load, reduced</span>
-      </div>
-      <div class="marquee-group">
-        <span class="m-item">Agentic workflows</span>
-        <span class="m-item">Embedded systems</span>
-        <span class="m-item">On-device LLMs</span>
-        <span class="m-item">Ambient intelligence</span>
-        <span class="m-item">Edge computing</span>
-        <span class="m-item">Cognitive load, reduced</span>
-      </div>
+      <div class="m-item">Embedded systems</div>
+      <div class="m-item">On-device LLMs</div>
+      <div class="m-item">Edge computing</div>
+      <div class="m-item">Ambient intelligence</div>
+      <!-- Duplicate for scroll -->
+      <div class="m-item">Embedded systems</div>
+      <div class="m-item">On-device LLMs</div>
+      <div class="m-item">Edge computing</div>
+      <div class="m-item">Ambient intelligence</div>
     </div>
   </div>
 
-  <!-- PHILOSOPHY -->
-  <section id="philosophy">
+  <section id="products" class="tight">
     <div class="wrap center">
-      <span class="label-chip reveal">Philosophy</span>
-      <p class="philosophy-statement reveal d1">
-        <span class="dim">The best infrastructure is</span> <span class="serif-accent">invisible.</span><br>
-        We build it, it disappears, <span class="dim">and what's left is your time.</span>
-      </p>
-
-      <div class="philosophy-cards">
-        <div class="p-card reveal">
-          <span class="k">What we build</span>
-          <p>Infrastructure that carries context, so you don't have to repeat yourself.</p>
-        </div>
-        <div class="p-card reveal d1">
-          <span class="k">What it does</span>
-          <p>Automates the repetitive thinking that sits between you and the work.</p>
-        </div>
-        <div class="p-card reveal d2">
-          <span class="k">What you get back</span>
-          <p>Time — for building, exploring, riding, making, and living.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAPABILITIES -->
-  <section id="capabilities" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Capabilities</span>
-      <h2 class="section-h reveal d1">Three layers, one intent — <span class="dim">reduce cognitive load.</span></h2>
-      <p class="section-sub reveal d2">Software, hardware, and the systems that connect them — designed to disappear once they're working.</p>
-
-      <div class="cap-grid" style="text-align:left;">
-        <div class="cap-card reveal">
-          <div class="cap-visual" aria-hidden="true">
-            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="14" y="20" width="40" height="10" rx="5" opacity="0.28"/>
-              <rect x="14" y="34" width="48" height="10" rx="5"/>
-              <rect x="14" y="48" width="30" height="10" rx="5" opacity="0.55"/>
-              <circle cx="61" cy="25" r="4" fill="currentColor" stroke="none" opacity="0.85"/>
-            </svg>
-          </div>
-          <h3>Intelligent Software</h3>
-          <p>Agentic workflows and AI-assisted tools that handle the decisions and busywork standing between an idea and its execution.</p>
-          <div class="tag-row">
-            <span class="tag">Agents</span>
-            <span class="tag">Automation</span>
-            <span class="tag">AI tooling</span>
-          </div>
-        </div>
-
-        <div class="cap-card reveal d1">
-          <div class="cap-visual" aria-hidden="true">
-            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="22" y="22" width="32" height="32" rx="6"/>
-              <rect x="32" y="32" width="12" height="12" rx="2" opacity="0.55"/>
-              <path d="M30 12v10M38 12v10M46 12v10M30 54v10M38 54v10M46 54v10M12 30h10M12 38h10M12 46h10M54 30h10M54 38h10M54 46h10"/>
-            </svg>
-          </div>
-          <h3>Embedded Systems</h3>
-          <p>Sensors, controllers, and edge devices built to run reliably in the physical world — from a single board to a full deployment.</p>
-          <div class="tag-row">
-            <span class="tag">Sensors</span>
-            <span class="tag">Edge devices</span>
-            <span class="tag">Firmware</span>
-          </div>
-        </div>
-
-        <div class="cap-card reveal d2">
-          <div class="cap-visual" aria-hidden="true">
-            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="38" cy="38" r="6" fill="currentColor" stroke="none" opacity="0.85"/>
-              <circle cx="38" cy="38" r="15" opacity="0.6"/>
-              <circle cx="38" cy="38" r="24" opacity="0.35"/>
-              <circle cx="38" cy="38" r="33" opacity="0.15"/>
-            </svg>
-          </div>
-          <h3>Ambient Intelligence</h3>
-          <p>Devices and services that coordinate with each other in the background, surfacing only when a decision actually needs a human.</p>
-          <div class="tag-row">
-            <span class="tag">Coordination</span>
-            <span class="tag">Quiet systems</span>
-            <span class="tag">Context</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRINCIPLES -->
-  <section id="principles" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Principles</span>
-      <h2 class="section-h reveal d1">What we optimize for.</h2>
-      <p class="section-sub reveal d2">Not features — commitments that decide what we build and what we say no to.</p>
-
-      <div class="principles-grid" style="text-align:left;">
-        <div class="principle reveal">
-          <span class="principle-num" aria-hidden="true">01</span>
-          <div>
-            <h3>Human first</h3>
-            <p>Systems answer to the person using them, not the other way around.</p>
-          </div>
-        </div>
-        <div class="principle reveal d1">
-          <span class="principle-num" aria-hidden="true">02</span>
-          <div>
-            <h3>Invisible by design</h3>
-            <p>The best infrastructure is the kind you stop noticing.</p>
-          </div>
-        </div>
-        <div class="principle reveal d2">
-          <span class="principle-num" aria-hidden="true">03</span>
-          <div>
-            <h3>Built to last</h3>
-            <p>Reliability over novelty. Calm over hype.</p>
-          </div>
-        </div>
-        <div class="principle reveal d3">
-          <span class="principle-num" aria-hidden="true">04</span>
-          <div>
-            <h3>Own your infrastructure</h3>
-            <p>Long-term ownership over vendor lock-in, always.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VISION -->
-  <section id="vision" class="tight">
-    <div class="wrap">
-      <div class="vision-card reveal">
-        <span class="label-chip">Vision</span>
-        <p class="big">
-          A future where intelligent systems quietly coordinate in the background — <span class="dim">so people can spend their attention on</span> <span class="serif-accent">life itself.</span>
-        </p>
-        <div class="vision-tags">
-          <span class="vtag">Create</span>
-          <span class="vtag">Explore</span>
-          <span class="vtag">Travel</span>
-          <span class="vtag">Ride</span>
-          <span class="vtag">Make music</span>
-          <span class="vtag">Build</span>
-          <span class="vtag">Live</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CURRENT FOCUS -->
-  <section id="focus" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Current Focus</span>
-      <h2 class="section-h reveal d1">What we're building <span class="dim">right now.</span></h2>
-      <p class="section-sub reveal d2">Early, hands-on, domain-specific — proving the philosophy on real hardware first.</p>
+      <span class="label-chip reveal">Portfolio</span>
+      <h2 class="section-h reveal d1">Products & <span class="dim">Experiments.</span></h2>
+      <p class="section-sub reveal d2">Active projects currently in development or research phase.</p>
 
       <div class="focus-card reveal d2" style="text-align:left;">
+        
+        <!-- ThrottleIQ -->
         <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">01</span>
-          <span class="focus-tag">Hardware</span>
-          <h3>Anti-roll for the three-wheelers of Dhaka</h3>
-          <p class="desc">Stability sensing and control that keeps electric rickshaws upright on real roads — built and tested where they actually run.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
-        </div>
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">02</span>
+          <span class="focus-num">01</span>
           <span class="focus-tag">Mobility</span>
-          <h3>Throttle IQ</h3>
-          <p class="desc">A smarter relationship between rider and machine. That's all we're saying for now.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Under wraps</span>
+          <div>
+            <h3>ThrottleIQ</h3>
+            <p class="desc">A smarter relationship between rider and machine.</p>
+          </div>
+          <span class="status-chip"><span class="dot"></span> In Build</span>
+          <a href="/throttle-iq/" class="btn light" style="padding: 6px 14px; font-size: 12px;">View Demo</a>
         </div>
+
+        <!-- FretGPS -->
         <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">03</span>
+          <span class="focus-num">02</span>
+          <span class="focus-tag">Hardware</span>
+          <div>
+            <h3>FretGPS</h3>
+            <p class="desc">Precision tracking and stability infrastructure.</p>
+          </div>
+          <span class="status-chip"><span class="dot"></span> R&D</span>
+          <a href="/fret-gps/" class="btn light" style="padding: 6px 14px; font-size: 12px;">View Project</a>
+        </div>
+
+        <!-- ITL Reserver -->
+        <div class="focus-item">
+          <span class="focus-num">03</span>
           <span class="focus-tag">Systems</span>
-          <h3>Edge intelligence, on-device</h3>
-          <p class="desc">Running language models locally so analysis and automation stay private, fast, and independent of any one vendor.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
+          <div>
+            <h3>ITL_Reserver</h3>
+            <p class="desc">Agentic resource coordination for complex environments.</p>
+          </div>
+          <span class="status-chip"><span class="dot"></span> Concept</span>
+          <a href="/itl-reserver/" class="btn light" style="padding: 6px 14px; font-size: 12px;">View Idea</a>
         </div>
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">04</span>
-          <span class="focus-tag">Automation</span>
-          <h3>Ambient home &amp; environment systems</h3>
-          <p class="desc">Multi-zone sensing and control that keeps the everyday things — like the plants — cared for without asking for attention.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
-        </div>
+
       </div>
     </div>
   </section>
-
-  <!-- FOOTER CTA -->
-  <section class="footer-cta">
-    <div class="wrap">
-      <h2 class="reveal">Let's build the <span class="serif-accent">invisible.</span></h2>
-      <p class="sub reveal d1">We're early, and we like it that way. If quiet, dependable systems are your kind of thing — say hello.</p>
-      <div class="cta-row reveal d2">
-        <a class="btn" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <footer>
   <div class="wrap footer-inner">
-    <a href="#top" class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>BlankFrame</span>
-    </a>
     <span>© <span id="year"></span> BlankFrame Technologies</span>
-    <a href="https://www.blankframe.tech/">blankframe.tech</a>
+    <a href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // fade-up reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('in'));
-  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
