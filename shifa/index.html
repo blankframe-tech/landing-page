@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farzana Reza Shifa — Creator, Audio Engineer, Sociologist</title>
+<meta name="description" content="Farzana Reza Shifa — sociology researcher with an engineering-first creative process. Studio-grade audio, high-retention digital content, and entrepreneurial venture management.">
+
+<meta property="og:title" content="Farzana Reza Shifa">
+<meta property="og:description" content="Creator · Audio Engineer · Sociologist">
+<meta property="og:url" content="https://www.blankframe.tech/shifa/">
+<meta property="og:type" content="profile">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23111213'/%3E%3Ctext x='50' y='68' font-size='58' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #F2F1ED;
+    --card: #FFFFFF;
+    --ink: #131313;
+    --ink-soft: #2A2A28;
+    --muted: #6F6E6A;
+    --faint: #A5A39D;
+    --line: #E6E4DE;
+    --accent: #FF4A1F;
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --max-w: 1000px;
+    --shadow-card: 0 1px 2px rgba(19,19,19,0.04), 0 10px 30px -12px rgba(19,19,19,0.10);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+    letter-spacing: -0.035em;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .serif-accent{
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 640px){
+    .wrap{ padding: 0 18px; }
+  }
+
+  /* -------- Top bar -------- */
+  .topbar{
+    padding: 28px 0 0;
+  }
+  .back-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color 200ms ease;
+  }
+  .back-link:hover{ color: var(--ink); }
+
+  /* -------- Hero -------- */
+  .hero{
+    padding: 64px 0 20px;
+  }
+
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .hero-photo{
+    width: 100%;
+    aspect-ratio: 1 / 1.02;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--line);
+  }
+
+  @media (max-width: 720px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-photo{ order: -1; width: 120px; }
+  }
+
+  .role-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+  .role-chip{
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink-soft);
+  }
+  .role-chip.solid{
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 8vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .contact-row{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 9px 16px;
+    text-decoration: none;
+    box-shadow: var(--shadow-card);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  a.contact-chip:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -12px rgba(19,19,19,0.25);
+  }
+
+  /* -------- Stats -------- */
+  .stats-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+  }
+  @media (max-width: 560px){
+    .stats-grid{ grid-template-columns: 1fr; }
+  }
+  .stat-card{
+    border-radius: var(--radius-md);
+    padding: 26px 26px;
+    box-shadow: var(--shadow-card);
+  }
+  .stat-card.dark{
+    background: #141413;
+    color: #fff;
+  }
+  .stat-card.light{
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .stat-num{
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .stat-card.dark .stat-num{ color: var(--accent); }
+  .stat-label{
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .stat-card.dark .stat-label{ color: rgba(255,255,255,0.55); }
+
+  /* -------- Section shell -------- */
+  section{ padding: 40px 0; }
+
+  .label-chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+    margin-bottom: 20px;
+  }
+  .label-chip::before{
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .section-h{
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .lede{
+    margin-top: 16px;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 62ch;
+  }
+
+  /* -------- Two-up panels -------- */
+  .panel-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .panel-grid.two-up{ grid-template-columns: 1fr 1fr; }
+  @media (max-width: 860px){
+    .panel-grid{ grid-template-columns: 1fr; }
+  }
+
+  .panel{
+    border-radius: var(--radius-md);
+    padding: 26px 28px;
+  }
+  .panel.light{
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-card);
+  }
+  .panel.dark{
+    background: #141413;
+    color: #fff;
+  }
+
+  .panel h3{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+  .panel h3 .swatch{
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .skill-list{
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .skill-list li{
+    font-size: 0.94rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding-left: 16px;
+    position: relative;
+  }
+  .panel.dark .skill-list li{ color: rgba(255,255,255,0.85); }
+  .skill-list li::before{
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 6px; height: 2px;
+    background: var(--accent);
+  }
+
+  /* -------- Timeline -------- */
+  .timeline{
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .t-item{
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 22px 26px;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .t-item:first-child{ border-top: none; }
+  .t-year{
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+  .t-item h4{
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 4px;
+  }
+  .t-item p{
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .t-company{
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 8px !important;
+  }
+  .t-item .t-desc{ margin-top: 6px; }
+  @media (max-width: 560px){
+    .t-item{ grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* -------- Tags -------- */
+  .tag-row{
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tag{
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 9px 16px;
+  }
+
+  /* -------- Quote -------- */
+  .quote-card{
+    margin-top: 16px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 5vw, 44px);
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-card::before{
+    content: '“';
+    position: absolute;
+    top: -30px; right: 20px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 9rem;
+    color: rgba(255,255,255,0.16);
+    line-height: 1;
+  }
+  .quote-card p{
+    position: relative;
+    margin: 0;
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    max-width: 56ch;
+    font-family: 'Inter Tight', sans-serif;
+  }
+  .quote-card .attr{
+    position: relative;
+    margin-top: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* -------- Footer -------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 32px 0 48px;
+    margin-top: 24px;
+  }
+  .footer-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--faint);
+  }
+  .footer-inner a{ text-decoration: none; transition: color 200ms ease; }
+  .footer-inner a:hover{ color: var(--ink); }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="/" class="back-link">&larr; Back to BlankFrame</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="role-row">
+            <span class="role-chip solid">Creator</span>
+            <span class="role-chip">Audio Engineer</span>
+            <span class="role-chip">Sociologist</span>
+          </div>
+          <h1>Farzana Reza <span class="serif-accent">Shifa</span></h1>
+
+          <p class="lede" style="margin-top:22px;">Sociology student at SUST and a self-taught creator who genuinely likes talking to people. Built a social following past half a million views on bike vlogs, productivity hacks, and AI experiments — while running a self-funded venture on the side, pitching investors and keeping vendors happy. Comfortable behind a camera, a mixing board, or a negotiating table.</p>
+
+          <div class="contact-row">
+            <a class="contact-chip" href="mailto:farzanarezashifa@gmail.com">farzanarezashifa@gmail.com</a>
+            <span class="contact-chip">Sylhet / Dhaka, BD</span>
+            <a class="contact-chip" href="https://shifa-workspace.notion.site/" target="_blank" rel="noopener">Notion workspace ↗</a>
+            <a class="contact-chip" href="https://farzana-reza-shifa-digital-creator-sales-cv-162646986280.asia-southeast1.run.app/" target="_blank" rel="noopener">Portfolio site ↗</a>
+          </div>
+        </div>
+        <img class="hero-photo" src="./assets/profile.png" alt="Portrait of Farzana Reza Shifa">
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card dark">
+          <div class="stat-num">0.5M+</div>
+          <div class="stat-label">Peak engagement views</div>
+        </div>
+        <div class="stat-card light">
+          <div class="stat-num">65K+</div>
+          <div class="stat-label">Avg. reels performance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUITE -->
+  <section>
+    <div class="wrap">
+      <span class="label-chip">The Professional Suite</span>
+      <h2 class="section-h">Engineering-first, creative by trade.</h2>
+      <p class="lede">Expert in studio-grade audio, high-retention digital content, and productivity-focused project tracking. Proven history in entrepreneurial venture management, cross-cultural client relations, and writing that actually holds attention.</p>
+
+      <div class="panel-grid">
+        <div class="panel light">
+          <h3><span class="swatch" aria-hidden="true"></span>Audio &amp; Video</h3>
+          <ul class="skill-list">
+            <li>Studio-grade mixing</li>
+            <li>Logic Pro / Audacity</li>
+            <li>Final Cut Pro editing</li>
+            <li>OBS broadcast suite</li>
+            <li>Indie singer collabs</li>
+          </ul>
+        </div>
+        <div class="panel dark">
+          <h3><span class="swatch" aria-hidden="true"></span>Ventures</h3>
+          <ul class="skill-list">
+            <li>Online business owner</li>
+            <li>Investor pitching</li>
+            <li>Multi-vendor negotiating</li>
+            <li>Supply chain logistics</li>
+            <li>Tour guide (Intl.)</li>
+          </ul>
+        </div>
+        <div class="panel light">
+          <h3><span class="swatch" aria-hidden="true"></span>Voice &amp; Words</h3>
+          <ul class="skill-list">
+            <li>On-camera storytelling</li>
+            <li>Fluent English, global accents</li>
+            <li>Writing: classic lit &amp; music history</li>
+            <li>Notion power user</li>
+            <li>Quick on any CRM / AI workflow</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="wrap">
+      <span class="label-chip">Experience</span>
+      <h2 class="section-h">What she's actually been doing.</h2>
+
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-year">2020 –<br>Present</span>
+          <div>
+            <h4>Digital Creator &amp; Content Strategist</h4>
+            <p class="t-company">Self-employed</p>
+            <p class="t-desc">Built a genuine following with bike vlogs, productivity hacks, and AI experiments — top post reached 0.5M views, averaging 65K+ across the top 10. Records and mixes audio for indie singers.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-year">2020 –<br>2021</span>
+          <div>
+            <h4>Freelance Tour Guide</h4>
+            <p class="t-company">International guests · Dhaka, Sylhet, Cox's Bazar</p>
+            <p class="t-desc">Guided tourists across the country, managing last-minute changes, cross-cultural questions, and on-ground logistics.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-year">2019 –<br>2020</span>
+          <div>
+            <h4>Entrepreneurship &amp; Freelance Work</h4>
+            <p class="t-company">Self-funded venture</p>
+            <p class="t-desc">Ran a small business to cover living costs while studying full-time — pitched investors, negotiated with vendors, and kept a transparent Notion dashboard live for stakeholders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC PATH -->
+  <section>
+    <div class="wrap">
+      <span class="label-chip">Academic Path</span>
+      <h2 class="section-h">Sylhet to Dhaka, on paper.</h2>
+
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-year">2020 –<br>2026</span>
+          <div>
+            <h4>BSS. Sociology · GPA 3.35/4.00</h4>
+            <p>SUST | Sylhet &middot; expected June 2026</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-year">2020</span>
+          <div>
+            <h4>HSC | GPA 5.0</h4>
+            <p>Viqarunnisa Noon</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-year">2018</span>
+          <div>
+            <h4>SSC | GPA 4.89</h4>
+            <p>Govt. Model Girls</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL VIBE -->
+  <section>
+    <div class="wrap">
+      <span class="label-chip">Personal Vibe</span>
+      <h2 class="section-h">Off the clock.</h2>
+      <div class="tag-row">
+        <span class="tag">Moto vlogging</span>
+        <span class="tag">Cycling</span>
+        <span class="tag">Hiking</span>
+        <span class="tag">Crochet &amp; DIY</span>
+        <span class="tag">Proud cat mom</span>
+        <span class="tag">UI/UX &amp; AI tools</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section>
+    <div class="wrap">
+      <div class="quote-card">
+        <p>My background in pitching to investors and handling complex supply chains gives me a unique negotiation edge for high-conversion sales.</p>
+        <div class="attr">Outbound Sales Strategy</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Farzana Reza Shifa &middot; Curriculum Vitae <span id="year"></span></span>
+    <span>&ldquo;Tracking life on Notion since 2021&rdquo;</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
