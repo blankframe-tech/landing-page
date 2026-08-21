@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlankFrame Technologies — We build the frame. You create what matters.</title>
+<meta name="description" content="BlankFrame Technologies builds infrastructure that reduces human cognitive load — AI-assisted software, embedded hardware, and ambient intelligence that disappears into everyday life.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="BlankFrame Technologies">
+<meta property="og:description" content="We build the frame. You create what matters.">
+<meta property="og:url" content="https://www.blankframe.tech/">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' fill='none' stroke='%23ffffff' stroke-width='6'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #090909;
+    --fg: #FFFFFF;
+    --secondary: #8B8B8B;
+    --accent: #D6D6D6;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.16);
+    --max-w: 1200px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  h1,h2,h3,.wordmark{
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  @media (max-width: 640px){
+    .wrap{ padding: 0 20px; }
+  }
+
+  /* motion reduction */
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  /* -------- Fade up reveal -------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+  .reveal.in{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* -------- Nav -------- */
+  header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(9,9,9,0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 300ms ease;
+  }
+  header.scrolled{ border-bottom-color: var(--line); }
+
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height: 76px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration:none;
+  }
+
+  .brand-mark{
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--fg);
+    flex-shrink:0;
+  }
+
+  .nav-status{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .dot{
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--fg);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse{
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  /* -------- Hero -------- */
+  .hero{
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position: relative;
+    padding-top: 76px;
+    overflow: hidden;
+  }
+
+  .hero-frame{
+    position:absolute;
+    border: 1px solid var(--line);
+    pointer-events:none;
+  }
+
+  .hero-eyebrow{
+    font-size: 13px;
+    color: var(--secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display:flex;
+    align-items:center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before{
+    content:'';
+    width: 32px; height: 1px;
+    background: var(--line-strong);
+  }
+
+  .hero h1{
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    max-width: 15ch;
+  }
+
+  .hero p{
+    margin-top: 28px;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    color: var(--secondary);
+    max-width: 52ch;
+  }
+
+  .cta-row{
+    margin-top: 44px;
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-badge{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    padding: 12px 22px;
+    border: 1px solid var(--line-strong);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+  }
+
+  .cta-badge .dot{ background: var(--fg); }
+
+  .hero-note{
+    font-size: 14px;
+    color: var(--secondary);
+  }
+
+  /* -------- Section shell -------- */
+  section{
+    padding: 140px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap: 40px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+
+  .eyebrow{
+    font-size: 13px;
+    color: var(--secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .section-head h2{
+    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+    font-weight: 600;
+    max-width: 20ch;
+  }
+
+  .section-lede{
+    max-width: 34ch;
+    color: var(--secondary);
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  @media (max-width: 800px){
+    .section-lede{ text-align:left; max-width: 100%; }
+  }
+
+  /* -------- Philosophy -------- */
+  .philosophy-statement{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 18ch;
+  }
+
+  .philosophy-statement .dim{ color: var(--secondary); }
+
+  .philosophy-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  @media (max-width: 800px){
+    .philosophy-grid{ grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .philosophy-list{
+    display:flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .philosophy-list li{
+    list-style:none;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+    color: var(--secondary);
+    font-size: 0.95rem;
+    display:flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .philosophy-list li:last-child{ border-bottom: 1px solid var(--line); }
+  .philosophy-list li span.label{ color: var(--fg); }
+
+  /* -------- Capabilities -------- */
+  .cap-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  @media (max-width: 800px){
+    .cap-grid{ grid-template-columns: 1fr; }
+  }
+
+  .cap-card{
+    background: var(--bg);
+    padding: 44px 36px;
+    display:flex;
+    flex-direction:column;
+    gap: 28px;
+    transition: background 300ms ease;
+  }
+
+  .cap-card:hover{ background: #0d0d0d; }
+
+  .cap-icon{
+    width: 40px; height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--fg);
+  }
+  .cap-icon svg{ width: 26px; height: 26px; }
+
+  .cap-card h3{
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .cap-card p{
+    color: var(--secondary);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  /* -------- Principles -------- */
+  .principles-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  @media (max-width: 900px){
+    .principles-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px){
+    .principles-grid{ grid-template-columns: 1fr; }
+  }
+
+  .principle{
+    padding-top: 24px;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .principle-icon{
+    width: 32px; height:32px;
+    margin-bottom: 22px;
+    color: var(--secondary);
+  }
+  .principle-icon svg{ width: 100%; height:100%; }
+
+  .principle h3{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .principle p{
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* -------- Vision -------- */
+  .vision{
+    display:flex;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .vision-inner{ max-width: 780px; }
+
+  .vision p.big{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .vision .dim{ color: var(--secondary); }
+
+  .vision-tags{
+    margin-top: 40px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: 10px;
+  }
+
+  .vtag{
+    font-size: 13px;
+    color: var(--secondary);
+    border: 1px solid var(--line-strong);
+    padding: 7px 14px;
+  }
+
+  /* -------- Current focus -------- */
+  .focus-list{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .focus-item{
+    display:grid;
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    align-items:baseline;
+  }
+  .focus-item:last-child{ border-bottom: 1px solid var(--line); }
+
+  .focus-tag{
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--secondary);
+    text-transform: uppercase;
+  }
+
+  .focus-item h3{
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .focus-item p{
+    margin:0;
+    color: var(--secondary);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 700px){
+    .focus-item{
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+
+  /* -------- Footer -------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 56px 0 40px;
+  }
+
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-bottom: 40px;
+  }
+
+  .footer-tagline{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    max-width: 22ch;
+  }
+
+  .footer-contact{
+    text-align: right;
+    font-size: 0.92rem;
+    color: var(--secondary);
+  }
+  .footer-contact a{
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 2px;
+  }
+  .footer-contact a:hover{ border-color: var(--fg); }
+
+  @media (max-width: 700px){
+    .footer-contact{ text-align:left; }
+  }
+
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--secondary);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* focus visibility for keyboard nav */
+  a:focus-visible, button:focus-visible{
+    outline: 1px solid var(--fg);
+    outline-offset: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="wordmark">BlankFrame Technologies</span>
+    </a>
+    <div class="nav-status">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Building</span>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:76px;">
+    <svg class="hero-frame" style="top: 8%; right: 6%; width: 30vw; height: 30vw; max-width:420px; max-height:420px;" viewBox="0 0 100 100" aria-hidden="true">
+      <rect x="1" y="1" width="98" height="98" fill="none" stroke="currentColor" stroke-width="0.5" id="frame-rect"/>
+    </svg>
+    <div class="wrap">
+      <p class="hero-eyebrow reveal">Infrastructure, not another app</p>
+      <h1 class="reveal">We build the infrastructure that lets people think less and create more.</h1>
+      <p class="reveal">BlankFrame designs AI-assisted software, embedded hardware, and agentic systems that absorb repetitive work quietly — so the humans behind them can spend their attention on what actually matters to them.</p>
+      <div class="cta-row reveal">
+        <span class="cta-badge"><span class="dot"></span> Coming soon</span>
+        <span class="hero-note">blankframe.tech</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="wrap">
+      <div class="eyebrow reveal">Philosophy</div>
+      <div class="philosophy-grid">
+        <p class="philosophy-statement reveal">
+          <span class="dim">The frame is invisible.</span><br>
+          We build it. <span class="dim">You create what matters.</span>
+        </p>
+        <ul class="philosophy-list reveal">
+          <li><span class="label">What we build</span> <span>Infrastructure that carries context, so you don't have to repeat yourself</span></li>
+          <li><span class="label">What it does</span> <span>Automates the repetitive thinking that sits between you and the work</span></li>
+          <li><span class="label">What you get back</span> <span>Time — for building, exploring, riding, making, and living</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">Capabilities</div>
+          <h2 class="reveal">Three layers, one intent: reduce cognitive load.</h2>
+        </div>
+        <p class="section-lede reveal">Software, hardware, and the systems that connect them — designed to disappear once they're working.</p>
+      </div>
+
+      <div class="cap-grid reveal">
+        <div class="cap-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+          </div>
+          <div>
+            <h3>Intelligent Software</h3>
+            <p>Agentic workflows and AI-assisted tools that handle the decisions and busywork standing between an idea and its execution.</p>
+          </div>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+          </div>
+          <div>
+            <h3>Embedded Systems</h3>
+            <p>Sensors, controllers, and edge devices built to run reliably in the physical world — from a single board to a full deployment.</p>
+          </div>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><path d="M2 18c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg>
+          </div>
+          <div>
+            <h3>Ambient Intelligence</h3>
+            <p>Devices and services that coordinate with each other in the background, surfacing only when a decision actually needs a human.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="principles">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">Principles</div>
+          <h2 class="reveal">What we optimize for.</h2>
+        </div>
+        <p class="section-lede reveal">Not features. Commitments that decide what we build and what we say no to.</p>
+      </div>
+
+      <div class="principles-grid reveal">
+        <div class="principle">
+          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+          <h3>Human First</h3>
+          <p>Systems answer to the person using them, not the other way around.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" opacity="0.35"/><path d="M1 1l22 22"/></svg></div>
+          <h3>Invisible by Design</h3>
+          <p>The best infrastructure is the kind you stop noticing.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg></div>
+          <h3>Built to Last</h3>
+          <p>Reliability over novelty. Calm over hype.</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+          <h3>Own Your Infrastructure</h3>
+          <p>Long-term ownership over vendor lock-in, always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section id="vision">
+    <div class="wrap vision">
+      <div class="vision-inner">
+        <div class="eyebrow reveal" style="text-align:center;">Vision</div>
+        <p class="big reveal">
+          A future where intelligent systems quietly coordinate in the background —
+          <span class="dim">so people can spend their attention on life, creativity, travel, riding, music, and each other.</span>
+        </p>
+        <div class="vision-tags reveal">
+          <span class="vtag">Create</span>
+          <span class="vtag">Explore</span>
+          <span class="vtag">Travel</span>
+          <span class="vtag">Ride</span>
+          <span class="vtag">Make music</span>
+          <span class="vtag">Build</span>
+          <span class="vtag">Live</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT FOCUS -->
+  <section id="focus">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">Current Focus</div>
+          <h2 class="reveal">What we're building right now.</h2>
+        </div>
+        <p class="section-lede reveal">Early, hands-on, domain-specific — proving the philosophy on real hardware first.</p>
+      </div>
+
+      <div class="focus-list reveal">
+        <div class="focus-item">
+          <span class="focus-tag">Hardware</span>
+          <h3>Anti-lock braking for two- and three-wheelers</h3>
+          <p>Wheel-speed sensing and interrupt-driven lockup detection, moving from a single motorcycle build toward a dual-sensor concept for electric rickshaws.</p>
+        </div>
+        <div class="focus-item">
+          <span class="focus-tag">Systems</span>
+          <h3>Edge intelligence, on-device</h3>
+          <p>Running language models locally so analysis and automation work stay private, fast, and independent of any one vendor.</p>
+        </div>
+        <div class="focus-item">
+          <span class="focus-tag">Automation</span>
+          <h3>Ambient home &amp; environment systems</h3>
+          <p>Multi-zone sensing and control that keeps the everyday things — like the plants — cared for without asking for attention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <p class="footer-tagline">We build the frame.<br><span style="color:var(--secondary);">You create what matters.</span></p>
+      <div class="footer-contact">
+        <p style="margin:0 0 6px;">Get in touch</p>
+        <a href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> BlankFrame Technologies</span>
+      <span>blankframe.tech</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header border on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // fade-up reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // subtle parallax on the hero frame — respects reduced motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const frame = document.getElementById('frame-rect');
+  if (!prefersReduced && frame) {
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 6;
+      const y = (e.clientY / window.innerHeight - 0.5) * 6;
+      frame.setAttribute('transform', `translate(${x}, ${y})`);
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
