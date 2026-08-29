@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Data Deletion — ThrottleIQ</title>
+<link rel="icon" href="assets/icon-dark.svg" type="image/svg+xml">
+<style>
+  :root{
+    --bg:#0B0D10; --bg2:#12161B; --panel:#14181F; --panel2:#191E26;
+    --line:#22282f; --text:#F5F7FA; --muted:#9AA5B1; --muted2:#6b7580;
+    --blue:#3B82F6; --blue2:#60A5FA; --orange:#FF6A00; --green:#22C55E;
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:800px; margin:0 auto; padding:0 24px;}
+  section{padding:96px 0;}
+  
+  body{
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(59,130,246,0.10), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(255,106,0,0.08), transparent 40%);
+  }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,13,16,0.82); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.2px; font-size:17px;}
+  .brand img{width:28px; height:28px;}
+
+  h1{
+    font-size:clamp(28px, 5vw, 42px); line-height:1.1; font-weight:800; letter-spacing:-0.8px;
+    margin-bottom:16px;
+  }
+  p{color:var(--muted); font-size:16px; margin-bottom:24px;}
+
+  .form-container{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:32px;
+  }
+  .form-group{margin-bottom:20px;}
+  label{display:block; font-size:14px; font-weight:600; margin-bottom:8px;}
+  input, textarea{
+    width:100%; padding:12px; border-radius:8px; border:1px solid var(--line);
+    background:var(--bg); color:var(--text); font-family:inherit; font-size:15px;
+  }
+  input:focus, textarea:focus{
+    outline:none; border-color:var(--blue);
+  }
+  
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 24px; border-radius:999px; font-size:15px; font-weight:600;
+    border:1px solid var(--line); white-space:nowrap; transition:all .15s ease;
+    cursor:pointer;
+  }
+  .btn-danger{
+    background:rgba(255,106,0,0.1); border-color:rgba(255,106,0,0.3); color:var(--orange);
+  }
+  .btn-danger:hover{
+    background:var(--orange); color:#04101f; border-color:var(--orange);
+  }
+
+  footer{border-top:1px solid var(--line); padding:40px 0; color:var(--muted2); font-size:13px;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center;}
+  footer a:hover{color:var(--text);}
+  footer a{text-decoration:none; color:inherit;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" style="text-decoration:none; color:inherit;">
+      <div class="brand"><img src="assets/icon-dark.svg" alt="ThrottleIQ"> ThrottleIQ</div>
+    </a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap">
+    <h1>Request Data Deletion</h1>
+    <p>If you'd like us to permanently delete your account and all associated data (rides, bikes, maintenance records, and places), please submit your email address below. We will process your request within 7 business days.</p>
+    
+    <div class="form-container">
+      <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Your request has been submitted. We will process it shortly.'); window.location.href='index.html';">
+        <div class="form-group">
+          <label for="email">Email address associated with your account</label>
+          <input type="email" id="email" name="email" required placeholder="rider@example.com">
+        </div>
+        <div class="form-group">
+          <label for="reason">Reason for deletion (optional)</label>
+          <textarea id="reason" name="reason" rows="3" placeholder="Any feedback is appreciated..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger">Submit Deletion Request</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; 2026 ThrottleIQ &middot; Source-Available (TSAL v1.0)</div>
+    <div><a href="index.html">Back to Home</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
