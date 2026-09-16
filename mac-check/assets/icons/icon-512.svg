@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="112" fill="#0071e3"/>
-  <text x="256" y="335" font-size="240" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif">🍏</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="MacPreCheck">
+  <title>MacPreCheck</title>
+  <rect width="512" height="512" rx="114" fill="#0071e3"/>
+  <!-- Laptop lid -->
+  <rect x="136" y="146" width="240" height="168" rx="18" fill="#ffffff"/>
+  <rect x="158" y="168" width="196" height="124" rx="8" fill="#0071e3"/>
+  <!-- Verified checkmark on the screen -->
+  <path d="M196 232 L238 274 L318 190"
+        fill="none" stroke="#34c759" stroke-width="30"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Laptop base -->
+  <path d="M96 330 h320 a10 10 0 0 1 9.6 12.9 l-6 20 A16 16 0 0 1 404 374 H108 a16 16 0 0 1-15.4-11.6 l-6-20 A10 10 0 0 1 96 330 Z" fill="#ffffff"/>
 </svg>

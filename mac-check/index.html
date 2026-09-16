@@ -2,21 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- Pinch-zoom is deliberately left enabled: this is read at arm's length on a
+       shop counter, and blocking zoom fails WCAG 1.4.4. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MacPreCheck — MacBook Pre-Purchase Checker (BD Market)</title>
   <meta name="description" content="All-in-one pre-purchase inspection guide, hardware testers, model benchmarks, and negotiation calculator for buying used Apple Silicon MacBooks in Bangladesh.">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Canonical points at the primary blankframe.tech deployment so the mirror
+       on GitHub Pages does not compete with it in search results. -->
   <link rel="canonical" href="https://www.blankframe.tech/mac-check/">
-  
-  <!-- Open Graph -->
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/icon-512.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0071e3">
+
+  <!-- iOS "Add to Home Screen" -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MacPreCheck">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="MacPreCheck — MacBook Pre-Purchase Checker (BD Market)">
   <meta property="og:description" content="All-in-one pre-purchase inspection guide, hardware testers, model benchmarks, and negotiation calculator for buying used Apple Silicon MacBooks.">
   <meta property="og:url" content="https://www.blankframe.tech/mac-check/">
   <meta property="og:type" content="website">
-
-  <meta name="color-scheme" content="light dark">
-  <link rel="icon" type="image/svg+xml" href="assets/icons/icon-192.svg">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0071e3">
+  <meta property="og:site_name" content="BlankFrame">
+  <meta property="og:image" content="https://www.blankframe.tech/mac-check/assets/icons/icon-512.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MacPreCheck — MacBook Pre-Purchase Checker (BD Market)">
+  <meta name="twitter:description" content="Inspection guide, hardware testers, benchmarks, and a negotiation calculator for buying used Apple Silicon MacBooks.">
+  <meta name="twitter:image" content="https://www.blankframe.tech/mac-check/assets/icons/icon-512.png">
 
   <!-- FOUC Prevention Script (Modern Web Guidance) -->
   <script>
@@ -52,10 +71,10 @@
         </div>
       </div>
       <div class="header-actions">
-        <a href="/" class="btn btn-outline" style="text-decoration: none;" title="Back to BlankFrame Home">← BlankFrame</a>
-        <button type="button" class="btn btn-outline" id="theme-toggle-btn" title="Toggle Light/Dark Theme">🌓 Theme</button>
-        <button type="button" class="btn btn-outline" onclick="window.print()" title="Print Checklist">🖨️ Export PDF</button>
-        <button type="button" class="btn btn-secondary" id="btn-reset-all" title="Reset all checkboxes">🔄 Reset</button>
+        <a href="https://www.blankframe.tech/" class="btn btn-outline" style="text-decoration: none;" title="Back to BlankFrame Home" aria-label="Back to BlankFrame Home"><span aria-hidden="true">←</span><span class="btn-label">BlankFrame</span></a>
+        <button type="button" class="btn btn-outline" id="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme"><span aria-hidden="true">🌓</span><span class="btn-label">Theme</span></button>
+        <button type="button" class="btn btn-outline" onclick="window.print()" title="Print Checklist" aria-label="Print Checklist as PDF"><span aria-hidden="true">🖨️</span><span class="btn-label">Export PDF</span></button>
+        <button type="button" class="btn btn-secondary" id="btn-reset-all" title="Reset all checkboxes" aria-label="Reset all checkboxes"><span aria-hidden="true">🔄</span><span class="btn-label">Reset</span></button>
       </div>
     </div>
   </header>

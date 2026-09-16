@@ -10,6 +10,7 @@ export class MediaTester {
     this.audioChunks = [];
     this.cameraStream = null;
     this.audioCtx = null;
+    this.toneCtx = null;
     this.analyser = null;
     this.animFrameId = null;
     this.render();
@@ -183,10 +184,29 @@ export class MediaTester {
     }
   }
 
+  /**
+   * Browsers cap the number of concurrent AudioContexts (~6). Creating a fresh
+   * one per click and never closing it meant the stereo test silently stopped
+   * producing sound after a handful of presses, so one context is reused.
+   */
+  getToneContext() {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+
+    if (!this.toneCtx || this.toneCtx.state === "closed") {
+      this.toneCtx = new AudioCtx();
+    }
+    // Autoplay policy can leave it suspended until a user gesture.
+    if (this.toneCtx.state === "suspended") {
+      this.toneCtx.resume();
+    }
+    return this.toneCtx;
+  }
+
   playStereoTone(panValue, label) {
     try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AudioCtx();
+      const ctx = this.getToneContext();
+      if (!ctx) return;
       const now = ctx.currentTime;
 
       const osc = ctx.createOscillator();
@@ -264,5 +284,31 @@ export class MediaTester {
     placeholder.innerHTML = "Camera preview stopped.";
     startBtn.classList.remove("hidden");
     stopBtn.classList.add("hidden");
+  }
+
+  /**
+   * Release every capture device. Navigating away from this tab used to leave
+   * the FaceTime camera live with its green privacy LED on — alarming in a
+   * shop, and it also breaks the very LED check this tester asks the buyer to
+   * perform.
+   */
+  stop() {
+    if (this.cameraStream) {
+      this.stopCamera();
+    }
+
+    if (this.audioRecorder && this.audioRecorder.state === "recording") {
+      this.audioRecorder.stop();
+    }
+
+    if (this.mediaStream) {
+      this.mediaStream.getTracks().forEach(t => t.stop());
+      this.mediaStream = null;
+    }
+
+    if (this.animFrameId) {
+      cancelAnimationFrame(this.animFrameId);
+      this.animFrameId = null;
+    }
   }
 }

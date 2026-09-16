@@ -239,7 +239,15 @@ body {
 .header-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
+}
+
+.header-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
 
 /* Navigation Segmented Control */
@@ -1358,6 +1366,25 @@ body {
   }
   .brand-sub {
     display: none;
+  }
+  /* Collapse the header actions to their icons. Four labelled buttons
+     overflowed the viewport, pushing Reset off-screen entirely; each button
+     keeps an aria-label so the icon-only form stays accessible. Shrinking in
+     place rather than wrapping keeps the header one row tall, which the
+     sticky nav below depends on for its offset. */
+  .app-header {
+    padding: 10px 14px;
+  }
+  .header-actions {
+    gap: 6px;
+  }
+  .header-actions .btn-label {
+    display: none;
+  }
+  .header-actions .btn {
+    padding: 8px 11px;
+    font-size: 15px;
+    gap: 0;
   }
   .hero-card {
     padding: 20px;

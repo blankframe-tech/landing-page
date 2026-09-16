@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="192" height="192" role="img" aria-label="MacPreCheck">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="MacPreCheck">
   <title>MacPreCheck</title>
-  <rect width="512" height="512" rx="114" fill="#0071e3"/>
+  <rect width="512" height="512" fill="#0071e3"/>
   <!-- Laptop lid -->
   <rect x="136" y="146" width="240" height="168" rx="18" fill="#ffffff"/>
   <rect x="158" y="168" width="196" height="124" rx="8" fill="#0071e3"/>

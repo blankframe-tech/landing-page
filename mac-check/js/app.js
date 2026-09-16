@@ -116,6 +116,12 @@ export function switchTab(tabId) {
     keyboardTester?.stop();
   }
 
+  // Release the camera and microphone when leaving the media tab, so the
+  // privacy LED does not stay lit while the buyer is on another screen.
+  if (tabId !== "media") {
+    mediaTester?.stop();
+  }
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -803,11 +809,29 @@ function initAnalyzer() {
         </div>
       `;
     } else if (res.overallVerdict === "VERIFY_MDM") {
+      // This verdict covers either unconfirmed lock, so the copy names only the
+      // check(s) actually missing instead of always blaming MDM.
+      const mdmUnknown = res.mdm.status === "unknown";
+      const icloudUnknown = res.icloud.status === "unknown";
+
+      let unconfirmedLabel = "MDM & ICLOUD LOCK STATUS UNCONFIRMED";
+      if (mdmUnknown && !icloudUnknown) unconfirmedLabel = "MDM STATUS UNCONFIRMED";
+      if (icloudUnknown && !mdmUnknown) unconfirmedLabel = "ICLOUD ACTIVATION LOCK UNCONFIRMED";
+
+      let actions = "";
+      if (mdmUnknown) {
+        actions += `<li>Run <code>profiles status -type enrollment</code> yourself and confirm it reports <strong>MDM enrollment: No</strong> — "Enrolled via DEP: No" on its own only rules out Apple Business Manager, not a hand-installed profile.</li>`;
+      }
+      if (icloudUnknown) {
+        actions += `<li>Make the seller sign out of their Apple ID and complete a full erase in front of you, then confirm setup never shows an <strong>Activation Lock</strong> prompt.</li>`;
+      }
+
       verdictHtml = `
         <div class="alert-box alert-warning" style="font-size: 15px;">
-          <div class="alert-title">⚠️ MDM STATUS UNCONFIRMED — DO NOT SKIP THIS CHECK</div>
-          Your pasted output didn't include a clear MDM/DEP enrollment result, so it was NOT verified as clean.
-          Run <code>profiles status -type enrollment</code> yourself and watch for a "Remote Management" screen during setup before paying.
+          <div class="alert-title">⚠️ ${unconfirmedLabel} — DO NOT SKIP THIS CHECK</div>
+          Your pasted output didn't include a clear result, so this machine was <strong>NOT</strong> verified as clean.
+          Settle this before discussing price — a locked Mac is worth nothing regardless of its condition.
+          <ul style="margin: 10px 0 0 18px; line-height: 1.6;">${actions}</ul>
         </div>
       `;
     } else {
