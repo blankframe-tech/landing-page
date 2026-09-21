@@ -24,7 +24,7 @@ from urllib.parse import unquote
 from bs4 import BeautifulSoup
 from lxml import etree
 
-from common import DATA, FUEL_RE_BN, FUEL_RE_EN, FUEL_SLUG_EN, OUT, WINDOWS, Polite, is_fuel_text
+from common import DATA, FUEL_RE_BN, FUEL_RE_EN, FUEL_SLUG_EN, WINDOWS, Polite, is_fuel_text, strip_boilerplate
 
 _SINKS = {}
 
@@ -94,7 +94,7 @@ def extract_article(page):
         date = t["datetime"] if t else None
     root = s.find("article") or s.find(attrs={"itemprop": "articleBody"}) or s.body or s
     paras = [p.get_text(" ", strip=True) for p in root.find_all("p")]
-    text = "\n".join(p for p in paras if len(p) > 25)
+    text = strip_boilerplate("\n".join(p for p in paras if len(p) > 25))
     return title, (date or "")[:10], text
 
 

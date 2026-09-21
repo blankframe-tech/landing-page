@@ -1,49 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data &amp; method — including what doesn’t work yet · r1_Fuel</title>
-<meta name="description" content="Everything r1_Fuel has built: the impact analysis, the full audit log, a 1,996-article bilingual news corpus, the discourse pipeline and its validation failures, and the data anyone can reuse without collecting anything.">
-<link rel="canonical" href="https://www.blankframe.tech/research/r1_Fuel/data/">
+'use strict';
 
-<meta property="og:title" content="Everything, including what doesn’t work yet.">
-<meta property="og:description" content="Everything r1_Fuel has built: the impact analysis, the full audit log, a 1,996-article bilingual news corpus, the discourse pipeline and its validation failures, and the data anyone can reuse without collecting anything.">
-<meta property="og:url" content="https://www.blankframe.tech/research/r1_Fuel/data/">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="BlankFrame Research">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Everything, including what doesn’t work yet.">
-<meta name="twitter:description" content="Everything r1_Fuel has built: the impact analysis, the full audit log, a 1,996-article bilingual news corpus, the discourse pipeline and its validation failures, and the data anyone can reuse without collecting anything.">
+const DESC =
+  'Everything r1_Fuel has built: the impact analysis, the full audit log, a 1,996-article bilingual news corpus, ' +
+  'the discourse pipeline and its validation failures, and the data anyone can reuse without collecting anything.';
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23131313'/%3E%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FF4A1F' stroke-width='7'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css">
-</head>
-<body>
+/* Validation of the v0 keyword frame classifier against a single-coder pass,
+   restricted to Bangladesh-relevant articles (n = 113). Source:
+   p4_discourse/out/validation_C_bd.csv */
+const VALIDATION = [
+  ['protest', 0.90, 1.00, 0.947, 'Usable'],
+  ['fairness &amp; pay scale', 0.625, 0.833, 0.714, 'Borderline'],
+  ['global market', 0.739, 0.68, 0.708, 'Borderline'],
+  ['corruption / syndicate', 0.667, 0.50, 0.571, 'Not usable'],
+  ['fiscal loss', 0.375, 0.706, 0.49, 'Not usable'],
+  ['India', 0.333, 0.80, 0.471, 'Not usable'],
+  ['government failure', 0.778, 0.233, 0.359, 'Not usable'],
+  ['apology / empathy', 0.50, 0.125, 0.20, 'Not usable'],
+];
 
-<div class="nav-shell">
-  <div class="nav-inner">
-    <a class="nav-brand" href="/research/r1_Fuel/">
-      <span class="mark" aria-hidden="true"></span>
-      <span>r1_Fuel</span>
-      <span class="sub">BlankFrame Research</span>
-    </a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="/research/r1_Fuel/">Overview</a>
-      <a href="/research/r1_Fuel/findings/">The analysis</a>
-      <a href="/research/r1_Fuel/proposal/">Research plan</a>
-      <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-      <a href="/research/r1_Fuel/support/">Fund it</a>
-      <a href="/research/r1_Fuel/data/" class="active" aria-current="page">Data & method</a>
-      <a href="/research/r1_Fuel/status/">Status</a>
-    </nav>
-  </div>
-</div>
+function validationHTML() {
+  return VALIDATION.map(([frame, p, r, f1, verdict]) => {
+    const cls = verdict === 'Usable' ? 'ok' : verdict === 'Borderline' ? 'warn' : '';
+    const w = Math.round(f1 * 100);
+    return `<tr>
+            <td><strong>${frame}</strong></td>
+            <td class="num mono">${p.toFixed(2)}</td>
+            <td class="num mono">${r.toFixed(2)}</td>
+            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
+              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:${w}%;height:100%;background:${f1 >= 0.7 ? 'var(--accent)' : '#A5A39D'};"></span></span>
+              <span style="font-weight:700;">${f1.toFixed(2)}</span></span></td>
+            <td><span class="tag ${cls}">${verdict}</span></td>
+          </tr>`;
+  }).join('\n          ');
+}
 
+const REUSE = [
+  ['BBS <strong>HIES 2022</strong> microdata', 'Baseline spending shares on fuel, transport and kerosene by decile and district', 'BBS request / World Bank Microdata Library'],
+  ['BBS <strong>Labour Force Survey</strong> (quarterly)', 'Sector of employment, informality, wages', 'BBS'],
+  ['BBS <strong>CPI</strong> (monthly, divisional)', 'Pass-through timing by item &mdash; the series that will show the October break', 'Public releases'],
+  ['BPC price gazettes, <strong>BERC</strong> orders, Ministry of Finance duty data', 'Price and duty series, including the Tk 32.44/L diesel duty', 'Public'],
+  ['<strong>BIGD / PPRC</strong> COVID-era phone panels', 'A proven design, and possibly a sampling frame to re-contact', 'Partnership'],
+  ['<strong>SANEM</strong> household surveys', 'Recent welfare baselines, including the 2023 inflation-coping survey', 'Partnership'],
+  ['<strong>ACLED</strong> and news archives', 'Protest event data, 2022&ndash;2026', 'Free registration'],
+  ['DAE / BADC', 'Boro area targets versus actuals; irrigation equipment counts', 'Request'],
+  ['<strong>Google Trends</strong>, Meta Content Library', 'Search and discussion signals', 'Public / application'],
+  ['Night-lights (VIIRS)', 'A usable proxy for loadshedding by district', 'Free'],
+];
 
+function body() {
+  return `
 <header class="hero" style="padding-bottom:20px;">
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span> Data &amp; method</div>
@@ -153,78 +158,7 @@
       <table class="data">
         <thead><tr><th>Frame</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th><th>Verdict</th></tr></thead>
         <tbody>
-          <tr>
-            <td><strong>protest</strong></td>
-            <td class="num mono">0.90</td>
-            <td class="num mono">1.00</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:95%;height:100%;background:var(--accent);"></span></span>
-              <span style="font-weight:700;">0.95</span></span></td>
-            <td><span class="tag ok">Usable</span></td>
-          </tr>
-          <tr>
-            <td><strong>fairness &amp; pay scale</strong></td>
-            <td class="num mono">0.63</td>
-            <td class="num mono">0.83</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:71%;height:100%;background:var(--accent);"></span></span>
-              <span style="font-weight:700;">0.71</span></span></td>
-            <td><span class="tag warn">Borderline</span></td>
-          </tr>
-          <tr>
-            <td><strong>global market</strong></td>
-            <td class="num mono">0.74</td>
-            <td class="num mono">0.68</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:71%;height:100%;background:var(--accent);"></span></span>
-              <span style="font-weight:700;">0.71</span></span></td>
-            <td><span class="tag warn">Borderline</span></td>
-          </tr>
-          <tr>
-            <td><strong>corruption / syndicate</strong></td>
-            <td class="num mono">0.67</td>
-            <td class="num mono">0.50</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:57%;height:100%;background:#A5A39D;"></span></span>
-              <span style="font-weight:700;">0.57</span></span></td>
-            <td><span class="tag ">Not usable</span></td>
-          </tr>
-          <tr>
-            <td><strong>fiscal loss</strong></td>
-            <td class="num mono">0.38</td>
-            <td class="num mono">0.71</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:49%;height:100%;background:#A5A39D;"></span></span>
-              <span style="font-weight:700;">0.49</span></span></td>
-            <td><span class="tag ">Not usable</span></td>
-          </tr>
-          <tr>
-            <td><strong>India</strong></td>
-            <td class="num mono">0.33</td>
-            <td class="num mono">0.80</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:47%;height:100%;background:#A5A39D;"></span></span>
-              <span style="font-weight:700;">0.47</span></span></td>
-            <td><span class="tag ">Not usable</span></td>
-          </tr>
-          <tr>
-            <td><strong>government failure</strong></td>
-            <td class="num mono">0.78</td>
-            <td class="num mono">0.23</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:36%;height:100%;background:#A5A39D;"></span></span>
-              <span style="font-weight:700;">0.36</span></span></td>
-            <td><span class="tag ">Not usable</span></td>
-          </tr>
-          <tr>
-            <td><strong>apology / empathy</strong></td>
-            <td class="num mono">0.50</td>
-            <td class="num mono">0.13</td>
-            <td class="num mono"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;">
-              <span style="display:inline-block;width:64px;height:7px;background:var(--line);border-radius:4px;overflow:hidden;"><span style="display:block;width:20%;height:100%;background:#A5A39D;"></span></span>
-              <span style="font-weight:700;">0.20</span></span></td>
-            <td><span class="tag ">Not usable</span></td>
-          </tr>
+          ${validationHTML()}
         </tbody>
       </table>
     </div>
@@ -295,16 +229,7 @@ cd p4_discourse/src
       <table class="data">
         <thead><tr><th style="width:32%;">Source</th><th style="width:44%;">What it gives you</th><th>Access</th></tr></thead>
         <tbody>
-          <tr><td class="small">BBS <strong>HIES 2022</strong> microdata</td><td class="small muted">Baseline spending shares on fuel, transport and kerosene by decile and district</td><td class="small">BBS request / World Bank Microdata Library</td></tr>
-          <tr><td class="small">BBS <strong>Labour Force Survey</strong> (quarterly)</td><td class="small muted">Sector of employment, informality, wages</td><td class="small">BBS</td></tr>
-          <tr><td class="small">BBS <strong>CPI</strong> (monthly, divisional)</td><td class="small muted">Pass-through timing by item &mdash; the series that will show the October break</td><td class="small">Public releases</td></tr>
-          <tr><td class="small">BPC price gazettes, <strong>BERC</strong> orders, Ministry of Finance duty data</td><td class="small muted">Price and duty series, including the Tk 32.44/L diesel duty</td><td class="small">Public</td></tr>
-          <tr><td class="small"><strong>BIGD / PPRC</strong> COVID-era phone panels</td><td class="small muted">A proven design, and possibly a sampling frame to re-contact</td><td class="small">Partnership</td></tr>
-          <tr><td class="small"><strong>SANEM</strong> household surveys</td><td class="small muted">Recent welfare baselines, including the 2023 inflation-coping survey</td><td class="small">Partnership</td></tr>
-          <tr><td class="small"><strong>ACLED</strong> and news archives</td><td class="small muted">Protest event data, 2022&ndash;2026</td><td class="small">Free registration</td></tr>
-          <tr><td class="small">DAE / BADC</td><td class="small muted">Boro area targets versus actuals; irrigation equipment counts</td><td class="small">Request</td></tr>
-          <tr><td class="small"><strong>Google Trends</strong>, Meta Content Library</td><td class="small muted">Search and discussion signals</td><td class="small">Public / application</td></tr>
-          <tr><td class="small">Night-lights (VIIRS)</td><td class="small muted">A usable proxy for loadshedding by district</td><td class="small">Free</td></tr>
+          ${REUSE.map(([s, w, a]) => `<tr><td class="small">${s}</td><td class="small muted">${w}</td><td class="small">${a}</td></tr>`).join('\n          ')}
         </tbody>
       </table>
     </div>
@@ -348,38 +273,7 @@ cd p4_discourse/src
     </div>
   </div>
 </section>
+`;
+}
 
-
-<footer>
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <div style="font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-0.03em;color:var(--ink);font-size:17px;">r1_Fuel</div>
-        <div class="small" style="margin-top:6px;">An open research programme on Bangladesh's 2026 fuel shock.</div>
-        <div class="small" style="margin-top:6px;">Analysis dated 21 September 2026.</div>
-      </div>
-      <div class="flinks">
-        <a href="/research/r1_Fuel/findings/">The analysis</a>
-        <a href="/research/r1_Fuel/proposal/">Research plan</a>
-        <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-        <a href="/research/r1_Fuel/support/">Fund it</a>
-        <a href="/research/r1_Fuel/data/">Data &amp; method</a>
-        <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source repo</a>
-        <a href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email</a>
-        <a href="/">BlankFrame</a>
-      </div>
-    </div>
-    <p class="fnote">
-      Figures marked <span class="est">est.</span> are this project's own calculations from cited inputs, with the
-      method shown inline; everything else is sourced and linked. Nothing here is peer-reviewed. Corrections are
-      welcome and will be logged &mdash; open an issue on the
-      <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">repository</a> or email
-      <a href="mailto:hello@blankframe.tech?subject=r1_Fuel%20correction">hello@blankframe.tech</a>.
-    </p>
-  </div>
-</footer>
-
-<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
-<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-</body>
-</html>
+module.exports = { body, DESC };

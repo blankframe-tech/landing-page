@@ -1,104 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>r1_Fuel Research Initiative</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <style>
-    /* Custom prose adjustments for academic feel */
-    .prose { max-width: 100%; font-family: 'Inter', sans-serif; }
-    .prose h1, .prose h2, .prose h3 { font-family: 'Instrument Serif', serif; color: #111827; }
-    .prose a { color: #2563eb; text-decoration: none; }
-    .prose a:hover { text-decoration: underline; }
-    .prose table { width: 100%; border-collapse: collapse; margin-top: 2rem; margin-bottom: 2rem; }
-    .prose th, .prose td { border: 1px solid #e5e7eb; padding: 0.75rem; text-align: left; }
-    .prose th { background-color: #f9fafb; font-weight: 600; }
-  </style>
-</head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen">
-  <div class="max-w-4xl mx-auto py-12 px-6">
-    <header class="mb-12 border-b border-gray-200 pb-6 flex justify-between items-end">
-      <div>
-        <p class="text-sm font-semibold tracking-wider text-blue-600 uppercase mb-2">BlankFrame Technologies</p>
-        <h1 class="text-4xl font-bold font-serif">r1_Fuel Research</h1>
-      </div>
-      <nav class="flex gap-6 text-sm font-medium text-gray-600">
-        <a href="/research/r1_Fuel/" class="hover:text-blue-600">Overview</a>
-        <a href="/research/r1_Fuel/proposal/" class="hover:text-blue-600">Proposal</a>
-        <a href="/research/r1_Fuel/data/" class="hover:text-blue-600">Data</a>
-        <a href="/research/r1_Fuel/status/" class="hover:text-blue-600">Status</a>
-      </nav>
-    </header>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research plan — five studies on the social life of a fuel shock · r1_Fuel</title>
+<meta name="description" content="Open research questions and five costed designs on Bangladesh’s 2026 fuel shock: a rapid household phone panel, an e-rickshaw ethnography, a Boro irrigation survey, computational discourse analysis, and a conjoint experiment on compensation.">
+<link rel="canonical" href="https://www.blankframe.tech/research/r1_Fuel/proposal/">
 
-    <main id="content" class="prose prose-lg bg-white p-10 rounded-2xl shadow-sm border border-gray-100">
-<h1>The Social Life of a Fuel Shock — Research Questions &amp; Proposals</h1>
-<p><em>Companion to <a href="README.md"><code>README.md</code></a> (impact analysis) and <a href="reseach_pass_1.md"><code>reseach_pass_1.md</code></a> (source log). Drafted 21 September 2026.</em></p>
+<meta property="og:title" content="Research plan — five studies on the social life of a fuel shock · r1_Fuel">
+<meta property="og:description" content="Open research questions and five costed designs on Bangladesh’s 2026 fuel shock: a rapid household phone panel, an e-rickshaw ethnography, a Boro irrigation survey, computational discourse analysis, and a conjoint experiment on compensation.">
+<meta property="og:url" content="https://www.blankframe.tech/research/r1_Fuel/proposal/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BlankFrame Research">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research plan — five studies on the social life of a fuel shock · r1_Fuel">
+<meta name="twitter:description" content="Open research questions and five costed designs on Bangladesh’s 2026 fuel shock: a rapid household phone panel, an e-rickshaw ethnography, a Boro irrigation survey, computational discourse analysis, and a conjoint experiment on compensation.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23131313'/%3E%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FF4A1F' stroke-width='7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="nav-shell">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/research/r1_Fuel/">
+      <span class="mark" aria-hidden="true"></span>
+      <span>r1_Fuel</span>
+      <span class="sub">BlankFrame Research</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="/research/r1_Fuel/">Overview</a>
+      <a href="/research/r1_Fuel/findings/">The analysis</a>
+      <a href="/research/r1_Fuel/proposal/" class="active" aria-current="page">Research plan</a>
+      <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
+      <a href="/research/r1_Fuel/support/">Fund it</a>
+      <a href="/research/r1_Fuel/data/">Data & method</a>
+      <a href="/research/r1_Fuel/status/">Status</a>
+    </nav>
+  </div>
+</div>
+
+
+<div class="read">
+  <header class="doc-head">
+    <div class="kicker">Research plan · drafted 21 September 2026</div>
+    <h1>The Social Life of a Fuel Shock</h1>
+    <p class="meta">Open research questions and five costed study designs. P1 is the backbone the others attach to; each can also stand alone. Sampling, instruments, analysis plans, budgets and ethics are all here.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="/research/r1_Fuel/collaborate/">Five roles that are open</a><a class="btn btn-ghost" href="/research/r1_Fuel/support/">What each study costs</a><a class="btn btn-ghost" href="/research/r1_Fuel/findings/">The analysis behind it</a></div>
+  </header>
+  <nav class="toc" aria-label="Contents">
+  <div class="t">On this page</div>
+  <ol>
+    <li><a href="#part-a-open-research-questions">Part A — Open research questions</a></li>
+    <li><a href="#part-b-research-proposals">Part B — Research proposals</a></li>
+    <li><a href="#part-c-data-you-can-use-without-collecting-anything">Part C — Data you can use without collecting anything</a></li>
+    <li><a href="#part-d-sequencing-what-to-do-this-week">Part D — Sequencing (what to do this week)</a></li>
+    <li><a href="#ethics-notes">Ethics notes</a></li>
+  </ol>
+</nav>
+  <article class="prose">
+<p><em>Companion to <a href="/research/r1_Fuel/findings/"><code>README.md</code></a> (impact analysis) and <a href="/research/r1_Fuel/data/log/"><code>reseach_pass_1.md</code></a> (source log). Drafted 21 September 2026.</em></p>
 <p>The economic analysis says <em>what</em> the Tk 20 hike does to prices. It can&#39;t say how people experience it, how they cope, whom they blame, or how the shock changes social relations. That is the sociological gap. This matters for three reasons:</p>
 <ol>
-<li><strong>Two policies landed 48 hours apart.</strong> The National Pay Scale 2026 was gazetted on 19 September and the fuel hike took effect on 21 September. This splits the population cleanly by occupation: ~33 lakh public employees got pay rises of up to +142%, while ~7.5 crore private and informal workers got nothing. This rarely happens in the real world and is unusually useful for research.</li>
+<li><strong>Two policies landed 48 hours apart.</strong> The National Pay Scale 2026 was gazetted on 19 September and the fuel hike took effect on 21 September. This splits the population cleanly by occupation: &#126;33 lakh public employees got pay rises of up to +142%, while &#126;7.5 crore private and informal workers got nothing. This rarely happens in the real world and is unusually useful for research.</li>
 <li><strong>More is coming, which makes this a baseline moment.</strong> BPC cannot fund its letters of credit in October, so another hike or a duty cut is near-certain. After that, the Boro season (Dec–Mar) will pass through irrigation costs. Anything measured <strong>in the next 2–4 weeks</strong> can serve as a pre-shock baseline. That window closes fast.</li>
 <li><strong>Bangladesh&#39;s previous shock was not studied much.</strong> The 2022 hike (diesel +42.5%, Tk 80→114) produced protests, fare disputes, and a lot of commentary. Very little systematic household-level sociology came out of it. 2026 can be studied properly and compared with 2022.</li>
 </ol>
 <hr>
-<h2>Part A — Open research questions</h2>
+<h2 id="part-a-open-research-questions">Part A — Open research questions</h2>
 <p>Grouped by theme. ★ marks questions that are time-critical (the baseline must be collected before late October 2026).</p>
-<h3>A1. Coping, sacrifice and household bargaining</h3>
+<h3 id="a1-coping-sacrifice-and-household-bargaining">A1. Coping, sacrifice and household bargaining</h3>
 <ul>
 <li>★ How do households at different income levels cut back after a fuel/transport shock: food quantity, food quality, children&#39;s schooling, healthcare, remittances home, or savings? <strong>In what order</strong>, and does the order differ by who controls the household budget?</li>
 <li>Who inside the household absorbs the cut? Do women and girls eat less, or give up mobility (unaccompanied travel, trips to work, school or clinics) first?</li>
 <li>How much does borrowing increase (NGO microcredit, shopkeeper credit (<em>baki</em>), kin, mobile-money loans), and does it become debt that households can&#39;t escape?</li>
 <li>Does kerosene use increase or fall among off-grid and load-shed households, and what replaces it (candles, solar lanterns, darkness)? What does that do to children&#39;s study hours?</li>
 </ul>
-<h3>A2. Relative deprivation and the pay-scale wedge</h3>
+<h3 id="a2-relative-deprivation-and-the-pay-scale-wedge">A2. Relative deprivation and the pay-scale wedge</h3>
 <ul>
 <li>★ Do private-sector and informal workers compare themselves to government employees now that the pay scale and the hike landed together? Does that comparison predict grievance, lower trust in the state, or willingness to protest better than their own absolute income loss does?</li>
 <li>Inside mixed households (one government earner, one private or informal earner), how are the gains shared? Do they cause friction?</li>
 <li>Does resentment get framed as <em>class</em> (&quot;the rich&quot;), <em>sector</em> (&quot;government people&quot;), <em>party</em> (&quot;their people&quot;), or <em>geography</em> (&quot;Dhaka&quot;)?</li>
 </ul>
-<h3>A3. Informal transport: the e-rickshaw as the poor&#39;s shock absorber</h3>
+<h3 id="a3-informal-transport-the-e-rickshaw-as-the-poor39s-shock-ab">A3. Informal transport: the e-rickshaw as the poor&#39;s shock absorber</h3>
 <ul>
 <li>Who are the new battery-rickshaw drivers of 2026? What share are displaced farmers, ex-garment workers or returned Gulf migrants? What pushed them from where they were, and what pulled them into driving?</li>
 <li>★ How do fare-setting norms form when the official gazette is ignored? Who holds power at the fare negotiation: passenger, driver, garage owner, or local enforcer?</li>
 <li>How is illegal charging governed? What is the informal economy of charging points: who sells the electricity, who protects them, how much do they pay in rents or bribes? How does that change during load shedding?</li>
 <li>If the state cracks down on e-rickshaws, where do those livelihoods go?</li>
 </ul>
-<h3>A4. Farmers, irrigation and the Boro decision</h3>
+<h3 id="a4-farmers-irrigation-and-the-boro-decision">A4. Farmers, irrigation and the Boro decision</h3>
 <ul>
 <li>★ How will farmers decide how much Boro to plant (Nov–Dec 2026) given diesel at Tk 135+, a frozen procurement price and an uncertain supply? Which farmers cut back: sharecroppers, smallholders or large farmers?</li>
 <li>How do irrigation-service markets (pump owners selling water to neighbours) re-price water? Do tenant farmers bear more of the cost than their share?</li>
 <li>Do farming households send members into the cities (to rickshaws or RMG) during this season, feeding back into A3?</li>
 </ul>
-<h3>A5. Garment workers, time and the city</h3>
+<h3 id="a5-garment-workers-time-and-the-city">A5. Garment workers, time and the city</h3>
 <ul>
 <li>How do RMG workers change their commute (walking longer, moving closer to the factory, sharing rooms), and what does that do to their time, safety and health, especially for women on night shifts?</li>
 <li>Does the combined pressure of energy shortage, transport costs and food prices change how workers organise at the factory level (wildcat stoppages, demands for transport allowances)?</li>
-<li>How much do the extra Tk 260–300/month in realised bus fares (~2–2.4% of the RMG minimum wage, README §4b), on top of food pass-through, feed into the demand for a new minimum-wage board?</li>
+<li>How much do the extra Tk 260–300/month in realised bus fares (&#126;2–2.4% of the RMG minimum wage, README §4b), on top of food pass-through, feed into the demand for a new minimum-wage board?</li>
 </ul>
-<h3>A6. Legitimacy, blame and protest</h3>
+<h3 id="a6-legitimacy-blame-and-protest">A6. Legitimacy, blame and protest</h3>
 <ul>
 <li>Whom do people blame: the government, BPC, the Hormuz war, India, &quot;syndicates&quot;, or hoarders? How does blame vary by partisanship, sector and information source (TV, Facebook, WhatsApp, YouTube, the local mosque or bazaar)?</li>
 <li>Does the PM&#39;s public apology (5 Sep) and the &quot;tolerable level&quot; framing make the hike more or less acceptable?</li>
 <li><strong>Moral economy test:</strong> do people accept higher prices when they understand them as justified by the global market, and reject them when they see them as unfair (duty kept in place, pay rises for government employees, rumours of smuggling)? Does the sense of being treated unfairly predict protest better than the size of the price rise?</li>
 <li>How does online sentiment about fuel on Bangla Facebook and YouTube move against real events (hikes, bus fare gazettes, load-shedding peaks)?</li>
 </ul>
-<h3>A7. Compensation and the state</h3>
+<h3 id="a7-compensation-and-the-state">A7. Compensation and the state</h3>
 <ul>
 <li>★ If the government introduces targeted compensation through the Family Card, who is excluded, and why (documentation, mobile-money access, local political gatekeeping)?</li>
 <li>Is cash compensation seen as a <em>right</em> or as <em>charity</em>, and does that change how legitimate the hike seems?</li>
 <li>Do people prefer universal cheap fuel or targeted cash? Does the answer change when the trade-off is explained?</li>
 </ul>
-<h3>A8. Comparative and historical</h3>
+<h3 id="a8-comparative-and-historical">A8. Comparative and historical</h3>
 <ul>
 <li>How do coping and protest in 2026 compare with 2022, the last major hike, among the same kinds of households?</li>
 <li>Why did Nigeria&#39;s 2023 subsidy removal, Kenya&#39;s 2023 fuel VAT increase, Sri Lanka&#39;s 2022 crisis and Bangladesh&#39;s 2026 hike produce such different levels of protest?</li>
 </ul>
 <hr>
-<h2>Part B — Research proposals</h2>
+<h2 id="part-b-research-proposals">Part B — Research proposals</h2>
 <p>Five proposals, ordered by urgency and by feasibility for a small team. Each can stand alone. P1 is the backbone that the others can attach to.</p>
 <hr>
-<h3>P1. <strong>The Fuel Shock Panel</strong> — a rapid-response household phone panel (flagship)</h3>
+<h3 id="p1-the-fuel-shock-panel-a-rapid-response-household-phone-pan">P1. <strong>The Fuel Shock Panel</strong> — a rapid-response household phone panel (flagship)</h3>
 <p><strong>Question.</strong> How do coping, well-being and trust in the state change over the fuel shock cycle, and how does that path differ between public-sector, formal-private and informal households?</p>
 <p><strong>Why it&#39;s important.</strong> The 19/21 September timing splits households by sector, and a second hike is likely in Oct–Dec. A panel that starts now captures the baseline, the October &quot;cliff&quot;, Boro and LDC graduation in one dataset. Nothing like it exists for Bangladesh&#39;s 2022 hike.</p>
 <p><strong>Design.</strong></p>
@@ -123,10 +151,10 @@
 </ul>
 <p><strong>Analysis.</strong> Panel fixed effects. Compare trajectories between sectors (difference-in-differences with sector × wave). Heterogeneity by gender of respondent and income tercile. Treatment effects for the framing experiment.</p>
 <p><strong>Outputs.</strong> A public dashboard updated after each wave, policy briefs timed before the Boro and budget decisions, and 2–3 papers (coping, relative deprivation, moral economy).</p>
-<p><strong>Budget (indicative).</strong> ~</main>5–60k for 5 waves at ~$4–6 per completed CATI interview, plus the analyst, the survey firm&#39;s management fee and incentives (Tk 50–100 mobile top-up per wave).</p>
+<p><strong>Budget (indicative).</strong> &#126;$35–60k for 5 waves at &#126;$4–6 per completed CATI interview, plus the analyst, the survey firm&#39;s management fee and incentives (Tk 50–100 mobile top-up per wave).</p>
 <p><strong>Risk.</strong> Phone surveys under-represent the poorest and women. Mitigate with quotas, asking for women respondents specifically, and a small in-person top-up.</p>
 <hr>
-<h3>P2. <strong>Charging the City</strong> — an ethnography of the e-rickshaw economy under load shedding</h3>
+<h3 id="p2-charging-the-city-an-ethnography-of-the-e-rickshaw-econom">P2. <strong>Charging the City</strong> — an ethnography of the e-rickshaw economy under load shedding</h3>
 <p><strong>Question.</strong> How do battery-rickshaw drivers, garage owners, charging-point operators and local power brokers govern an illegal energy economy? How does the fuel hike redistribute risk and income across that chain?</p>
 <p><strong>Design.</strong></p>
 <ul>
@@ -141,9 +169,9 @@
 <li><strong>Mixed-method add-on:</strong> a structured survey of 400 drivers at charging points to estimate the share who moved into rickshaws from each prior occupation.</li>
 </ul>
 <p><strong>Outputs.</strong> An ethnographic paper on informal energy governance, a policy note on legalisation and metering (lever #5 in the README), and a photo-essay (with consent).</p>
-<p><strong>Budget.</strong> ~<main id="content" class="prose prose-lg bg-white p-10 rounded-2xl shadow-sm border border-gray-100">5–30k (researcher stipend, RA, diaries, transcription, translation).</p>
+<p><strong>Budget.</strong> &#126;$15–30k (researcher stipend, RA, diaries, transcription, translation).</p>
 <hr>
-<h3>P3. <strong>Boro Decisions</strong> — farmers, water sellers and the irrigation cost shock</h3>
+<h3 id="p3-boro-decisions-farmers-water-sellers-and-the-irrigation-c">P3. <strong>Boro Decisions</strong> — farmers, water sellers and the irrigation cost shock</h3>
 <p><strong>Question.</strong> How do diesel costs, supply uncertainty and a frozen procurement price change farmers&#39; decisions about how much Boro to plant? Who in the agrarian hierarchy absorbs the cost?</p>
 <p><strong>Design.</strong></p>
 <ul>
@@ -157,19 +185,9 @@
 <li><strong>Administrative data:</strong> Department of Agricultural Extension (DAE) Boro area targets vs actuals, and BADC diesel/pump data if accessible.</li>
 </ul>
 <p><strong>Why it&#39;s important.</strong> This is the channel most likely to turn into a 2027 food-price and forex problem. Almost no one is watching it yet (see §4c of the README).</p>
-<p><strong>Budget.</strong> ~
-      <div class="animate-pulse flex space-x-4">
-        <div class="flex-1 space-y-4 py-1">
-          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-          <div class="space-y-2">
-            <div class="h-4 bg-gray-200 rounded"></div>
-            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-          </div>
-        </div>
-      </div>
-    0–35k.</p>
+<p><strong>Budget.</strong> &#126;$20–35k.</p>
 <hr>
-<h3>P4. <strong>Who Gets the Blame?</strong> — computational analysis of public discourse on the fuel shock</h3>
+<h3 id="p4-who-gets-the-blame-computational-analysis-of-public-disco">P4. <strong>Who Gets the Blame?</strong> — computational analysis of public discourse on the fuel shock</h3>
 <p><strong>Question.</strong> How are responsibility and fairness framed in Bangla-language public discourse about fuel between 2022 and 2026? Which frames predict offline protest?</p>
 <p><strong>Design.</strong></p>
 <ul>
@@ -188,9 +206,9 @@
 </li>
 <li><strong>Validation:</strong> human-coded sample (inter-coder reliability ≥0.7), plus a check against the P1 survey blame questions (the same framing categories).</li>
 </ul>
-<p><strong>Budget.</strong> Low: ~$5–15k (RA coders, compute). The most feasible solo or remote project, and a strong companion paper to P1.</p>
+<p><strong>Budget.</strong> Low: &#126;$5–15k (RA coders, compute). The most feasible solo or remote project, and a strong companion paper to P1.</p>
 <hr>
-<h3>P5. <strong>Cash or Cheap Fuel?</strong> — a survey experiment on preferences for compensation</h3>
+<h3 id="p5-cash-or-cheap-fuel-a-survey-experiment-on-preferences-for">P5. <strong>Cash or Cheap Fuel?</strong> — a survey experiment on preferences for compensation</h3>
 <p><strong>Question.</strong> Do Bangladeshis prefer universal cheap fuel or targeted cash compensation? How do trust in the state, perceived corruption and past experience with safety-net programmes shape that preference?</p>
 <p><strong>Design.</strong></p>
 <ul>
@@ -199,10 +217,10 @@
 <li>Moderators: sector, prior safety-net receipt, trust, partisanship.</li>
 </ul>
 <p><strong>Why it&#39;s important.</strong> It directly informs the choice the government faces in Oct–Dec. It adds evidence from Bangladesh to the international literature (Iran 2010, Indonesia, Nigeria 2023) on why fuel subsidy reform so often fails politically.</p>
-<p><strong>Budget.</strong> ~$8–15k standalone, and small if embedded in P1.</p>
+<p><strong>Budget.</strong> &#126;$8–15k standalone, and small if embedded in P1.</p>
 <hr>
-<h2>Part C — Data you can use without collecting anything</h2>
-<table>
+<h2 id="part-c-data-you-can-use-without-collecting-anything">Part C — Data you can use without collecting anything</h2>
+<div class="tbl"><table>
 <thead>
 <tr>
 <th>Source</th>
@@ -261,484 +279,63 @@
 <td>Free</td>
 </tr>
 </tbody></table>
+</div>
 <hr>
-<h2>Part D — Sequencing (what to do this week)</h2>
+<h2 id="part-d-sequencing-what-to-do-this-week">Part D — Sequencing (what to do this week)</h2>
 <ol>
 <li><strong>This week:</strong> send out outreach emails (see <code>research_collaborators.md</code>). Ask each partner for a sampling frame, affiliation or host, and quick feedback on P1 W0.</li>
-<li><strong>By ~5 October:</strong> finalise the P1 W0 questionnaire (bilingual, piloted with 30 respondents) and the ethics plan. Get IRB approval through a host institution (BIGD, a DU department or a partner university), or a local ethics board.</li>
-<li><strong>By ~20 October:</strong> complete W0 fieldwork. It has to be before the October price or LC events. <strong>If W0 slips into November, P1 loses its baseline.</strong></li>
+<li><strong>By &#126;5 October:</strong> finalise the P1 W0 questionnaire (bilingual, piloted with 30 respondents) and the ethics plan. Get IRB approval through a host institution (BIGD, a DU department or a partner university), or a local ethics board.</li>
+<li><strong>By &#126;20 October:</strong> complete W0 fieldwork. It has to be before the October price or LC events. <strong>If W0 slips into November, P1 loses its baseline.</strong></li>
 <li><strong>In parallel, starting now:</strong> P4 needs no fieldwork, so begin scraping news and building the corpus immediately.</li>
 <li><strong>November:</strong> P3 survey before Boro planting. Scope P2 with 2–3 pilot sites.</li>
 </ol>
-<h2>Ethics notes</h2>
+<h2 id="ethics-notes">Ethics notes</h2>
 <ul>
 <li>Informed consent in Bangla. For phone surveys, record verbal consent.</li>
 <li>The e-rickshaw and charging research touches <strong>illegal activity</strong>. Never collect names alongside information about illegal activity, store diaries encrypted, and do not share site-level locations of charging points publicly.</li>
 <li>Protest and blame questions can be politically sensitive. Do not record partisanship alongside identifiers, and follow a data-minimisation plan.</li>
 <li>Pay respondents fairly for their time (top-up), especially in diary studies.</li>
 </ul>
-<hr>
-<h1>Potential Collaborators &amp; Funders — Bangladesh Fuel Shock (Sept 2026)</h1>
-<p><em>Compiled 21 September 2026 by web search and page fetch. Companion to <a href="research_proposals.md"><code>research_proposals.md</code></a>.</em></p>
-<p><strong>How to read the flags.</strong> <strong>VERIFIED</strong> means an official institutional page, fetched on 21 Sep 2026, confirmed the person&#39;s current role. <strong>UNVERIFIED</strong> means the role comes only from news, a personal site or an older source. Emails appear only where they were read on a fetched official page; none were guessed or constructed. Re-check each profile page before you write.</p>
-<hr>
-<h2>1. Bangladesh-based researchers</h2>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Name</th>
-<th>Current role / institution</th>
-<th>Relevance (work, year, URL)</th>
-<th>Contact</th>
-<th>Ask</th>
-<th>Flag</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><strong>Dr Fahmida Khatun</strong></td>
-<td>Distinguished Fellow, CPD (since 1 Sep 2026; ED 2017–Aug 2026)</td>
-<td>Commented on the Sept 2026 hike: poor and lower-middle-income families &quot;suffer disproportionately&quot;; transport costs pass through to food; diesel irrigation squeezes farmers. <a href="https://cpd.org.bd/fuel-price-hike-to-raise-living-costs/">https://cpd.org.bd/fuel-price-hike-to-raise-living-costs/</a> · role: <a href="https://cpd.org.bd/dr-fahmida-khatun-assumes-role-as-distinguished-fellow-at-cpd/">https://cpd.org.bd/dr-fahmida-khatun-assumes-role-as-distinguished-fellow-at-cpd/</a></td>
-<td><a href="https://cpd.org.bd/mic/dr-fahmida-khatun/">https://cpd.org.bd/mic/dr-fahmida-khatun/</a> (phone +88 02 55001184)</td>
-<td>Advisor / CPD connections</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>Dr Nazneen Ahmed</strong></td>
-<td>Executive Director, CPD (from 1 Sep 2026); ex-BIDS Research Director, ex-UNDP</td>
-<td>Expertise in employment, gender and social protection; the new ED is the gatekeeper for any institutional partnership. <a href="https://cpd.org.bd/dr-nazneen-ahmed-appointed-executive-director-of-cpd/">https://cpd.org.bd/dr-nazneen-ahmed-appointed-executive-director-of-cpd/</a></td>
-<td>via profile page</td>
-<td>Institutional host / partnership</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>3</td>
-<td><strong>Prof Mustafizur Rahman</strong></td>
-<td>Distinguished Fellow &amp; Trustee, CPD</td>
-<td>April 2026 hike reflected &quot;fiscal pressure and limited policy options&quot;. <a href="https://www.thedailystar.net/news/bangladesh/news/fuel-price-hike-lays-bare-stress-economy-4155731">https://www.thedailystar.net/news/bangladesh/news/fuel-price-hike-lays-bare-stress-economy-4155731</a> · energy as a barrier to investment (Aug 2026): <a href="https://cpd.org.bd/energy-crisis-remains-major-barrier-to-investment-mustafizur-rahman/">https://cpd.org.bd/energy-crisis-remains-major-barrier-to-investment-mustafizur-rahman/</a></td>
-<td><a href="mailto:mustafiz@cpd.org.bd">mustafiz@cpd.org.bd</a> (<a href="https://cpd.org.bd/distinguished-fellows/professor-mustafizur-rahman/">profile</a>)</td>
-<td>Advisor (macro/fiscal)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>4</td>
-<td><strong>Dr Khondaker Golam Moazzem</strong></td>
-<td>Research Director, CPD</td>
-<td>Only researcher found who spans <strong>energy and RMG wages</strong>. In March 2026 he urged widening the Family Card and protecting fuel-dependent livelihoods. <a href="https://cpd.org.bd/the-energy-crisis-is-not-in-our-control-but-our-response-is/">https://cpd.org.bd/the-energy-crisis-is-not-in-our-control-but-our-response-is/</a></td>
-<td><a href="mailto:moazzem@cpd.org.bd">moazzem@cpd.org.bd</a> (<a href="http://cpd.org.bd/mic-members/dr-khondaker-golam-moazzem/">profile</a>)</td>
-<td>Co-I / advisor (RMG + energy)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>5</td>
-<td><strong>Dr Selim Raihan</strong></td>
-<td>Executive Director, SANEM; Professor of Economics, University of Dhaka</td>
-<td>Quoted on the 21 Sep 2026 hike: <a href="https://www.tbsnews.net/economy/fuel-price-hike-push-transport-and-production-costs-worsen-inflationary-pressure-selim">https://www.tbsnews.net/economy/fuel-price-hike-push-transport-and-production-costs-worsen-inflationary-pressure-selim</a> · SANEM 2023 inflation-coping survey (90% changed food habits, 74% borrowed): <a href="https://sanemnet.org/summary-effects-of-inflation-on-the-livelihoods-of-poor-households-in-bangladesh/">https://sanemnet.org/summary-effects-of-inflation-on-the-livelihoods-of-poor-households-in-bangladesh/</a></td>
-<td><a href="mailto:selim.raihan@gmail.com">selim.raihan@gmail.com</a> (listed on <a href="https://sanemnet.org/executive-director/">SANEM</a>)</td>
-<td>Data access / Co-I</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>6</td>
-<td><strong>Dr Sayema Haque Bidisha</strong></td>
-<td>Professor of Economics, DU; Research Director, SANEM</td>
-<td>Labour markets, gender, food poverty. &quot;How Women are Faring in the Bangladeshi Labour Market&quot; (<em>SAEJ</em>, 2022) <a href="https://journals.sagepub.com/doi/abs/10.1177/13915614221108564">https://journals.sagepub.com/doi/abs/10.1177/13915614221108564</a></td>
-<td><a href="mailto:sbidisha@du.ac.bd">sbidisha@du.ac.bd</a> (<a href="https://www.du.ac.bd/faculty/faculty_details/ECO/402">DU profile</a>)</td>
-<td>Co-I (gender/labour)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>7</td>
-<td><strong>Dr Imran Matin</strong></td>
-<td>Executive Director, BIGD, BRAC University</td>
-<td>Moderated the IGC–BIGD Family Card roundtable (6 Aug 2026): <a href="https://bigd.bracu.ac.bd/event/igc-bigd-roundtable-on-social-protection-how-the-family-card-can-push-the-frontiers-of-social-safety-net/">https://bigd.bracu.ac.bd/event/igc-bigd-roundtable-on-social-protection-how-the-family-card-can-push-the-frontiers-of-social-safety-net/</a> · PPRC–BIGD 2022 inflation / &quot;new poor&quot; panel: <a href="https://www.pprc-bd.org/national-estimate-of-new-poor-remains-high-in-may-2022-due-to-inflation-and-slower-than-expected-recovery/">https://www.pprc-bd.org/national-estimate-of-new-poor-remains-high-in-may-2022-due-to-inflation-and-slower-than-expected-recovery/</a></td>
-<td><a href="mailto:imran.matin@bracu.ac.bd">imran.matin@bracu.ac.bd</a> (<a href="https://bigd.bracu.ac.bd/staffprofile/imran-matin-phd/">profile</a>)</td>
-<td>Host / data / Co-I</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>8</td>
-<td><strong>Dr Mirza M. Hassan</strong></td>
-<td>Adviser &amp; Senior Research Fellow, Governance &amp; Politics, BIGD</td>
-<td>Political economy and legitimacy; <em>The State of Governance in Bangladesh 2026</em>; labour rights during COVID</td>
-<td><a href="mailto:mirzahassan@bracu.ac.bd">mirzahassan@bracu.ac.bd</a> (<a href="https://bigd.bracu.ac.bd/staffprofile/mirza-m-hassan/">profile</a>)</td>
-<td>Advisor (protest/legitimacy)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>9</td>
-<td><strong>Dr Hossain Zillur Rahman</strong></td>
-<td>Executive Chairman, PPRC</td>
-<td>Co-led the PPRC–BIGD 2022 inflation panel; works on urban poverty and social protection</td>
-<td><a href="mailto:info@pprc-bd.org">info@pprc-bd.org</a> (<a href="https://www.pprc-bd.org/">site</a>)</td>
-<td>Data (2022 panel) / advisor</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>10</td>
-<td><strong>Dr Zahid Hussain</strong></td>
-<td>Former Lead Economist, World Bank Dhaka; no current institution found</td>
-<td>April 2026: backed the hike, argued for targeted cash/vouchers over broad subsidies (Daily Star link as #3)</td>
-<td>via <a href="https://www.thedailystar.net/author/zahid-hussain">https://www.thedailystar.net/author/zahid-hussain</a></td>
-<td>Advisor (reform case)</td>
-<td>UNVERIFIED</td>
-</tr>
-<tr>
-<td>11</td>
-<td><strong>Dr Samina Luthfa</strong></td>
-<td>Professor of Sociology, University of Dhaka</td>
-<td>Social movements, environmental justice, female garment workers; &quot;Artworks as Protest after Rana Plaza&quot; (2023); co-author of <em>Vulnerable Empowerment</em> (2016). Strong fit for <strong>moral economy/protest</strong></td>
-<td><a href="mailto:samina.luthfa@gmail.com">samina.luthfa@gmail.com</a> (listed on <a href="https://www.du.ac.bd/faculty/faculty_details/SOC/1101">DU profile</a>)</td>
-<td>Co-I (sociology/qual lead)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>12</td>
-<td><strong>Dr Hasan Ashraf</strong></td>
-<td>Professor of Anthropology, Jahangirnagar University</td>
-<td>Siddiqi &amp; Ashraf (2025), &quot;In the Shadow of Securitization: Minimum Wage Struggles in Bangladesh&#39;s Garment Export Industry&quot;; Ashraf &amp; Prentice (2026), <em>J. Economic Geography</em>; Wenner-Gren Hunt Fellow 2025/26</td>
-<td><a href="mailto:hasanashraf@juniv.edu">hasanashraf@juniv.edu</a> (<a href="https://juniv.edu/teachers/meethu">profile</a>)</td>
-<td>Co-I (RMG ethnography)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>13</td>
-<td><strong>Dr Mahmudul H. Sumon</strong></td>
-<td>Professor of Anthropology, Jahangirnagar University</td>
-<td>&quot;Social Protection as Technocratic Fix?&quot; (<em>J. Labor &amp; Society</em>, 2023); &quot;Informal Labour in COVID-19&quot; (2023)</td>
-<td><a href="mailto:sumonmahmud@juniv.edu">sumonmahmud@juniv.edu</a> (<a href="https://juniv.edu/teachers/sumonmahmud">profile</a>)</td>
-<td>Advisor (informality, social protection)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>14</td>
-<td><strong>Dr Dina M. Siddiqi</strong></td>
-<td>Professor of Anthropology, BRAC University / NYU Liberal Studies (per search results; profile pages blocked)</td>
-<td>Long-term ethnography of garment workers; the 2025 minimum-wage paper with Ashraf</td>
-<td>via <a href="https://www.bracu.ac.bd/about/people/dina-m-siddiqui-phd">https://www.bracu.ac.bd/about/people/dina-m-siddiqui-phd</a></td>
-<td>Advisor (gender/RMG)</td>
-<td>UNVERIFIED</td>
-</tr>
-<tr>
-<td>15</td>
-<td><strong>Dr A. K. Enamul Haque</strong></td>
-<td>Director General, BIDS</td>
-<td>Environmental economist (climate, agriculture, urban); BIDS is a route to Boro, irrigation and HIES data</td>
-<td><a href="mailto:akehaque@bids.org.bd">akehaque@bids.org.bd</a> (<a href="https://www.bids.org.bd/page/reasearchers?rid=5">profile</a>)</td>
-<td>Data / institutional link</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>16</td>
-<td><strong>Prof Md. Shamsul Hoque</strong></td>
-<td>Professor of Civil Engineering, BUET</td>
-<td>Transport and traffic expert; useful on fare pass-through and e-rickshaw regulation (no 2026 fuel quote found)</td>
-<td><a href="mailto:shoque@ce.buet.ac.bd">shoque@ce.buet.ac.bd</a> (<a href="https://ce.buet.ac.bd/profile-of-md-shamsul-hoque/">profile</a>)</td>
-<td>Advisor (transport/fares)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>17</td>
-<td><strong>Prof M. Tamim</strong></td>
-<td>Vice-Chancellor, IUB (ex-BUET petroleum engineering)</td>
-<td>April 2026: the hike was &quot;justified&quot; and should have come earlier</td>
-<td>via <a href="https://iub.ac.bd/page/vice-chancellor">https://iub.ac.bd/page/vice-chancellor</a></td>
-<td>Advisor (energy pricing)</td>
-<td>UNVERIFIED</td>
-</tr>
-<tr>
-<td>18</td>
-<td><strong>Dr Ashikur Rahman</strong></td>
-<td>Principal Economist, PRI</td>
-<td>April 2026: shocks &quot;feeding through energy prices&quot;: <a href="https://www.thedailystar.net/business/economy/news/economic-outlook-fragile-country-faces-three-pronged-crisis-pri-4159186">https://www.thedailystar.net/business/economy/news/economic-outlook-fragile-country-faces-three-pronged-crisis-pri-4159186</a> ; worked on the National Social Security Strategy</td>
-<td>via <a href="https://www.theigc.org/people/ashikur-rahman">https://www.theigc.org/people/ashikur-rahman</a></td>
-<td>Advisor (social protection design)</td>
-<td>UNVERIFIED</td>
-</tr>
-</tbody></table>
-<p><strong>Also useful:</strong> <strong>Shadlee Rahman</strong>, Country Economist, IGC Bangladesh (<a href="https://www.theigc.org/people/shadlee-rahman">https://www.theigc.org/people/shadlee-rahman</a>, VERIFIED). He is the gatekeeper for IGC small grants. His April 2026 blog on the Gulf shock: <a href="https://www.theigc.org/blogs/energy-crisis-bangladesh-economy">https://www.theigc.org/blogs/energy-crisis-bangladesh-economy</a></p>
-<p><strong>Not included:</strong></p>
-<ul>
-<li><strong>Binayak Sen</strong> was BIDS DG from 2021 to Mar 2025 and has no current affiliation; he can be contacted informally via <a href="https://binayaksenbd.com">https://binayaksenbd.com</a>.</li>
-<li><strong>Gaps:</strong> no one verified at Chittagong, Rajshahi, NSU, ULAB, RAPID or icddr,b, and no Bangladesh-based researcher found specifically on e-rickshaw livelihoods, women&#39;s mobility, or Boro irrigation (agricultural economist Jahangir Alam Khan was quoted in April 2026 but is unverified).</li>
-</ul>
-<hr>
-<h2>2. Global researchers</h2>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Name</th>
-<th>Current role / institution</th>
-<th>Relevance</th>
-<th>Contact</th>
-<th>Ask</th>
-<th>Flag</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><strong>Prof Naomi Hossain</strong></td>
-<td>Global Research Professor &amp; Head of Development Studies, SOAS</td>
-<td>Political sociologist of Bangladesh; <strong>moral economy of food and fuel protest</strong>. McCulloch, Natalini, Hossain &amp; Justino, &quot;fuel subsidies and fuel riots&quot;, <em>World Development</em> 157 (2022) <a href="https://www.sciencedirect.com/science/article/pii/S0305750X22001255">https://www.sciencedirect.com/science/article/pii/S0305750X22001255</a> · Hossain &amp; Hallock, <em>Food, energy &amp; cost of living protests, 2022</em> (FES) <a href="https://ny.fes.de/fileadmin/user_upload/FESNY_STUDY_Food_energy_and_cost_of_living_protests_2022_Hossain_and_Hallock.pdf">https://ny.fes.de/fileadmin/user_upload/FESNY_STUDY_Food_energy_and_cost_of_living_protests_2022_Hossain_and_Hallock.pdf</a></td>
-<td><a href="mailto:nh61@soas.ac.uk">nh61@soas.ac.uk</a> (<a href="https://www.soas.ac.uk/about/naomi-hossain">profile</a>)</td>
-<td>Co-I / advisor; UK lead for an ESRC bid</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>Dr Neil McCulloch</strong></td>
-<td>Executive Director, The Policy Practice (UK)</td>
-<td><em>Ending Fossil Fuel Subsidies: The Politics of Saving the Planet</em> (2023); lead author of the 2022 fuel riots paper</td>
-<td><a href="mailto:neil.mcculloch@thepolicypractice.com">neil.mcculloch@thepolicypractice.com</a> (<a href="https://thepolicypractice.com/neil-mcculloch">profile</a>)</td>
-<td>Advisor (politics of subsidy reform)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>3</td>
-<td><strong>Prof Patricia Justino</strong></td>
-<td>Director, UNU-WIDER (since May 2026); Professorial Fellow, IDS Sussex</td>
-<td>Co-author of the fuel riots paper; conflict and social trust (ESRC project)</td>
-<td><a href="mailto:justino@wider.unu.edu">justino@wider.unu.edu</a> (<a href="https://www.wider.unu.edu/expert/patricia-justino">profile</a>)</td>
-<td>Advisor; route to WIDER calls</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>4</td>
-<td><strong>Dr Davide Natalini</strong></td>
-<td>Senior Research Fellow, Global Sustainability Institute, Anglia Ruskin</td>
-<td>&quot;Fuel riots: definition, evidence and policy implications&quot; (<em>Energy Policy</em>, 2020); built a fuel-riots database</td>
-<td>via <a href="https://www.aru.ac.uk/people/davide-natalini">https://www.aru.ac.uk/people/davide-natalini</a></td>
-<td>Advisor (protest data)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>5</td>
-<td><strong>Dr Paasha Mahdavi</strong></td>
-<td>Associate Professor of Political Science, UC Santa Barbara</td>
-<td>Mahdavi, Ross &amp; Simoni, <em>Nature Climate Change</em> (2025): only ~30% of fuel subsidy reforms last 12 months. <a href="https://www.nature.com/articles/s41558-025-02304-2">https://www.nature.com/articles/s41558-025-02304-2</a></td>
-<td><a href="mailto:paasha@polsci.ucsb.edu">paasha@polsci.ucsb.edu</a> (<a href="https://www.polsci.ucsb.edu/people/paasha-mahdavi">profile</a>)</td>
-<td>Advisor / reform dataset</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>6</td>
-<td><strong>Prof Nina von Uexkull</strong></td>
-<td>Professor of International Politics, Konstanz; adjunct at PRIO</td>
-<td>&quot;Fueling protest? … fuel prices and protest onset&quot;, <em>World Development</em> 177 (2024) <a href="https://ideas.repec.org/a/eee/wdevel/v177y2024ics0305750x24000068.html">https://ideas.repec.org/a/eee/wdevel/v177y2024ics0305750x24000068.html</a></td>
-<td>via <a href="https://www.prio.org/people/9237">https://www.prio.org/people/9237</a></td>
-<td>Advisor (quantitative protest analysis)</td>
-<td>UNVERIFIED</td>
-</tr>
-<tr>
-<td>7</td>
-<td><strong>Prof Benjamin K. Sovacool</strong></td>
-<td>Professor of Earth &amp; Environment, Boston University (Sussex/Aarhus roles not confirmed)</td>
-<td>Leading scholar of energy justice</td>
-<td><a href="mailto:sovacool@bu.edu">sovacool@bu.edu</a> (<a href="https://www.bu.edu/igs/profile/benjamin-sovacool/">profile</a>)</td>
-<td>Advisor (energy justice)</td>
-<td>VERIFIED (BU)</td>
-</tr>
-<tr>
-<td>8</td>
-<td><strong>Prof Stefan Bouzarovski</strong></td>
-<td>Professor of Human Geography, University of Manchester</td>
-<td>Energy poverty theory and metrics</td>
-<td>via <a href="https://research.manchester.ac.uk/en/persons/stefan.bouzarovski/">https://research.manchester.ac.uk/en/persons/stefan.bouzarovski/</a></td>
-<td>Advisor (energy poverty)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>9</td>
-<td><strong>Dr Ugo Gentilini</strong></td>
-<td>Lead Economist, World Bank MENA (per personal site)</td>
-<td>2026 work on social protection responses to the energy crisis (288 responses in 109 countries; subsidies far outnumber cash transfers): <a href="https://www.ugogentilini.net/">https://www.ugogentilini.net/</a></td>
-<td>via personal site</td>
-<td>Advisor (cash compensation / Family Card design)</td>
-<td>UNVERIFIED</td>
-</tr>
-<tr>
-<td>10</td>
-<td><strong>Prof Djavad Salehi-Isfahani</strong></td>
-<td>Professor of Economics, Virginia Tech (per personal site)</td>
-<td>Iran&#39;s 2010 energy subsidy reform with universal cash transfers (2015), the canonical comparison</td>
-<td>via <a href="https://djavadsalehi.com/about-me/">https://djavadsalehi.com/about-me/</a></td>
-<td>Advisor (comparative)</td>
-<td>UNVERIFIED</td>
-</tr>
-<tr>
-<td>11</td>
-<td><strong>Prof Naila Kabeer</strong></td>
-<td>Emeritus Professor, LSE (retired 2024); Faculty Associate, International Inequalities Institute</td>
-<td><em>Renegotiating Patriarchy: Gender, Agency and the Bangladesh Paradox</em> (2024); garment workers</td>
-<td><a href="mailto:n.kabeer@lse.ac.uk">n.kabeer@lse.ac.uk</a> (<a href="https://www.lse.ac.uk/people/naila-kabeer">profile</a>)</td>
-<td>Feedback only</td>
-<td>VERIFIED (emeritus)</td>
-</tr>
-<tr>
-<td>12</td>
-<td><strong>Prof Mark Anner</strong></td>
-<td>Dean, Rutgers School of Management and Labor Relations</td>
-<td>&quot;Squeezing workers&#39; rights in global supply chains… Bangladesh garment sector&quot; (<em>RIPE</em>, 2020)</td>
-<td><a href="mailto:mark.anner@rutgers.edu">mark.anner@rutgers.edu</a> (<a href="https://smlr.rutgers.edu/mark-s-anner">profile</a>)</td>
-<td>Advisor (RMG cost squeeze)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>13</td>
-<td><strong>Dr Jonas van der Straeten</strong></td>
-<td>Assistant Professor, TU Eindhoven</td>
-<td>Current project on <strong>electrification of Bangladesh&#39;s three-wheelers</strong> (1.5M+ battery rickshaws); &quot;Sustainability&#39;s &#39;Other&#39;: … the Electric Rickshaw in Bangladesh&quot; (<em>HSR</em>, 2022)</td>
-<td><a href="mailto:j.n.van.der.straeten@tue.nl">j.n.van.der.straeten@tue.nl</a> (<a href="https://www.tue.nl/en/research/researchers/jonas-van-der-straeten">profile</a>)</td>
-<td>Co-I (e-rickshaw strand, P2)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>14</td>
-<td><strong>Dr Annemiek Prins</strong></td>
-<td>Postdoc in Urban Planning, University of Amsterdam</td>
-<td>&quot;Beyond the Male Breadwinner: … Electrification … Cycle-Rickshaw Work in Bangladesh&quot;, <em>South Asia</em> 49(3) (2026) <a href="https://www.tandfonline.com/doi/full/10.1080/00856401.2026.2651452">https://www.tandfonline.com/doi/full/10.1080/00856401.2026.2651452</a></td>
-<td><a href="mailto:a.prins@uva.nl">a.prins@uva.nl</a> (<a href="https://www.uva.nl/en/profile/p/r/a.prins/a.prins.html">profile</a>)</td>
-<td>Advisor (rickshaw ethnography, gender)</td>
-<td>VERIFIED</td>
-</tr>
-<tr>
-<td>15</td>
-<td><strong>Prof Jaume Franquesa</strong> (and <strong>Nikita Das</strong>)</td>
-<td>Professor of Anthropology, University at Buffalo (Das&#39;s role unverified)</td>
-<td>Das &amp; Franquesa, &quot;The invisible electric mobility: … informalized electric rickshaw in Eastern India&quot;, <em>ERSS</em> 129 (2025)</td>
-<td><a href="mailto:jaume@buffalo.edu">jaume@buffalo.edu</a> (<a href="https://www.buffalo.edu/cas/anthropology/faculty/faculty_directory/franquesa-jaume.html">profile</a>)</td>
-<td>Advisor (comparative)</td>
-<td>VERIFIED / UNVERIFIED</td>
-</tr>
-</tbody></table>
-<p><strong>Not covered:</strong> IISD&#39;s Global Subsidies Initiative pages were blocked (they publish on gender and kerosene/LPG subsidies in Bangladesh; Richard Bridle appeared in search results but is unverified). ODI and IMF researchers were not verified.</p>
-<hr>
-<h2>3. Funders &amp; programmes</h2>
-<table>
-<thead>
-<tr>
-<th>Programme</th>
-<th>URL</th>
-<th>Size</th>
-<th>Eligibility</th>
-<th>Deadline</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>IGC calls for proposals</strong> (Bangladesh is a partner country)</td>
-<td><a href="https://www.theigc.org/funding/call-for-proposals">https://www.theigc.org/funding/call-for-proposals</a></td>
-<td>Small £20–30k; full up to £125k (avg ~£60k)</td>
-<td><strong>PI must hold or be pursuing a PhD</strong>; small grants go through the country team (Shadlee Rahman)</td>
-<td>Recurring; next call not announced</td>
-</tr>
-<tr>
-<td><strong>SANDEE (ICIMOD)</strong></td>
-<td><a href="https://www.icimod.org/sandee/sandee-research-grant-2026-call-for-concept-notes/">https://www.icimod.org/sandee/sandee-research-grant-2026-call-for-concept-notes/</a></td>
-<td>USD 20–30k over 2 years</td>
-<td><strong>Must be employed at a university or research institute</strong>; environmental economics (fits P3: diesel vs solar irrigation)</td>
-<td>2026 cycle closed 31 Dec 2025; annual</td>
-</tr>
-<tr>
-<td><strong>Wenner-Gren Post-PhD Research Grant</strong></td>
-<td><a href="https://wennergren.org/program/post-phd-research-grant/">https://wennergren.org/program/post-phd-research-grant/</a></td>
-<td>up to USD 25k</td>
-<td><strong>Independent scholars eligible</strong>; needs a PhD in anthropology (or a related PhD plus an anthropology appointment); fits P2</td>
-<td>1 May annually (verify)</td>
-</tr>
-<tr>
-<td><strong>ESRC/UKRI via international co-lead</strong></td>
-<td><a href="https://www.ukri.org/publications/project-co-lead-international-policy-guidance/">https://www.ukri.org/publications/project-co-lead-international-policy-guidance/</a></td>
-<td>Scheme-dependent</td>
-<td>Needs a <strong>UK-based lead</strong> (e.g. Naomi Hossain); the Bangladesh co-lead must be at an eligible research organisation</td>
-<td>Varies</td>
-</tr>
-<tr>
-<td><strong>J-PAL Social Protection Initiative</strong></td>
-<td><a href="https://www.povertyactionlab.org/initiative/social-protection-initiative-request-proposals">https://www.povertyactionlab.org/initiative/social-protection-initiative-request-proposals</a></td>
-<td>Pilots up to $75k</td>
-<td>J-PAL affiliates or invitees only; Africa focus; poor fit without an affiliate</td>
-<td>Annual (2026 round closed)</td>
-</tr>
-<tr>
-<td><strong>IPA research funds</strong></td>
-<td><a href="https://poverty-action.org/open-funding-opportunities">https://poverty-action.org/open-funding-opportunities</a></td>
-<td>Varies</td>
-<td>Thematic; mostly RCT teams</td>
-<td>Rolling / annual</td>
-</tr>
-<tr>
-<td><strong>GDN (Global Development Awards)</strong></td>
-<td><a href="https://www.gdn.int/opportunities">https://www.gdn.int/opportunities</a></td>
-<td><main id="content" class="prose prose-lg bg-white p-10 rounded-2xl shadow-sm border border-gray-100">0–30k prizes</td>
-<td>Researchers from low- and middle-income countries; the 2026 theme fits poorly</td>
-<td>Annual; watch the 2027 theme</td>
-</tr>
-<tr>
-<td><strong>IDRC</strong></td>
-<td><a href="https://idrc-crdi.ca/en/funding">https://idrc-crdi.ca/en/funding</a></td>
-<td>Varies</td>
-<td>Mostly institutional; no Bangladesh-specific call found</td>
-<td>Rolling</td>
-</tr>
-<tr>
-<td><strong>FES Bangladesh</strong></td>
-<td><a href="https://bangladesh.fes.de/">https://bangladesh.fes.de/</a></td>
-<td>Commissioned studies</td>
-<td>Labour and the economy; has commissioned CPD and RAPID on RMG wages. Send a concept note to bangladesh(at)fes.de</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>Bangladesh Social Science Research Council</strong> (Planning Division)</td>
-<td><a href="https://plandiv.portal.gov.bd">https://plandiv.portal.gov.bd</a></td>
-<td>Not verified</td>
-<td>Grants and MPhil/PhD support for Bangladeshi researchers; Bangla or English</td>
-<td>Not found (UNVERIFIED)</td>
-</tr>
-</tbody></table>
-<p><strong>Checked and not currently open:</strong> EEG (appears to have ended), EnergyInsight. <strong>Not verified this session:</strong> Wellcome, SSRC (US), the Asia Foundation.</p>
-<p><strong>What this means for you:</strong> almost every serious funder requires either <strong>a PhD-holding PI or an institutional host</strong>. So the first thing to secure is a host, most likely BIGD, SANEM, CPD or a DU/JU department, with a senior co-investigator. Funding comes after that. For quick money, commissioned work (FES) or a partner&#39;s internal funds are more realistic in the next 4 weeks than any grant cycle.</p>
-<hr>
-<h2>4. First five to contact (in this order)</h2>
-<ol>
-<li><strong>Imran Matin (BIGD).</strong> Offers an institutional host that funders require, the PPRC–BIGD 2022 inflation panel for a 2022 vs 2026 comparison, and leadership of the Family Card policy conversation. Ask for: a host, a sampling frame for P1, and IRB support.</li>
-<li><strong>Naomi Hossain (SOAS).</strong> The best single fit for moral economy and fuel protest, working mainly on Bangladesh; she could be the UK lead on an ESRC bid. Ask for: feedback on P1&#39;s framing experiment and P4; interest in co-leading a grant.</li>
-<li><strong>Selim Raihan / Sayema Haque Bidisha (SANEM).</strong> Raihan is already quoted on this hike; SANEM ran the 2023 coping survey (a comparison baseline); Bidisha brings gender and labour. Ask for: data, and the speed to field P1 W0.</li>
-<li><strong>Khondaker Golam Moazzem (CPD).</strong> The only researcher found who covers both energy and RMG wages, and already an advocate for widening the Family Card. Ask for: advice on the pay-scale wedge and the RMG strand.</li>
-<li><strong>Samina Luthfa (DU Sociology) or Hasan Ashraf (JU Anthropology) as qualitative lead, and Jonas van der Straeten (TU Eindhoven) for P2.</strong> They give you the sociological and ethnographic core and the only active e-rickshaw project on Bangladesh.</li>
-</ol>
-<hr>
-<h2>5. Outreach email template (short works best)</h2>
-<blockquote>
-<p><strong>Subject:</strong> Rapid baseline on the 21 Sept fuel hike — seeking your advice / collaboration</p>
-<p>Dear Professor [Name],</p>
-<p>I&#39;m [name], an independent researcher in [city] studying how the 21 September fuel price hike, which came two days after the National Pay Scale gazette, affects households and informal workers. Because a further adjustment looks likely once BPC&#39;s October LC funding runs out, there is a 3–4 week window to collect a pre-shock baseline.</p>
-<p>I&#39;ve drafted a short proposal for a 5-wave household phone panel stratified by public, formal-private and informal sector, with an embedded framing experiment on perceived fairness [attach 2-page summary + link to repo]. Your work on [specific paper/quote] is directly relevant, particularly [one sentence].</p>
-<p>Would you be open to a 20-minute call this week? I&#39;d value [feedback on the design / a possible institutional home / advice on data access / co-investigator involvement].</p>
-<p>Best regards,
-[Name, affiliation if any, phone, link]</p>
-</blockquote>
-<p>Tips: name one specific piece of their work, attach a <strong>2-page</strong> summary (not the full repo), make one concrete ask, and send on a weekday morning in Dhaka. Follow up once after 5–7 days.</p>
-<hr>
-<h2>6. Caveats</h2>
-<ul>
-<li><strong>Hike count.</strong> TBS calls 21 Sep the government&#39;s <em>second</em> fuel price hike, after April. Our analysis says three hikes since March because the <strong>June</strong> change (Tk +5) applied <strong>only to petrol and octane</strong>. For diesel and kerosene it is the second. Word it accordingly in outreach.</li>
-<li><strong>&quot;VERIFIED&quot;</strong> only means an official page confirmed the role on 21 Sep 2026; pages can be stale.</li>
-<li>Pages that could not be fetched: IISD, NYU and BRAC University (403), IUB VC, Konstanz, and the Bangladesh Social Science Research Council (BSSRC) PDF.</li>
-<li>Two emails (Luthfa, Raihan) are Gmail addresses listed on official pages; consider institutional channels first.</li>
-<li>The e-rickshaw &quot;ex-farmers&quot; share needs a traceable primary source before citing (the analysis uses 21%; search snippets also show 23%).</li>
-<li>None of the funding calls has a confirmed open deadline in late 2026; subscribe to the IGC, SANDEE and GDN newsletters.</li>
-</ul>
 
-</main>
-    
-    <footer class="mt-12 text-center text-sm text-gray-500">
-      &copy; 2026 BlankFrame Technologies. Internal Research Document.
-    </footer>
-  </div>
-
+  </article>
   
+  <div class="card" style="margin-top:56px;">
+    <h3 style="font-size:21px;">None of this happens without a host, a lead, or a survey partner.</h3>
+    <p class="muted" style="font-size:15px;margin-top:10px;">The binding constraint is not money — it is that almost every funder needs a PhD-holding PI or an institutional host. If you can supply one, or want to lead a strand, that is the conversation worth having this week.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="/research/r1_Fuel/collaborate/">Collaborate</a><a class="btn btn-ghost" href="/research/r1_Fuel/support/">Fund a wave</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div style="font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-0.03em;color:var(--ink);font-size:17px;">r1_Fuel</div>
+        <div class="small" style="margin-top:6px;">An open research programme on Bangladesh's 2026 fuel shock.</div>
+        <div class="small" style="margin-top:6px;">Analysis dated 21 September 2026.</div>
+      </div>
+      <div class="flinks">
+        <a href="/research/r1_Fuel/findings/">The analysis</a>
+        <a href="/research/r1_Fuel/proposal/">Research plan</a>
+        <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
+        <a href="/research/r1_Fuel/support/">Fund it</a>
+        <a href="/research/r1_Fuel/data/">Data &amp; method</a>
+        <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source repo</a>
+        <a href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email</a>
+        <a href="/">BlankFrame</a>
+      </div>
+    </div>
+    <p class="fnote">
+      Figures marked <span class="est">est.</span> are this project's own calculations from cited inputs, with the
+      method shown inline; everything else is sourced and linked. Nothing here is peer-reviewed. Corrections are
+      welcome and will be logged &mdash; open an issue on the
+      <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">repository</a> or email
+      <a href="mailto:hello@blankframe.tech?subject=r1_Fuel%20correction">hello@blankframe.tech</a>.
+    </p>
+  </div>
+</footer>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

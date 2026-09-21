@@ -1,7 +1,8 @@
 # P4 — Who Gets the Blame? (computational discourse analysis)
 
 Implements the corpus + pipeline for **P4** in [`../research_proposals.md`](../research_proposals.md).
-Status: **corpus collection and v0 pipeline built; frame classifier NOT yet validated.**
+Status: **corpus collection and v0 pipeline built; frame classifier NOT validated against humans.** A single-coder
+pass by Claude exists (below); it is a stand-in, not the two-human validation the codebook requires.
 
 ## Run
 
@@ -37,6 +38,25 @@ Politeness: honest User-Agent, robots.txt checked (including crawl-delay), ≥1.
 - **Protest event data**: ACLED needs free registration; until then the `protest` flag is a *news-mention* proxy, not an event count.
 - **Sentiment**: no validated Bangla sentiment model set up. Needs BanglaBERT-class model + validation.
 - **Coverage bias**: three outlets, mostly Dhaka-centred, mostly pro-establishment or centrist. Not "Bangla public discourse".
+
+## Validation status
+
+`out/coding_sample.csv` (186 articles, stratified language × period; gitignored, contains excerpts) has:
+- `A_*`, `B_*`: **blank, reserved for two human coders** (needed for kappa ≥ 0.7).
+- `C_*`: Claude's independent single pass, read from headline + summary + first ~1,100 chars (Bangla) / ~1,400 (English)
+  of each article, **not the full text**, applied literally per `codebook.md`. `C_bd_relevant` = 1 if the article is about
+  Bangladesh's fuel/energy situation. Text-free copy: `out/claude_codes.csv`.
+
+`python src/validate.py --coders C` (and `--bd-only`) compares the dictionary classifier against that pass
+(`out/validation_C.csv`, `out/validation_C_bd.csv`). Against Claude's codes the dictionary is **not usable for most
+frames** (F1, Bangladesh-relevant rows only): protest 0.95 (only frame that holds up), fairness 0.71, global_market 0.71,
+corruption 0.57, india 0.47, fiscal_loss 0.49, govt_failure 0.36 (recall 23%: misses opposition/criticism language),
+apology_empathy 0.20 (recall 12%). About **39% of the "about fuel" corpus is not about Bangladesh** (wire market reports,
+other countries), which inflates `global_market`; restrict to Bangladesh-relevant articles before reporting any share.
+
+Caveats on this pass: one coder, reading truncated text, who also helped design the dictionary and codebook; borderline
+calls (pure market reports = 0; rebuttals count; foreign articles coded by content) are judgement, and at least one call
+was revised mid-pass for consistency. It shows *where the dictionary is weak*; it does not certify anything.
 
 ## Known limitations of the v0 numbers
 

@@ -1,49 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>r1_Fuel — Bangladesh’s 2026 fuel shock, and the part nobody is measuring</title>
-<meta name="description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.">
-<link rel="canonical" href="https://www.blankframe.tech/research/r1_Fuel/">
+'use strict';
 
-<meta property="og:title" content="Tk 20 a litre, overnight. The part nobody is measuring.">
-<meta property="og:description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.">
-<meta property="og:url" content="https://www.blankframe.tech/research/r1_Fuel/">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="BlankFrame Research">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tk 20 a litre, overnight. The part nobody is measuring.">
-<meta name="twitter:description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.">
+const C = require('./charts');
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23131313'/%3E%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FF4A1F' stroke-width='7'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/site.css">
-</head>
-<body>
+const DESC =
+  'On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human ' +
+  'cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.';
 
-<div class="nav-shell">
-  <div class="nav-inner">
-    <a class="nav-brand" href="/research/r1_Fuel/">
-      <span class="mark" aria-hidden="true"></span>
-      <span>r1_Fuel</span>
-      <span class="sub">BlankFrame Research</span>
-    </a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="/research/r1_Fuel/" class="active" aria-current="page">Overview</a>
-      <a href="/research/r1_Fuel/findings/">The analysis</a>
-      <a href="/research/r1_Fuel/proposal/">Research plan</a>
-      <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-      <a href="/research/r1_Fuel/support/">Fund it</a>
-      <a href="/research/r1_Fuel/data/">Data & method</a>
-      <a href="/research/r1_Fuel/status/">Status</a>
-    </nav>
-  </div>
-</div>
+function stat(val, lbl, note, accent) {
+  return `<div class="stat">
+        <div class="val${accent ? ' accent' : ''}">${val}</div>
+        <div class="lbl">${lbl}</div>
+        <div class="note">${note}</div>
+      </div>`;
+}
 
-
+function body() {
+  return `
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span> Open research &middot; Bangladesh &middot; 2026</div>
@@ -72,26 +44,10 @@
 <section style="padding-top:12px;">
   <div class="wrap">
     <div class="grid g4">
-      <div class="stat">
-        <div class="val accent">+35%</div>
-        <div class="lbl">Diesel, since March</div>
-        <div class="note">Tk 100 &rarr; Tk 135. Buses, trucks, irrigation pumps, generators, trawlers. This is the macro variable.</div>
-      </div>
-      <div class="stat">
-        <div class="val">91.7%</div>
-        <div class="lbl">Of a median month&rsquo;s income</div>
-        <div class="note">What one 50-litre tank of octane now costs against a Tk 9,000 median monthly income. <span class="est">est.</span></div>
-      </div>
-      <div class="stat">
-        <div class="val">Tk 52</div>
-        <div class="lbl">Still unclosed, per litre</div>
-        <div class="note">BPC&rsquo;s own formula says diesel should be Tk 187. The Tk 20 hike closed 27.8% of the gap. <span class="est">est.</span></div>
-      </div>
-      <div class="stat">
-        <div class="val">~4 weeks</div>
-        <div class="lbl">To collect a baseline</div>
-        <div class="note">BPC may run out of letter-of-credit funding in October. After that, there is no &ldquo;before&rdquo; left to measure.</div>
-      </div>
+      ${stat('+35%', 'Diesel, since March', 'Tk 100 &rarr; Tk 135. Buses, trucks, irrigation pumps, generators, trawlers. This is the macro variable.', true)}
+      ${stat('91.7%', 'Of a median month&rsquo;s income', 'What one 50-litre tank of octane now costs against a Tk 9,000 median monthly income. <span class="est">est.</span>')}
+      ${stat('Tk 52', 'Still unclosed, per litre', 'BPC&rsquo;s own formula says diesel should be Tk 187. The Tk 20 hike closed 27.8% of the gap. <span class="est">est.</span>')}
+      ${stat('~4 weeks', 'To collect a baseline', 'BPC may run out of letter-of-credit funding in October. After that, there is no &ldquo;before&rdquo; left to measure.')}
     </div>
   </div>
 </section>
@@ -115,33 +71,7 @@
     <div class="loop-fig">
       <div style="font-family:'Inter Tight',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px;">Price change since March 2026</div>
       <div class="small muted" style="margin-bottom:22px;">Per litre, retail. Hover any bar for the underlying prices.</div>
-      <svg viewBox="0 0 760 236" width="100%" role="img" aria-label="Price change since March 2026 by fuel. Furnace oil +62%, kerosene +38.4%, petrol +37.9%, octane +37.5%, diesel +35.0%." preserveAspectRatio="xMidYMid meet">
-  <defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-      <rect width="7" height="7" fill="#E6E4DE"/>
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#A5A39D" stroke-width="1.6" opacity="0.55"/>
-    </pattern></defs>
-  <line x1="172" y1="6" x2="172" y2="226" stroke="#E6E4DE" stroke-width="1"/>
-  <text x="160" y="22" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Furnace oil</text>
-  <text x="160" y="36" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">the grid runs on it</text>
-  <path d="M173,10 H606.6470588235294 A4,4 0 0 1 610.6470588235294,14 V28 A4,4 0 0 1 606.6470588235294,32 H173 Z" fill="#FF4A1F" ><title>Furnace oil Tk 70.10 → 113.54 between March and May 2026: +62%</title></path>
-  <text x="621.6" y="22" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+62%</text>
-  <text x="160" y="66" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Kerosene</text>
-  <text x="160" y="80" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">Tk 112 → 155</text>
-  <path d="M173,54 H440.05882352941177 A4,4 0 0 1 444.05882352941177,58 V72 A4,4 0 0 1 440.05882352941177,76 H173 Z" fill="#FF4A1F" ><title>Kerosene Tk 112 → 155: +38.4% since March</title></path>
-  <text x="455.1" y="66" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+38.4%</text>
-  <text x="160" y="110" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Petrol</text>
-  <text x="160" y="124" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">Tk 116 → 160</text>
-  <path d="M173,98 H436.5294117647059 A4,4 0 0 1 440.5294117647059,102 V116 A4,4 0 0 1 436.5294117647059,120 H173 Z" fill="#FF4A1F" ><title>Petrol Tk 116 → 160: +37.9% since March</title></path>
-  <text x="451.5" y="110" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+37.9%</text>
-  <text x="160" y="154" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Octane</text>
-  <text x="160" y="168" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">Tk 120 → 165</text>
-  <path d="M173,142 H433.7058823529412 A4,4 0 0 1 437.7058823529412,146 V160 A4,4 0 0 1 433.7058823529412,164 H173 Z" fill="#FF4A1F" ><title>Octane Tk 120 → 165: +37.5% since March — the headline number</title></path>
-  <text x="448.7" y="154" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+37.5%</text>
-  <text x="160" y="198" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Diesel</text>
-  <text x="160" y="212" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">Tk 100 → 135</text>
-  <path d="M173,186 H416.0588235294117 A4,4 0 0 1 420.0588235294117,190 V204 A4,4 0 0 1 416.0588235294117,208 H173 Z" fill="#FF4A1F" ><title>Diesel Tk 100 → 135: +35% since March — the macro variable</title></path>
-  <text x="431.1" y="198" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+35.0%</text>
-</svg>
+      ${C.figPriceLadder()}
       <p class="fig-cap">
         <strong>Furnace oil is the line that gets missed.</strong> It went Tk 70.10 &rarr; 94.69 &rarr; 113.54 between
         March and May &mdash; <strong>+62% in two months</strong> &mdash; and it is the fuel now carrying the power grid.
@@ -200,33 +130,7 @@
     <div class="loop-fig" style="margin-bottom:20px;">
       <div style="font-family:'Inter Tight',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px;">The diesel gap, per litre</div>
       <div class="small muted" style="margin-bottom:26px;">What has been added since March against what BPC's own formula says the price should be.</div>
-      <svg viewBox="0 0 760 200" width="100%" role="img" aria-label="Diesel price bar: Tk 100 in March, plus Tk 15 across the April and June hikes, plus Tk 20 on 21 September, reaching Tk 135 — against BPC's formula-implied Tk 187, leaving a Tk 52 gap still unclosed." preserveAspectRatio="xMidYMid meet">
-  <defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-      <rect width="7" height="7" fill="#E6E4DE"/>
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#A5A39D" stroke-width="1.6" opacity="0.55"/>
-    </pattern></defs>
-  <text x="24" y="26" text-anchor="start" font-family="Inter, sans-serif" font-size="12" fill="#6F6E6A">Tk 100 in March</text>
-  <text x="736" y="26" text-anchor="end" font-family="Inter, sans-serif" font-size="12" fill="#6F6E6A">Tk 187 &#8212; BPC&#8217;s own formula price</text>
-  <line x1="736" y1="32" x2="736" y2="78" stroke="#A5A39D" stroke-width="1"/>
-  <line x1="538.0" y1="56" x2="538.0" y2="78" stroke="#FF4A1F" stroke-width="2"/>
-  <text x="530.0" y="52" text-anchor="end" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#FF4A1F">Tk 135 &#8212; what you pay today</text>
-  <path d="M24,78 h378.7486631016043 v44 h-378.7486631016043 Z" fill="#D9D6CF"><title>March price — Tk 100</title></path>
-  <text x="213.4" y="101" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14" font-weight="700" fill="#2A2A28">Tk 100</text>
-  <path d="M404.7486631016043,78 h55.112299465240646 v44 h-55.112299465240646 Z" fill="#FFB39C"><title>April + June hikes — +15</title></path>
-  <text x="432.3" y="101" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14" font-weight="700" fill="#2A2A28">+15</text>
-  <path d="M461.86096256684493,78 h74.14973262032085 v44 h-74.14973262032085 Z" fill="#FF4A1F"><title>21 September hike — +20</title></path>
-  <text x="498.9" y="101" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">+20</text>
-  <path d="M538.0106951871658,78 H730 A4,4 0 0 1 734,82 V118 A4,4 0 0 1 730,122 H538.0106951871658 Z" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"><title>still unclosed — Tk 52</title></path>
-  <text x="636.0" y="101" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14" font-weight="700" fill="#2A2A28">Tk 52</text>
-  <rect x="24" y="147" width="11" height="11" rx="2.5" fill="#D9D6CF"/>
-  <text x="41" y="156" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#6F6E6A">March price</text>
-  <rect x="143.6" y="147" width="11" height="11" rx="2.5" fill="#FFB39C"/>
-  <text x="160.6" y="156" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#6F6E6A">April + June hikes</text>
-  <rect x="309.4" y="147" width="11" height="11" rx="2.5" fill="#FF4A1F"/>
-  <text x="326.4" y="156" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#6F6E6A">21 September hike</text>
-  <rect x="468.59999999999997" y="147" width="11" height="11" rx="2.5" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"/>
-  <text x="485.59999999999997" y="156" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#6F6E6A">still unclosed</text>
-</svg>
+      ${C.figDieselGap()}
       <p class="fig-cap">
         Anyone planning on Tk 135 diesel being the new normal through the Boro season is planning on the wrong number.
         The Tk 20 buys roughly <strong>Tk 700&ndash;750 crore a month</strong> of cash flow <span class="est">est.</span>
@@ -275,29 +179,7 @@
     <div class="loop-fig">
       <div style="font-family:'Inter Tight',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px;">Nominal change in basic pay since 2023</div>
       <div class="small muted" style="margin-bottom:22px;">Hatched bars mark groups with no wage-setting mechanism at all, not a value of zero growth by design.</div>
-      <svg viewBox="0 0 760 192" width="100%" role="img" aria-label="Nominal change in basic pay since 2023: up to +142% for government grades 11–20 and +100% for grades 1–10, against no reset at all for the RMG minimum wage or informal workers." preserveAspectRatio="xMidYMid meet">
-  <defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-      <rect width="7" height="7" fill="#E6E4DE"/>
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#A5A39D" stroke-width="1.6" opacity="0.55"/>
-    </pattern></defs>
-  <line x1="172" y1="6" x2="172" y2="182" stroke="#E6E4DE" stroke-width="1"/>
-  <text x="160" y="22" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Govt grades 11–20</text>
-  <text x="160" y="36" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~33 lakh people, incl. pensioners</text>
-  <path d="M173,10 H593.1066666666667 A4,4 0 0 1 597.1066666666667,14 V28 A4,4 0 0 1 593.1066666666667,32 H173 Z" fill="#FF4A1F" ><title>Government pay scale 2026: basic pay up to +142% for grades 11–20, phased over three years</title></path>
-  <text x="608.1" y="22" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+142%</text>
-  <text x="160" y="66" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Govt grades 1–10</text>
-  <text x="160" y="80" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">first pay award in 11 years</text>
-  <path d="M173,54 H467.66666666666663 A4,4 0 0 1 471.66666666666663,58 V72 A4,4 0 0 1 467.66666666666663,76 H173 Z" fill="#FF4A1F" ><title>Government pay scale 2026: basic pay up to +100% for grades 1–10</title></path>
-  <text x="482.7" y="66" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+100%</text>
-  <text x="160" y="110" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">RMG minimum wage</text>
-  <text x="160" y="124" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~4 million garment workers</text>
-  <path d="M173,98 h0.5 v22 h-0.5 Z" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"><title>The RMG minimum wage has not been reset since December 2023</title></path>
-  <text x="184.0" y="110" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#6F6E6A">Tk 0</text>
-  <text x="160" y="154" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Informal workers</text>
-  <text x="160" y="168" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~85% of all employment</text>
-  <path d="M173,142 h0.5 v22 h-0.5 Z" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"><title>About 85% of Bangladeshi employment sits outside any wage-setting mechanism at all</title></path>
-  <text x="184.0" y="154" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#6F6E6A">no mechanism</text>
-</svg>
+      ${C.figWedge()}
       <p class="fig-cap">
         The pay award did not cause the fuel hike &mdash; Hormuz did. It removed the fiscal cushion that would have let
         the state phase the shock more gently, and it did so in favour of about 2% of the population who are also the
@@ -322,42 +204,7 @@
     </div>
 
     <div class="loop-fig">
-      <svg viewBox="0 0 760 440" width="100%" role="img" aria-label="A reinforcing loop: a fuel hike makes liquid-fuel three-wheelers uneconomic, riders switch to battery rickshaws, unmetered charging load grows, loadshedding deepens, the power board burns expensive furnace oil and diesel to cover peak, BPC and PDB deficits widen, and pressure builds for the next hike." preserveAspectRatio="xMidYMid meet">
-  <defs>
-    <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,1 L9,5 L0,9 z" fill="#A5A39D"/>
-    </marker>
-  </defs>
-  <path d="M498.0,60.4 Q515,63 559.8,100.0" fill="none" stroke="#A5A39D" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arw)" opacity="0.9"/>
-  <path d="M625.5,176.0 Q640,204 624.5,236.0" fill="none" stroke="#A5A39D" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arw)" opacity="0.9"/>
-  <path d="M563.2,312.0 Q517,353 513.0,353.8" fill="none" stroke="#A5A39D" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arw)" opacity="0.9"/>
-  <path d="M247.0,353.8 Q243,353 196.8,312.0" fill="none" stroke="#A5A39D" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arw)" opacity="0.9"/>
-  <path d="M135.5,236.0 Q120,204 134.5,176.0" fill="none" stroke="#A5A39D" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arw)" opacity="0.9"/>
-  <path d="M200.2,100.0 Q245,63 262.0,60.4" fill="none" stroke="#A5A39D" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arw)" opacity="0.9"/>
-  <text x="380" y="218" text-anchor="middle" dominant-baseline="middle" font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="21" fill="#A5A39D">a reinforcing loop</text>
-  <rect x="271" y="15" width="218" height="50" rx="12" fill="#FFFFFF" stroke="#FF4A1F" stroke-width="2"/>
-  <text x="380" y="35" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#FF4A1F">Fuel hike</text>
-  <text x="380" y="52" text-anchor="middle" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11" fill="#6F6E6A">diesel +17.4%, petrol +14.3%</text>
-  <rect x="475" y="109" width="262" height="58" rx="12" fill="#FFFFFF" stroke="#E6E4DE" stroke-width="1.4"/>
-  <text x="606" y="125.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">Liquid-fuel 3-wheelers</text>
-  <text x="606" y="140.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">become uneconomic</text>
-  <text x="606" y="157.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11" fill="#6F6E6A">riders switch to battery</text>
-  <rect x="475" y="245" width="262" height="58" rx="12" fill="#FFFFFF" stroke="#E6E4DE" stroke-width="1.4"/>
-  <text x="606" y="261.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">E-rickshaw charging load</text>
-  <text x="606" y="276.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">grows</text>
-  <text x="606" y="293.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11" fill="#6F6E6A">500 MW – 1 GW, 93% unmetered</text>
-  <rect x="256" y="359" width="248" height="50" rx="12" fill="#FFFFFF" stroke="#E6E4DE" stroke-width="1.4"/>
-  <text x="380" y="379" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">Deeper loadshedding</text>
-  <text x="380" y="396" text-anchor="middle" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11" fill="#6F6E6A">7–10 hrs rural, 3,500 MW short</text>
-  <rect x="23" y="245" width="262" height="58" rx="12" fill="#FFFFFF" stroke="#E6E4DE" stroke-width="1.4"/>
-  <text x="154" y="261.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">PDB burns furnace oil</text>
-  <text x="154" y="276.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">and diesel to cover peak</text>
-  <text x="154" y="293.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11" fill="#6F6E6A">Tk 113.54/L, ~Tk 1.2bn/day</text>
-  <rect x="23" y="109" width="262" height="58" rx="12" fill="#FFFFFF" stroke="#E6E4DE" stroke-width="1.4"/>
-  <text x="154" y="125.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">BPC and PDB deficits</text>
-  <text x="154" y="140.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="13" font-weight="700" fill="#131313">widen</text>
-  <text x="154" y="157.5" text-anchor="middle" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11" fill="#6F6E6A">Tk 22,876 cr accumulated</text>
-</svg>
+      ${C.figLoop()}
       <p class="fig-cap">
         <strong>The operating-cost wedge that drives it.</strong> At Tk 165 a litre and about 15 km/l, a petrol
         three-wheeler costs roughly <strong>Tk 11 per km</strong> in fuel <span class="est">est.</span> A battery
@@ -629,38 +476,7 @@
     </div>
   </div>
 </section>
+`;
+}
 
-
-<footer>
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <div style="font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-0.03em;color:var(--ink);font-size:17px;">r1_Fuel</div>
-        <div class="small" style="margin-top:6px;">An open research programme on Bangladesh's 2026 fuel shock.</div>
-        <div class="small" style="margin-top:6px;">Analysis dated 21 September 2026.</div>
-      </div>
-      <div class="flinks">
-        <a href="/research/r1_Fuel/findings/">The analysis</a>
-        <a href="/research/r1_Fuel/proposal/">Research plan</a>
-        <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-        <a href="/research/r1_Fuel/support/">Fund it</a>
-        <a href="/research/r1_Fuel/data/">Data &amp; method</a>
-        <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source repo</a>
-        <a href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email</a>
-        <a href="/">BlankFrame</a>
-      </div>
-    </div>
-    <p class="fnote">
-      Figures marked <span class="est">est.</span> are this project's own calculations from cited inputs, with the
-      method shown inline; everything else is sourced and linked. Nothing here is peer-reviewed. Corrections are
-      welcome and will be logged &mdash; open an issue on the
-      <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">repository</a> or email
-      <a href="mailto:hello@blankframe.tech?subject=r1_Fuel%20correction">hello@blankframe.tech</a>.
-    </p>
-  </div>
-</footer>
-
-<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
-<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-</body>
-</html>
+module.exports = { body, DESC };

@@ -1,49 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Status — what is done, what is blocked · r1_Fuel</title>
-<meta name="description" content="Where r1_Fuel actually stands: what is done, what is blocked, the two deadlines that cannot slip, and a public changelog including corrections.">
-<link rel="canonical" href="https://www.blankframe.tech/research/r1_Fuel/status/">
+'use strict';
 
-<meta property="og:title" content="Phase 1: baseline and outreach.">
-<meta property="og:description" content="Where r1_Fuel actually stands: what is done, what is blocked, the two deadlines that cannot slip, and a public changelog including corrections.">
-<meta property="og:url" content="https://www.blankframe.tech/research/r1_Fuel/status/">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="BlankFrame Research">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Phase 1: baseline and outreach.">
-<meta name="twitter:description" content="Where r1_Fuel actually stands: what is done, what is blocked, the two deadlines that cannot slip, and a public changelog including corrections.">
+const DESC =
+  'Where r1_Fuel actually stands: what is done, what is blocked, the two deadlines that cannot slip, and a public ' +
+  'changelog including corrections.';
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23131313'/%3E%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FF4A1F' stroke-width='7'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css">
-</head>
-<body>
+const CHANGELOG = [
+  ['21 Sep 2026', 'Public site published — overview, analysis, research plan, collaboration, funding, data and method.', 'done'],
+  ['21 Sep 2026', 'P4 corpus rebuilt on the full source set; Samakal footer boilerplate stripped and outputs refreshed.', 'done'],
+  ['21 Sep 2026', 'Single-coder validation pass run against the v0 keyword classifier. Result: only the protest frame is usable.', 'done'],
+  ['21 Sep 2026', 'Five research proposals drafted with sampling, instruments, budgets and ethics. Collaborator and funder landscape mapped.', 'done'],
+  ['21 Sep 2026', 'Impact analysis and illustrated PDF report published, with the full audit log behind them.', 'done'],
+];
 
-<div class="nav-shell">
-  <div class="nav-inner">
-    <a class="nav-brand" href="/research/r1_Fuel/">
-      <span class="mark" aria-hidden="true"></span>
-      <span>r1_Fuel</span>
-      <span class="sub">BlankFrame Research</span>
-    </a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="/research/r1_Fuel/">Overview</a>
-      <a href="/research/r1_Fuel/findings/">The analysis</a>
-      <a href="/research/r1_Fuel/proposal/">Research plan</a>
-      <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-      <a href="/research/r1_Fuel/support/">Fund it</a>
-      <a href="/research/r1_Fuel/data/">Data & method</a>
-      <a href="/research/r1_Fuel/status/" class="active" aria-current="page">Status</a>
-    </nav>
-  </div>
-</div>
-
-
+function body() {
+  return `
 <header class="hero" style="padding-bottom:20px;">
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span> Status &middot; updated 21 September 2026</div>
@@ -204,11 +174,7 @@
       <table class="data">
         <thead><tr><th style="width:140px;">Date</th><th>Change</th></tr></thead>
         <tbody>
-          <tr><td class="small mono muted">21 Sep 2026</td><td class="small">Public site published — overview, analysis, research plan, collaboration, funding, data and method.</td></tr>
-          <tr><td class="small mono muted">21 Sep 2026</td><td class="small">P4 corpus rebuilt on the full source set; Samakal footer boilerplate stripped and outputs refreshed.</td></tr>
-          <tr><td class="small mono muted">21 Sep 2026</td><td class="small">Single-coder validation pass run against the v0 keyword classifier. Result: only the protest frame is usable.</td></tr>
-          <tr><td class="small mono muted">21 Sep 2026</td><td class="small">Five research proposals drafted with sampling, instruments, budgets and ethics. Collaborator and funder landscape mapped.</td></tr>
-          <tr><td class="small mono muted">21 Sep 2026</td><td class="small">Impact analysis and illustrated PDF report published, with the full audit log behind them.</td></tr>
+          ${CHANGELOG.map(([d, t]) => `<tr><td class="small mono muted">${d}</td><td class="small">${t}</td></tr>`).join('\n          ')}
         </tbody>
       </table>
     </div>
@@ -220,38 +186,7 @@
     </div>
   </div>
 </section>
+`;
+}
 
-
-<footer>
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <div style="font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-0.03em;color:var(--ink);font-size:17px;">r1_Fuel</div>
-        <div class="small" style="margin-top:6px;">An open research programme on Bangladesh's 2026 fuel shock.</div>
-        <div class="small" style="margin-top:6px;">Analysis dated 21 September 2026.</div>
-      </div>
-      <div class="flinks">
-        <a href="/research/r1_Fuel/findings/">The analysis</a>
-        <a href="/research/r1_Fuel/proposal/">Research plan</a>
-        <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-        <a href="/research/r1_Fuel/support/">Fund it</a>
-        <a href="/research/r1_Fuel/data/">Data &amp; method</a>
-        <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source repo</a>
-        <a href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email</a>
-        <a href="/">BlankFrame</a>
-      </div>
-    </div>
-    <p class="fnote">
-      Figures marked <span class="est">est.</span> are this project's own calculations from cited inputs, with the
-      method shown inline; everything else is sourced and linked. Nothing here is peer-reviewed. Corrections are
-      welcome and will be logged &mdash; open an issue on the
-      <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">repository</a> or email
-      <a href="mailto:hello@blankframe.tech?subject=r1_Fuel%20correction">hello@blankframe.tech</a>.
-    </p>
-  </div>
-</footer>
-
-<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
-<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-</body>
-</html>
+module.exports = { body, DESC };

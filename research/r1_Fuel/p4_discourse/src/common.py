@@ -16,8 +16,8 @@ OUT = ROOT / "out"
 for d in (DATA, CACHE, OUT):
     d.mkdir(parents=True, exist_ok=True)
 
-# Identify ourselves honestly; sites can block or contact us.
-UA = "FuelShockDiscourseResearch/0.1 (academic research; contact: growth@inovacetech.com)"
+# Identify the crawler honestly as research traffic; sites can block or contact us.
+UA = "FuelShockDiscourseResearch/0.1 (academic research crawler; contact: the.abraar.rar@gmail.com)"
 
 # Collection windows (inclusive). 2022: record diesel hike of 5 Aug 2022. 2026: Apr/Jun/Sep hikes.
 WINDOWS = {
@@ -51,6 +51,14 @@ FUEL_RE_BN = re.compile("|".join(map(re.escape, FUEL_BN)))
 FUEL_RE_EN = re.compile("|".join(FUEL_EN), re.I)
 # Slug-level (URL) filter for English sitemaps (hyphen-separated).
 FUEL_SLUG_EN = re.compile(r"fuel|diesel|petrol|octane|kerosene|oil-pric|bpc|energy-pric|lpg|fuel-oil", re.I)
+
+
+# Site footers that get swept into <p> text (found via a spurious NMF topic on Samakal).
+_FOOTER = re.compile(r"SAMAKAL ALL RIGHTS RESERVED.*", re.S)
+
+
+def strip_boilerplate(text: str) -> str:
+    return _FOOTER.sub("", text).rstrip()
 
 
 def is_fuel_text(text: str) -> bool:

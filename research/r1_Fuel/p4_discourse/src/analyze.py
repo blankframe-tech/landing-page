@@ -15,7 +15,7 @@ import pandas as pd  # noqa: E402
 from sklearn.decomposition import NMF  # noqa: E402
 from sklearn.feature_extraction.text import TfidfVectorizer  # noqa: E402
 
-from common import DATA, EVENTS, OUT, WINDOWS  # noqa: E402
+from common import DATA, EVENTS, OUT, WINDOWS, strip_boilerplate  # noqa: E402
 from frames import FRAME_ORDER, classify  # noqa: E402
 
 BLAME = ["global_market", "govt_failure", "corruption_syndicate", "india", "fairness_payscale", "apology_empathy"]
@@ -30,6 +30,7 @@ def load():
             if line.strip():
                 rows.append(json.loads(line))
     df = pd.DataFrame(rows).drop_duplicates("id")
+    df["text"] = df["text"].map(strip_boilerplate)
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df.dropna(subset=["date"])
     # keep only articles inside a declared window (extractor dates can drift) and truly about fuel
@@ -164,7 +165,7 @@ def coding_sample(df, n=200, seed=7):
     path = OUT / "coding_sample.csv"
     if path.exists():  # never clobber a sample coders may already be working on
         prev = pd.read_csv(path, dtype=str, keep_default_na=False)
-        if prev[[c for c in prev.columns if c[:2] in ("A_", "B_")]].ne("").any().any():
+        if prev[[c for c in prev.columns if c[:2] in ("A_", "B_", "C_")]].ne("").any().any():
             print("coding_sample.csv already has human codes - left untouched")
             return len(prev)
     d = df[df["about_fuel"]].copy()
