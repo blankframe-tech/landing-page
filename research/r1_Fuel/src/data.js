@@ -1,5 +1,8 @@
 'use strict';
 
+const C = require('./charts');
+const WEEKLY = require('../content/coverage_weekly.json');
+
 const DESC =
   'Everything r1_Fuel has built: the impact analysis, the full audit log, a 1,996-article bilingual news corpus, ' +
   'the discourse pipeline and its validation failures, and the data anyone can reuse without collecting anything.';
@@ -148,6 +151,21 @@ function body() {
       <div class="stat"><div class="val">186</div><div class="lbl">Coding sample</div><div class="note">Stratified by language and period, awaiting two human coders.</div></div>
     </div>
 
+    <div class="loop-fig" style="margin-bottom:38px;">
+      <div style="font-family:'Inter Tight',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px;">Fuel coverage, articles per week</div>
+      <div class="small muted" style="margin-bottom:20px;">The corpus itself, plotted. Hover any point for that week&rsquo;s count.</div>
+      ${C.figCoverage(WEEKLY)}
+      <p class="fig-cap">
+        Two things worth noticing. <strong>2022 behaves the way you would expect</strong> &mdash; coverage spikes to 165
+        articles in the week of the record hike, then decays over a month. <strong>2026 does not.</strong> Volume was
+        already far higher through March and April, driven by the Hormuz shock and loadshedding rather than by any
+        single price decision, and by September a Tk 20 hike arriving two days after the pay-scale gazette barely lifts
+        it above the summer baseline. Whether that is fatigue, saturation or something about how the September
+        decisions were covered is exactly the sort of question the frame classifier is supposed to answer &mdash; and
+        currently cannot.
+      </p>
+    </div>
+
     <h3 style="font-size:21px;margin-bottom:8px;">How the classifier actually performs</h3>
     <p class="muted" style="max-width:740px;margin-bottom:22px;font-size:15px;">
       Measured against a single-coder pass over Bangladesh-relevant articles (n = 113). One frame is usable, two are
@@ -193,6 +211,32 @@ function body() {
           <li class="off">Protest is a news-mention proxy, not an ACLED event count</li>
         </ul>
       </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <h3 style="font-size:19px;">Download the outputs</h3>
+      <p class="muted small" style="margin-top:10px;font-size:14.5px;">
+        Served straight off this site &mdash; no account, no request. Article text is not included in any of them.
+      </p>
+      <div class="table-wrap" style="margin-top:16px;">
+        <table class="data">
+          <thead><tr><th style="width:38%;">File</th><th>What it holds</th><th class="num">Size</th></tr></thead>
+          <tbody>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/articles_with_frames.csv" style="color:var(--accent);text-decoration:none;">articles_with_frames.csv</a></td><td class="small muted">All 1,996 articles: URL, date, source, language, window, headline and every frame flag with the terms that triggered it.</td><td class="num mono">972 KB</td></tr>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/frame_shares_by_period.csv" style="color:var(--accent);text-decoration:none;">frame_shares_by_period.csv</a></td><td class="small muted">Frame shares by language and period with Wilson confidence intervals. Pipeline output, not findings &mdash; read the table above first.</td><td class="num mono">10 KB</td></tr>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/validation_C_bd.csv" style="color:var(--accent);text-decoration:none;">validation_C_bd.csv</a></td><td class="small muted">The validation run behind the table above, restricted to Bangladesh-relevant articles.</td><td class="num mono">&lt;1 KB</td></tr>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/topics_exploratory.md" style="color:var(--accent);text-decoration:none;">topics_exploratory.md</a></td><td class="small muted">Exploratory NMF topics. Genuinely exploratory &mdash; not interpreted anywhere.</td><td class="num mono">2 KB</td></tr>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/codebook.md" style="color:var(--accent);text-decoration:none;">codebook.md</a></td><td class="small muted">Frame definitions and the coding protocol, for anyone willing to be one of the two human coders.</td><td class="num mono">3 KB</td></tr>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/README.md" style="color:var(--accent);text-decoration:none;">p4_discourse/README.md</a></td><td class="small muted">The pipeline's own notes on collection, politeness, validation status and known limits.</td><td class="num mono">5 KB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted" style="margin-top:14px;">
+        The pipeline&rsquo;s raw matplotlib figures are also on the server &mdash;
+        <a href="/research/r1_Fuel/p4_discourse/out/volume_timeline.png" style="color:var(--accent);text-decoration:none;">volume_timeline.png</a> and
+        <a href="/research/r1_Fuel/p4_discourse/out/frames_by_period.png" style="color:var(--accent);text-decoration:none;">frames_by_period.png</a>
+        &mdash; with the per-outlet breakdown the chart above pools together.
+      </p>
     </div>
 
     <div class="card" style="margin-top:24px;">

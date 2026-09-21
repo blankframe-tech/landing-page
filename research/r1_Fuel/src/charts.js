@@ -279,3 +279,87 @@ function figWedge() {
 }
 
 module.exports = { figPriceLadder, figAffordability, figDieselGap, figLoop, figWedge, hbar, ACCENT, ALT };
+
+/* --- Figure 6: P4 coverage volume ----------------------------------------
+ * Weekly article counts from p4_discourse/out/articles_with_frames.csv, drawn
+ * in the site's own style rather than embedding the pipeline's matplotlib PNG.
+ * One series (total volume), so no categorical palette is needed.
+ * ----------------------------------------------------------------------- */
+function figCoverage(weekly) {
+  const W = 760, H = 300;
+  const top = 62, plotH = 166, base = top + plotH;
+  const yMax = 200;
+  const sy = (v) => base - (v / yMax) * plotH;
+
+  const panels = [
+    { key: 'w2022', title: '2022', x: 46, w: 150, events: [['2022-08-05', 'record hike']] },
+    {
+      key: 'w2026', title: '2026', x: 262, w: 470,
+      events: [['2026-04-18', 'Apr hike'], ['2026-06-01', 'Jun hike'], ['2026-09-21', 'Sep hike + pay scale']],
+    },
+  ];
+
+  let out = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Weekly counts of fuel-related articles. In 2022 coverage peaks at 165 articles in the week of the record hike and decays over the following month. In 2026 coverage runs far higher through March and April, peaking at 189 in early April, then settles to 15–30 a week through the summer before lifting again in September." preserveAspectRatio="xMidYMid meet">`;
+
+  // Shared gridlines and y labels.
+  for (let v = 0; v <= yMax; v += 50) {
+    const y = sy(v);
+    out += `
+  <line x1="46" y1="${y.toFixed(1)}" x2="${W - 28}" y2="${y.toFixed(1)}" stroke="${LINE}" stroke-width="1"/>
+  <text x="40" y="${(y + 4).toFixed(1)}" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="${FAINT}">${v}</text>`;
+  }
+
+  panels.forEach((p) => {
+    const pts = weekly[p.key];
+    const n = pts.length;
+    const sx = (i) => p.x + (n === 1 ? p.w / 2 : (i / (n - 1)) * p.w);
+    const idxOf = (iso) => {
+      let best = 0, bestD = Infinity;
+      pts.forEach(([d], i) => {
+        const diff = Math.abs(Date.parse(d) - Date.parse(iso));
+        if (diff < bestD) { bestD = diff; best = i; }
+      });
+      return best;
+    };
+
+    out += `
+  <text x="${p.x}" y="26" font-family="Inter Tight, Inter, sans-serif" font-size="14" font-weight="700" fill="${INK}">${p.title}</text>
+  <text x="${p.x + 44}" y="26" font-family="Inter, sans-serif" font-size="12" fill="${MUTED}">${n} weeks &middot; ${pts.reduce((a, b) => a + b[1], 0).toLocaleString('en')} articles</text>`;
+
+    // Event markers, drawn under the series.
+    p.events.forEach(([iso, label]) => {
+      const x = sx(idxOf(iso));
+      const anchor = x > p.x + p.w - 70 ? 'end' : 'middle';
+      out += `
+  <line x1="${x.toFixed(1)}" y1="${top - 6}" x2="${x.toFixed(1)}" y2="${base}" stroke="${ACCENT}" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <text x="${x.toFixed(1)}" y="${top - 11}" text-anchor="${anchor}" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="${ACCENT}">${esc(label)}</text>`;
+    });
+
+    const line = pts.map(([, v], i) => `${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join(' L');
+    out += `
+  <path d="M${p.x},${base} L${line} L${(p.x + p.w).toFixed(1)},${base} Z" fill="${ACCENT}" opacity="0.10"/>
+  <path d="M${line}" fill="none" stroke="${ACCENT}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+    pts.forEach(([d, v], i) => {
+      out += `
+  <circle cx="${sx(i).toFixed(1)}" cy="${sy(v).toFixed(1)}" r="3" fill="${SURFACE}" stroke="${ACCENT}" stroke-width="1.6"><title>Week of ${d}: ${v} articles</title></circle>`;
+    });
+
+    // X labels: first and last week of each panel.
+    const fmt = (iso) => {
+      const dt = new Date(iso + 'T00:00:00Z');
+      return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+    };
+    out += `
+  <line x1="${p.x}" y1="${base}" x2="${(p.x + p.w).toFixed(1)}" y2="${base}" stroke="${INK}" stroke-width="1"/>
+  <text x="${p.x}" y="${base + 18}" text-anchor="start" font-family="Inter, sans-serif" font-size="11" fill="${MUTED}">${fmt(pts[0][0])}</text>
+  <text x="${(p.x + p.w).toFixed(1)}" y="${base + 18}" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="${MUTED}">${fmt(pts[n - 1][0])}</text>`;
+  });
+
+  out += `
+  <text x="46" y="${H - 8}" font-family="Inter, sans-serif" font-size="11" fill="${FAINT}">Articles per week, all three outlets pooled. Edge weeks are partial: the 2026 series ends on 21 September, a single day.</text>
+</svg>`;
+  return out;
+}
+
+module.exports.figCoverage = figCoverage;

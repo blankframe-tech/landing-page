@@ -64,6 +64,7 @@ function footer() {
         <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
         <a href="/research/r1_Fuel/support/">Fund it</a>
         <a href="/research/r1_Fuel/data/">Data &amp; method</a>
+        <a href="/research/r1_Fuel/data/log/">Audit log</a>
         <a href="${SITE.repo}">Source repo</a>
         <a href="mailto:${SITE.contact}?subject=r1_Fuel">Email</a>
         <a href="/">BlankFrame</a>
