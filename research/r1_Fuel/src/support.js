@@ -2,11 +2,11 @@
 
 const DESC =
   'What funding r1_Fuel buys, at what price, and why the baseline wave is the one thing that cannot be bought later. ' +
-  'Costed tiers from $2k to the full $110k programme, plus an honest account of what is still missing.';
+  'Costed tiers from $200 to the full $11k programme, plus an honest account of what is still missing.';
 
 const TIERS = [
   {
-    amt: '~$2,000',
+    amt: '~$200',
     name: 'Finish P4 properly',
     lead: 'Turns a built corpus into a publishable paper.',
     buys: [
@@ -20,7 +20,7 @@ const TIERS = [
     hot: false,
   },
   {
-    amt: '~$9,000–12,000',
+    amt: '~$900–1,200',
     name: 'Buy the baseline wave (P1 W0)',
     lead: 'The one purchase that expires.',
     buys: [
@@ -34,7 +34,7 @@ const TIERS = [
     hot: true,
   },
   {
-    amt: '~$20,000–35,000',
+    amt: '~$2,000–3,500',
     name: 'Put someone in the villages in November',
     lead: 'P3 — the channel nobody is watching.',
     buys: [
@@ -48,7 +48,7 @@ const TIERS = [
     hot: true,
   },
   {
-    amt: '~$15,000–30,000',
+    amt: '~$1,500–3,000',
     name: 'Fund the ethnography (P2)',
     lead: 'Where the shock is actually absorbed.',
     buys: [
@@ -62,7 +62,7 @@ const TIERS = [
     hot: false,
   },
   {
-    amt: '~$35,000–60,000',
+    amt: '~$3,500–6,000',
     name: 'The full panel (P1, five waves)',
     lead: 'Baseline through the Boro harvest.',
     buys: [
@@ -100,7 +100,7 @@ function body() {
 <header class="hero" style="padding-bottom:20px;">
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span> Funding</div>
-    <h1 class="display">$12,000 buys a measurement<br><span class="serif">that expires in October.</span></h1>
+    <h1 class="display">$1,200 buys a measurement<br><span class="serif">that expires in October.</span></h1>
     <p class="lede">
       Bangladesh has just put a 35&ndash;38% fuel shock through an economy where real wages were already negative, and
       is about to put a second one through before the year ends. What that does to prices will be in the CPI print.
@@ -122,7 +122,7 @@ function body() {
 <section style="padding-top:12px;">
   <div class="wrap">
     <div class="grid g4">
-      <div class="stat"><div class="val accent">$110k</div><div class="lbl">The whole programme</div><div class="note">Five studies, eighteen months, through the 2027 Boro harvest.</div></div>
+      <div class="stat"><div class="val accent">$11k</div><div class="lbl">The whole programme</div><div class="note">Five studies, eighteen months, through the 2027 Boro harvest.</div></div>
       <div class="stat"><div class="val">$12k</div><div class="lbl">The critical path</div><div class="note">The baseline wave. Everything else can be bought later; this cannot.</div></div>
       <div class="stat"><div class="val">~4 wks</div><div class="lbl">Before it expires</div><div class="note">W0 must field by roughly 20 October, ahead of the BPC funding cliff.</div></div>
       <div class="stat"><div class="val">$0</div><div class="lbl">Raised so far</div><div class="note">Everything published to date was built unfunded. The analysis, corpus and designs are done.</div></div>
@@ -288,7 +288,7 @@ function body() {
       Almost every serious funder needs a PhD-holding PI or an institutional host, and every cycle runs slower than
       October. So the honest sequence is: <strong>host first, grant second</strong>. What closes the gap in the
       meantime is commissioned work, a partner&rsquo;s internal funds, or a single individual or foundation deciding
-      that a $12,000 baseline is worth more collected than argued about. If that is you, one email changes what gets
+      that a $1,200 baseline is worth more collected than argued about. If that is you, one email changes what gets
       measured.
     </div>
 

@@ -4,7 +4,7 @@ const DESC =
   'r1_Fuel is looking for an institutional host, a qualitative lead, an agricultural economist and a Bangla NLP ' +
   'collaborator. Five open roles, what each one owns, and what is already built.';
 
-/** People and institutions already working on adjacent questions.
+/** People and institutions we propose to work with on adjacent questions.
  *  Public roles and public profile pages only — no email addresses are published
  *  here. The working contact list, with the caveats attached, lives in the repo. */
 const LANDSCAPE = [
@@ -213,7 +213,7 @@ function body() {
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-kicker">The field</div>
-      <h2>Who is already working on adjacent questions</h2>
+      <h2>Proposed Collaborators on Adjacent Questions</h2>
       <p>
         Compiled by public search on 21 September 2026 from official institutional pages. Roles can go stale, so check
         a profile before acting on it. <strong>No email addresses are published here</strong> &mdash; if you want to
@@ -221,11 +221,6 @@ function body() {
       </p>
     </div>
     ${landscapeHTML()}
-    <p class="small muted" style="margin-top:28px;max-width:760px;">
-      <strong>Gaps worth naming.</strong> No one was verified at Chittagong, Rajshahi, NSU, ULAB, RAPID or icddr,b, and
-      no Bangladesh-based researcher was found working specifically on e-rickshaw livelihoods, women&rsquo;s mobility,
-      or Boro irrigation. If that is you, you are the missing piece rather than a late addition.
-    </p>
   </div>
 </section>
 
