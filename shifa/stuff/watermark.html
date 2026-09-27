@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Doc Watermark</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;600&display=swap');
+
+        /* Simulating an A4/Letter size page end for preview purposes */
+        body {
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .document-page {
+            width: 8.5in;
+            height: 11in;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            padding: 1in;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes footer to bottom */
+        }
+
+        /* Mock content to show it's the end of a document */
+        .mock-content {
+            color: #d4d4d4;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .mock-line {
+            height: 14px;
+            background: #f0f0f0;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        /* WATERMARK / OWNERSHIP STYLES */
+        .ownership-watermark {
+            margin-top: auto;
+            padding-top: 40px;
+            border-top: 1px solid #e6e4de;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            color: #A5A39D; /* Faint color for watermark */
+        }
+
+        .watermark-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .watermark-title {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: #131313; /* Stronger contrast for name */
+            margin: 0 0 4px 0;
+            line-height: 1;
+        }
+
+        .watermark-role {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #FF4A1F; /* Accent color */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .watermark-meta {
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .watermark-logo {
+            width: 48px;
+            height: 48px;
+            background: #111213;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            opacity: 0.8;
+        }
+
+        /* Diagonal overlay watermark (optional for true security, highly transparent) */
+        .diagonal-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 6rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-page">
+        <!-- Mock Research Content -->
+        <div class="mock-content">
+            <h2 style="color: #e0e0e0; font-family: 'Inter', sans-serif;">Conclusion</h2>
+            <div class="mock-line" style="width: 100%;"></div>
+            <div class="mock-line" style="width: 90%;"></div>
+            <div class="mock-line" style="width: 95%;"></div>
+            <div class="mock-line" style="width: 80%;"></div>
+            <br>
+            <div class="mock-line" style="width: 100%;"></div>
+            <div class="mock-line" style="width: 85%;"></div>
+            <div class="mock-line" style="width: 40%;"></div>
+        </div>
+
+        <!-- Huge Diagonal Watermark -->
+        <div class="diagonal-watermark">OPEN RESEARCH</div>
+
+        <!-- Footer Ownership Watermark (Professional Sign-off) -->
+        <div class="ownership-watermark">
+            <div class="watermark-details">
+                <h3 class="watermark-title">Farzana Reza Shifa</h3>
+                <div class="watermark-role">Sociotech Research Fellow &mdash; BlankFrame Technologies</div>
+                <div class="watermark-meta">
+                    Licensed under Creative Commons (CC BY 4.0).<br>
+                    Research Frameworks &amp; Ethnographic Data are open source.<br>
+                    Contact: farzanarezashifa@gmail.com | blankframe.tech/shifa
+                </div>
+            </div>
+            <div class="watermark-logo">
+                S
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
