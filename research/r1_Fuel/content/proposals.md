@@ -1,6 +1,6 @@
 # The Social Life of a Fuel Shock — Research Questions & Proposals
 
-*Companion to [`README.md`](README.md) (impact analysis) and [`reseach_pass_1.md`](reseach_pass_1.md) (source log). Drafted 21 September 2026.*
+*Companion to [`impact_analysis.md`](../analysis/impact_analysis.md) (impact analysis) and [`research_log.md`](../analysis/research_log.md) (source log). Drafted 21 September 2026; P1–P5 recent-context notes added 27 September 2026; P6 added 28 September 2026.*
 
 The economic analysis says *what* the Tk 20 hike does to prices. It can't say how people experience it, how they cope, whom they blame, or how the shock changes social relations. That is the sociological gap. This matters for three reasons:
 
@@ -16,7 +16,7 @@ Grouped by theme. ★ marks questions that are time-critical (the baseline must 
 
 ### A1. Coping, sacrifice and household bargaining
 - ★ How do households at different income levels cut back after a fuel/transport shock: food quantity, food quality, children's schooling, healthcare, remittances home, or savings? **In what order**, and does the order differ by who controls the household budget?
-- Who inside the household absorbs the cut? Do women and girls eat less, or give up mobility (unaccompanied travel, trips to work, school or clinics) first?
+- Who inside the household absorbs the cut? Do women and girls eat less, or give up mobility (unaccompanied travel, trips to work, school or clinics) first? *(P6 measures this directly, from both the woman and the man in the same household, rather than from a single household-level respondent.)*
 - How much does borrowing increase (NGO microcredit, shopkeeper credit (*baki*), kin, mobile-money loans), and does it become debt that households can't escape?
 - Does kerosene use increase or fall among off-grid and load-shed households, and what replaces it (candles, solar lanterns, darkness)? What does that do to children's study hours?
 
@@ -37,7 +37,7 @@ Grouped by theme. ★ marks questions that are time-critical (the baseline must 
 - Do farming households send members into the cities (to rickshaws or RMG) during this season, feeding back into A3?
 
 ### A5. Garment workers, time and the city
-- How do RMG workers change their commute (walking longer, moving closer to the factory, sharing rooms), and what does that do to their time, safety and health, especially for women on night shifts?
+- How do RMG workers change their commute (walking longer, moving closer to the factory, sharing rooms), and what does that do to their time, safety and health, especially for women on night shifts? *(P6's RMG booster subsample targets this directly.)*
 - Does the combined pressure of energy shortage, transport costs and food prices change how workers organise at the factory level (wildcat stoppages, demands for transport allowances)?
 - How much do the extra Tk 260–300/month in realised bus fares (~2–2.4% of the RMG minimum wage, README §4b), on top of food pass-through, feed into the demand for a new minimum-wage board?
 
@@ -60,7 +60,7 @@ Grouped by theme. ★ marks questions that are time-critical (the baseline must 
 
 ## Part B — Research proposals
 
-Five proposals, ordered by urgency and by feasibility for a small team. Each can stand alone. P1 is the backbone that the others can attach to.
+Six proposals, ordered by urgency and by feasibility for a small team. Each can stand alone, though P1 is the backbone that P5 and P6 attach to.
 
 ---
 
@@ -95,6 +95,8 @@ Five proposals, ordered by urgency and by feasibility for a small team. Each can
 
 **Risk.** Phone surveys under-represent the poorest and women. Mitigate with quotas, asking for women respondents specifically, and a small in-person top-up.
 
+**Recent context (27 Sept).** The National Pay Scale (+142% for ~33 lakh public employees) landed 48 hours before the Tk 20/L hike, insulating public employees while ~85% of employment (informal) faces the shock unmitigated. The government's stated mitigation, the Family Card (a digital safety-net database, ~1 crore households, launched March 2026), is tracked wave by wave in P1 for coverage gaps — documentation barriers, missing mobile-money access, and Union Parishad-style political gatekeeping are the likely exclusion channels.
+
 ---
 
 ### P2. **Charging the City** — an ethnography of the e-rickshaw economy under load shedding
@@ -114,6 +116,8 @@ Five proposals, ordered by urgency and by feasibility for a small team. Each can
 
 **Budget.** ~$15–30k (researcher stipend, RA, diaries, transcription, translation).
 
+**Recent context (27 Sept).** The Tk 20/L hike widens the petrol-vs-battery-rickshaw operating-cost wedge from ~15:1 to ~17:1 (petrol ~Tk 11/km vs. ~Tk 0.4–0.8/km on illegal charging), pushing more of the shock onto the informal charging economy this study observes directly.
+
 ---
 
 ### P3. **Boro Decisions** — farmers, water sellers and the irrigation cost shock
@@ -131,6 +135,8 @@ Five proposals, ordered by urgency and by feasibility for a small team. Each can
 **Why it's important.** This is the channel most likely to turn into a 2027 food-price and forex problem. Almost no one is watching it yet (see §4c of the README).
 
 **Budget.** ~$20–35k.
+
+**Recent context (27 Sept).** The Tk 20/L hike alone adds an estimated Tk 1,070 crore to the coming Boro crop's irrigation cost, against a frozen procurement price — the margin-compression mechanism P3 traces from farmer decision to acreage, right as BPC's October financing crunch makes a further hike likely before planting.
 
 ---
 
@@ -152,6 +158,8 @@ Five proposals, ordered by urgency and by feasibility for a small team. Each can
 
 **Budget.** Low: ~$5–15k (RA coders, compute). The most feasible solo or remote project, and a strong companion paper to P1.
 
+**Recent context (27 Sept).** The 48-hour pay-scale/fuel-hike collision is itself a discourse event worth its own row in the corpus — a real-world test of the fairness-pay-scale frame, cross-checkable against whether P1 respondents cite the pay-scale contrast unprompted in their blame module.
+
 ---
 
 ### P5. **Cash or Cheap Fuel?** — a survey experiment on preferences for compensation
@@ -166,6 +174,30 @@ Five proposals, ordered by urgency and by feasibility for a small team. Each can
 **Why it's important.** It directly informs the choice the government faces in Oct–Dec. It adds evidence from Bangladesh to the international literature (Iran 2010, Indonesia, Nigeria 2023) on why fuel subsidy reform so often fails politically.
 
 **Budget.** ~$8–15k standalone, and small if embedded in P1.
+
+**Recent context (27 Sept).** Current mitigation discourse centres on the Family Card, but overlooks the kerosene burden of off-grid households; P5's targeting/delivery attributes will show whether the actual losers from this hike trust that mechanism or default to Union Parishad/NGO channels on a fundamental trust deficit.
+
+---
+
+### P6. **Whose Mobility?** — a gender module paired with the P1 panel
+
+**Question.** How does the fuel shock reshape gender inequality inside the household — who cuts back first, whose mobility is curtailed, what obstacles women specifically face in coping — and how much of the gender gap in coping is a gap in *awareness* of the shock itself, not just in exposure to it?
+
+**Why it's important.** P1's own Module 5 asks one respondent (usually whoever answers the phone, more often the male household head) who ate less and who gave up mobility. That is a single person's account of the whole household. P6 asks the same underlying question of **both** the female and male adult in the same household, separately, which turns a self-report into a measurable intra-household discordance — plus an objective knowledge test, not just self-rated concern, to see whether women are actually less informed about the hike or simply report caring about it differently.
+
+**Design.**
+- **Sample:** a paired-respondent subsample of ~600–800 households drawn from P1's existing sample (adds the opposite-gender second respondent to each), plus a standalone booster of ~300–400 women-headed households and RMG women night-shift workers — populations P1's single-respondent design and 40% female-respondent quota still undercount.
+- **Waves:** shares P1's calendar (W0 → W1 → W2 → W3 → W4), so gender gaps are tracked across the same shock cycle P1 tracks generally.
+- **Interviewer requirement:** female respondents interviewed only by female interviewers — a real staffing cost this module carries that P1 does not.
+- **Core modules:** an awareness/knowledge test (objective, not just self-rated); a 7-day mobility diary (trips made, shortened, cancelled or reassigned, by purpose, plus any safety incident on a cheaper/crowded mode); gendered coping and structural obstacles (unpaid-labour substitution, forgone reproductive/antenatal care, girls' school attendance, and whether the Family Card's NID/mobile-money access route sits in the woman's own name or the male head's); a commute/safety module for the RMG night-shift booster; bargaining/decision-making asked of both respondents identically; and an embedded vignette measuring the fare increase at which a market or clinic trip gets curtailed, by gender.
+
+**Analysis.** Within-household paired comparison (female vs. male respondent, same household, same wave) on awareness, reported mobility loss, and cost thresholds. Panel fixed effects across waves, as in P1.
+
+**Budget.** ~$20–35k incremental if piggybacked on P1's sample, waves and survey-firm contract (recommended); ~$30–45k if fielded standalone.
+
+**Risk.** Reaching a *named* second respondent from a household that shares one phone (usually registered to the male head) without triggering suspicion or a proxy answer; mitigated with a strict privacy-check-and-reschedule protocol (see `p6_instrument.md` §0) rather than proceeding with whoever picks up.
+
+**Recent context (28 Sept).** RMG employment — widely reported as majority-women, though not independently verified by this project — carries a minimum wage frozen since December 2023 (README §2), so the realised bus-fare increase A5 identifies lands on a wage that hasn't moved. The National Pay Scale that insulated public employees from the hike is overwhelmingly a formal, urban, disproportionately male benefit. And the Family Card's NID/mobile-money access route is frequently registered in the male household head's name — meaning the shock's own mitigation tool may be structurally harder for women to reach even inside a qualifying household. P6 is built to put numbers on all three gaps, wave by wave.
 
 ---
 
@@ -188,9 +220,9 @@ Five proposals, ordered by urgency and by feasibility for a small team. Each can
 
 ## Part D — Sequencing (what to do this week)
 
-1. **This week:** send out outreach emails (see `research_collaborators.md`). Ask each partner for a sampling frame, affiliation or host, and quick feedback on P1 W0.
+1. **This week:** send out outreach emails (see [`outreach/research_collaborators.md`](../outreach/research_collaborators.md)). Ask each partner for a sampling frame, affiliation or host, and quick feedback on P1 W0.
 2. **By ~5 October:** finalise the P1 W0 questionnaire (bilingual, piloted with 30 respondents) and the ethics plan. Get IRB approval through a host institution (BIGD, a DU department or a partner university), or a local ethics board.
-3. **By ~20 October:** complete W0 fieldwork. It has to be before the October price or LC events. **If W0 slips into November, P1 loses its baseline.**
+3. **By ~20 October:** complete W0 fieldwork. It has to be before the October price or LC events. **If W0 slips into November, P1 loses its baseline.** P6's paired-respondent recruitment (and hiring female interviewers) should be arranged alongside P1's fieldwork prep, not after, so the second respondent can be reached in the same W0 window rather than as a late add-on.
 4. **In parallel, starting now:** P4 needs no fieldwork, so begin scraping news and building the corpus immediately.
 5. **November:** P3 survey before Boro planting. Scope P2 with 2–3 pilot sites.
 

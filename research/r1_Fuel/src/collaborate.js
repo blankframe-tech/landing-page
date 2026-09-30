@@ -2,7 +2,7 @@
 
 const DESC =
   'r1_Fuel is looking for an institutional host, a qualitative lead, an agricultural economist and a Bangla NLP ' +
-  'collaborator. Five open roles, what each one owns, and what is already built.';
+  'collaborator. Six open roles, what each one owns, and what is already built.';
 
 /** People and institutions we propose to work with on adjacent questions.
  *  Public roles and public profile pages only — no email addresses are published
@@ -128,7 +128,7 @@ function body() {
     <div class="eyebrow"><span class="dot"></span> Collaborate</div>
     <h1 class="display">The economics half is done.<br><span class="serif">The half that matters isn&rsquo;t.</span></h1>
     <p class="lede">
-      r1_Fuel has a documented impact analysis, five costed study designs, a built news corpus and a running pipeline.
+      r1_Fuel has a documented impact analysis, six costed study designs, a built news corpus and a running pipeline.
       What it does not have is an institutional home, a qualitative lead, or anyone in a village in November. Those are
       the things that decide whether this becomes evidence or stays a website.
     </p>
@@ -156,7 +156,7 @@ function body() {
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-kicker">Open roles</div>
-      <h2>Five things that are genuinely open</h2>
+      <h2>Six things that are genuinely open</h2>
       <p>Not &ldquo;get in touch if interested&rdquo; &mdash; these are specific, and each one unblocks something specific.</p>
     </div>
     <div class="grid g2">
@@ -179,7 +179,7 @@ function body() {
         <ul class="check" style="margin-top:14px;">
           <li>A sourced impact analysis across inflation, fares, agriculture, industry, power and macro, with every derived figure marked and its method shown</li>
           <li>A full audit log &mdash; every search, every figure, its source, and every derivation behind the analysis</li>
-          <li>Five costed study designs with sampling, instruments, analysis plans and ethics</li>
+          <li>Six costed study designs with sampling, instruments, analysis plans and ethics</li>
           <li>P4&rsquo;s corpus: <strong>1,996 articles</strong> across Prothom Alo, Samakal and The Daily Star, 2022 and 2026 windows, collected politely with robots.txt and crawl-delay respected</li>
           <li>A working pipeline &mdash; volume timeline, frame shares with Wilson intervals, exploratory NMF topics, a stratified coding sample and a validation script</li>
           <li>A mapped landscape of institutions, adjacent researchers and funder eligibility</li>

@@ -4,7 +4,7 @@
 **Analysis date:** 21 September 2026.
 **Convention:** Reported figures are cited. Numbers marked **[est.]** are this document's own calculations from cited inputs — method shown inline, not sourced claims.
 
-**Files:** illustrated PDF report → [`Bangladesh_Fuel_Hike_Impact_2026.pdf`](Bangladesh_Fuel_Hike_Impact_2026.pdf) · full search log, raw data and derivations → [`reseach_pass_1.md`](reseach_pass_1.md) · rebuild the PDF with `node build/build.js`.
+**Files:** illustrated PDF report → [`Bangladesh_Fuel_Hike_Impact_2026.pdf`](Bangladesh_Fuel_Hike_Impact_2026.pdf) · full search log, raw data and derivations → [`research_log.md`](research_log.md) · rebuild the PDF with `node build/build.js` (run from `analysis/`).
 
 ---
 
@@ -258,6 +258,22 @@ The Tk 20 hike is **not the end of the adjustment — it is roughly a quarter of
 
 ---
 
+## Update, 1 October 2026
+
+*The analysis above was written on 21 September 2026 and is left as written. What changed since is in
+[`/research/r1_Fuel/findings/update_2026-10-01/`](/research/r1_Fuel/findings/update_2026-10-01/), which gives a source for every figure. In short:*
+
+- **No second hike and no duty cut.** October pump prices are unchanged (diesel Tk 135, petrol Tk 160, octane Tk 165,
+  kerosene Tk 155). The government declined a fuel tax cut on 23 Sep.
+- **The October cash cliff was postponed, not removed.** On 29 Sep the Finance Division gave BPC a Tk 4,500 crore
+  interest-free loan. At the post-hike loss rate that covers about 7 to 8 weeks [est.], so the next crunch is plausibly
+  late November to December, which overlaps Boro irrigation demand.
+- **Pass-through is larger than the gazette.** The 22 Sep bus-fare gazette (+17 paisa/km) implies a pass-through of
+  0.39 to 0.44 against diesel's +17.4%; realised fares and truck charters rose more.
+- **Furnace oil rose to Tk 108.78 from 1 Oct.**
+- **Figures in this document that are now stale or corrected** (17 items, with replacements) are listed in section 7 of the
+  update file. The 21 Sep analysis should be read with that table beside it.
+
 ## Sources
 
 **The hike itself**
@@ -336,3 +352,26 @@ The Tk 20 hike is **not the end of the adjustment — it is roughly a quarter of
 - [Govt to be tougher against fuel hoarding, smuggling — Jago News](https://www.jagonews24.com/en/national/news/91228)
 - [Family Card — Wikipedia](https://en.wikipedia.org/wiki/Family_Card)
 - [World Bank Support to Help Navigate Fuel Market Volatility in Bangladesh](https://www.worldbank.org/en/news/factsheet/2026/05/18/world-bank-support-to-help-navigate-fuel-market-volatility-in-bangladesh)
+## Update 1 Oct 2026
+
+| # | impact_analysis.md says | Update | Source |
+|---|---|---|---|
+| 1 | April bus fare "Tk 2.45 → 2.56/km" (metro) | **Tk 2.42 → 2.53** (April). Sept: **2.53 → 2.70** | bdnews24 (BRTA chart), https://bdnews24.com/bangladesh/26a8099ef39f ; Daily Star 22 Sep (above) |
+| 2 | Forecast metro ~Tk 2.69, inter-district ~Tk 2.35; pass-through ≈ 0.30 | Actual **2.70 / 2.40**; pass-through **0.39–0.44 [est.]** (17/253, 17/223 ÷ 17.4%) | Daily Star, 22 Sep 2026 |
+| 3 | Owners will demand ~25–30 paisa | Owners asked **20 paisa**, got 17 | Daily Star, 22 Sep 2026 |
+| 4 | Launch fares "~18–20 paisa/km" | **+23 paisa/km (≤100 km), +20 (>100 km), +7.54%, min Tk 35** | Views Bangladesh, 23 Sep 2026 |
+| 5 | Realised freight +8–12% [est.] | Reported per-trip rises **~19–32% at range midpoints, up to ~40% at range ends**, on named routes **[est. from reported ranges]** | bdnews24 Bangla 23 & 25 Sep; Bangla Tribune 23 Sep |
+| 6 | Furnace oil Tk 113.54, "+62% in two months" | Cut to Tk 96.86 by Sept; **Tk 108.78 from 1 Oct**; **+55.2% vs Tk 70.10 [est.]** | bdnews24 & TBS, 30 Sep 2026 |
+| 7 | BPC formula diesel Tk 187, gap Tk 52, 27.8% closed | State Minister: **~Tk 205** if the formula were fully applied, so the gap is **~Tk 70**; share closed ≈ 20/90 = **22% [est.]** (different basis from BPC's Tk 187 proposal; keep both) | Daily Star, 30 Sep 2026 |
+| 8 | Diesel duty Tk 32.44/L (~24%) | Reported range: **~25%** (6+15+2+2) to **~32%** cumulative; op-ed ~Tk 38/L; NBR fuel tax **+90%** y/y Jul–Aug | Daily Star 22 Sep; TBS 23 Sep; Daily Waadaa 24 Sep |
+| 9 | "BPC risks running out of LC money in October" | **Tk 4,500 cr loan approved 29 Sep**; BPC chair says procurement is done through December and stock is ~45 days (minor outlet) | Daily Star 30 Sep; Bangla TV 29 Sep |
+| 10 | "Second hike (or duty cut) near-certain before end-2026" | Not stale, but now **contested on record**: officials say no further hike. The duty cut was declined (23 Sep) | Zoom Bangla 23 Sep; TBS 23 Sep |
+| 11 | Hormuz 4.9 mb/d (Q2) | Sept: Saudi-led recovery; ~13 mb/d cited for oil (tradingeconomics); three-chokepoint total 9.99 mb/d (−61% vs Feb); **products still constrained** | The National 29 Sep; tradingeconomics 30 Sep |
+| 12 | QatarEnergy force majeure (open-ended) | **Extended through November** for Asian buyers incl. Bangladesh | Daily Star 29 Sep; The National 28 Sep |
+| 13 | Brent "$92–104 through September" | Still in range; **30 Sep ~$97.8–102.6 (source-dependent)**; +8–12% m/m | tradingeconomics; Fortune, 30 Sep 2026 |
+| 14 | Growth forecast 3.9% | ADB (23 Sep): **FY27 4.0%**, FY26 3.7%; inflation FY27 **9.0%** | Daily Star, 23 Sep 2026 |
+| 15 | §6 watch table: "Oct 2026 gazetted bus/launch fare revision" | **Already happened, 22–23 Sep** | as rows 1 and 4 |
+| 16 | §6: "Oct 2026 BPC LC funding exhausts" | **Deferred** by the loan; plausibly late Nov–Dec **[est.]** (4,500 ÷ ~85 cr/day ≈ 53 days) | Daily Star 30 Sep |
+| 17 | Inflation latest 8.26% (Aug) | Unchanged; **Sept CPI not yet released**; 12-month average 8.66% (BB) | Daily Star, 24 Sep 2026 |
+
+Not rechecked in this update: taka rate (123.0/USD), reserves ($29.5 bn), RMG output losses, e-rickshaw figures. Confirm these before any new publication.

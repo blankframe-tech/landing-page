@@ -2,7 +2,7 @@
 
 **Question:** How will the September 2026 fuel price spike (Tk 145 → 165 octane; diesel Tk 115 → 135) affect Bangladesh?
 **Date of pass:** 21 September 2026 (day the hike took effect)
-**Purpose:** Complete audit trail — the originating conversation, every search run, every figure extracted, its source, and every derived calculation. This is the working file behind `README.md`.
+**Purpose:** Complete audit trail — the originating conversation, every search run, every figure extracted, its source, and every derived calculation. This is the working file behind `impact_analysis.md`.
 
 **Verification status legend**
 - `[REPORTED]` — stated in a cited source
@@ -274,7 +274,7 @@ The distributional case. 24 lakh employees and 9 lakh pensioners gain after an 1
 
 ## Part 4 — Derived calculations
 
-Every number in `README.md` marked `[est.]` is defined here.
+Every number in `impact_analysis.md` marked `[est.]` is defined here.
 
 **D1 — Pre-April baseline prices.** April hike deltas subtracted from April levels: diesel 115−15=**100**; petrol 135−19=**116**; octane 140−20=**120**; kerosene 130−18=**112**. → Cumulative since March: diesel **+35.0%**, petrol **+37.9%**, octane **+37.5%**, kerosene **+38.4%**. *Note: the user recalled octane at 125 a year ago; 120 is the immediate pre-April level. Both are consistent with a formula drifting in the 120–131 band through 2025. Octane 125 → 165 = +32% year-on-year.*
 

@@ -227,10 +227,10 @@ write(
     kicker: 'Research plan · drafted 21 September 2026',
     h1: 'The Social Life of a Fuel Shock',
     meta:
-      'Open research questions and five costed study designs. P1 is the backbone the others attach to; each can also ' +
+      'Open research questions and six costed study designs. P1 is the backbone the others attach to; each can also ' +
       'stand alone. Sampling, instruments, analysis plans, budgets and ethics are all here.',
     actions: actions([
-      { href: '/research/r1_Fuel/collaborate/', label: 'Five roles that are open' },
+      { href: '/research/r1_Fuel/collaborate/', label: 'Six roles that are open' },
       { href: '/research/r1_Fuel/support/', label: 'What each study costs' },
       { href: '/research/r1_Fuel/findings/', label: 'The analysis behind it' },
     ]),
@@ -242,11 +242,11 @@ write(
         { href: '/research/r1_Fuel/support/', label: 'Fund a wave' },
       ]
     ),
-    title: 'Research plan — five studies on the social life of a fuel shock · r1_Fuel',
+    title: 'Research plan — six studies on the social life of a fuel shock · r1_Fuel',
     description:
-      'Open research questions and five costed designs on Bangladesh’s 2026 fuel shock: a rapid household phone ' +
-      'panel, an e-rickshaw ethnography, a Boro irrigation survey, computational discourse analysis, and a conjoint ' +
-      'experiment on compensation.',
+      'Open research questions and six costed designs on Bangladesh’s 2026 fuel shock: a rapid household phone ' +
+      'panel, an e-rickshaw ethnography, a Boro irrigation survey, computational discourse analysis, a conjoint ' +
+      'experiment on compensation, and a gender module.',
   })
 );
 
@@ -277,7 +277,7 @@ write(
 write(
   'collaborate/index.html',
   page({
-    title: 'Collaborate — five open roles on r1_Fuel',
+    title: 'Collaborate — six open roles on r1_Fuel',
     ogTitle: 'The economics half is done. The half that matters isn’t.',
     description: collaborate.DESC,
     active: 'collaborate',
@@ -327,3 +327,22 @@ write(
 );
 
 console.log(`\nDone. ${SITE.origin}${SITE.base}\n`);
+
+write(
+  'findings/update_2026-10-01/index.html',
+  docPage({
+    src: 'content/update_2026-10-01.md',
+    pre: (md) => md.replace(/^# [^\n]*\n[\s\S]*?\n---\n/, '# Update, 21 September to 1 October 2026\n\n'),
+    active: 'findings',
+    depth: 2,
+    path: '/research/r1_Fuel/findings/update_2026-10-01/',
+    kicker: 'Update · 1 October 2026',
+    h1: 'Update, 21 September to 1 October 2026',
+    meta: 'Updates to the impact analysis 10 days after the fuel shock.',
+    actions: actions([
+      { href: '/research/r1_Fuel/findings/', label: 'Original Analysis' },
+    ]),
+    title: 'Update 1 October 2026 — Bangladesh Fuel Price Hike · r1_Fuel',
+    description: 'Updates to the impact analysis 10 days after the fuel shock: LC cliff pushed back, pass-through visible.',
+  })
+);

@@ -352,7 +352,7 @@ function body() {
     </div>
 
     <div style="margin-top:44px;">
-      <h3 style="font-size:24px;margin-bottom:8px;">Five proposals, any of which can stand alone</h3>
+      <h3 style="font-size:24px;margin-bottom:8px;">Six proposals, any of which can stand alone</h3>
       <p class="muted" style="margin-bottom:26px;max-width:680px;">
         P1 is the backbone the others can attach to. P4 needs no fieldwork and has already started.
         Full designs, sampling, instruments, analysis plans and ethics are in
@@ -398,6 +398,13 @@ function body() {
               <td class="small">Whether people prefer universal cheap fuel or targeted cash, and how trust and perceived corruption shape that &mdash; directly informing the choice the government faces this quarter.</td>
               <td class="num mono">$8&ndash;15k</td>
               <td><span class="tag">Can embed in P1</span></td>
+            </tr>
+            <tr>
+              <td class="mono hi">P6</td>
+              <td><strong>Whose Mobility?</strong><div class="small muted">Gender module, paired-respondent subsample</div></td>
+              <td class="small">How the fuel shock reshapes gender inequality inside the household &mdash; who cuts back first, whose mobility is curtailed, and the gender gap in awareness.</td>
+              <td class="num mono">$20&ndash;35k</td>
+              <td><span class="tag">Pairs with P1</span></td>
             </tr>
           </tbody>
         </table>

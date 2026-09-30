@@ -8,7 +8,7 @@ const CHANGELOG = [
   ['21 Sep 2026', 'Public site published — overview, analysis, research plan, collaboration, funding, data and method.', 'done'],
   ['21 Sep 2026', 'P4 corpus rebuilt on the full source set; Samakal footer boilerplate stripped and outputs refreshed.', 'done'],
   ['21 Sep 2026', 'Single-coder validation pass run against the v0 keyword classifier. Result: only the protest frame is usable.', 'done'],
-  ['21 Sep 2026', 'Five research proposals drafted with sampling, instruments, budgets and ethics. Collaborator and funder landscape mapped.', 'done'],
+  ['21 Sep 2026', 'Six research proposals drafted with sampling, instruments, budgets and ethics. Collaborator and funder landscape mapped.', 'done'],
   ['21 Sep 2026', 'Impact analysis and illustrated PDF report published, with the full audit log behind them.', 'done'],
 ];
 
@@ -55,7 +55,7 @@ function body() {
           <li>Impact analysis across inflation, fares, agriculture, industry, power and macro</li>
           <li>Full audit trail: every search, figure, source and derivation</li>
           <li>Illustrated PDF report</li>
-          <li>Five research proposals with designs, budgets and ethics</li>
+          <li>Six research proposals with designs, budgets and ethics</li>
           <li>Collaborator and funder landscape mapped and flagged for verification</li>
           <li>P4 corpus collected &mdash; 1,996 articles, three outlets, two windows</li>
           <li>P4 pipeline: volume, frame shares with Wilson intervals, exploratory topics</li>
