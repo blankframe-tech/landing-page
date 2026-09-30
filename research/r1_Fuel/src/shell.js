@@ -22,8 +22,8 @@ const NAV = [
 
 const FAVICON =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E" +
-  "%3Crect width='100' height='100' rx='24' fill='%23131313'/%3E" +
-  "%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FF4A1F' stroke-width='7'/%3E%3C/svg%3E";
+  "%3Crect width='100' height='100' rx='24' fill='%231B365D'/%3E" +
+  "%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FFFFFF' stroke-width='7'/%3E%3C/svg%3E";
 
 /** Depth-aware asset path so the stylesheet resolves from any route. */
 function assetPath(depth) {

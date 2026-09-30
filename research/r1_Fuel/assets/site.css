@@ -1,6 +1,6 @@
 /* ==========================================================================
    r1_Fuel — research site styles
-   Built on the BlankFrame design system (warm paper / dark ink / orange accent)
+   Built on the BlankFrame design system (warm paper / dark ink / oxford blue accent)
    ========================================================================== */
 
 :root{
@@ -11,9 +11,9 @@
   --muted: #6F6E6A;
   --faint: #A5A39D;
   --line: #E6E4DE;
-  --accent: #FF4A1F;
-  --accent-soft: #FFF1EC;
-  --warn: #B4531E;
+  --accent: #1B365D;
+  --accent-soft: #EDF1F7;
+  --warn: #9E3A20;
   --ok: #2F6F4F;
   --radius-lg: 28px;
   --radius-md: 20px;
