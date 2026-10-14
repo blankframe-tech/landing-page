@@ -94,6 +94,13 @@
       window.location.replace('/throttle-iq/install/' + qs);
       return;
     }
+    // Crash reports: /throttleiq/crash/1 (any case, with or without the
+    // hyphen or trailing slash) -> /throttle-iq/crash/1/
+    var crash = path.match(/^\/throttle-?iq\/crash\/(\d{1,4})\/?$/i);
+    if (crash) {
+      window.location.replace('/throttle-iq/crash/' + crash[1] + '/' + qs);
+      return;
+    }
     var m = path.match(/^\/(?:throttle-?iq\/)?u\/([A-Za-z0-9_-]{1,128})\/?$/i);
     if (!m) {
       document.getElementById('notfound').classList.remove('hidden');

@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crash Report 001 — The Second Rail · ThrottleIQ</title>
+<meta name="description" content="A walking-pace fall at a Dhaka level crossing, rebuilt from a phone's GPS, its system log and the rider's memory — why it happened, and what to do next time.">
+<meta property="og:title" content="Crash Report 001 — The Second Rail">
+<meta property="og:description" content="12.7 km/h, a rail at an angle, and a throttle opened one second too early. What a phone remembered, and what we changed.">
+<meta property="og:image" content="https://www.blankframe.tech/throttle-iq/crash/1/img/history.jpg">
+<meta property="og:type" content="article">
+<link rel="icon" href="/throttle-iq/assets/icon-dark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D0E10; --panel:#15171B; --panel2:#1C1F24; --line:#2A2D33;
+    --ink:#F2F1ED; --ink2:#B9B7B0; --muted:#8A8882;
+    --accent:#FF4A1F; --accent2:#FF8A6B; --ok:#3DD68C;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent2)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  h1,h2,h3{font-family:'Inter Tight','Inter',sans-serif;letter-spacing:-0.02em;margin:0}
+  .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0}
+  .eyebrow{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:14px;color:var(--ink2)}
+  nav a{color:var(--ink2);text-decoration:none} nav a:hover{color:var(--ink)}
+
+  /* hero */
+  .hero{padding:72px 0 40px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:-40% -10% auto auto;width:720px;height:720px;
+    background:radial-gradient(closest-side,rgba(255,74,31,.22),transparent 70%);pointer-events:none}
+  .hero h1{font-size:clamp(46px,8.5vw,108px);line-height:.95;font-weight:800;margin:18px 0 18px}
+  .hero h1 .serif{color:var(--accent)}
+  .stamp{display:inline-block;border:1.5px solid var(--accent);color:var(--accent);padding:6px 12px;border-radius:6px;
+    transform:rotate(-2deg);font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em}
+  .dek{font-size:clamp(18px,2.2vw,22px);color:var(--ink2);max-width:760px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;color:var(--muted);font:500 13px/1.4 ui-monospace,Menlo,monospace}
+  .meta b{color:var(--ink);font-weight:600}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:40px 0 10px}
+  .stat{background:var(--panel);padding:20px 18px}
+  .stat .v{font:700 32px/1.05 'Inter Tight',sans-serif;letter-spacing:-.02em}
+  .stat .v.hot{color:var(--accent)}
+  .stat .l{color:var(--ink2);font-size:13px;margin-top:6px}
+
+  section{padding:64px 0 8px}
+  section h2{font-size:clamp(30px,4.6vw,52px);line-height:1.02;font-weight:800;margin:10px 0 18px}
+  section > .wrap > p{max-width:760px;color:var(--ink2)}
+  .lead{font-size:20px;color:var(--ink)!important}
+
+  /* timeline */
+  .tl{position:relative;margin:28px 0 0;padding-left:0;list-style:none}
+  .tl li{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--line);position:relative}
+  .tl li:first-child{border-top:0}
+  .tl .t{font:600 14px/1.5 ui-monospace,Menlo,monospace;color:var(--muted)}
+  .tl .e{color:var(--ink2)} .tl .e b{color:var(--ink)}
+  .tl li.key .t{color:var(--accent)} .tl li.key .e b{color:var(--accent)}
+  .tl li.key{background:linear-gradient(90deg,rgba(255,74,31,.10),transparent 70%)}
+  .tag{display:inline-block;font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 8px;margin-left:8px;vertical-align:2px}
+
+  /* trace */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .trace{width:100%;height:auto;display:block}
+  .trace .grid{stroke:var(--line);stroke-width:1}
+  .trace .tk{fill:var(--muted);font:11px ui-monospace,Menlo,monospace}
+  .trace .bl{fill:var(--ink2);font:600 11px ui-monospace,Menlo,monospace}
+  .trace .band{fill:rgba(255,255,255,.05)} .trace .band.hot{fill:rgba(255,74,31,.16)}
+  .trace .ln{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+  .trace .dt{fill:var(--accent);stroke:var(--panel);stroke-width:2}
+  .trace .fall{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:0}
+  .trace .fl{fill:var(--ink);font:700 12px ui-monospace,Menlo,monospace}
+  .cap{color:var(--muted);font-size:13.5px;margin-top:10px}
+
+  /* chain */
+  .chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:26px;counter-reset:c}
+  .link{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;counter-increment:c}
+  .link:before{content:counter(c,decimal-leading-zero);font:700 12px ui-monospace,Menlo,monospace;color:var(--accent)}
+  .link h3{font-size:18px;margin:8px 0 6px} .link p{margin:0;color:var(--ink2);font-size:14.5px}
+  .link.final{border-color:var(--accent);background:linear-gradient(160deg,rgba(255,74,31,.18),var(--panel) 60%)}
+
+  .twocol{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;margin-top:24px}
+  @media (max-width:820px){.twocol{grid-template-columns:1fr}}
+  .diagram{width:100%;height:auto;display:block}
+  .physics p{color:var(--ink2);margin:0 0 14px} .physics p b{color:var(--ink)}
+
+  /* black box */
+  .bb{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:24px}
+  .log{background:#08090A;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font:13px/1.65 ui-monospace,Menlo,monospace;color:#cfcac0;overflow:auto;white-space:pre}
+  .log .c{color:var(--muted)} .log .h{color:var(--accent2)}
+  .verdict{display:flex;gap:16px;align-items:flex-start;margin-top:18px}
+  .verdict .big{font:800 54px/1 'Inter Tight',sans-serif;color:var(--accent)}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  @media (max-width:820px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  .gallery figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px}
+  .gallery img{width:100%;height:auto;border-radius:9px;display:block}
+  .gallery figcaption{color:var(--muted);font-size:12.5px;padding:8px 4px 2px}
+
+  /* rules */
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:26px}
+  .rule{background:var(--ink);color:#131313;border-radius:18px;padding:22px 22px 20px;position:relative;overflow:hidden}
+  .rule .n{font:800 64px/0.8 'Inter Tight',sans-serif;color:var(--accent);position:absolute;right:16px;top:14px;opacity:.9}
+  .rule h3{font-size:24px;font-weight:800;margin:0 60px 8px 0;line-height:1.08}
+  .rule p{margin:0;color:#3d3c39;font-size:15px}
+  .rule.done{background:var(--panel);color:var(--ink);border:1px solid var(--ok)}
+  .rule.done p{color:var(--ink2)} .rule.done .n{color:var(--ok)}
+
+  .closing{padding:80px 0 30px;text-align:left}
+  .closing h2{font-size:clamp(34px,5.4vw,64px)}
+  .cta{display:inline-flex;gap:10px;align-items:center;background:var(--accent);color:#fff;text-decoration:none;
+    padding:14px 20px;border-radius:12px;font-weight:600;margin-top:18px}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:26px 0 40px;color:var(--muted);font-size:13px}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none} html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a href="/throttle-iq/">← ThrottleIQ</a><span class="mono">blankframe.tech/throttleiq/crash/1</span></nav>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="stamp">CRASH REPORT 001</span>
+    <h1>The second <span class="serif">rail.</span></h1>
+    <p class="dek">Our founder went down at a level crossing in Dhaka at 12.7 km/h. They got up, the bike started, and the ride carried on. ThrottleIQ saw none of it. We rebuilt the fall from the phone's GPS, its system log and the rider's memory. Here is why it happened, and what changes now.</p>
+    <div class="meta">
+      <span><b>14 Oct 2026</b> · 21:28:48</span>
+      <span>Dhaka · Kamalapur–Tongi line by Banani Overpass</span>
+      <span>Honda CG 125</span>
+      <span>Night · dry · 29.7 °C</span>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="v hot">12.7</div><div class="l">km/h, accelerating, at the last GPS fix</div></div>
+      <div class="stat"><div class="v">2</div><div class="l">rails at a shallow angle. The first went fine.</div></div>
+      <div class="stat"><div class="v">45 s</div><div class="l">of phone in hand, ending 10 s before the rails</div></div>
+      <div class="stat"><div class="v">15 s</div><div class="l">of GPS silence: a phone lying still on the road</div></div>
+      <div class="stat"><div class="v">4½ min</div><div class="l">stopped, then back on the bike</div></div>
+      <div class="stat"><div class="v hot">0</div><div class="l">alerts from ThrottleIQ. Detection was switched off.</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">01 · The minute that mattered</span>
+    <h2>Before, during, <span class="serif">after.</span></h2>
+    <p class="lead reveal">Everything below comes from three sources that agree: the ride's GPS fixes, the iPhone's own system log, and what the rider remembers.</p>
+    <ul class="tl reveal">
+      <li><span class="t">20:04</span><span class="e"><b>Ride starts.</b> A CG 125 and an evening loop on roads the rider doesn't know well.</span></li>
+      <li><span class="t">21:27:25</span><span class="e"><b>42 km/h</b> on the service road beside Banani Overpass. <span class="tag">GPS</span></span></li>
+      <li><span class="t">21:27:30</span><span class="e"><b>The phone comes out.</b> Raise-to-wake, then a Face ID unlock 2 s later, to check Google Maps. <span class="tag">iOS log</span></span></li>
+      <li><span class="t">21:27:57</span><span class="e">ThrottleIQ opened, one tap, back to Maps. <span class="tag">iOS log</span></span></li>
+      <li><span class="t">21:28:14.8</span><span class="e"><b>Side button: locked, pocketed.</b> 45 seconds of phone in hand while slowing from 42 to 25 km/h, about 10 s before the rails. <span class="tag">iOS log</span></span></li>
+      <li><span class="t">21:28:25</span><span class="e"><b>A small jam at the crossing.</b> Walking pace, 4–7 km/h. The first rail goes fine. Behind: horns and flashing headlights. <span class="tag">GPS · rider</span></span></li>
+      <li><span class="t">21:28:43</span><span class="e"><b>Throttle open.</b> 5 → 12.7 km/h in four seconds, heading drifting left of the road. <span class="tag">GPS</span></span></li>
+      <li class="key"><span class="t">≈21:28:48</span><span class="e"><b>The second rail, at an angle.</b> The rear end shoots up and kicks hard to the left. Down on the left side, hands first; the bike lands on the rider's foot. <span class="tag">rider · GPS</span></span></li>
+      <li><span class="t">21:28:48 → :29:02</span><span class="e">No GPS fix for 15 s. The phone has stopped moving, so there's nothing to report. <span class="tag">GPS</span></span></li>
+      <li><span class="t">21:28:58.9</span><span class="e">iPhone: <span class="mono">"Lift detected"</span>, screen on, proximity sensor covered. The phone being moved after the fall. <span class="tag">iOS log</span></span></li>
+      <li><span class="t">21:30:11</span><span class="e"><b>The screenshot.</b> 0 km/h, 10.29 km. About 80 s after the fall; it felt like a minute. <span class="tag">iOS log</span></span></li>
+      <li><span class="t">21:30:54</span><span class="e">Camera out: photos of the scene. <span class="tag">iOS log</span></span></li>
+      <li><span class="t">21:33:26</span><span class="e"><b>Rolling again.</b> Ride finished: 13.3 km, 1 h 53 min, top speed 71 km/h. <span class="tag">GPS</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="card reveal">
+      <svg viewBox="0 0 900 300" class="trace" role="img" aria-labelledby="trace-t"><title id="trace-t">Speed from 21:27 to 21:34: slowing to walking pace over the first rail, up to 12.7 km/h, then zero.</title>
+<rect class="band" x="105.7" y="34" width="89.6" height="232"/>
+<text class="bl" x="109.7" y="26.0">phone in hand</text>
+<rect class="band" x="203.2" y="34" width="55.7" height="232"/>
+<text class="bl" x="207.2" y="26.0">first rail · jam</text>
+<rect class="band hot" x="259.0" y="34" width="29.9" height="232"/>
+<text class="bl" x="263.0" y="13.0">GPS silent</text>
+<rect class="band" x="427.2" y="34" width="16.3" height="232"/>
+<text class="bl" x="431.2" y="26.0">screenshot</text>
+<line class="grid" x1="46" x2="882" y1="266.0" y2="266.0"/>
+<text class="tk" x="38" y="270.0" text-anchor="end">0</text>
+<line class="grid" x1="46" x2="882" y1="188.7" y2="188.7"/>
+<text class="tk" x="38" y="192.7" text-anchor="end">15</text>
+<line class="grid" x1="46" x2="882" y1="111.3" y2="111.3"/>
+<text class="tk" x="38" y="115.3" text-anchor="end">30</text>
+<line class="grid" x1="46" x2="882" y1="34.0" y2="34.0"/>
+<text class="tk" x="38" y="38.0" text-anchor="end">45</text>
+<text class="tk" x="46.0" y="290" text-anchor="middle">21:27</text>
+<text class="tk" x="165.4" y="290" text-anchor="middle">21:28</text>
+<text class="tk" x="284.9" y="290" text-anchor="middle">21:29</text>
+<text class="tk" x="404.3" y="290" text-anchor="middle">21:30</text>
+<text class="tk" x="523.7" y="290" text-anchor="middle">21:31</text>
+<text class="tk" x="643.1" y="290" text-anchor="middle">21:32</text>
+<text class="tk" x="762.6" y="290" text-anchor="middle">21:33</text>
+<text class="tk" x="882.0" y="290" text-anchor="middle">21:34</text>
+<path class="ln" d="M46.0,83.9 L56.0,103.9 L65.9,89.9 L75.9,87.8 L85.8,90.9 L95.8,48.4 L101.7,74.2 L103.7,80.6 L105.7,85.3 L107.7,97.2 L117.7,136.6 L127.6,154.4 L129.6,142.5 L131.6,138.5 L141.5,99.7 L151.5,112.6 L161.4,116.3 L171.4,144.0 L173.4,145.1 L181.4,147.2 L183.3,142.9 L187.3,137.6 L191.3,127.4 L193.3,139.4 L195.3,147.7 L197.3,164.9 L199.3,154.7 L201.3,161.6 L215.2,210.9 L223.2,231.3 L229.1,228.0 L247.0,244.5 L251.0,239.3 L259.0,200.3"/>
+<path class="ln" d="M288.8,266.0 L298.8,266.0"/>
+<path class="ln" d="M328.6,266.0 L334.6,235.6 L338.6,236.5 L346.6,238.1 L350.5,266.0 L352.5,266.0 L364.5,266.0 L378.4,266.0"/>
+<path class="ln" d="M509.8,266.0 L523.7,266.0"/>
+<path class="ln" d="M760.6,266.0 L772.5,228.7"/>
+<path class="ln" d="M800.4,266.0 L814.3,210.5 L820.3,179.7 L824.3,167.4 L826.3,166.4 L828.3,139.0 L830.2,161.4 L832.2,162.8 L834.2,165.0 L840.2,171.6 L842.2,178.4 L844.2,186.4 L856.1,226.8 L860.1,199.6 L862.1,199.9 L866.1,202.4 L874.0,208.4 L876.0,203.3 L878.0,195.7 L880.0,185.1"/>
+<circle class="dt" cx="46.0" cy="83.9" r="3.2"><title>21:27:00 · 35.3 km/h</title></circle>
+<circle class="dt" cx="56.0" cy="103.9" r="3.2"><title>21:27:05 · 31.5 km/h</title></circle>
+<circle class="dt" cx="65.9" cy="89.9" r="3.2"><title>21:27:10 · 34.2 km/h</title></circle>
+<circle class="dt" cx="75.9" cy="87.8" r="3.2"><title>21:27:15 · 34.6 km/h</title></circle>
+<circle class="dt" cx="85.8" cy="90.9" r="3.2"><title>21:27:20 · 34.0 km/h</title></circle>
+<circle class="dt" cx="95.8" cy="48.4" r="3.2"><title>21:27:25 · 42.2 km/h</title></circle>
+<circle class="dt" cx="101.7" cy="74.2" r="3.2"><title>21:27:28 · 37.2 km/h</title></circle>
+<circle class="dt" cx="103.7" cy="80.6" r="3.2"><title>21:27:29 · 36.0 km/h</title></circle>
+<circle class="dt" cx="105.7" cy="85.3" r="3.2"><title>21:27:30 · 35.1 km/h</title></circle>
+<circle class="dt" cx="107.7" cy="97.2" r="3.2"><title>21:27:31 · 32.7 km/h</title></circle>
+<circle class="dt" cx="117.7" cy="136.6" r="3.2"><title>21:27:36 · 25.1 km/h</title></circle>
+<circle class="dt" cx="127.6" cy="154.4" r="3.2"><title>21:27:41 · 21.6 km/h</title></circle>
+<circle class="dt" cx="129.6" cy="142.5" r="3.2"><title>21:27:42 · 24.0 km/h</title></circle>
+<circle class="dt" cx="131.6" cy="138.5" r="3.2"><title>21:27:43 · 24.7 km/h</title></circle>
+<circle class="dt" cx="141.5" cy="99.7" r="3.2"><title>21:27:48 · 32.3 km/h</title></circle>
+<circle class="dt" cx="151.5" cy="112.6" r="3.2"><title>21:27:53 · 29.7 km/h</title></circle>
+<circle class="dt" cx="161.4" cy="116.3" r="3.2"><title>21:27:58 · 29.0 km/h</title></circle>
+<circle class="dt" cx="171.4" cy="144.0" r="3.2"><title>21:28:03 · 23.7 km/h</title></circle>
+<circle class="dt" cx="173.4" cy="145.1" r="3.2"><title>21:28:04 · 23.5 km/h</title></circle>
+<circle class="dt" cx="181.4" cy="147.2" r="3.2"><title>21:28:08 · 23.0 km/h</title></circle>
+<circle class="dt" cx="183.3" cy="142.9" r="3.2"><title>21:28:09 · 23.9 km/h</title></circle>
+<circle class="dt" cx="187.3" cy="137.6" r="3.2"><title>21:28:11 · 24.9 km/h</title></circle>
+<circle class="dt" cx="191.3" cy="127.4" r="3.2"><title>21:28:13 · 26.9 km/h</title></circle>
+<circle class="dt" cx="193.3" cy="139.4" r="3.2"><title>21:28:14 · 24.6 km/h</title></circle>
+<circle class="dt" cx="195.3" cy="147.7" r="3.2"><title>21:28:15 · 23.0 km/h</title></circle>
+<circle class="dt" cx="197.3" cy="164.9" r="3.2"><title>21:28:16 · 19.6 km/h</title></circle>
+<circle class="dt" cx="199.3" cy="154.7" r="3.2"><title>21:28:17 · 21.6 km/h</title></circle>
+<circle class="dt" cx="201.3" cy="161.6" r="3.2"><title>21:28:18 · 20.2 km/h</title></circle>
+<circle class="dt" cx="215.2" cy="210.9" r="3.2"><title>21:28:24 · 10.7 km/h</title></circle>
+<circle class="dt" cx="223.2" cy="231.3" r="3.2"><title>21:28:28 · 6.7 km/h</title></circle>
+<circle class="dt" cx="229.1" cy="228.0" r="3.2"><title>21:28:31 · 7.4 km/h</title></circle>
+<circle class="dt" cx="247.0" cy="244.5" r="3.2"><title>21:28:40 · 4.2 km/h</title></circle>
+<circle class="dt" cx="251.0" cy="239.3" r="3.2"><title>21:28:42 · 5.2 km/h</title></circle>
+<circle class="dt" cx="259.0" cy="200.3" r="3.2"><title>21:28:46 · 12.7 km/h</title></circle>
+<circle class="dt" cx="288.8" cy="266.0" r="3.2"><title>21:29:01 · 0.0 km/h</title></circle>
+<circle class="dt" cx="298.8" cy="266.0" r="3.2"><title>21:29:06 · 0.0 km/h</title></circle>
+<circle class="dt" cx="328.6" cy="266.0" r="3.2"><title>21:29:21 · 0.0 km/h</title></circle>
+<circle class="dt" cx="334.6" cy="235.6" r="3.2"><title>21:29:24 · 5.9 km/h</title></circle>
+<circle class="dt" cx="338.6" cy="236.5" r="3.2"><title>21:29:26 · 5.7 km/h</title></circle>
+<circle class="dt" cx="346.6" cy="238.1" r="3.2"><title>21:29:30 · 5.4 km/h</title></circle>
+<circle class="dt" cx="350.5" cy="266.0" r="3.2"><title>21:29:32 · 0.0 km/h</title></circle>
+<circle class="dt" cx="352.5" cy="266.0" r="3.2"><title>21:29:33 · 0.0 km/h</title></circle>
+<circle class="dt" cx="364.5" cy="266.0" r="3.2"><title>21:29:39 · 0.0 km/h</title></circle>
+<circle class="dt" cx="378.4" cy="266.0" r="3.2"><title>21:29:46 · 0.0 km/h</title></circle>
+<circle class="dt" cx="406.3" cy="266.0" r="3.2"><title>21:30:00 · 0.0 km/h</title></circle>
+<circle class="dt" cx="452.1" cy="239.4" r="3.2"><title>21:30:24 · 5.2 km/h</title></circle>
+<circle class="dt" cx="509.8" cy="266.0" r="3.2"><title>21:30:52 · 0.0 km/h</title></circle>
+<circle class="dt" cx="523.7" cy="266.0" r="3.2"><title>21:30:59 · 0.0 km/h</title></circle>
+<circle class="dt" cx="708.8" cy="266.0" r="3.2"><title>21:32:33 · 0.0 km/h</title></circle>
+<circle class="dt" cx="760.6" cy="266.0" r="3.2"><title>21:32:58 · 0.0 km/h</title></circle>
+<circle class="dt" cx="772.5" cy="228.7" r="3.2"><title>21:33:04 · 7.2 km/h</title></circle>
+<circle class="dt" cx="800.4" cy="266.0" r="3.2"><title>21:33:18 · 0.0 km/h</title></circle>
+<circle class="dt" cx="814.3" cy="210.5" r="3.2"><title>21:33:25 · 10.8 km/h</title></circle>
+<circle class="dt" cx="820.3" cy="179.7" r="3.2"><title>21:33:28 · 16.7 km/h</title></circle>
+<circle class="dt" cx="824.3" cy="167.4" r="3.2"><title>21:33:30 · 19.1 km/h</title></circle>
+<circle class="dt" cx="826.3" cy="166.4" r="3.2"><title>21:33:31 · 19.3 km/h</title></circle>
+<circle class="dt" cx="828.3" cy="139.0" r="3.2"><title>21:33:32 · 24.6 km/h</title></circle>
+<circle class="dt" cx="830.2" cy="161.4" r="3.2"><title>21:33:33 · 20.3 km/h</title></circle>
+<circle class="dt" cx="832.2" cy="162.8" r="3.2"><title>21:33:34 · 20.0 km/h</title></circle>
+<circle class="dt" cx="834.2" cy="165.0" r="3.2"><title>21:33:35 · 19.6 km/h</title></circle>
+<circle class="dt" cx="840.2" cy="171.6" r="3.2"><title>21:33:38 · 18.3 km/h</title></circle>
+<circle class="dt" cx="842.2" cy="178.4" r="3.2"><title>21:33:39 · 17.0 km/h</title></circle>
+<circle class="dt" cx="844.2" cy="186.4" r="3.2"><title>21:33:40 · 15.4 km/h</title></circle>
+<circle class="dt" cx="856.1" cy="226.8" r="3.2"><title>21:33:46 · 7.6 km/h</title></circle>
+<circle class="dt" cx="860.1" cy="199.6" r="3.2"><title>21:33:48 · 12.9 km/h</title></circle>
+<circle class="dt" cx="862.1" cy="199.9" r="3.2"><title>21:33:49 · 12.8 km/h</title></circle>
+<circle class="dt" cx="866.1" cy="202.4" r="3.2"><title>21:33:51 · 12.3 km/h</title></circle>
+<circle class="dt" cx="874.0" cy="208.4" r="3.2"><title>21:33:55 · 11.2 km/h</title></circle>
+<circle class="dt" cx="876.0" cy="203.3" r="3.2"><title>21:33:56 · 12.2 km/h</title></circle>
+<circle class="dt" cx="878.0" cy="195.7" r="3.2"><title>21:33:57 · 13.6 km/h</title></circle>
+<circle class="dt" cx="880.0" cy="185.1" r="3.2"><title>21:33:58 · 15.7 km/h</title></circle>
+<line class="fall" x1="261.0" x2="261.0" y1="34" y2="266"/>
+<text class="fl" x="267.0" y="59.8">21:28:48 · the fall</text>
+<text class="tk" x="46" y="12">km/h</text>
+</svg>
+      <p class="cap">Speed from the phone's saved GPS fixes. Each dot is one fix. Lines break where fixes are more than 10 s apart.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">02 · Why it happened</span>
+    <h2>Six small things, <span class="serif">lined up.</span></h2>
+    <p class="lead reveal">No single mistake caused this. It took six ordinary things happening in the same ten seconds.</p>
+    <div class="chain reveal">
+      <div class="link"><h3>Unfamiliar road</h3><p>Not knowing the way means checking the way.</p></div>
+      <div class="link"><h3>Phone in hand</h3><p>45 s of Maps at 25–42 km/h, a minute before a hazard.</p></div>
+      <div class="link"><h3>A diagonal crossing</h3><p>Two tracks, meeting the road at a shallow angle.</p></div>
+      <div class="link"><h3>A jam on the rails</h3><p>Stop-and-go at walking pace: the wobbliest speed there is.</p></div>
+      <div class="link"><h3>Horns behind</h3><p>Pressure to hurry, right between the two rails.</p></div>
+      <div class="link final"><h3>Power on the steel</h3><p>Throttle opened while the rear tyre met rail number two at an angle.</p></div>
+    </div>
+    <div class="twocol">
+      <svg class="diagram reveal" viewBox="0 0 460 360" role="img" aria-labelledby="dg-t">
+        <title id="dg-t">Top-down sketch: the road runs up the page, two rails cross it diagonally, the bike's path crosses the first rail and slips on the second.</title>
+        <rect x="0" y="0" width="460" height="360" rx="16" fill="#101215"/>
+        <rect x="150" y="0" width="160" height="360" fill="#1C1F24"/>
+        <g stroke="#6A6D73" stroke-width="5">
+          <line x1="40" y1="300" x2="420" y2="170"/><line x1="40" y1="318" x2="420" y2="188"/>
+          <line x1="40" y1="200" x2="420" y2="70"/><line x1="40" y1="218" x2="420" y2="88"/>
+        </g>
+        <text x="352" y="232" fill="#8A8882" font-family="ui-monospace,Menlo,monospace" font-size="12">track 1</text>
+        <text x="352" y="132" fill="#8A8882" font-family="ui-monospace,Menlo,monospace" font-size="12">track 2</text>
+        <path d="M232 352 C232 300 236 262 238 236 C240 214 238 190 233 168" fill="none" stroke="#FF8A6B" stroke-width="3" stroke-dasharray="6 6"/>
+        <circle cx="238" cy="252" r="9" fill="#3DD68C"/>
+        <text x="252" y="256" fill="#3DD68C" font-family="ui-monospace,Menlo,monospace" font-size="12">✓ easy</text>
+        <circle cx="232" cy="160" r="11" fill="#FF4A1F"/>
+        <path d="M226 158 C200 150 176 132 160 112" fill="none" stroke="#FF4A1F" stroke-width="4" marker-end="url(#ah)"/>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FF4A1F"/></marker></defs>
+        <text x="60" y="120" fill="#F2F1ED" font-family="Inter Tight,Inter,sans-serif" font-weight="700" font-size="15">rear kicks up &amp; left</text>
+        <text x="250" y="172" fill="#F2F1ED" font-family="ui-monospace,Menlo,monospace" font-size="12">throttle on,</text>
+        <text x="250" y="188" fill="#F2F1ED" font-family="ui-monospace,Menlo,monospace" font-size="12">at an angle</text>
+        <text x="20" y="344" fill="#8A8882" font-family="ui-monospace,Menlo,monospace" font-size="11">sketch, not to scale · north up</text>
+      </svg>
+      <div class="physics reveal">
+        <p><b>A tyre climbs an edge it meets square-on.</b> Meet a polished steel rail at a shallow angle and it stops being a bump. It becomes a ramp the tyre slides along instead of over, with a gap beside it waiting for a wheel.</p>
+        <p><b>Throttle makes it worse.</b> Under drive, the rear tyre pushes sideways along the rail until it suddenly grips or drops off the edge. When it does, the bike snaps the other way, hard. That's the "rear end shot up with massive momentum to the left".</p>
+        <p><b>At 12.7 km/h there's no time to catch it.</b> At 12.7 km/h you're barely balanced, and a kick that size is over in a fraction of a second.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">03 · What the phone knew</span>
+    <h2>The phone saw it. <span class="serif">The app didn't.</span></h2>
+    <p class="lead reveal">The iPhone noticed: the screen woke itself and the GPS went quiet. ThrottleIQ recorded every metre of the ride and missed the crash completely, because crash detection was switched off and saved no sensor data at all.</p>
+    <div class="bb reveal">
+      <div class="log"><span class="c"># iPhone system log, 14 Oct, local time</span>
+21:27:30.056 powerd   <span class="h">Backlight on: MotionGesture</span>
+21:27:32.841 SpringBd keybag locked → unlocked
+21:27:57.676 Runner   ThrottleIQ scene became key
+21:28:14.796 SpringBd <span class="h">Lock button pressed</span>
+21:28:58.901 SpringBd <span class="h">Lift detected</span>
+21:28:58.917 SpringBd proximity: object near = YES
+21:30:08.112 powerd   Backlight on: Button
+21:30:11.501 Screenshot service active
+21:30:54.650 Camera   active</div>
+      <div class="log"><span class="c"># ThrottleIQ GPS fixes, km/h · accuracy</span>
+21:28:18  20.2   8 m
+21:28:25  10.7  11 m   <span class="c">← the jam</span>
+21:28:32   7.4  12 m
+21:28:41   4.2  13 m   <span class="c">← crawling</span>
+21:28:43   5.2  13 m
+21:28:47  <span class="h">12.7  13 m   ← throttle open</span>
+<span class="c">          … 15 s of nothing …</span>
+21:29:02   0.0  14 m   <span class="c">← at rest</span>
+21:33:26  10.8  14 m   <span class="c">← rolling again</span></div>
+    </div>
+    <div class="verdict reveal">
+      <div class="big">2/5 → 5/5</div>
+      <p style="margin:0;color:var(--ink2)">We replayed this exact crash, using the real GPS fixes, through the app's detector in five phone positions: thrown from a pocket, still in a pocket with the rider on their side, still in a pocket with the rider on their back, mounted with the engine idling, mounted with the engine off. Even switched on, the old rules would have caught it in only 2 of the 5. So the next day we rebuilt the detector, and it now catches all five. From the next app update it runs quietly on every ride, saves 12 seconds of sensor data around any hard knock, and after the ride asks one question: <b style="color:var(--ink)">"Did you fall?"</b> Every answer makes it smarter. The live alarm stays off until those answers say it's ready.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">04 · The evidence</span>
+    <h2>Taken <span class="serif">eighty seconds</span> later.</h2>
+    <div class="gallery reveal">
+      <figure><img loading="lazy" src="img/app-0930.jpg" alt="ThrottleIQ live ride screen at 9:30: 0 km/h, 10.29 km, 19 km/h average, 74% confidence"><figcaption>21:30 — ThrottleIQ, still recording: 0 km/h.</figcaption></figure>
+      <figure><img loading="lazy" src="img/maps-0930.jpg" alt="Google Maps at 9:30 with the rider's position on the service road beside Banani Overpass"><figcaption>21:30 — Google Maps. The red arrow marks the spot.</figcaption></figure>
+      <figure><img loading="lazy" src="img/history.jpg" alt="Ride history map with the crash site circled beside the Kamalapur–Tongi railway"><figcaption>The crash site: where the road meets the rails.</figcaption></figure>
+      <figure><img loading="lazy" src="img/history-zoom.jpg" alt="Zoomed ride history: a star-shaped scribble of GPS points at the crossing"><figcaption>The "star" is GPS drift while the phone lay still.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">05 · Next time</span>
+    <h2>Six reminders, <span class="serif">earned the hard way.</span></h2>
+    <div class="rules reveal">
+      <div class="rule"><span class="n">1</span><h3>Square to the steel.</h3><p>Cross rails as close to 90° as you can. If the road crosses them diagonally, swing your line before the first rail, not between them.</p></div>
+      <div class="rule"><span class="n">2</span><h3>Roll, don't power.</h3><p>Steady, neutral throttle across the rails. Accelerate only once both wheels are past the last one.</p></div>
+      <div class="rule"><span class="n">3</span><h3>Two tracks, two decisions.</h3><p>Clearing the first rail clears nothing. The second gets the same care, the same angle, the same patience.</p></div>
+      <div class="rule"><span class="n">4</span><h3>Horns don't set your pace.</h3><p>Three seconds of someone else's impatience costs nothing. A fall costs far more. Let them honk.</p></div>
+      <div class="rule"><span class="n">5</span><h3>Route at the roadside.</h3><p>Check the map while stopped. On the move, use voice guidance or a mount, never your hand.</p></div>
+      <div class="rule"><span class="n">6</span><h3>Wet steel is ice.</h3><p>It was dry that night. After rain, or in morning dew, rails have almost no grip. Slower, squarer, straighter.</p></div>
+      <div class="rule done"><span class="n">✓</span><h3>Already done right.</h3><p>Low speed, hands down, then up, checked over, photos and a screenshot taken, ride finished. The aftermath went exactly right, and it gave us everything on this page.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow">06 · Why we publish this</span>
+    <h2>Crashing isn't shameful. <span class="serif">Not learning is.</span></h2>
+    <p class="lead" style="max-width:760px">Every rider falls eventually. What matters is what the fall teaches you, and whether your tools can learn from it too. This one taught us more than a month of testing. Ride square, ride patient, and keep the phone in your pocket until you stop.</p>
+    <a class="cta" href="/throttle-iq/install/?c=crash_report_1">Get ThrottleIQ →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">ThrottleIQ by <a href="/">Blankframe Technologies</a> · Crash Report 001 · Data: the ride's GPS fixes and the rider's iPhone system log, used with their permission. Weather: Open-Meteo model.</div>
+</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
