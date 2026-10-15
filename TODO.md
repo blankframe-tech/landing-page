@@ -24,7 +24,7 @@ Trust and professionalism pass on `index.html`. Benchmark: https://li.fi, which 
 - [ ] Replace the bare mailto CTA with an explicit action ("Book a call", "Try ThrottleIQ", "Work with us"). Keep the email as a secondary link.
 
 ## 6. Polish
-- [ ] Add `og:image` (and `twitter:card`) so shared links show a preview card.
-- [ ] Replace the inline SVG-square favicon with the real logo.
-- [ ] Clean up the duplicate public folders: `throttleIQ/`, `throttle-iq/`, `throttle-iq-2/`, `throttleiq2/`, `thtorrleiq2/` (typo). Pick one, redirect or remove the rest.
+- [x] Add `og:image` (and `twitter:card`) so shared links show a preview card. _(2026-10-15: `/og-image.png`, 1200x630, built from the brand mark; `summary_large_image`.)_
+- [x] Replace the inline SVG-square favicon with the real logo. _(2026-10-15: no separate logo file exists in the repo; the square mark is the logo, so it now lives in `/favicon.svg` and `index.html` links it. Other pages still inline it.)_
+- [x] Clean up the duplicate public folders: `throttleIQ/`, `throttle-iq/`, `throttle-iq-2/`, `throttleiq2/`, `thtorrleiq2/` (typo). Pick one, redirect or remove the rest. _(2026-10-15: canonical is `/throttle-iq/`, which the app, QR routing and 404 use. The v2 showcase moved from `/thtorrleiq2/` to `/throttle-iq/v2/`. `thtorrleiq2/`, `throttleiq2/` and `throttle-iq-2/` redirect there; `throttleIQ/` redirects to `/throttle-iq/`.)_
 - [ ] Review the page rendered in a browser at desktop and phone width; this list came from the HTML only.
