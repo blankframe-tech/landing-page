@@ -612,7 +612,7 @@
   .focus-item{
     display: grid;
     /* Extra column at the end for the link */
-    grid-template-columns: 64px 130px 1fr 1.1fr auto auto;
+    grid-template-columns: 64px 176px 1fr 1.1fr auto auto; /* 176px: the longest tags ("Economic Fieldwork") overran 130px into the title */
     gap: 24px;
     padding: 30px 32px;
     align-items: center;
@@ -758,14 +758,14 @@
   <!-- HERO -->
   <section class="hero" style="padding-bottom: 96px;">
     <div class="wrap">
-      <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Currently building — Dhaka, Bangladesh</span>
-      <h1 class="reveal d1">We build the frame. <span class="dim">You create what</span> <span class="serif-accent">matters.</span></h1>
-      <p class="sub reveal d2">BlankFrame designs AI-assisted software, embedded hardware, and agentic systems that quietly absorb repetitive work — so your attention goes to the things only you can do.</p>
+      <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Dhaka, Bangladesh</span>
+      <h1 class="reveal d1">AI software and edge hardware, <span class="dim">built and tested in</span> <span class="serif-accent">Bangladesh.</span></h1>
+      <p class="sub reveal d2">ThrottleIQ for motorcycle riders, Indriyo blind-spot warnings, a MacBook pre-purchase checker for the BD market, and r1_Fuel, an open research programme on the 2026 fuel price shock.</p>
       <div class="cta-row reveal d3">
-        <a class="btn" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
+        <a class="btn" href="mailto:hello@blankframe.tech?subject=Work%20with%20BlankFrame">Work with us</a>
         <a class="btn light" href="#products">See our products</a>
       </div>
-      <div class="micro-status reveal d3"><span class="dot" aria-hidden="true"></span> Infrastructure that removes human cognitive load</div>
+      <div class="micro-status reveal d3"><span class="dot" aria-hidden="true"></span> We build the frame. You create what matters.</div>
     </div>
   </section>
 
@@ -805,7 +805,7 @@
           <span class="focus-tag">Mobility</span>
           <h3>ThrottleIQ</h3>
           <p class="desc">A smarter relationship between rider and machine. Built and tested on the road.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Beta v2.2</span>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Android app</span>
           <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
             <a href="/throttle-iq/v2/" class="btn light btn-small" style="background: #f4b23e; color: #1c1a17; border-color: transparent; font-weight: 700;">New V2 Showcase &rarr;</a>
             <a href="/throttle-iq/" class="btn light btn-small">Original Demo</a>
@@ -814,17 +814,9 @@
 
 
 
-        <div class="focus-item">
-            <span class="focus-num" aria-hidden="true">02</span>
-            <span class="focus-tag">Automation</span>
-            <h3>Ambient Systems</h3>
-            <p class="desc">Quiet environmental sensing and control that doesn't ask for attention.</p>
-            <span class="status-chip"><span class="dot" aria-hidden="true"></span> In build</span>
-            <span></span>
-          </div>
 
         <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">03</span>
+          <span class="focus-num" aria-hidden="true">02</span>
           <span class="focus-tag">Edge AI</span>
           <h3>Indriyo (ইন্দ্রিয়)</h3>
           <p class="desc">The sixth sense for motorcyclists. Edge AI ADAS with active blind spot detection & predictive collision warning.</p>
@@ -833,7 +825,7 @@
         </div>
 
         <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">04</span>
+          <span class="focus-num" aria-hidden="true">03</span>
           <span class="focus-tag">Diagnostic</span>
           <h3>MacBook Pre-Purchase Checker</h3>
           <p class="desc">Field inspection guide, hardware stress testers, model benchmarks, and cash negotiation calculator for the BD market.</p>
@@ -841,26 +833,10 @@
           <a href="/mac-check/" class="btn light btn-small">Launch Checker &rarr;</a>
         </div>
 
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">05</span>
-          <span class="focus-tag">Enterprise &amp; Craft</span>
-          <h3>Terracotta Tales</h3>
-          <p class="desc">Artisanal terracotta micro-enterprise founded by Farzana Reza Shifa. Generated ৳2.5L in one year to self-fund her university education through sustainable maker commerce.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Self-Funded Venture</span>
-          <a href="/shifa/terracotta-tales/" class="btn light btn-small">Explore Showcase &rarr;</a>
-        </div>
+
 
         <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">06</span>
-          <span class="focus-tag">Economic Fieldwork</span>
-          <h3>Field Research &amp; Ethnography</h3>
-          <p class="desc">Applied field study by Farzana Reza Shifa on migratory beekeeping entrepreneurs and informal litchi honey value chains in Panchagarh, Bangladesh.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Published Fieldwork</span>
-          <a href="/shifa/research/" class="btn light btn-small">Read Field Study &rarr;</a>
-        </div>
-
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">07</span>
+          <span class="focus-num" aria-hidden="true">04</span>
           <span class="focus-tag">Open Research</span>
           <h3>r1_Fuel &mdash; Bangladesh&rsquo;s Fuel Shock</h3>
           <p class="desc">Open research programme on the 21 September 2026 Tk 20/litre fuel hike: a sourced impact analysis, five costed study designs, and a 1,996-article discourse corpus. Looking for collaborators and funding before the baseline window closes.</p>
@@ -877,6 +853,25 @@
           <p class="desc">Early work that hasn&rsquo;t earned a spot up front yet. Everything new starts here and graduates to products once it matures.</p>
           <span class="status-chip"><span class="dot" aria-hidden="true"></span> Early-stage</span>
           <a href="/experiments/" class="btn light btn-small">Experiments &rarr;</a>
+        </div>
+      </div>
+      <p class="section-sub reveal" style="margin-top:40px;">From our collaborators</p>
+      <div class="focus-card reveal d2" style="text-align:left;">
+        <div class="focus-item">
+          <span class="focus-num" aria-hidden="true">01</span>
+          <span class="focus-tag">Enterprise &amp; Craft</span>
+          <h3>Terracotta Tales</h3>
+          <p class="desc">Artisanal terracotta micro-enterprise founded by Farzana Reza Shifa. Generated ৳2.5L in one year to self-fund her university education through sustainable maker commerce.</p>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Self-Funded Venture</span>
+          <a href="/shifa/terracotta-tales/" class="btn light btn-small">Explore Showcase &rarr;</a>
+        </div>
+        <div class="focus-item">
+          <span class="focus-num" aria-hidden="true">02</span>
+          <span class="focus-tag">Economic Fieldwork</span>
+          <h3>Field Research &amp; Ethnography</h3>
+          <p class="desc">Applied field study by Farzana Reza Shifa on migratory beekeeping entrepreneurs and informal litchi honey value chains in Panchagarh, Bangladesh.</p>
+          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Published Fieldwork</span>
+          <a href="/shifa/research/" class="btn light btn-small">Read Field Study &rarr;</a>
         </div>
       </div>
     </div>
@@ -1037,9 +1032,10 @@
   <section class="footer-cta">
     <div class="wrap">
       <h2 class="reveal">Let's build the <span class="serif-accent">invisible.</span></h2>
-      <p class="sub reveal d1">We're early, and we like it that way. If quiet, dependable systems are your kind of thing — say hello.</p>
+      <p class="sub reveal d1">If quiet, dependable systems are your kind of thing, tell us what you want built.</p>
       <div class="cta-row reveal d2">
-        <a class="btn" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
+        <a class="btn" href="mailto:hello@blankframe.tech?subject=Work%20with%20BlankFrame">Work with us</a>
+        <a class="btn light" href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>
       </div>
     </div>
   </section>
