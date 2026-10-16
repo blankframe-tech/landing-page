@@ -1,33 +1,35 @@
 # BlankFrame Technologies — Landing Page
 
-A single-file, static "coming soon" landing page for BlankFrame Technologies (BFT),
-built from the company vision and website design docs. No build step, no dependencies
-beyond Google Fonts — just `index.html`.
+The blankframe.tech site: the BlankFrame Technologies (BFT) home page plus a set of
+static product, research and personal sub-sites. Plain HTML, no build step; GitHub
+Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out and
+`.well-known` in). A push to `main` deploys.
 
 ## What's in this repo
 
-- `index.html` — the entire site (structure, styles, and script in one file)
-- `CNAME` — tells GitHub Pages to serve this repo at `www.blankframe.tech`
+| Path | What |
+|---|---|
+| `index.html`, `404.html`, `favicon.svg`, `og-image.png` | The BFT home page (structure, styles and script in one file), the not-found page and shared assets |
+| `throttle-iq/` | ThrottleIQ: product page, install page, QR routing, crash reports, `v2/` showcase. The canonical path; `throttleIQ/`, `throttle-iq-2/`, `throttleiq2/` and `thtorrleiq2/` only redirect here |
+| `poredekho-vto/`, `reserve-my-tokens/`, `mac-check/`, `fret-gps/`, `itl-reserver/`, `indriyo/` | Product and project pages |
+| `experiments/`, `research/` | The experiments lab section and the research pages (including the Fuel Shock proposal pages generated from the FuelPriceHikeImpactResearch repo) |
+| `abraar/`, `shifa/` | Personal pages (`abraar/` is its own nested git repo) |
+| `terracotta-tales/` | Redirect to Terracotta Tales |
+| `visit-count/` | Live per-sub-site traffic dashboard (GoatCounter); `stats/` and `analytics/` are copies of it |
+| `archived/` | The previous home page |
+| `EXTRAS/` | Reference images and palettes, not linked from the site |
+| `setup_previews.sh` | Creates the theme-preview git worktrees (now in `../0_archive/bft-previews/`) |
+| `TODO.md` | The open trust and polish list for the home page |
+| `CNAME` | Serves the repo at `www.blankframe.tech` |
 
-## Deploy with GitHub Pages
+**Rule for new pages** (see `AGENTS.md`): every public page includes the GoatCounter
+script before `</body>` and is registered in the `visit-count/` dashboard (and its
+`stats/` and `analytics/` copies).
 
-1. Create a new GitHub repo (e.g. `blankframe-site`) and push these files to the
-   `main` branch:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial landing page"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git push -u origin main
-   ```
-2. In the repo, go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to `Deploy from a branch`,
-   branch `main`, folder `/ (root)`. Save.
-4. Under **Custom domain**, enter `www.blankframe.tech` and save (this writes
-   the same value already in the `CNAME` file — GitHub will pick it up either way).
-5. Check **Enforce HTTPS** once the certificate is issued (can take a few minutes
-   to a few hours after DNS is verified).
+## GitHub Pages setup (already done)
+
+Settings → Pages: source `Deploy from a branch`, branch `main`, folder `/ (root)`,
+custom domain `www.blankframe.tech`, **Enforce HTTPS** on.
 
 ## Point the Namecheap domain at GitHub Pages
 
@@ -51,7 +53,7 @@ DNS changes can take anywhere from a few minutes to 24 hours to propagate.
 
 ## Editing content
 
-Everything — copy, colors, layout — lives in `index.html`. The key spots:
+The home page's copy, colors and layout all live in `index.html`. The key spots:
 
 - CSS custom properties at the top of the `<style>` block (`--bg`, `--fg`,
   `--secondary`, `--accent`) control the whole palette.
@@ -62,8 +64,7 @@ Everything — copy, colors, layout — lives in `index.html`. The key spots:
 
 ## Notes
 
-- No JS framework or build tool — matches "static export compatible" from the
-  design brief and keeps GitHub Pages deployment to zero configuration.
+- No JS framework or build tool, so GitHub Pages needs no configuration.
 - Respects `prefers-reduced-motion` (disables the cursor-parallax frame and
   scroll fade-ups) and keeps visible focus outlines for keyboard navigation.
 - Fonts (Space Grotesk + Inter) load from Google Fonts via CDN; everything
