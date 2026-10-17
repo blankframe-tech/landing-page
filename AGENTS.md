@@ -34,6 +34,6 @@ Add a card for the new project in the **Portfolio** section of `index.html` with
 ---
 
 ## 2. Design System & Tech Standards
-- **Palette**: Warm paper background (`--bg: #F2F1ED`), solid cards (`--card: #FFFFFF`), dark ink (`--ink: #131313`), and orange accent (`--accent: #FF4A1F`).
+- **Palette and tokens**: `brand/tokens.json` is the source of truth (slate `--bg: #F8FAFC`, white `--card`, zinc `--ink: #18181B`, blue `--accent: #3B82F6`, plus dark values). After editing it, run `python3 brand/build_tokens.py`; it regenerates `brand/tokens.css`, `brand/tailwind.css`, `brand/blankframe_tokens.dart` and the tables on `/brand/`. `--check` fails if those are stale, a text pair misses WCAG AA, or the `:root` palette in `index.html` drifts from the tokens. New pages can link `/brand/tokens.css` and use the `--bf-*` variables instead of copying the palette.
 - **Typography**: Inter Tight (headings), Instrument Serif italic (accents), Inter (body).
 - **Architecture**: Clean, zero-build static pages compatible with GitHub Pages and custom domain `www.blankframe.tech`.

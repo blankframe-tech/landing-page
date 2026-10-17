@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand — BlankFrame</title>
+<meta name="description" content="The BlankFrame Technologies brand: logo, colour, type and the design tokens every BlankFrame product shares, as CSS, Tailwind and Flutter.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/brand/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Brand — BlankFrame">
+<meta property="og:description" content="Logo, colour, type and shared design tokens for BlankFrame products.">
+<meta property="og:url" content="https://www.blankframe.tech/brand/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 960px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2, h3{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.2rem, 6vw, 3.4rem); margin: var(--bf-space-6) 0 var(--bf-space-3); }
+  h2{ font-size: 1.6rem; margin-bottom: var(--bf-space-3); }
+  h3{ font-size: 1.05rem; letter-spacing: -0.01em; margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; max-width: 640px; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.92rem; margin: 0 0 var(--bf-space-3); }
+  section{ margin-top: var(--bf-space-16); }
+  code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86em; }
+  pre{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: var(--bf-space-4); overflow-x: auto; margin: 0 0 var(--bf-space-4); line-height: 1.5; }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible, .btn:focus-visible, input:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--bf-space-4); }
+  .card{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-md); padding: var(--bf-space-6); box-shadow: var(--bf-shadow-card); }
+  .card p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.92rem; }
+  .logo-tile{ display: flex; align-items: center; justify-content: center; gap: var(--bf-space-4); min-height: 140px; border-radius: var(--bf-radius-sm); }
+  .wordmark{ font: 700 1.9rem var(--bf-font-display); letter-spacing: -0.035em; }
+
+  .spec{ border-top: 1px solid var(--bf-line); padding: var(--bf-space-4) 0; display: grid; grid-template-columns: 160px 1fr; gap: var(--bf-space-4); align-items: baseline; }
+  .spec small{ color: var(--bf-muted); font-size: 0.82rem; }
+  @media (max-width: 640px){ .spec{ grid-template-columns: 1fr; gap: var(--bf-space-1); } }
+
+  .scroll{ overflow-x: auto; }
+  table{ width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td{ text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--bf-line); vertical-align: middle; }
+  th{ color: var(--bf-muted); font-weight: 500; font-size: 0.82rem; }
+  .sws{ white-space: nowrap; }
+  .sw{ display: inline-block; width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--bf-line); margin-right: 4px; vertical-align: middle; }
+  .pair{ display: inline-block; padding: 2px 8px; border-radius: 6px; font-weight: 600; border: 1px solid var(--bf-line); }
+  .rad{ display: inline-block; width: 56px; height: 32px; background: var(--bf-accent); opacity: 0.85; }
+  .bar{ display: inline-block; height: 10px; background: var(--bf-accent); border-radius: 3px; }
+
+  .row{ display: flex; flex-wrap: wrap; gap: var(--bf-space-3); align-items: center; }
+  .btn{ display: inline-flex; align-items: center; gap: 10px; border-radius: var(--bf-radius-pill); padding: 11px 20px; font: 600 14px var(--bf-font-body); letter-spacing: -0.01em; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform var(--bf-dur-fast) var(--bf-ease), box-shadow var(--bf-dur-fast) var(--bf-ease); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--bf-shadow-pill); }
+  .btn.ink{ background: var(--bf-ink); color: var(--bf-bg); }
+  .btn.accent{ background: var(--bf-accent-text); color: var(--bf-on-accent); }
+  .btn.light{ background: var(--bf-card); color: var(--bf-ink); border-color: var(--bf-line); }
+  label{ display: block; font-size: 0.86rem; font-weight: 500; margin-bottom: var(--bf-space-1); }
+  input{ width: 100%; font: 15px var(--bf-font-body); color: var(--bf-ink); background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: 11px 14px; }
+  input::placeholder{ color: var(--bf-faint); }
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<h1>The BlankFrame <span class="serif">brand</span></h1>
+<p class="lede">One set of tokens for every BlankFrame product: colour, type, radius, spacing and motion, published as CSS, Tailwind and Flutter from a single file. Products keep their own accent colour; the rest is shared.</p>
+
+<section id="logo">
+  <h2>Logo</h2>
+  <p class="note">The mark is an open frame inside a rounded tile. Keep it square, keep the frame white, and don't recolour it.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="logo-tile" style="background:#F8FAFC;color:#18181B;border:1px solid #E4E4E7">
+        <img src="/favicon.svg" width="56" height="56" alt="BlankFrame mark">
+        <span class="wordmark">BlankFrame</span>
+      </div>
+      <p>On light. Wordmark in Inter Tight Bold, tracking −3.5%.</p>
+    </div>
+    <div class="card">
+      <div class="logo-tile" style="background:#0E0E10;color:#F4F4F5;border:1px solid #2A2A2E">
+        <img src="/favicon.svg" width="56" height="56" alt="BlankFrame mark">
+        <span class="wordmark">BlankFrame</span>
+      </div>
+      <p>On dark. The tile keeps its own near-black.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Files</h3>
+      <p><a href="/favicon.svg" download>favicon.svg</a> — the mark, any size</p>
+      <p><a href="/og-image.png" download>og-image.png</a> — 1200×630 share card</p>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <h2>Type</h2>
+  <div class="spec">
+    <small>Display · Inter Tight 700<br><code>--bf-font-display</code></small>
+    <div style="font:700 clamp(1.8rem,4.4vw,2.6rem)/1.1 var(--bf-font-display);letter-spacing:-0.035em">We build the frame.</div>
+  </div>
+  <div class="spec">
+    <small>Accent · Instrument Serif italic<br><code>--bf-font-serif</code></small>
+    <div class="serif" style="font-size:clamp(1.8rem,4.4vw,2.6rem);line-height:1.1">You create what matters.</div>
+  </div>
+  <div class="spec">
+    <small>Body · Inter 400 / 600<br><code>--bf-font-body</code></small>
+    <div>AI software and edge hardware, built and tested in Bangladesh. <strong>Semibold for emphasis</strong>, never more than one weight step.</div>
+  </div>
+  <p class="note">Use the serif for one accent phrase per heading at most. Bangla text falls back to the platform's Bangla font; set letter-spacing to 0 for it.</p>
+</section>
+
+<section id="tokens">
+  <h2>Tokens</h2>
+  <p class="note">Source: <a href="/brand/tokens.json">tokens.json</a>. Everything in this section is generated from it.</p>
+<!-- tokens:start (GENERATED by brand/build_tokens.py from brand/tokens.json. Edit that, then rerun.) -->
+<h3>Colour</h3>
+<div class="scroll"><table>
+<thead><tr><th>Light / dark</th><th>Token</th><th>Light</th><th>Dark</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td class="sws"><span class="sw" style="background:#F8FAFC" title="light #F8FAFC"></span><span class="sw" style="background:#0E0E10" title="dark #0E0E10"></span></td><td><code>--bf-bg</code></td><td><code>#F8FAFC</code></td><td><code>#0E0E10</code></td><td>Page background</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#FFFFFF" title="light #FFFFFF"></span><span class="sw" style="background:#18181B" title="dark #18181B"></span></td><td><code>--bf-card</code></td><td><code>#FFFFFF</code></td><td><code>#18181B</code></td><td>Cards, sheets, inputs</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#18181B" title="light #18181B"></span><span class="sw" style="background:#F4F4F5" title="dark #F4F4F5"></span></td><td><code>--bf-ink</code></td><td><code>#18181B</code></td><td><code>#F4F4F5</code></td><td>Body text, primary buttons</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#27272A" title="light #27272A"></span><span class="sw" style="background:#D4D4D8" title="dark #D4D4D8"></span></td><td><code>--bf-ink-soft</code></td><td><code>#27272A</code></td><td><code>#D4D4D8</code></td><td>Secondary headings, hover ink</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#71717A" title="light #71717A"></span><span class="sw" style="background:#A1A1AA" title="dark #A1A1AA"></span></td><td><code>--bf-muted</code></td><td><code>#71717A</code></td><td><code>#A1A1AA</code></td><td>Supporting text, captions</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#A1A1AA" title="light #A1A1AA"></span><span class="sw" style="background:#71717A" title="dark #71717A"></span></td><td><code>--bf-faint</code></td><td><code>#A1A1AA</code></td><td><code>#71717A</code></td><td>Placeholders, decoration only (not body text)</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#E4E4E7" title="light #E4E4E7"></span><span class="sw" style="background:#2A2A2E" title="dark #2A2A2E"></span></td><td><code>--bf-line</code></td><td><code>#E4E4E7</code></td><td><code>#2A2A2E</code></td><td>Borders, dividers</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#3B82F6" title="light #3B82F6"></span><span class="sw" style="background:#60A5FA" title="dark #60A5FA"></span></td><td><code>--bf-accent</code></td><td><code>#3B82F6</code></td><td><code>#60A5FA</code></td><td>Brand blue: marks, highlights, large type</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#2563EB" title="light #2563EB"></span><span class="sw" style="background:#60A5FA" title="dark #60A5FA"></span></td><td><code>--bf-accent-text</code></td><td><code>#2563EB</code></td><td><code>#60A5FA</code></td><td>Links, small accent text, filled accent buttons</td></tr>
+<tr><td class="sws"><span class="sw" style="background:#FFFFFF" title="light #FFFFFF"></span><span class="sw" style="background:#0E0E10" title="dark #0E0E10"></span></td><td><code>--bf-on-accent</code></td><td><code>#FFFFFF</code></td><td><code>#0E0E10</code></td><td>Text on accent-text fills</td></tr>
+</tbody></table></div>
+<h3>Text contrast</h3>
+<p class="note">Every pair below passes WCAG AA (4.5:1); the build fails if one drops under it.</p>
+<div class="scroll"><table>
+<thead><tr><th>Pair</th><th>Light</th><th>Dark</th></tr></thead>
+<tbody>
+<tr><td><code>ink</code> on <code>bg</code></td><td><span class="pair" style="color:#18181B;background:#F8FAFC">Aa</span> 16.9:1</td><td><span class="pair" style="color:#F4F4F5;background:#0E0E10">Aa</span> 17.5:1</td></tr>
+<tr><td><code>ink</code> on <code>card</code></td><td><span class="pair" style="color:#18181B;background:#FFFFFF">Aa</span> 17.7:1</td><td><span class="pair" style="color:#F4F4F5;background:#18181B">Aa</span> 16.1:1</td></tr>
+<tr><td><code>muted</code> on <code>bg</code></td><td><span class="pair" style="color:#71717A;background:#F8FAFC">Aa</span> 4.6:1</td><td><span class="pair" style="color:#A1A1AA;background:#0E0E10">Aa</span> 7.5:1</td></tr>
+<tr><td><code>muted</code> on <code>card</code></td><td><span class="pair" style="color:#71717A;background:#FFFFFF">Aa</span> 4.8:1</td><td><span class="pair" style="color:#A1A1AA;background:#18181B">Aa</span> 6.9:1</td></tr>
+<tr><td><code>accent-text</code> on <code>bg</code></td><td><span class="pair" style="color:#2563EB;background:#F8FAFC">Aa</span> 4.9:1</td><td><span class="pair" style="color:#60A5FA;background:#0E0E10">Aa</span> 7.6:1</td></tr>
+<tr><td><code>accent-text</code> on <code>card</code></td><td><span class="pair" style="color:#2563EB;background:#FFFFFF">Aa</span> 5.2:1</td><td><span class="pair" style="color:#60A5FA;background:#18181B">Aa</span> 7.0:1</td></tr>
+<tr><td><code>on-accent</code> on <code>accent-text</code></td><td><span class="pair" style="color:#FFFFFF;background:#2563EB">Aa</span> 5.2:1</td><td><span class="pair" style="color:#0E0E10;background:#60A5FA">Aa</span> 7.6:1</td></tr>
+</tbody></table></div>
+<h3>Radius, spacing, motion</h3>
+<div class="scroll"><table>
+<thead><tr><th>Token</th><th>Value</th><th>Preview</th></tr></thead>
+<tbody>
+<tr><td><code>--bf-radius-sm</code></td><td>12px</td><td><span class="rad" style="border-radius:12px"></span></td></tr>
+<tr><td><code>--bf-radius-md</code></td><td>20px</td><td><span class="rad" style="border-radius:20px"></span></td></tr>
+<tr><td><code>--bf-radius-lg</code></td><td>28px</td><td><span class="rad" style="border-radius:28px"></span></td></tr>
+<tr><td><code>--bf-radius-pill</code></td><td>999px</td><td><span class="rad" style="border-radius:28px"></span></td></tr>
+<tr><td><code>--bf-space-1</code></td><td>4px</td><td><span class="bar" style="width:4px"></span></td></tr>
+<tr><td><code>--bf-space-2</code></td><td>8px</td><td><span class="bar" style="width:8px"></span></td></tr>
+<tr><td><code>--bf-space-3</code></td><td>12px</td><td><span class="bar" style="width:12px"></span></td></tr>
+<tr><td><code>--bf-space-4</code></td><td>16px</td><td><span class="bar" style="width:16px"></span></td></tr>
+<tr><td><code>--bf-space-6</code></td><td>24px</td><td><span class="bar" style="width:24px"></span></td></tr>
+<tr><td><code>--bf-space-8</code></td><td>32px</td><td><span class="bar" style="width:32px"></span></td></tr>
+<tr><td><code>--bf-space-12</code></td><td>48px</td><td><span class="bar" style="width:48px"></span></td></tr>
+<tr><td><code>--bf-space-16</code></td><td>64px</td><td><span class="bar" style="width:64px"></span></td></tr>
+<tr><td><code>--bf-space-24</code></td><td>96px</td><td><span class="bar" style="width:96px"></span></td></tr>
+<tr><td><code>--bf-max-w</code></td><td>1140px</td><td>Page content width</td></tr>
+<tr><td><code>--bf-ease</code></td><td colspan="2"><code>cubic-bezier(0.22, 0.61, 0.36, 1)</code></td></tr>
+<tr><td><code>--bf-dur-fast</code></td><td>200ms</td><td>0ms under reduced motion</td></tr>
+<tr><td><code>--bf-dur-base</code></td><td>300ms</td><td>0ms under reduced motion</td></tr>
+<tr><td><code>--bf-dur-slow</code></td><td>650ms</td><td>0ms under reduced motion</td></tr>
+</tbody></table></div>
+<!-- tokens:end -->
+</section>
+
+<section id="samples">
+  <h2>In use</h2>
+  <p class="note">Built only from the tokens. Switch the theme at the top to see both.</p>
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-top:0">Buttons</h3>
+      <div class="row" style="margin-top:var(--bf-space-3)">
+        <a class="btn ink" href="#samples">Primary</a>
+        <a class="btn accent" href="#samples">Accent</a>
+        <a class="btn light" href="#samples">Secondary</a>
+      </div>
+      <p>Primary is ink. Use the accent fill for one action per screen.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Form field</h3>
+      <div style="margin-top:var(--bf-space-3)">
+        <label for="demo-email">Email</label>
+        <input id="demo-email" type="email" placeholder="you@example.com" autocomplete="off">
+      </div>
+      <p>Placeholder uses <code>faint</code>; labels stay <code>ink</code>.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Card</h3>
+      <p>Card surface, 1px line, <code>radius-md</code> and <code>shadow-card</code>. Links use <a href="#samples">accent-text</a>, which stays readable at small sizes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="use">
+  <h2>Use it</h2>
+  <h3>Static sites and plain CSS</h3>
+<pre>&lt;link rel="stylesheet" href="https://www.blankframe.tech/brand/tokens.css"&gt;
+
+body { background: var(--bf-bg); color: var(--bf-ink); font-family: var(--bf-font-body); }</pre>
+  <p class="note">Dark mode follows the system. Set <code>data-theme="light"</code> or <code>"dark"</code> on <code>&lt;html&gt;</code> to force one.</p>
+
+  <h3>Next.js with Tailwind v4</h3>
+  <p class="note">Copy <a href="/brand/tokens.css">tokens.css</a> and <a href="/brand/tailwind.css">tailwind.css</a> into the app, then in <code>globals.css</code>:</p>
+<pre>@import "tailwindcss";
+@import "./tokens.css";
+@import "./tailwind.css";
+
+/* bg-bf-bg  text-bf-ink  border-bf-line  rounded-bf-md  font-bf-display  shadow-bf-card */</pre>
+
+  <h3>Flutter</h3>
+  <p class="note">Copy <a href="/brand/blankframe_tokens.dart">blankframe_tokens.dart</a> into <code>lib/core/theme/</code>. Bundle the fonts or load them with <code>google_fonts</code>.</p>
+<pre>MaterialApp(
+  theme: bfTheme(Brightness.light, accent: myProductColour),
+  darkTheme: bfTheme(Brightness.dark, accent: myProductColourDark),
+);
+// or the constants: BfColors.of(brightness).line, BfRadius.md, BfSpace.s4, BfMotion.fast</pre>
+
+  <h3>Changing a token</h3>
+  <p class="note">Edit <code>brand/tokens.json</code>, run <code>python3 brand/build_tokens.py</code>, and commit what it writes. <code>--check</code> fails if a file is stale, a text pair drops under 4.5:1, or the home page palette no longer matches.</p>
+</section>
+
+<section id="components">
+  <h2>Shared components</h2>
+  <p class="note">There is no BlankFrame component library, on purpose. Products span Flutter, Next.js, Vite, Swift and static HTML, so a shared component only pays off inside one stack.</p>
+  <p class="note"><strong>Rule:</strong> pull a component out only when two products on the same stack already carry the same one. Until then each product uses its own components on top of these tokens.</p>
+  <p class="note"><strong>Status, October 2026:</strong> nothing qualifies yet. The only overlap is the English/Bangla switch (<code>lib/i18n.tsx</code>) in Suggest.Bike and TakaTalks, and the two work differently: one keeps the language in the URL, the other in local storage.</p>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <a href="/">blankframe.tech</a>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
