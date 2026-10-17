@@ -74,6 +74,10 @@
   input{ width: 100%; font: 15px var(--bf-font-body); color: var(--bf-ink); background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: 11px 14px; }
   input::placeholder{ color: var(--bf-faint); }
   footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .plist{ list-style: none; padding: 0; margin: var(--bf-space-6) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); }
+  .plist a{ display: block; text-decoration: none; color: inherit; }
+  .plist .card:hover{ box-shadow: var(--bf-shadow-pill); }
+  .plist h3{ margin: 0; }
 </style>
 </head>
 <body>
@@ -256,6 +260,12 @@ body { background: var(--bf-bg); color: var(--bf-ink); font-family: var(--bf-fon
   <p class="note">There is no BlankFrame component library, on purpose. Products span Flutter, Next.js, Vite, Swift and static HTML, so a shared component only pays off inside one stack.</p>
   <p class="note"><strong>Rule:</strong> pull a component out only when two products on the same stack already carry the same one. Until then each product uses its own components on top of these tokens.</p>
   <p class="note"><strong>Status, October 2026:</strong> nothing qualifies yet. The only overlap is the English/Bangla switch (<code>lib/i18n.tsx</code>) in Suggest.Bike and TakaTalks, and the two work differently: one keeps the language in the URL, the other in local storage.</p>
+</section>
+
+<section id="products">
+  <h2>Product <span class="serif">design languages</span></h2>
+  <p class="note">How each BlankFrame product looks, what it shares with the tokens above, and how that fits the philosophy. Client work is not listed.</p>
+  <ul class="plist"><li><a href="/brand/throttle-iq/"><div class="card"><h3>ThrottleIQ</h3><p>Machine memory for motorcycles</p></div></a></li><li><a href="/brand/protiti/"><div class="card"><h3>Protiti</h3><p>প্রতীতি — from doubt to certitude</p></div></a></li><li><a href="/brand/suggest-bike/"><div class="card"><h3>Suggest.Bike</h3><p>Bangladesh’s motorcycle decision engine</p></div></a></li><li><a href="/brand/ambulance-aid-bd/"><div class="card"><h3>Ambulance-AID-BD</h3><p>Dispatch and fleet visibility for ambulance operators</p></div></a></li><li><a href="/brand/tracon/"><div class="card"><h3>TRACON</h3><p>Terminal radar approach control for AI agent fleets</p></div></a></li><li><a href="/brand/caffeinate/"><div class="card"><h3>Caffeinate</h3><p>Keep your Mac awake for exactly as long as you need</p></div></a></li><li><a href="/brand/presswire/"><div class="card"><h3>Presswire</h3><p>A content pipeline that learns your voice</p></div></a></li></ul>
 </section>
 
 <footer>

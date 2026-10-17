@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protiti — BlankFrame brand</title>
+<meta name="description" content="The design language of Protiti and how it fits BlankFrame&#x27;s philosophy.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/brand/protiti/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Protiti — BlankFrame brand">
+<meta property="og:description" content="The design language of Protiti and how it fits BlankFrame&#x27;s philosophy.">
+<meta property="og:url" content="https://www.blankframe.tech/brand/protiti/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 960px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2, h3{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.2rem, 6vw, 3.4rem); margin: var(--bf-space-6) 0 var(--bf-space-3); }
+  h2{ font-size: 1.6rem; margin-bottom: var(--bf-space-3); }
+  h3{ font-size: 1.05rem; letter-spacing: -0.01em; margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; max-width: 640px; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.92rem; margin: 0 0 var(--bf-space-3); }
+  section{ margin-top: var(--bf-space-16); }
+  code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86em; }
+  pre{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: var(--bf-space-4); overflow-x: auto; margin: 0 0 var(--bf-space-4); line-height: 1.5; }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible, .btn:focus-visible, input:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--bf-space-4); }
+  .card{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-md); padding: var(--bf-space-6); box-shadow: var(--bf-shadow-card); }
+  .card p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.92rem; }
+  .logo-tile{ display: flex; align-items: center; justify-content: center; gap: var(--bf-space-4); min-height: 140px; border-radius: var(--bf-radius-sm); }
+  .wordmark{ font: 700 1.9rem var(--bf-font-display); letter-spacing: -0.035em; }
+
+  .spec{ border-top: 1px solid var(--bf-line); padding: var(--bf-space-4) 0; display: grid; grid-template-columns: 160px 1fr; gap: var(--bf-space-4); align-items: baseline; }
+  .spec small{ color: var(--bf-muted); font-size: 0.82rem; }
+  @media (max-width: 640px){ .spec{ grid-template-columns: 1fr; gap: var(--bf-space-1); } }
+
+  .scroll{ overflow-x: auto; }
+  table{ width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td{ text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--bf-line); vertical-align: middle; }
+  th{ color: var(--bf-muted); font-weight: 500; font-size: 0.82rem; }
+  .sws{ white-space: nowrap; }
+  .sw{ display: inline-block; width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--bf-line); margin-right: 4px; vertical-align: middle; }
+  .pair{ display: inline-block; padding: 2px 8px; border-radius: 6px; font-weight: 600; border: 1px solid var(--bf-line); }
+  .rad{ display: inline-block; width: 56px; height: 32px; background: var(--bf-accent); opacity: 0.85; }
+  .bar{ display: inline-block; height: 10px; background: var(--bf-accent); border-radius: 3px; }
+
+  .row{ display: flex; flex-wrap: wrap; gap: var(--bf-space-3); align-items: center; }
+  .btn{ display: inline-flex; align-items: center; gap: 10px; border-radius: var(--bf-radius-pill); padding: 11px 20px; font: 600 14px var(--bf-font-body); letter-spacing: -0.01em; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform var(--bf-dur-fast) var(--bf-ease), box-shadow var(--bf-dur-fast) var(--bf-ease); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--bf-shadow-pill); }
+  .btn.ink{ background: var(--bf-ink); color: var(--bf-bg); }
+  .btn.accent{ background: var(--bf-accent-text); color: var(--bf-on-accent); }
+  .btn.light{ background: var(--bf-card); color: var(--bf-ink); border-color: var(--bf-line); }
+  label{ display: block; font-size: 0.86rem; font-weight: 500; margin-bottom: var(--bf-space-1); }
+  input{ width: 100%; font: 15px var(--bf-font-body); color: var(--bf-ink); background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: 11px 14px; }
+  input::placeholder{ color: var(--bf-faint); }
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .plist{ list-style: none; padding: 0; margin: var(--bf-space-6) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); }
+  .plist a{ display: block; text-decoration: none; color: inherit; }
+  .plist .card:hover{ box-shadow: var(--bf-shadow-pill); }
+  .plist h3{ margin: 0; }
+
+  .sub{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-2) 0 0; }
+  .crumb{ font-size: 0.86rem; color: var(--bf-muted); margin-top: var(--bf-space-6); }
+  .crumb a{ color: var(--bf-muted); }
+  .chips{ display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--bf-space-3); }
+  .chip{ border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); overflow: hidden; background: var(--bf-card); }
+  .chip .fill{ height: 64px; }
+  .chip .meta{ padding: 8px 10px; font-size: 0.8rem; line-height: 1.35; }
+  .chip .meta b{ display: block; font-weight: 600; }
+  .chip .meta code{ color: var(--bf-muted); }
+  .two{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--bf-space-4); }
+  .two ul{ margin: var(--bf-space-2) 0 0; padding-left: 1.1rem; color: var(--bf-muted); font-size: 0.92rem; }
+  .two li{ margin-bottom: 6px; }
+  .tag{ display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bf-muted); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px 10px; margin-right: 6px; }
+  .warn{ border-left: 3px solid var(--bf-accent-text); padding: var(--bf-space-2) var(--bf-space-4); background: var(--bf-card); border-radius: 0 var(--bf-radius-sm) var(--bf-radius-sm) 0; margin-top: var(--bf-space-6); font-size: 0.92rem; color: var(--bf-ink-soft); }
+  .fit p{ color: var(--bf-ink-soft); max-width: 680px; }
+  .plist{ list-style: none; padding: 0; margin: var(--bf-space-6) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); }
+  .plist a{ display: block; text-decoration: none; color: inherit; }
+  .plist .card:hover{ box-shadow: var(--bf-shadow-pill); }
+  .plist h3{ margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<p class="crumb"><a href="/brand/">Brand</a> / Protiti</p>
+<h1>Protiti</h1>
+<p class="lede"><span class="serif">প্রতীতি — from doubt to certitude.</span> A prototype evidence vault for women facing online harassment in Bangladesh. It keeps screenshots, photos and notes in an encrypted vault and drafts a General Diary text for manual filing.</p>
+<p class="sub"><span class="tag">Research prototype</span><span class="tag">Flutter (DKC Fellowship)</span></p>
+<div class="row" style="margin-top:var(--bf-space-6)"><a class="btn light" href="/brand/">BlankFrame brand</a></div>
+<div class="warn">Research prototype. It is not for real use: unsafe for survivors until a security expert and a field partner have reviewed it, and no lawyer has reviewed whether its output is admissible. This page describes the design only.</div>
+
+<section id="look"><h2>The look</h2><p class="lede">Deliberately unremarkable. The app opens as a working calculator and your PIN unlocks the vault, so the first design requirement is that it blends onto a home screen. Inside, the shipped theme is a neutral slate: white and pale grey surfaces in light mode, deep slate in dark mode, one red reserved for the panic action.</p></section>
+
+<section id="colour"><h2>Colour</h2><h3>Shipped in code</h3><div class="chips"><div class="chip"><div class="fill" style="background:#F7F9FC"></div><div class="meta"><b>Surface light</b><code>#F7F9FC</code></div></div><div class="chip"><div class="fill" style="background:#2D3748"></div><div class="meta"><b>Text</b><code>#2D3748</code></div></div><div class="chip"><div class="fill" style="background:#718096"></div><div class="meta"><b>Text secondary</b><code>#718096</code></div></div><div class="chip"><div class="fill" style="background:#4A5568"></div><div class="meta"><b>Brand secondary</b><code>#4A5568</code></div></div><div class="chip"><div class="fill" style="background:#1A202C"></div><div class="meta"><b>Dark background</b><code>#1A202C</code></div></div><div class="chip"><div class="fill" style="background:#2D3748"></div><div class="meta"><b>Dark surface</b><code>#2D3748</code></div></div><div class="chip"><div class="fill" style="background:#C53030"></div><div class="meta"><b>Panic red</b><code>#C53030</code></div></div></div><h3>Proposed in the design handoff</h3><div class="chips"><div class="chip"><div class="fill" style="background:#4A154B"></div><div class="meta"><b>Deep amethyst</b><code>#4A154B</code></div></div><div class="chip"><div class="fill" style="background:#008080"></div><div class="meta"><b>Teal</b><code>#008080</code></div></div><div class="chip"><div class="fill" style="background:#FFC107"></div><div class="meta"><b>Warm gold</b><code>#FFC107</code></div></div><div class="chip"><div class="fill" style="background:#D32F2F"></div><div class="meta"><b>Crimson (SOS)</b><code>#D32F2F</code></div></div><div class="chip"><div class="fill" style="background:#F8F9FA"></div><div class="meta"><b>Alabaster</b><code>#F8F9FA</code></div></div><div class="chip"><div class="fill" style="background:#121212"></div><div class="meta"><b>Soft charcoal</b><code>#121212</code></div></div></div></section>
+
+<section id="type"><h2>Type</h2><div class="spec"><div><b>English headings (handoff)</b></div><div>Poppins<p class="sub">Not confirmed in the shipped theme</p></div></div><div class="spec"><div><b>English body (handoff)</b></div><div>Inter<p class="sub">Not confirmed in the shipped theme</p></div></div><div class="spec"><div><b>Bangla (handoff)</b></div><div>Hind Siliguri / Noto Sans Bengali<p class="sub">Used for the GD PDF text</p></div></div><div class="spec"><div><b>Hashes and timestamps (handoff)</b></div><div>JetBrains Mono<p class="sub">Evidence integrity values (handoff)</p></div></div></section>
+
+<section id="feel"><h2>Shape and behaviour</h2><p class="lede">Calm, low-contrast surfaces so nothing alarming shows on a shared screen, a dark theme so night-time use doesn’t glare, and red used for exactly one thing. The handoff sets the tone as dignity and forensic clarity, not a “security app”.</p></section>
+
+<section id="shared-own"><h2>Shared and its own</h2>
+<div class="two">
+<div class="card"><h3 style="margin-top:0">Shared with BlankFrame</h3><ul><li>Restraint: one strong colour, used sparingly</li><li>Bilingual by default, English and Bangla</li><li>Dark and light themes</li></ul></div>
+<div class="card"><h3 style="margin-top:0">Its own</h3><ul><li>The visual identity is a disguise, so it should not look like a BlankFrame product on screen</li><li>The handoff palette (amethyst, teal, gold) and the shipped slate palette differ; the code is what runs today</li><li>No shared token file yet</li></ul></div>
+</div></section>
+
+<section id="fit" class="fit"><h2>How it fits the philosophy</h2>
+<p class="lede"><span class="serif">The best infrastructure is invisible.</span> We build it, it disappears, and what’s left is your time.</p>
+<p>“The best infrastructure is invisible” is nearly literal here. Protiti hides as a calculator, keeps the evidence record (source, time, SHA-256) so the survivor doesn’t have to reconstruct it later, and drafts the paperwork so she doesn’t start from a blank page. That is the BlankFrame idea of automating the repetitive thinking between a person and the work, applied where the cost of getting it wrong is highest.</p></section>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <a href="/brand/">All brand pages</a>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

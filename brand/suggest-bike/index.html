@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggest.Bike — BlankFrame brand</title>
+<meta name="description" content="The design language of Suggest.Bike and how it fits BlankFrame&#x27;s philosophy.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/brand/suggest-bike/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Suggest.Bike — BlankFrame brand">
+<meta property="og:description" content="The design language of Suggest.Bike and how it fits BlankFrame&#x27;s philosophy.">
+<meta property="og:url" content="https://www.blankframe.tech/brand/suggest-bike/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 960px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2, h3{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.2rem, 6vw, 3.4rem); margin: var(--bf-space-6) 0 var(--bf-space-3); }
+  h2{ font-size: 1.6rem; margin-bottom: var(--bf-space-3); }
+  h3{ font-size: 1.05rem; letter-spacing: -0.01em; margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; max-width: 640px; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.92rem; margin: 0 0 var(--bf-space-3); }
+  section{ margin-top: var(--bf-space-16); }
+  code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86em; }
+  pre{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: var(--bf-space-4); overflow-x: auto; margin: 0 0 var(--bf-space-4); line-height: 1.5; }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible, .btn:focus-visible, input:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--bf-space-4); }
+  .card{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-md); padding: var(--bf-space-6); box-shadow: var(--bf-shadow-card); }
+  .card p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.92rem; }
+  .logo-tile{ display: flex; align-items: center; justify-content: center; gap: var(--bf-space-4); min-height: 140px; border-radius: var(--bf-radius-sm); }
+  .wordmark{ font: 700 1.9rem var(--bf-font-display); letter-spacing: -0.035em; }
+
+  .spec{ border-top: 1px solid var(--bf-line); padding: var(--bf-space-4) 0; display: grid; grid-template-columns: 160px 1fr; gap: var(--bf-space-4); align-items: baseline; }
+  .spec small{ color: var(--bf-muted); font-size: 0.82rem; }
+  @media (max-width: 640px){ .spec{ grid-template-columns: 1fr; gap: var(--bf-space-1); } }
+
+  .scroll{ overflow-x: auto; }
+  table{ width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td{ text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--bf-line); vertical-align: middle; }
+  th{ color: var(--bf-muted); font-weight: 500; font-size: 0.82rem; }
+  .sws{ white-space: nowrap; }
+  .sw{ display: inline-block; width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--bf-line); margin-right: 4px; vertical-align: middle; }
+  .pair{ display: inline-block; padding: 2px 8px; border-radius: 6px; font-weight: 600; border: 1px solid var(--bf-line); }
+  .rad{ display: inline-block; width: 56px; height: 32px; background: var(--bf-accent); opacity: 0.85; }
+  .bar{ display: inline-block; height: 10px; background: var(--bf-accent); border-radius: 3px; }
+
+  .row{ display: flex; flex-wrap: wrap; gap: var(--bf-space-3); align-items: center; }
+  .btn{ display: inline-flex; align-items: center; gap: 10px; border-radius: var(--bf-radius-pill); padding: 11px 20px; font: 600 14px var(--bf-font-body); letter-spacing: -0.01em; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform var(--bf-dur-fast) var(--bf-ease), box-shadow var(--bf-dur-fast) var(--bf-ease); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--bf-shadow-pill); }
+  .btn.ink{ background: var(--bf-ink); color: var(--bf-bg); }
+  .btn.accent{ background: var(--bf-accent-text); color: var(--bf-on-accent); }
+  .btn.light{ background: var(--bf-card); color: var(--bf-ink); border-color: var(--bf-line); }
+  label{ display: block; font-size: 0.86rem; font-weight: 500; margin-bottom: var(--bf-space-1); }
+  input{ width: 100%; font: 15px var(--bf-font-body); color: var(--bf-ink); background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: 11px 14px; }
+  input::placeholder{ color: var(--bf-faint); }
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .plist{ list-style: none; padding: 0; margin: var(--bf-space-6) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); }
+  .plist a{ display: block; text-decoration: none; color: inherit; }
+  .plist .card:hover{ box-shadow: var(--bf-shadow-pill); }
+  .plist h3{ margin: 0; }
+
+  .sub{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-2) 0 0; }
+  .crumb{ font-size: 0.86rem; color: var(--bf-muted); margin-top: var(--bf-space-6); }
+  .crumb a{ color: var(--bf-muted); }
+  .chips{ display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--bf-space-3); }
+  .chip{ border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); overflow: hidden; background: var(--bf-card); }
+  .chip .fill{ height: 64px; }
+  .chip .meta{ padding: 8px 10px; font-size: 0.8rem; line-height: 1.35; }
+  .chip .meta b{ display: block; font-weight: 600; }
+  .chip .meta code{ color: var(--bf-muted); }
+  .two{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--bf-space-4); }
+  .two ul{ margin: var(--bf-space-2) 0 0; padding-left: 1.1rem; color: var(--bf-muted); font-size: 0.92rem; }
+  .two li{ margin-bottom: 6px; }
+  .tag{ display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bf-muted); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px 10px; margin-right: 6px; }
+  .warn{ border-left: 3px solid var(--bf-accent-text); padding: var(--bf-space-2) var(--bf-space-4); background: var(--bf-card); border-radius: 0 var(--bf-radius-sm) var(--bf-radius-sm) 0; margin-top: var(--bf-space-6); font-size: 0.92rem; color: var(--bf-ink-soft); }
+  .fit p{ color: var(--bf-ink-soft); max-width: 680px; }
+  .plist{ list-style: none; padding: 0; margin: var(--bf-space-6) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); }
+  .plist a{ display: block; text-decoration: none; color: inherit; }
+  .plist .card:hover{ box-shadow: var(--bf-shadow-pill); }
+  .plist h3{ margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<p class="crumb"><a href="/brand/">Brand</a> / Suggest.Bike</p>
+<h1>Suggest.Bike</h1>
+<p class="lede"><span class="serif">Bangladesh’s motorcycle decision engine.</span> The site to visit before you buy a bike in Bangladesh: real-world mileage, whether a local mistri can fix it, parts prices and the true monthly cost of owning it.</p>
+<p class="sub"><span class="tag">Static site</span><span class="tag">Next.js static export</span></p>
+<div class="row" style="margin-top:var(--bf-space-6)"><a class="btn light" href="/brand/">BlankFrame brand</a></div>
+
+
+<section id="look"><h2>The look</h2><p class="lede">Steel blue and ink on a cool grey-white page, with one hi-vis yellow highlight, the colour of a safety vest. The tokens say it in a comment: the yellow is “one highlight”, and red is an alert colour, not a brand colour. It reads like a workshop price list, not a showroom.</p></section>
+
+<section id="colour"><h2>Colour</h2><h3>Light</h3><div class="chips"><div class="chip"><div class="fill" style="background:#F4F6FA"></div><div class="meta"><b>Background</b><code>#F4F6FA</code></div></div><div class="chip"><div class="fill" style="background:#FFFFFF"></div><div class="meta"><b>Surface</b><code>#FFFFFF</code></div></div><div class="chip"><div class="fill" style="background:#0F1B2D"></div><div class="meta"><b>Ink</b><code>#0F1B2D</code></div></div><div class="chip"><div class="fill" style="background:#1B4F91"></div><div class="meta"><b>Brand · steel blue</b><code>#1B4F91</code></div></div><div class="chip"><div class="fill" style="background:#133C70"></div><div class="meta"><b>Brand strong</b><code>#133C70</code></div></div><div class="chip"><div class="fill" style="background:#FFC400"></div><div class="meta"><b>Accent · hi-vis</b><code>#FFC400</code></div></div><div class="chip"><div class="fill" style="background:#C42B22"></div><div class="meta"><b>Signal · red</b><code>#C42B22</code></div></div><div class="chip"><div class="fill" style="background:#0F7A4C"></div><div class="meta"><b>Good</b><code>#0F7A4C</code></div></div><div class="chip"><div class="fill" style="background:#A15C07"></div><div class="meta"><b>Warn</b><code>#A15C07</code></div></div></div><h3>Dark</h3><div class="chips"><div class="chip"><div class="fill" style="background:#0A1220"></div><div class="meta"><b>Background</b><code>#0A1220</code></div></div></div></section>
+
+<section id="type"><h2>Type</h2><div class="spec"><div><b>UI and headings</b></div><div>Geist<p class="sub">Next.js font</p></div></div><div class="spec"><div><b>Numbers and specs</b></div><div>Geist Mono<p class="sub">Prices, specs, scores</p></div></div><div class="spec"><div><b>Bangla</b></div><div>Hind Siliguri<p class="sub">Loaded alongside Geist for the Bangla toggle</p></div></div></section>
+
+<section id="feel"><h2>Shape and behaviour</h2><p class="lede">Dense but scannable: verdict first, then scores, then specs. Editorial scores are shown without a winner badge; only measured numbers (price, running cost, power-to-weight, mileage) get a “lowest” or “highest” mark. Small captions are kept at 4.5:1 contrast on purpose.</p></section>
+
+<section id="shared-own"><h2>Shared and its own</h2>
+<div class="two">
+<div class="card"><h3 style="margin-top:0">Shared with BlankFrame</h3><ul><li>Closest cousin to the BlankFrame tokens: white cards on a pale cool background, ink text, one accent</li><li>Accessibility rule on small text matches the AA checks in the token build</li><li>English and Bangla</li></ul></div>
+<div class="card"><h3 style="margin-top:0">Its own</h3><ul><li>Steel blue and yellow instead of BlankFrame blue</li><li>Geist instead of Inter Tight</li><li>Semantic colours (good, warn, signal) for price and score changes</li></ul></div>
+</div></section>
+
+<section id="fit" class="fit"><h2>How it fits the philosophy</h2>
+<p class="lede"><span class="serif">The best infrastructure is invisible.</span> We build it, it disappears, and what’s left is your time.</p>
+<p>BlankFrame automates “the repetitive thinking that sits between you and the work.” Choosing a bike means opening a dozen tabs and comparing the same numbers again and again. Suggest.Bike does that comparison once, with Bangladesh-specific data, and hands back a shortlist and a monthly cost. The design is built the same way: plain, honest, nothing decorative between the buyer and the answer.</p></section>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <a href="/brand/">All brand pages</a>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
