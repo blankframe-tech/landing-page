@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bijoy to Unicode Converter — BlankFrame</title>
+<meta name="description" content="Convert Bijoy (SutonnyMJ) Word files to Unicode Bangla in your browser. Files never leave your computer.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/tools/bijoy-to-unicode/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Bijoy to Unicode Converter — BlankFrame">
+<meta property="og:description" content="Convert Bijoy Word files to Unicode Bangla in the browser. Nothing is uploaded.">
+<meta property="og:url" content="https://www.blankframe.tech/tools/bijoy-to-unicode/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{ --bg:#F8FAFC; --card:#FFFFFF; --ink:#18181B; --muted:#71717A; --line:#E4E4E7; --accent:#3B82F6; --bad:#B91C1C; }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0E0E10; --card:#18181B; --ink:#F4F4F5; --muted:#A1A1AA; --line:#2A2A2E; --accent:#60A5FA; --bad:#F87171; }
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 Inter,system-ui,sans-serif; }
+  .wrap{ max-width:720px; margin:0 auto; padding:32px 16px 64px; }
+  a{ color:var(--accent); font-weight:600; }
+  h1{ font:700 clamp(30px,6vw,44px)/1.15 "Inter Tight",Inter,sans-serif; letter-spacing:-0.02em; margin:16px 0 12px; }
+  .back{ font-size:14px; text-decoration:none; color:var(--muted); font-weight:500; }
+  .lead{ color:var(--muted); margin:0 0 24px; }
+  #drop{ display:block; border:2px dashed var(--line); border-radius:20px; background:var(--card); padding:48px 16px; text-align:center; cursor:pointer; }
+  #drop.over, #drop:focus-within{ border-color:var(--accent); }
+  #drop input{ position:absolute; opacity:0; width:1px; height:1px; }
+  ul{ list-style:none; padding:0; margin:24px 0 0; }
+  li{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin:10px 0; overflow-wrap:anywhere; }
+  .err{ color:var(--bad); } .words{ color:var(--muted); font-size:15px; }
+  .note{ color:var(--muted); font-size:15px; margin-top:32px; }
+  .note b{ color:var(--ink); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="/">&larr; BlankFrame</a>
+  <h1>Bijoy to Unicode converter</h1>
+  <p class="lead">Turn Bijoy (SutonnyMJ) Word files into Unicode Bangla, with the layout kept. The conversion runs in your browser: <b>your files are never uploaded</b>.</p>
+
+  <label id="drop"><input id="pick" type="file" multiple accept=".docx" disabled>Loading converter&hellip;</label>
+  <ul id="list" aria-live="polite"></ul>
+
+  <p class="note"><b>Only .docx files.</b> For an old .doc or .dot file, open it in Word, choose File &rarr; Save As &rarr; Word Document (.docx), then drop that file here.
+  The result uses the Nirmala UI font. Words listed under &ldquo;check by hand&rdquo; may have converted wrongly, so read them against the original, especially in legal text.</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="bijoy.js"></script>
+<script>
+const drop = document.getElementById("drop"), pick = document.getElementById("pick"), list = document.getElementById("list");
+let engine;
+fetch("converter.js").then(r => r.text()).then(src => {
+  engine = Bijoy.makeEngine(src);
+  pick.disabled = false;
+  drop.lastChild.textContent = "Drop .docx files here or tap to choose";
+}).catch(() => { drop.lastChild.textContent = "Could not load the converter. Reload the page."; });
+
+async function one(file) {
+  const li = document.createElement("li");
+  li.textContent = file.name + " — converting…";
+  list.prepend(li);
+  try {
+    if (!/\.docx$/i.test(file.name)) throw new Error("not a .docx file. Save it as .docx in Word first.");
+    const { blob, words } = await Bijoy.convertDocx(await file.arrayBuffer(), engine, JSZip);
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([blob], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }));
+    a.download = file.name.replace(/\.docx$/i, "") + " (Unicode).docx";
+    a.textContent = "Download " + a.download;
+    li.replaceChildren(a);
+    if (words.length) { const w = document.createElement("div"); w.className = "words"; w.textContent = "Check by hand: " + words.join(" "); li.append(w); }
+    a.click();
+  } catch (e) {
+    li.className = "err"; li.textContent = file.name + " — failed: " + (e.message || e);
+  }
+}
+async function many(files) { for (const f of files) await one(f); }
+pick.onchange = e => { many([...e.target.files]); e.target.value = ""; };
+drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
+drop.ondragleave = () => drop.classList.remove("over");
+drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); if (engine) many([...e.dataTransfer.files]); };
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
