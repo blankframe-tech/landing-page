@@ -12,6 +12,7 @@ Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out 
 | `index.html`, `404.html`, `favicon.svg`, `og-image.png` | The BFT home page (structure, styles and script in one file), the not-found page and shared assets |
 | `throttle-iq/` | ThrottleIQ: product page, install page, QR routing, crash reports, `v2/` showcase. The canonical path; `throttleIQ/`, `throttle-iq-2/`, `throttleiq2/` and `thtorrleiq2/` only redirect here |
 | `poredekho-vto/`, `reserve-my-tokens/`, `mac-check/`, `fret-gps/`, `itl-reserver/`, `indriyo/` | Product and project pages |
+| `tools/taka-check/` | Checklist for spotting fake new-series taka notes (৳1000, ৳100, ৳50, ৳20), from Bangladesh Bank's poster |
 | `experiments/`, `research/` | The experiments lab section and the research pages (including the Fuel Shock proposal pages generated from the FuelPriceHikeImpactResearch repo) |
 | `abraar/`, `shifa/` | Personal pages (`abraar/` is its own nested git repo) |
 | `terracotta-tales/` | Redirect to Terracotta Tales |

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taka Note Check — BlankFrame</title>
+<meta name="description" content="Check if a new-series Bangladeshi taka note (1000, 100, 50, 20) is real: what to feel, tilt, hold to the light and look at under a magnifier. Based on Bangladesh Bank's own guide.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/tools/taka-check/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Taka Note Check — BlankFrame">
+<meta property="og:description" content="Is this taka note real? A step-by-step checklist for the new 1000, 100, 50 and 20 taka notes.">
+<meta property="og:url" content="https://www.blankframe.tech/tools/taka-check/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F8FAFC; --card:#FFFFFF; --ink:#18181B; --muted:#71717A; --line:#E4E4E7; --accent:#3B82F6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0E0E10; --card:#18181B; --ink:#F4F4F5; --muted:#A1A1AA; --line:#2A2A2E; --accent:#60A5FA; }
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 Inter,system-ui,sans-serif; }
+  .wrap{ max-width:820px; margin:0 auto; padding:32px 16px 64px; }
+  a{ color:var(--accent); }
+  h1,h2{ font-family:"Inter Tight",Inter,sans-serif; letter-spacing:-0.02em; line-height:1.15; }
+  h1{ font-size:clamp(32px,6vw,48px); margin:16px 0 12px; }
+  h2{ font-size:22px; margin:0 0 4px; }
+  .back{ font-size:14px; text-decoration:none; color:var(--muted); }
+  .lead{ color:var(--muted); font-size:18px; margin:0 0 24px; }
+  .chip{ display:inline-block; font-size:12px; font-weight:600; padding:4px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:var(--card); }
+  section{ background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px; margin:16px 0; }
+  .how{ color:var(--muted); margin:0 0 12px; }
+  ul,ol{ padding-left:20px; margin:0; } li{ margin:6px 0; }
+  .checks{ list-style:none; padding:0; }
+  .checks li{ border-top:1px solid var(--line); padding:12px 0 6px; margin:0; }
+  .checks label{ display:flex; gap:12px; align-items:flex-start; cursor:pointer; }
+  .checks input{ width:20px; height:20px; margin:2px 0 0; flex:none; accent-color:var(--accent); }
+  .checks b{ display:block; }
+  .bn{ color:var(--muted); font-weight:400; }
+  .picker{ position:sticky; top:0; z-index:1; background:var(--bg); padding:12px 0; margin:16px 0 0; }
+  .notes{ display:flex; flex-wrap:wrap; gap:8px; }
+  .notes button{ font:600 16px "Inter Tight",Inter,sans-serif; padding:10px 18px; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--ink); cursor:pointer; }
+  .notes button[aria-pressed="true"]{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .progress{ margin:8px 0 0; color:var(--muted); font-size:14px; }
+  footer{ color:var(--muted); font-size:14px; margin-top:32px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="/">&larr; BlankFrame</a>
+  <h1>Is this taka note real?</h1>
+  <p class="lead">Pick your note, then go through the checks: feel it, tilt it, hold it to the light. A forger can copy one or two features. A real note has all of them.</p>
+  <span class="chip">New series &middot; ৳1000, ৳100, ৳50, ৳20</span>
+
+  <div class="picker">
+    <div class="notes" role="group" aria-label="Which note are you checking?">
+      <button type="button" data-note="1000" aria-pressed="true">৳1000</button>
+      <button type="button" data-note="100" aria-pressed="false">৳100</button>
+      <button type="button" data-note="50" aria-pressed="false">৳50</button>
+      <button type="button" data-note="20" aria-pressed="false">৳20</button>
+    </div>
+    <p class="progress" id="progress" aria-live="polite"></p>
+  </div>
+
+  <section>
+    <h2>1. Feel it</h2>
+    <p class="how">Run your thumb over the front of the note. No tools needed.</p>
+    <ul class="checks">
+      <li data-notes="1000 100 50"><label><input type="checkbox"><span><b>Raised lines <span class="bn">(অসমতল ছাপা, intaglio)</span></b>Six slanted lines on the right side of the front stand up from the paper. You can feel them with a fingertip.</span></label></li>
+      <li data-notes="1000"><label><input type="checkbox"><span><b>Six raised circles <span class="bn">(দৃষ্টি প্রতিবন্ধীদের জন্য বৃত্ত)</span></b>Bottom right of the front. Made for blind users, so they must be bumpy, not flat.</span></label></li>
+      <li data-notes="100"><label><input type="checkbox"><span><b>Three raised circles <span class="bn">(দৃষ্টি প্রতিবন্ধীদের জন্য বৃত্ত)</span></b>Bottom right of the front. Made for blind users, so they must be bumpy, not flat.</span></label></li>
+      <li data-notes="50"><label><input type="checkbox"><span><b>Two raised circles <span class="bn">(দৃষ্টি প্রতিবন্ধীদের জন্য বৃত্ত)</span></b>Bottom right of the front. Made for blind users, so they must be bumpy, not flat.</span></label></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. Tilt it</h2>
+    <p class="how">Move the note back and forth under a light and watch the colours change.</p>
+    <ul class="checks">
+      <li data-notes="1000"><label><input type="checkbox"><span><b>Colour-shifting 1000 <span class="bn">(রং পরিবর্তনশীল কালি)</span></b>The big &ldquo;1000&rdquo; in the top-right corner of the front turns from magenta to green, and a small hidden &ldquo;1000&rdquo; appears inside it at an angle.</span></label></li>
+      <li data-notes="100"><label><input type="checkbox"><span><b>Colour-shifting 100 <span class="bn">(রং পরিবর্তনশীল কালি)</span></b>The big &ldquo;100&rdquo; in the top-right corner of the front turns from gold to green.</span></label></li>
+      <li data-notes="1000 100 50 20"><label><input type="checkbox"><span><b>Security thread <span class="bn">(নিরাপত্তা সুতা)</span></b>The thread on the left of the front shows the note&rsquo;s value and changes from red to green as you tilt.<span data-notes="1000"> On the 1000, it also carries the Bangladesh Bank monogram.</span></span></label></li>
+      <li data-notes="1000"><label><input type="checkbox"><span><b>Shiny gold stripe <span class="bn">(ইরিডিসেন্ট স্ট্রাইপ)</span></b>On the back, a light golden vertical stripe reads &ldquo;BANGLADESH BANK&rdquo;.</span></label></li>
+      <li data-notes="1000 100 50"><label><input type="checkbox"><span><b>Hidden value <span class="bn">(গুপ্ত লেখা)</span></b>Hold the note flat at eye level and look along the black patch in the middle of the bottom border on the front. The value (<span data-value></span>) appears.</span></label></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. Hold it up to the light</h2>
+    <p class="how">Look through the note at a window or a bulb.</p>
+    <ul class="checks">
+      <li data-notes="1000 100 50 20"><label><input type="checkbox"><span><b>Tiger watermark <span class="bn">(জলছাপ)</span></b>A Royal Bengal Tiger&rsquo;s face, with a brighter &ldquo;<span data-value></span>&rdquo; and the Bangladesh Bank monogram below it.</span></label></li>
+      <li data-notes="1000 100 50 20"><label><input type="checkbox"><span><b>See-through number <span class="bn">(সি-থ্রু ইমেজ)</span></b>Just right of the governor&rsquo;s signature, broken marks on the front and back line up into &ldquo;<span data-value></span>&rdquo;.</span></label></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. With a magnifier or UV light</h2>
+    <p class="how">A magnifying glass, a phone camera zoomed in, or the UV detector at a shop or bank.</p>
+    <ul class="checks">
+      <li data-notes="1000"><label><input type="checkbox"><span><b>Tiny text <span class="bn">(মাইক্রোপ্রিন্ট)</span></b>Front, left side: &ldquo;BANGLADESH BANK&rdquo; printed vertically under the &ldquo;BANGLADESH BANK&rdquo; label. Back: behind the &ldquo;1000&rdquo; at top left and bottom, &ldquo;BANGLADESH BANK&rdquo; and &ldquo;ONE THOUSAND TAKA&rdquo; repeat in tiny letters.</span></label></li>
+      <li data-notes="100"><label><input type="checkbox"><span><b>Tiny text <span class="bn">(মাইক্রোপ্রিন্ট)</span></b>Front, left of the security thread: &ldquo;BANGLADESH BANK&rdquo; and &ldquo;100 Taka&rdquo; printed vertically. Back: &ldquo;BANGLADESH BANK&rdquo; and the value.</span></label></li>
+      <li data-notes="50"><label><input type="checkbox"><span><b>Tiny text <span class="bn">(মাইক্রোপ্রিন্ট)</span></b>Front: &ldquo;BANGLADESH BANK&rdquo; on both sides of the caption &ldquo;Ahsan Manzil, Dhaka&rdquo;. Back: &ldquo;BANGLADESH BANK&rdquo; and the value.</span></label></li>
+      <li data-notes="20"><label><input type="checkbox"><span><b>Tiny text <span class="bn">(মাইক্রোপ্রিন্ট)</span></b>Front right and back left: &ldquo;BANGLADESH BANK&rdquo; printed vertically inside the fine wavy pattern.</span></label></li>
+      <li data-notes="1000"><label><input type="checkbox"><span><b>Glow under UV <span class="bn">(ইউভি ফ্লুরোসেন্স কালি)</span></b>Under a UV lamp, a blooming water lily (shapla) with leaves and a bud glows magenta in the background of the front.</span></label></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>If a check fails</h2>
+    <ul>
+      <li>Compare it side by side with a note you got from a bank or ATM. Most fakes look wrong next to a real one.</li>
+      <li>Don&rsquo;t pass it on. Take it to a bank branch and ask the teller to check it.</li>
+      <li>This list covers the new series only (governor Ahsan H. Mansur&rsquo;s signature, theme &ldquo;Historical and Archaeological Architecture of Bangladesh&rdquo;). Older notes have different features: see <a href="https://www.bb.org.bd/en/index.php/currency/note">Bangladesh Bank&rsquo;s note guide</a>.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Source: Bangladesh Bank&rsquo;s &ldquo;আসল নোট চিনুন, নিরাপদ লেনদেন নিশ্চিত করুন&rdquo; poster, on display in bank branches (October 2026). Full details at <a href="https://www.bb.org.bd/en/index.php/currency/note">bb.org.bd</a>. This page is a guide, not an official verification.</p>
+    <p>&copy; BlankFrame Technologies</p>
+  </footer>
+</main>
+
+<script>
+  const buttons = document.querySelectorAll('.notes button');
+  const progress = document.getElementById('progress');
+
+  function show(note) {
+    buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.note === note));
+    document.querySelectorAll('[data-notes]').forEach(el => {
+      el.hidden = !el.dataset.notes.split(' ').includes(note);
+    });
+    // the 20 has no raised print, so its "Feel it" section would be empty
+    document.querySelectorAll('section:has(.checks)').forEach(s => {
+      s.hidden = !s.querySelector('.checks > li:not([hidden])');
+    });
+    document.querySelectorAll('[data-value]').forEach(el => el.textContent = note);
+    document.querySelectorAll('.checks input').forEach(i => i.checked = false);
+    count();
+  }
+
+  function count() {
+    const visible = [...document.querySelectorAll('.checks > li:not([hidden]) input')];
+    const done = visible.filter(i => i.checked).length;
+    progress.textContent = done === visible.length
+      ? `All ${done} checks passed.`
+      : `${done} of ${visible.length} checks passed.`;
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.note)));
+  document.addEventListener('change', e => { if (e.target.matches('.checks input')) count(); });
+  show('1000');
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
