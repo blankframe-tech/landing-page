@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRACON — Radar for your AI coding agents · BlankFrame</title>
+<meta name="description" content="TRACON watches every Claude Code and Antigravity session on your Mac, read-only, and tells you when one is waiting on you or two are editing the same file.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/tracon/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="TRACON — Radar for your AI coding agents">
+<meta property="og:description" content="A local, read-only monitor for Claude Code and Antigravity sessions. See which agent is waiting on you, answer it from your phone.">
+<meta property="og:url" content="https://www.blankframe.tech/tracon/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 960px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2, h3{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.4rem, 8vw, 4rem); margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  h2{ font-size: 1.6rem; margin-bottom: var(--bf-space-3); }
+  h3{ font-size: 1.05rem; letter-spacing: -0.01em; }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; max-width: 660px; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-3) 0 0; }
+  section{ margin-top: var(--bf-space-16); }
+  code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86em; }
+  pre{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: var(--bf-space-4); overflow-x: auto; margin: var(--bf-space-3) 0 0; line-height: 1.5; }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible, .btn:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  .tag{ display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bf-muted); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px 10px; margin: var(--bf-space-6) 6px 0 0; }
+  .row{ display: flex; flex-wrap: wrap; gap: var(--bf-space-3); align-items: center; margin-top: var(--bf-space-6); }
+  .btn{ display: inline-flex; align-items: center; gap: 10px; border-radius: var(--bf-radius-pill); padding: 11px 20px; font: 600 14px var(--bf-font-body); letter-spacing: -0.01em; text-decoration: none; border: 1px solid transparent; transition: transform var(--bf-dur-fast) var(--bf-ease), box-shadow var(--bf-dur-fast) var(--bf-ease); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--bf-shadow-pill); }
+  .btn.ink{ background: var(--bf-ink); color: var(--bf-bg); }
+  .btn.light{ background: var(--bf-card); color: var(--bf-ink); border-color: var(--bf-line); }
+
+  figure{ margin: var(--bf-space-8) 0 0; }
+  figure img{ display: block; width: 100%; height: auto; border-radius: var(--bf-radius-sm); border: 1px solid var(--bf-line); box-shadow: var(--bf-shadow-card); }
+  figcaption{ color: var(--bf-muted); font-size: 0.86rem; margin-top: var(--bf-space-2); }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); margin-top: var(--bf-space-6); }
+  .card{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-md); padding: var(--bf-space-6); box-shadow: var(--bf-shadow-card); min-width: 0; }
+  .card p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.94rem; }
+  .card ul{ margin: var(--bf-space-2) 0 0; padding-left: 1.1rem; color: var(--bf-muted); font-size: 0.94rem; }
+  .card li{ margin-bottom: 6px; }
+  ol.steps{ padding-left: 1.2rem; color: var(--bf-ink-soft); max-width: 680px; }
+  ol.steps li{ margin-bottom: var(--bf-space-2); }
+  .warn{ border-left: 3px solid var(--bf-accent-text); padding: var(--bf-space-2) var(--bf-space-4); background: var(--bf-card); border-radius: 0 var(--bf-radius-sm) var(--bf-radius-sm) 0; margin-top: var(--bf-space-6); font-size: 0.92rem; color: var(--bf-ink-soft); }
+
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<header>
+  <h1>TRACON</h1>
+  <p class="lede"><span class="serif">Air traffic control for your AI coding agents.</span> TRACON watches every Claude Code and Antigravity session on your Mac, across all your Claude profiles, and shows each one as a flight on a radar. You see which agent is working, which one is waiting on you, and when two of them are editing the same file.</p>
+  <span class="tag">Beta 0.1</span><span class="tag">macOS</span><span class="tag">MIT licensed</span>
+  <div class="row">
+    <a class="btn ink" href="https://github.com/the-abraar/TRACON/releases/tag/beta_0.1">Download beta for macOS</a>
+    <a class="btn light" href="https://github.com/the-abraar/TRACON">Source on GitHub</a>
+  </div>
+  <figure>
+    <img src="holding.jpg" width="1650" height="690" alt="TRACON Flight Deck with two session cards: one cruising, one highlighted amber because it is holding on an AskUserQuestion prompt.">
+    <figcaption>The Flight Deck. The amber card is a session waiting on your answer.</figcaption>
+  </figure>
+</header>
+
+<section id="why">
+  <h2>Why it exists</h2>
+  <p class="lede">Running one agent is easy. Running several, across a few accounts and terminal tabs, means an agent can sit for an hour on a <code>[y/n]</code> prompt you never saw, two sessions can quietly write the same file, and tokens burn where you can't see them. TRACON keeps the whole picture so you don't have to.</p>
+</section>
+
+<section id="features">
+  <h2>What it does today</h2>
+  <div class="grid">
+    <div class="card"><h3>Live fleet radar</h3><p>One card per active session: callsign, plan, state, the tool running right now, subagents, burn rate and token totals.</p></div>
+    <div class="card"><h3>Holding alerts</h3><p>When a session stops to wait for you, its card pulses amber, a chime plays and your Mac shows a notification.</p></div>
+    <div class="card"><h3>Collision warnings</h3><p>Two sessions writing the same file within five minutes get a red card, before it turns into a merge conflict.</p></div>
+    <div class="card"><h3>Execution graph</h3><p>Open any session to see its turns, tool calls and subagents as a graph, with latency and token badges on each step.</p></div>
+    <div class="card"><h3>Terminal too</h3><p>Run <code>tracon</code> for a live radar right in your terminal, or <code>tracon status</code> for a one-shot snapshot.</p></div>
+    <div class="card"><h3>Many profiles, two runtimes</h3><p>Reads every Claude Code config folder on the machine plus Antigravity transcripts, side by side.</p></div>
+  </div>
+  <figure>
+    <img src="status.jpg" width="1868" height="946" alt="Terminal output of tracon status listing sessions with squawk, callsign, runtime, state and token columns." loading="lazy">
+    <figcaption><code>tracon status</code>: every flight in one table.</figcaption>
+  </figure>
+</section>
+
+<section id="partner">
+  <h2>Answer from <span class="serif">anywhere</span></h2>
+  <p class="lede">Leave long sessions running at home and answer them from your phone or another laptop. The Flight Deck installs as an app on iOS, Android, Windows, Linux and macOS. It lists every question, plan approval and permission prompt your Claude sessions are holding, sends your answer back, and the session carries on.</p>
+  <div class="grid">
+    <div class="card"><h3>Only while you're away</h3><p>By default prompts go to your phone after three minutes without keyboard or mouse input on the Mac. Touch the Mac and they go back to the terminal.</p></div>
+    <div class="card"><h3>Private by design</h3><p>Devices connect over your own Tailscale network, with a device token on every request. Nothing is exposed to the internet, and pushes are end-to-end encrypted.</p></div>
+    <div class="card"><h3>Opt-in</h3><p>Answering remotely needs <code>tracon hooks install</code>. Without it, or when TRACON isn't running, Claude Code behaves exactly as before.</p></div>
+  </div>
+  <p class="note">Antigravity sessions show as holding but can only be answered at the Mac.</p>
+</section>
+
+<section id="privacy">
+  <h2>Read-only, local only</h2>
+  <p class="lede">TRACON reads session transcripts from your Claude Code and Antigravity folders. It never writes to them and needs no changes to your CLI tools. The engine listens on <code>127.0.0.1</code>, so the data stays on your machine. The one exception is opt-in: <code>tracon hooks install</code> adds two hooks to each profile's settings (with backups), and <code>tracon hooks uninstall</code> removes exactly those two.</p>
+</section>
+
+<section id="install">
+  <h2>Get the beta</h2>
+  <p class="lede">With Homebrew (no Gatekeeper warning, picks the right chip):</p>
+  <pre><code>brew install the-abraar/tap/tracon &amp;&amp; tracon</code></pre>
+  <p class="lede" style="margin-top:var(--bf-space-6)">Or download a zip from the <a href="https://github.com/the-abraar/TRACON/releases/tag/beta_0.1">beta release</a>: <code>arm64</code> for Apple Silicon, <code>x64</code> for Intel. It is one self-contained file, no Node or git needed.</p>
+  <ol class="steps" style="margin-top:var(--bf-space-4)">
+    <li>Unzip it. The build isn't notarized yet, so run <code>xattr -d com.apple.quarantine tracon</code> once in that folder.</li>
+    <li><code>./tracon</code> opens the radar in your terminal. Press <code>w</code> for the browser Flight Deck, <code>q</code> to quit.</li>
+    <li><code>./tracon start</code> runs the browser Flight Deck instead.</li>
+  </ol>
+  <div class="warn">Beta: macOS only, Windows untested. The pixel-art "Ops Lounge" view, file heatmap and rate-limit forecasting are planned, not built yet.</div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <a href="/brand/tracon/">TRACON brand page</a>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Nepal Ride 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+/* BlankFrame tokens (copied from landing-page/brand/tokens.css) */
+:root{
+  color-scheme:light;
+  --bf-bg:#F8FAFC;--bf-card:#FFFFFF;--bf-ink:#18181B;--bf-ink-soft:#27272A;--bf-muted:#71717A;--bf-faint:#A1A1AA;--bf-line:#E4E4E7;
+  --bf-accent:#3B82F6;--bf-accent-text:#2563EB;--bf-on-accent:#FFFFFF;
+  --bf-font-display:"Inter Tight","Inter",sans-serif;--bf-font-body:"Inter",-apple-system,sans-serif;--bf-font-serif:"Instrument Serif",serif;
+  --bf-radius-sm:12px;--bf-radius-md:20px;--bf-radius-lg:28px;--bf-radius-pill:999px;
+  --bf-space-1:4px;--bf-space-2:8px;--bf-space-3:12px;--bf-space-4:16px;--bf-space-6:24px;--bf-space-8:32px;--bf-space-12:48px;--bf-space-16:64px;--bf-space-24:96px;
+  --bf-ease:cubic-bezier(0.22,0.61,0.36,1);--bf-dur-fast:200ms;--bf-dur-base:300ms;--bf-dur-slow:650ms;
+  --bf-shadow-card:0 1px 2px rgba(19,19,19,0.04),0 10px 30px -12px rgba(19,19,19,0.10);
+  --bf-shadow-pill:0 1px 2px rgba(19,19,19,0.06),0 12px 32px -14px rgba(19,19,19,0.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bf-bg:#0E0E10;--bf-card:#18181B;--bf-ink:#F4F4F5;--bf-ink-soft:#D4D4D8;--bf-muted:#A1A1AA;--bf-faint:#71717A;--bf-line:#2A2A2E;--bf-accent:#60A5FA;--bf-accent-text:#60A5FA;--bf-on-accent:#0E0E10;}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bf-bg:#0E0E10;--bf-card:#18181B;--bf-ink:#F4F4F5;--bf-ink-soft:#D4D4D8;--bf-muted:#A1A1AA;--bf-faint:#71717A;--bf-line:#2A2A2E;--bf-accent:#60A5FA;--bf-accent-text:#60A5FA;--bf-on-accent:#0E0E10;}
+@media (prefers-reduced-motion: reduce){:root{--bf-dur-fast:0ms;--bf-dur-base:0ms;--bf-dur-slow:0ms;}}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bf-bg);color:var(--bf-ink);font:16px/1.6 var(--bf-font-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:var(--bf-space-8) var(--bf-space-6) var(--bf-space-16)}
+@media (max-width:640px){.wrap{padding:var(--bf-space-6) var(--bf-space-4) var(--bf-space-12)}}
+a{color:var(--bf-accent-text)}
+h1,h2,h3{font-family:var(--bf-font-display);letter-spacing:-0.03em;line-height:1.15;margin:0}
+h2{font-size:clamp(1.5rem,3.6vw,2rem);margin-bottom:var(--bf-space-3)}
+h3{font-size:1.1rem;letter-spacing:-0.01em}
+.serif{font-family:var(--bf-font-serif);font-style:italic;font-weight:400;letter-spacing:-0.01em}
+.lede{color:var(--bf-muted);font-size:1.08rem;max-width:680px;margin:0}
+.note{color:var(--bf-muted);font-size:.9rem}
+section{margin-top:var(--bf-space-16);scroll-margin-top:16px}
+.eyebrow{font:600 12px var(--bf-font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--bf-accent-text);margin-bottom:var(--bf-space-2)}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:var(--bf-space-3);flex-wrap:wrap}
+.home{display:inline-flex;align-items:center;gap:10px;color:var(--bf-ink);text-decoration:none;font:600 15px var(--bf-font-display)}
+.seg{display:inline-flex;border:1px solid var(--bf-line);border-radius:var(--bf-radius-pill);padding:3px;background:var(--bf-card)}
+.seg button{font:500 13px var(--bf-font-body);color:var(--bf-muted);background:none;border:0;border-radius:var(--bf-radius-pill);padding:6px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--bf-ink);color:var(--bf-bg)}
+.seg button:focus-visible,.pill:focus-visible{outline:2px solid var(--bf-accent-text);outline-offset:2px}
+
+/* hero */
+.hero{position:relative;margin-top:var(--bf-space-6);border-radius:var(--bf-radius-lg);overflow:hidden;min-height:440px;display:flex;align-items:flex-end;background:#0E0E10;box-shadow:var(--bf-shadow-card)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,16,0) 30%,rgba(14,14,16,.85) 100%)}
+.hero .in{position:relative;z-index:1;padding:var(--bf-space-8);color:#F4F4F5}
+.hero h1{font-size:clamp(2.3rem,7vw,4rem);letter-spacing:-0.035em;margin:0 0 var(--bf-space-3)}
+.hero p{color:#D4D4D8;margin:0;max-width:600px;font-size:1.05rem}
+.hero .credit{position:absolute;right:12px;top:10px;z-index:1;font-size:11px;color:rgba(255,255,255,.7)}
+@media (max-width:640px){.hero{min-height:380px}.hero .in{padding:var(--bf-space-6)}}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--bf-space-3);margin-top:var(--bf-space-6)}
+.stat{background:var(--bf-card);border:1px solid var(--bf-line);border-radius:var(--bf-radius-md);padding:var(--bf-space-4) var(--bf-space-6);box-shadow:var(--bf-shadow-card)}
+.stat b{display:block;font:700 1.9rem/1.1 var(--bf-font-display);letter-spacing:-0.035em}
+.stat span{color:var(--bf-muted);font-size:.85rem}
+
+nav.toc{display:flex;flex-wrap:wrap;gap:var(--bf-space-2);margin-top:var(--bf-space-6)}
+.pill{display:inline-flex;align-items:center;border-radius:var(--bf-radius-pill);padding:7px 14px;font:500 13px var(--bf-font-body);text-decoration:none;border:1px solid var(--bf-line);background:var(--bf-card);color:var(--bf-ink);transition:transform var(--bf-dur-fast) var(--bf-ease),box-shadow var(--bf-dur-fast) var(--bf-ease)}
+.pill:hover{transform:translateY(-1px);box-shadow:var(--bf-shadow-pill)}
+.pill.ink{background:var(--bf-ink);color:var(--bf-bg);border-color:transparent}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--bf-space-4);margin-top:var(--bf-space-4)}
+.card{background:var(--bf-card);border:1px solid var(--bf-line);border-radius:var(--bf-radius-md);padding:var(--bf-space-6);box-shadow:var(--bf-shadow-card)}
+.card p{margin:var(--bf-space-2) 0 0;color:var(--bf-muted);font-size:.94rem}
+.card ul{margin:var(--bf-space-2) 0 0;padding-left:18px;color:var(--bf-ink-soft);font-size:.94rem}
+.card.ink{background:var(--bf-ink);color:var(--bf-bg);border-color:transparent}
+.card.ink p,.card.ink li{color:var(--bf-bg);opacity:.85}
+.card.accent{border:1.5px solid var(--bf-accent)}
+
+.tag{display:inline-block;font:600 11px var(--bf-font-body);letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:var(--bf-radius-pill);border:1px solid var(--bf-line);color:var(--bf-muted);vertical-align:3px;margin-left:6px}
+.tag.blue{border-color:transparent;background:var(--bf-accent-text);color:var(--bf-on-accent)}
+.tag.ink{border-color:transparent;background:var(--bf-ink);color:var(--bf-bg)}
+
+/* photo cards */
+.place{padding:0;overflow:hidden}
+.place figure{margin:0;aspect-ratio:16/9;background:var(--bf-line);overflow:hidden}
+.place figure img{width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--bf-dur-slow) var(--bf-ease)}
+.place:hover figure img{transform:scale(1.04)}
+.place .body{padding:var(--bf-space-6)}
+.place .meta{color:var(--bf-muted);font-size:.85rem;margin-top:2px}
+.place dl{display:grid;grid-template-columns:96px 1fr;gap:6px 12px;margin:var(--bf-space-4) 0 0;font-size:.93rem}
+.place dt{color:var(--bf-muted);font-weight:600;font-size:.8rem;padding-top:2px}
+.place dd{margin:0;color:var(--bf-ink-soft)}
+@media (max-width:520px){.place dl{grid-template-columns:1fr}.place dt{padding-top:6px}}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--bf-space-3);margin-top:var(--bf-space-4)}
+.gallery figure{margin:0;border-radius:var(--bf-radius-sm);overflow:hidden;position:relative;aspect-ratio:4/3;background:var(--bf-line)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 8px;font:600 13px var(--bf-font-body);color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7))}
+
+/* options */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--bf-space-4);margin-top:var(--bf-space-4)}
+@media (max-width:760px){.opts{grid-template-columns:1fr}}
+.opt h3{font-size:1.4rem}
+.opt .big{font:700 1.05rem var(--bf-font-display);margin-top:var(--bf-space-3)}
+
+.day{display:grid;grid-template-columns:84px 1fr;gap:var(--bf-space-4);padding:var(--bf-space-4) 0;border-top:1px solid var(--bf-line)}
+.day:first-of-type{border-top:0}
+.day .d{font:700 .95rem/1.2 var(--bf-font-display);color:var(--bf-muted)}
+.day .d b{display:block;color:var(--bf-ink);font-size:1.4rem;letter-spacing:-0.03em}
+.day h4{font:600 1rem/1.35 var(--bf-font-display);margin:0 0 4px;letter-spacing:-0.01em}
+.day .km{color:var(--bf-accent-text);font-size:.85rem;font-weight:600}
+.day ul{margin:6px 0 0;padding-left:18px;color:var(--bf-ink-soft);font-size:.93rem}
+.day .night{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--bf-muted);border:1px dashed var(--bf-line);border-radius:var(--bf-radius-pill);padding:2px 10px}
+@media (max-width:520px){.day{grid-template-columns:1fr;gap:4px}}
+
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:var(--bf-space-4)}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:560px}
+th,td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--bf-line);vertical-align:top}
+th{color:var(--bf-muted);font-weight:500;font-size:.82rem}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:700;border-top:2px solid var(--bf-ink)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em}
+blockquote{margin:var(--bf-space-4) 0 0;padding:var(--bf-space-4) var(--bf-space-6);border-left:3px solid var(--bf-accent);background:var(--bf-card);border-radius:0 var(--bf-radius-sm) var(--bf-radius-sm) 0;font-size:.95rem;color:var(--bf-ink-soft)}
+ol.todo{padding-left:22px}
+ol.todo li{margin:6px 0}
+footer{margin-top:var(--bf-space-16);padding-top:var(--bf-space-6);border-top:1px solid var(--bf-line);color:var(--bf-muted);font-size:.84rem}
+footer ul{padding-left:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <span class="home">
+    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#111213"/><rect x="28" y="28" width="44" height="44" fill="none" stroke="#ffffff" stroke-width="7"/></svg>
+    <span>Nepal Ride · Nov 2026</span>
+  </span>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<header class="hero">
+  <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Nilgiri_Himal%2C_Kali_Gandaki_Valley%2C_Mustang%2C_Nepal%2C_Himalaya.jpg/1920px-Nilgiri_Himal%2C_Kali_Gandaki_Valley%2C_Mustang%2C_Nepal%2C_Himalaya.jpg" alt="Nilgiri Himal above the Kali Gandaki valley, Mustang">
+  <span class="credit">Nilgiri over the Kali Gandaki · Wikimedia Commons</span>
+  <div class="in">
+    <div class="eyebrow" style="color:#93C5FD">Abraar + Nabil · Nov 3 – 9</div>
+    <h1>Two Xpulses. The deepest gorge on Earth. <span class="serif">Up to 3,710 m.</span></h1>
+    <p>From banana trees to a Tibetan desert in two days of riding, between two 8,000 m peaks, in the clearest week of the year.</p>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><b id="countdown">—</b><span>days until you land</span></div>
+  <div class="stat"><b>~600 km</b><span>of riding</span></div>
+  <div class="stat"><b>3,710 m</b><span>highest point (Muktinath)</span></div>
+  <div class="stat"><b>~80k</b><span>BDT, all-in</span></div>
+</div>
+
+<nav class="toc" aria-label="Sections">
+  <a class="pill ink" href="#worth">Worth 80k?</a>
+  <a class="pill" href="#shape">The week</a>
+  <a class="pill" href="#options">Option A vs B</a>
+  <a class="pill" href="#optA">A: Pokhara base</a>
+  <a class="pill" href="#optB">B: The Mustang run</a>
+  <a class="pill" href="#places">Places</a>
+  <a class="pill" href="#story">The story</a>
+  <a class="pill" href="#gems">Hidden gems</a>
+  <a class="pill" href="#challenges">Challenges</a>
+  <a class="pill" href="#shops">Rent</a>
+  <a class="pill" href="#budget">Budget</a>
+  <a class="pill" href="#prep">Prep</a>
+  <a class="pill" href="#todo">This week</a>
+</nav>
+
+<!-- ============ WORTH IT ============ -->
+<section id="worth">
+  <div class="eyebrow">The honest answer</div>
+  <h2>Is it worth <span class="serif">80,000 taka?</span></h2>
+  <p class="lede">The return flight (~43k) is more than half the money, and you pay it whatever you do once you're there. Each riding day after that costs only about 6–7k. So whether the trip is worth it comes down to <strong>how good those riding days are</strong>.</p>
+  <div class="grid">
+    <div class="card accent"><h3>Worth it with Option B</h3><p>The Kali Gandaki up to Muktinath: Rupse Falls, a gorge between Dhaulagiri and Annapurna, Marpha's apple lanes, the medieval alleys of Kagbeni, and the 3,710 m temple. Nothing in Bangladesh, and very little in the region, looks like this from a bike seat.</p></div>
+    <div class="card"><h3>Weaker with Option A</h3><p>Pokhara day rides are pretty: lakes, hill towns and big views of Machhapuchhre. But a lot of it is tarmac and town traffic. It's a nice holiday, but not much of an 80k adventure.</p></div>
+    <div class="card ink"><h3>Same price either way</h3><p>Both options come out at ~80k (see the budget). Teahouse rooms in Mustang cost about the same as a shared Pokhara room, so B gives you far more for the same money.</p></div>
+  </div>
+</section>
+
+<!-- ============ SHAPE ============ -->
+<section id="shape">
+  <div class="eyebrow">The week</div>
+  <h2>Nov 3 → Nov 9</h2>
+  <p class="lede">Nabil finishes ABC around Nov 3–4 near Pokhara. He's on leave until Nov 9 and his flight is currently <strong>Nov 8</strong>. If he can move it to Nov 9, you both get 4 full days together. The <a href="#nabil8">Nov 8 fallback</a> is below.</p>
+  <div class="card" style="margin-top:var(--bf-space-4)">
+    <div class="day"><div class="d">Tue<b>Nov 3</b></div><div><h4>Dhaka → Kathmandu → night bus to Pokhara</h4>
+      <ul><li>Free SAARC visa on arrival (check before you fly). SIM (Ncell or NTC) and NPR cash at the airport.</li>
+      <li>Thamel for the afternoon, sunset at <strong>Swayambhunath</strong> (the monkey temple), momos at Yangling.</li>
+      <li>8 PM night tourist bus (Jagdamba runs one from Balaju). You save a night's room and wake up in Pokhara.</li></ul>
+      <span class="night">Night: on the bus</span></div></div>
+    <div class="day"><div class="d">Wed<b>Nov 4</b></div><div><h4><span class="tag">solo</span> Pokhara on a cheap scooter</h4>
+      <ul><li>Sarangkot sunrise if you're off the bus in time, then the <strong>Begnas &amp; Rupa</strong> ridge road, Kahun Danda viewpoint, and the World Peace Pagoda for sunset.</li>
+      <li>Pick and inspect the two Xpulses. Get the <strong>ACAP permit + TIMS</strong> at the Nepal Tourism Board in Damside (needed for both options).</li>
+      <li>Nabil gets down from ABC today or tomorrow.</li></ul>
+      <span class="night">Night: Lakeside guesthouse</span></div></div>
+    <div class="day"><div class="d">Thu–Sun<b>Nov 5–8</b></div><div><h4><span class="tag blue">duo</span> 4 days on the Xpulses: <a href="#options">Option A or B</a></h4>
+      <ul><li>Return the bikes in Pokhara on the afternoon of Nov 8, then the night bus to Kathmandu.</li></ul></div></div>
+    <div class="day"><div class="d">Mon<b>Nov 9</b></div><div><h4>Kathmandu → Dhaka</h4>
+      <ul><li>Arrive at dawn. If your flight is late in the day, visit Boudhanath stupa (20 min from the airport).</li></ul></div></div>
+  </div>
+</section>
+
+<!-- ============ OPTIONS ============ -->
+<section id="options">
+  <div class="eyebrow">Pick one</div>
+  <h2>Option A: <span class="serif">come back each night.</span> Option B: <span class="serif">ditch the hotel.</span></h2>
+  <div class="opts">
+    <div class="card opt">
+      <span class="tag">Option A</span>
+      <h3 style="margin-top:8px">Pokhara base</h3>
+      <p>One Lakeside room for 4 nights. Ride out light every morning and come back for dinner and the lakeside bars.</p>
+      <ul>
+        <li>No luggage on the bikes, and you can leave things in the room</li>
+        <li>Flexible: easy to drop a day if Nabil's dates change</li>
+        <li>Paragliding and Lakeside evenings fit in easily</li>
+        <li>Mostly tarmac, so less of a real Xpulse workout</li>
+        <li>No Muktinath, no Mustang, no 8,000 m peaks up close</li>
+      </ul>
+      <div class="big">Fun, easy, safe. A 7/10.</div>
+    </div>
+    <div class="card opt accent">
+      <span class="tag blue">Option B · recommended</span>
+      <h3 style="margin-top:8px">The Mustang run</h3>
+      <p>Check out of Pokhara with a small bag strapped on, and stay in a <strong>different teahouse each night</strong> as you ride up the Kali Gandaki.</p>
+      <ul>
+        <li>Hot springs, then a forest under Dhaulagiri, then a medieval mud-brick village</li>
+        <li>Gravel, river crossings, switchbacks: exactly what the Xpulse is built for</li>
+        <li>Muktinath at 3,710 m, and the edge of the forbidden Kingdom of Lo</li>
+        <li>A long ride back down on the last day (~8 h)</li>
+        <li>Basic teahouses: thin walls, cold nights, shared bathrooms</li>
+      </ul>
+      <div class="big">The 80k-worthy version. A 10/10.</div>
+    </div>
+  </div>
+  <div class="scroll"><table>
+    <tr><th></th><th>A: Pokhara base</th><th>B: Mustang run</th></tr>
+    <tr><td>Riding (4 days)</td><td>~570 km, mostly tarmac, out and back</td><td>~420 km, half gravel, a one-way journey</td></tr>
+    <tr><td>Altitude</td><td>800–2,100 m</td><td>800–3,710 m</td></tr>
+    <tr><td>Nights</td><td>4 × the same Lakeside room</td><td>Tatopani → Kalopani → Kagbeni (+ 1 night in Pokhara before)</td></tr>
+    <tr><td>Room cost</td><td>~NPR 1,000–1,500 shared</td><td>~NPR 800–1,500 shared (cheaper if you eat dinner there)</td></tr>
+    <tr><td>If Nabil flies Nov 8</td><td>Just drop the last day</td><td>Compress it (see below), and it's still doable</td></tr>
+    <tr><td>Wow moments</td><td>Machhapuchhre views, lakes, Bandipur, paragliding</td><td>Rupse Falls, the gorge, Nilgiri at sunset, Kagbeni, Muktinath</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ OPTION A ============ -->
+<section id="optA">
+  <div class="eyebrow">Option A</div>
+  <h2>Pokhara base: <span class="serif">four spokes out of one hub</span></h2>
+  <div class="gallery">
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Phewa_lake%2C_Pokhara.jpg/1280px-Phewa_lake%2C_Pokhara.jpg" alt="Phewa Lake"><figcaption>Phewa Lake</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Machapuchare_close-up_of_summit_ridge.jpg/1280px-Machapuchare_close-up_of_summit_ridge.jpg" alt="Machhapuchhre summit ridge"><figcaption>Machhapuchhre</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Ghandruk_HDR6.jpg/1280px-Ghandruk_HDR6.jpg" alt="Ghandruk village"><figcaption>Ghandruk</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Sunset_flying_above_Himalayas.jpg/1280px-Sunset_flying_above_Himalayas.jpg" alt="Paragliding at sunset above Sarangkot"><figcaption>Paragliding off Sarangkot</figcaption></figure>
+  </div>
+  <div class="card" style="margin-top:var(--bf-space-4)">
+    <div class="day"><div class="d">Thu<b>Nov 5</b></div><div><h4>Bandipur: a Newari hill town with no cars</h4><div class="km">~150 km round trip · Prithvi Highway + switchbacks</div>
+      <ul><li>A Newari bazaar town on a ridge, with car-free brick streets and old trading houses.</li>
+      <li>Hike up to <strong>Thani Mai</strong> for a sunset view of the Himalaya stretching from Dhaulagiri to Langtang.</li>
+      <li>Optional: Siddha Gufa, one of Nepal's biggest caves, a steep walk below town.</li>
+      <li>Leave by 4 PM so you're back in Pokhara before it gets too dark.</li></ul></div></div>
+    <div class="day"><div class="d">Fri<b>Nov 6</b></div><div><h4>Ghandruk: a Gurung village under Annapurna South</h4><div class="km">~110 km round trip · steep dirt for the last stretch · ACAP permit</div>
+      <ul><li>Pokhara → Nayapul → Kimche/Ghandruk: proper dirt switchbacks, the best Xpulse riding in Option A.</li>
+      <li>Stone houses, terraced fields, the Gurung museum, and Annapurna South plus Machhapuchhre right overhead.</li>
+      <li>Nabil may have passed through on ABC. If so, swap in Day 7's Tatopani run.</li></ul></div></div>
+    <div class="day"><div class="d">Sat<b>Nov 7</b></div><div><h4>The big one: a taste of the gorge, Tatopani and Rupse Falls</h4><div class="km">~250 km round trip · 9–10 h · gravel after Beni</div>
+      <ul><li>Leave at 6:30 AM. Beni → Tatopani hot springs → Rupse Falls → turn around.</li>
+      <li>This is about the only way to get a taste of the Kali Gandaki in Option A, but it's a hard day. Turn back by 1 PM whatever happens.</li></ul></div></div>
+    <div class="day"><div class="d">Sun<b>Nov 8</b></div><div><h4>Pokhara ridges + paragliding</h4><div class="km">~80 km · easy</div>
+      <ul><li><strong>Australian Camp / Dhampus</strong> ridge in the morning, with a big wall of Annapurna views.</li>
+      <li><strong>Paragliding</strong> off Sarangkot (~$80–95). Return the bikes, Phewa boat to Tal Barahi, last momos, night bus.</li></ul></div></div>
+  </div>
+</section>
+
+<!-- ============ OPTION B ============ -->
+<section id="optB">
+  <div class="eyebrow">Option B · recommended</div>
+  <h2>The Mustang run: <span class="serif">hot spring, forest, mud-brick village</span></h2>
+  <p class="lede">You pack one small bag each and bungee it to the rack. Each night is a teahouse in a different world, and you're back in Pokhara on Nov 8 for the bus.</p>
+  <div class="gallery">
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Rupse_Fall_of_Myagdi.jpg/1280px-Rupse_Fall_of_Myagdi.jpg" alt="Rupse Falls"><figcaption>Rupse Falls</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Kaligandaki_ghasa.jpg/1280px-Kaligandaki_ghasa.jpg" alt="Kali Gandaki near Ghasa"><figcaption>The gorge at Ghasa</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Marpha%2CMustang%2CNepal.jpg/1280px-Marpha%2CMustang%2CNepal.jpg" alt="Marpha village"><figcaption>Marpha</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Kagbeni%2C_Mustang%2C_Nepal.jpg/1280px-Kagbeni%2C_Mustang%2C_Nepal.jpg" alt="Kagbeni"><figcaption>Kagbeni</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/The_Muktinath_Temple.jpg/1280px-The_Muktinath_Temple.jpg" alt="Muktinath Temple"><figcaption>Muktinath, 3,710 m</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Muktinath_Valley%2C_View_of_Thorong_La_Pass%2C_Mountains%2C_Nepal.jpg/1280px-Muktinath_Valley%2C_View_of_Thorong_La_Pass%2C_Mountains%2C_Nepal.jpg" alt="Muktinath valley toward Thorong La"><figcaption>Muktinath valley</figcaption></figure>
+  </div>
+  <div class="card" style="margin-top:var(--bf-space-4)">
+    <div class="day"><div class="d">Thu<b>Nov 5</b></div><div><h4>Pokhara → Nayapul → Beni → Tatopani</h4><div class="km">~115 km · 4–5 h · tarmac, then broken tarmac after Beni</div>
+      <ul><li>Leave at 9–10 AM so Nabil gets a lie-in after ABC. Fill both tanks and get cash in <strong>Beni</strong>: it's the last reliable pump, ATM and mechanic.</li>
+      <li>Evening soak in the <strong>Tatopani hot springs</strong> by the river (~NPR 150–200).</li></ul>
+      <span class="night">Night: Tatopani teahouse · 1,190 m · the warmest night</span></div></div>
+    <div class="day"><div class="d">Fri<b>Nov 6</b></div><div><h4>Tatopani → Rupse Falls → the gorge → Ghasa → Lete → Kalopani</h4><div class="km">~45 km · 3–4 h of slow, technical riding, kept short on purpose</div>
+      <ul><li>Photo stop at <strong>Rupse Falls</strong>, then the narrowest part of the gorge, with cliffs and waterfalls over the road. Ghasa is the first Thakali village, where the land turns dry and Tibetan.</li>
+      <li>Afternoon walk to <strong>Titi Lake</strong>, a quiet forest lake with Dhaulagiri and Nilgiri above it (ask in Kalopani for the path). Back for a <strong>Thakali thali</strong> dinner and golden light on Nilgiri.</li></ul>
+      <span class="night">Night: Kalopani/Lete teahouse · 2,530 m · the best mountain view of the trip</span></div></div>
+    <div class="day"><div class="d">Sat<b>Nov 7</b></div><div><h4>Tukuche → Marpha → Jomsom → Thini → Dhumba Lake → Kagbeni → Jharkot → Muktinath → Kagbeni</h4><div class="km">~75 km · a full day · ride north before the wind picks up</div>
+      <ul><li>Leave at 7:30. Walk the old salt-trade lanes in <strong>Tukuche</strong> (30 min), then apple pie in <strong>Marpha</strong>, and through Jomsom before 11 AM.</li>
+      <li><strong>Dhumba Lake</strong> via Thini, with Nilgiri reflected in a sacred turquoise lake (1 h). Lunch in Kagbeni, and drop the bags at the teahouse.</li>
+      <li>Ride up light past the <strong>Jharkot fort</strong> to <strong>Muktinath</strong> (3,710 m), 1–3 PM. Back down to Kagbeni for dusk in the mud-brick alleys.</li></ul>
+      <span class="night">Night: Kagbeni teahouse/homestay · 2,810 m · a safe height to sleep</span></div></div>
+    <div class="day"><div class="d">Sun<b>Nov 8</b></div><div><h4>Kagbeni → all the way down → Pokhara</h4><div class="km">~170 km · 8–9 h · leave at 7 AM sharp</div>
+      <ul><li>Calm morning air, an empty road, and the gorge in reverse with new light. Lunch in Tatopani (last soak if you're ahead of time).</li>
+      <li>Bikes back in Pokhara by about 4 PM, then the night bus. If you're wrecked, stop at Tatopani and take the morning bus. Know your fallback.</li></ul>
+      <span class="night">Night: on the bus</span></div></div>
+  </div>
+  <div class="card" id="nabil8" style="margin-top:var(--bf-space-4)">
+    <h3>If Nabil keeps his Nov 8 flight</h3>
+    <ul>
+      <li><strong>Option B, compressed:</strong> Nov 5 Pokhara → Kalopani (~145 km, leave at 8 AM, no riding after dark). Nov 6 Kalopani → Marpha → Kagbeni → Muktinath → back to Kalopani. Nov 7 Kalopani → Pokhara, and Nabil takes the night bus to KTM. You lose Dhumba, Tukuche and the Kagbeni night, but keep Muktinath.</li>
+      <li><strong>Option A:</strong> just drop Nov 8.</li>
+      <li><strong>Your Nov 8, solo:</strong> keep the bike for a half-day ride to Australian Camp/Dhampus, then return it, take the night bus, and fly on Nov 9.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PLACES ============ -->
+<section id="places">
+  <div class="eyebrow">Place by place, south → north</div>
+  <h2>What you'll <span class="serif">see, feel and learn</span></h2>
+  <div class="grid">
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Pokhara_Valley.jpg/1280px-Pokhara_Valley.jpg" alt="Pokhara valley"></figure>
+      <div class="body"><h3>Pokhara <span class="tag">base</span></h3><div class="meta">820 m · both options</div>
+      <dl><dt>What's there</dt><dd>A lake town with the Annapurna range straight above it. Lakeside cafes, rental shops and gear shops.</dd>
+      <dt>Do</dt><dd>Sarangkot sunrise, a Phewa boat to Tal Barahi, the Peace Pagoda, Davis Falls and Gupteshwor Cave, paragliding.</dd>
+      <dt>USP</dt><dd>Probably the only city in the world where you can look at a 7,000 m peak from your breakfast table.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Begnas_Lake_Pokhara.jpg/1280px-Begnas_Lake_Pokhara.jpg" alt="Begnas Lake"></figure>
+      <div class="body"><h3>Begnas &amp; Rupa <span class="tag">solo day</span></h3><div class="meta">~15 km east of Lakeside</div>
+      <dl><dt>What's there</dt><dd>Two quiet lakes with a ridge road between them, fish farms and paddy fields.</dd>
+      <dt>Why</dt><dd>Phewa without the crowds, and an easy road to learn Nepali traffic on.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Rupse_Fall_of_Myagdi.jpg/1280px-Rupse_Fall_of_Myagdi.jpg" alt="Rupse Falls"></figure>
+      <div class="body"><h3>Tatopani &amp; Rupse Falls <span class="tag blue">must</span></h3><div class="meta">1,190 m · ~110–125 km from Pokhara</div>
+      <dl><dt>What's there</dt><dd>Riverside natural hot springs, and a waterfall (often quoted as ~300 m) crashing down right beside the road.</dd>
+      <dt>Feel</dt><dd>Your first soak after a day of dust. A subtropical valley with oranges and bananas.</dd>
+      <dt>Challenge</dt><dd>Wet, slippery road under the falls' spray, and jeeps parked for photos.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Kaligandaki_ghasa.jpg/1280px-Kaligandaki_ghasa.jpg" alt="Kali Gandaki gorge at Ghasa"></figure>
+      <div class="body"><h3>The gorge: Ghasa → Lete <span class="tag blue">must</span></h3><div class="meta">2,000 → 2,500 m</div>
+      <dl><dt>What's there</dt><dd>The deepest gorge on Earth. Dhaulagiri on your left and Annapurna I on your right, both over 8,000 m.</dd>
+      <dt>Challenge</dt><dd><strong>The hardest riding.</strong> One-lane cuttings, loose rock, water crossings, and buses that won't give way. Stand on the pegs.</dd>
+      <dt>Learn</dt><dd>Ghasa is where you cross from Hindu hill country into Thakali and Tibetan Buddhist culture.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Dhaulagiri_-_view_from_aircraft.jpg/1280px-Dhaulagiri_-_view_from_aircraft.jpg" alt="Dhaulagiri"></figure>
+      <div class="body"><h3>Lete, Kalopani &amp; Titi Lake <span class="tag ink">gem</span></h3><div class="meta">~2,530 m · Option B night 2</div>
+      <dl><dt>What's there</dt><dd>Pine forest and the best panorama on the route: Dhaulagiri's icefall, Nilgiri and Annapurna I. Titi Lake is a quiet forest lake a walk above the road.</dd>
+      <dt>Feel</dt><dd>Golden light on Nilgiri at sunset, then a clear, still, freezing morning.</dd>
+      <dt>USP</dt><dd>The last green place before the desert.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Tukuche_Village-0660.jpg/1280px-Tukuche_Village-0660.jpg" alt="Tukuche village"></figure>
+      <div class="body"><h3>Tukuche <span class="tag ink">gem</span></h3><div class="meta">~2,590 m · old salt-trade capital</div>
+      <dl><dt>What's there</dt><dd>Once the richest Thakali town. Trader mansions with carved windows and courtyards, and fruit-brandy distilling.</dd>
+      <dt>Learn</dt><dd>How Tibetan salt traded for Indian grain built this whole valley.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Marpha%2CMustang%2CNepal.jpg/1280px-Marpha%2CMustang%2CNepal.jpg" alt="Marpha"></figure>
+      <div class="body"><h3>Marpha <span class="tag blue">must</span></h3><div class="meta">~2,670 m · Nepal's apple capital</div>
+      <dl><dt>What's there</dt><dd>White-washed stone lanes, a cliffside gompa, orchards, apple brandy, cider and pie. Next door is <strong>Chhairo</strong>, a Tibetan refugee settlement with an old gompa.</dd>
+      <dt>Challenge</dt><dd>This is where the afternoon wind starts. Be past Jomsom before noon.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Dhumba_lake_Jomsom_nepal.jpg/1280px-Dhumba_lake_Jomsom_nepal.jpg" alt="Dhumba Lake"></figure>
+      <div class="body"><h3>Thini &amp; Dhumba Lake <span class="tag ink">gem</span></h3><div class="meta">~5 km from Jomsom · ~2,830 m</div>
+      <dl><dt>What's there</dt><dd>Thini is an old Thakali village. Dhumba is a sacred turquoise lake that mirrors Nilgiri.</dd>
+      <dt>Respect</dt><dd>It's holy to locals: no swimming, and don't touch the water.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Kagbeni%2C_Mustang%2C_Nepal.jpg/1280px-Kagbeni%2C_Mustang%2C_Nepal.jpg" alt="Kagbeni"></figure>
+      <div class="body"><h3>Kagbeni <span class="tag blue">must</span></h3><div class="meta">2,810 m · Option B night 3</div>
+      <dl><dt>What's there</dt><dd>A medieval village of mud tunnels, the red 15th-century Kag Chode monastery, and clay protector figures at the village edges. The <strong>Upper Mustang border sign</strong>, which you can't pass without a ~$500 permit.</dd>
+      <dt>Feel</dt><dd>The edge of a forbidden kingdom. Yak burger at the "YacDonald's" joke cafe.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Jharkhot%2C_Lower_Mustang.jpg/1280px-Jharkhot%2C_Lower_Mustang.jpg" alt="Jharkot"></figure>
+      <div class="body"><h3>Jharkot <span class="tag ink">gem</span></h3><div class="meta">~3,500 m · on the way to Muktinath</div>
+      <dl><dt>What's there</dt><dd>A ruined hilltop fort with a Sakya monastery. Most riders blast past it.</dd>
+      <dt>Why</dt><dd>A 20-minute stop for the best view down the Muktinath valley and across to cliff-top Jhong.</dd></dl></div>
+    </article>
+
+    <article class="card place">
+      <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/The_Muktinath_Temple.jpg/1280px-The_Muktinath_Temple.jpg" alt="Muktinath temple"></figure>
+      <div class="body"><h3>Muktinath <span class="tag blue">summit</span></h3><div class="meta">3,710 m · the top of the trip</div>
+      <dl><dt>What's there</dt><dd>108 bull-headed spouts of freezing water that pilgrims run under, and Jwala Mai, a natural-gas flame burning beside water. Sacred to both Hindus and Buddhists. Thorong La (5,416 m) is just above.</dd>
+      <dt>Challenge</dt><dd><strong>Altitude.</strong> Walk slowly, drink water, and go down if a headache gets worse. Don't sleep up here.</dd>
+      <dt>USP</dt><dd>The bike photo of the trip.</dd></dl></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story">
+  <div class="eyebrow">Context makes it hit harder</div>
+  <h2>The story of <span class="serif">this road</span></h2>
+  <div class="grid">
+    <div class="card"><h3>Older than the mountains</h3><p>The Kali Gandaki was flowing before the Himalaya rose. It kept cutting down as the land pushed up, which is why it slices <em>between</em> two 8,000 m peaks.</p></div>
+    <div class="card"><h3>The salt road</h3><p>For centuries Tibetan salt and wool came down this valley and grain went back up. The Thakali traders who ran the route got rich, and their food, the <strong>Thakali thali</strong>, became Nepal's national comfort meal.</p></div>
+    <div class="card"><h3>Sea fossils at 3,000 m</h3><p>The black <strong>shaligram</strong> stones in the riverbed are ammonites from the floor of the ancient Tethys Sea. Hindus revere them as forms of Vishnu.</p></div>
+    <div class="card"><h3>Kingdom of Lo</h3><p>North of Kagbeni lay the kingdom of Mustang. It kept its own king until 2008 and is still restricted to visitors. Kagbeni is its front door.</p></div>
+    <div class="card"><h3>Three faiths, one valley</h3><p>Hindu Muktinath, Buddhist gompas everywhere, and in Lubra, <strong>Bön</strong>, the Himalaya's pre-Buddhist religion. Spin prayer wheels clockwise and keep chortens on your right.</p></div>
+    <div class="card"><h3>Banana to desert in 48 h</h3><p>Tatopani grows oranges. Two days later at Kagbeni it's a windswept high desert, and that change is a big part of the experience.</p></div>
+  </div>
+  <div class="gallery">
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Saligram_stones%2C_Kaligandaki.jpg/1280px-Saligram_stones%2C_Kaligandaki.jpg" alt="Shaligram fossil stones"><figcaption>Shaligram fossils</figcaption></figure>
+    <figure><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/8/86/Prayerflags.jpg" alt="Prayer flags"><figcaption>Prayer flags</figcaption></figure>
+    <figure><img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Momo_nepal.jpg/1280px-Momo_nepal.jpg" alt="Momos"><figcaption>Fuel (momos)</figcaption></figure>
+    <figure><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Modified_Xpulse_200V.jpg" alt="Hero Xpulse 200"><figcaption>The weapon: Xpulse 200</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ GEMS ============ -->
+<section id="gems">
+  <div class="eyebrow">Off the main line</div>
+  <h2>Hidden gems, <span class="serif">ranked by payoff per hour</span></h2>
+  <div class="scroll"><table>
+    <tr><th>#</th><th>Gem</th><th>Detour</th><th>Option</th><th>Why</th></tr>
+    <tr><td>1</td><td>Dhumba Lake via Thini</td><td>1 h</td><td>B</td><td>Nilgiri reflected in a sacred turquoise lake</td></tr>
+    <tr><td>2</td><td>Titi Lake</td><td>1.5 h walk</td><td>B</td><td>A forest lake under Dhaulagiri, almost no visitors</td></tr>
+    <tr><td>3</td><td>Jharkot fort</td><td>20 min</td><td>B</td><td>The best Muktinath valley view, right on the way</td></tr>
+    <tr><td>4</td><td>Tukuche old town</td><td>30 min</td><td>B</td><td>Real salt-trade history, no crowds</td></tr>
+    <tr><td>5</td><td>Lubra (Bön village)</td><td>1.5–2 h</td><td>B, instead of Dhumba</td><td>A living pre-Buddhist culture. Ask in Jomsom whether the riverbed track is rideable</td></tr>
+    <tr><td>6</td><td>Chhairo gompa</td><td>30 min</td><td>B</td><td>A Tibetan refugee settlement beside Marpha</td></tr>
+    <tr><td>7</td><td>Siddha Gufa, Bandipur</td><td>1.5 h</td><td>A</td><td>One of Nepal's largest caves</td></tr>
+    <tr><td>8</td><td>Kahun Danda / Pumdikot</td><td>1 h each</td><td>Solo day</td><td>Pokhara viewpoints without the crowds (Pumdikot unverified)</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ CHALLENGES ============ -->
+<section id="challenges">
+  <div class="eyebrow">Know before you go</div>
+  <h2>The real <span class="serif">challenges</span></h2>
+  <div class="scroll"><table>
+    <tr><th>Challenge</th><th>Where</th><th>Handle it</th></tr>
+    <tr><td>Gravel, loose rock, water crossings</td><td>Beni → Jomsom</td><td>Stand on the pegs, use low gear, and keep a steady throttle through water. Never stop halfway across.</td></tr>
+    <tr><td>Buses on one-lane cliff roads</td><td>The gorge</td><td>Honk before blind corners. Stay on the mountain side, and wait at wide spots.</td></tr>
+    <tr><td>Wind (40+ km/h gusts)</td><td>Marpha → Muktinath after ~11 AM</td><td>Ride the north section early. Wear a buff and sunglasses.</td></tr>
+    <tr><td>Dust</td><td>Above Ghasa</td><td>Buff or mask, and keep the phone covered.</td></tr>
+    <tr><td>Cold mornings (~0 °C)</td><td>Above 2,500 m</td><td>Warm gloves (rental ones are thin) and layers under your jacket.</td></tr>
+    <tr><td>Altitude</td><td>Muktinath</td><td>Visit for the day and sleep at Kagbeni. Descend if a headache gets worse.</td></tr>
+    <tr><td>Breakdowns</td><td>Above Beni</td><td>Get the shop's WhatsApp, and find mechanics in Beni and Jomsom. A jeep can carry a bike down if it comes to that.</td></tr>
+    <tr><td>Police checks</td><td>Anywhere</td><td>Carry your licence, IDP, the bike's bluebook copy and your passport at all times.</td></tr>
+    <tr><td>Long last day</td><td>Kagbeni → Pokhara</td><td>Stop every 1.5 h. If it's too much, stay at Tatopani and take the morning bus.</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ SHOPS ============ -->
+<section id="shops">
+  <div class="eyebrow">Where to rent</div>
+  <h2>Two Xpulses, <span class="serif">one Pokhara shop</span></h2>
+  <p class="lede">Rent both from the same shop so you can negotiate a 2-bike, 4-day deal. Target <strong>NPR 3,000–3,500/day</strong>. Message three shops now and compare.</p>
+  <div class="scroll"><table>
+    <tr><th>Shop</th><th>Where</th><th>Xpulse 200</th><th>Notes</th></tr>
+    <tr><td><strong>Wheels Nepal Enduro</strong></td><td>FB: wheelsnepalenduro</td><td>$30/day (Nabil's quote)</td><td>Also runs group rides. Ask what the $30 includes.</td></tr>
+    <tr><td><a href="https://rentalpokhara.com/">Rental Pokhara</a></td><td>Lakeside, Street 13</td><td>NPR 2,000–4,000</td><td>Helmet, gloves, raincoat and phone holder listed</td></tr>
+    <tr><td><a href="https://ramrental.com.np/">Ram Rental Service</a></td><td>Pokhara</td><td>NPR 3,000 city / 4,000 outside</td><td>Mustang counts as "outside", so negotiate</td></tr>
+    <tr><td><a href="https://citymotorbike.com/bike/hero-xpulse-200-rent-in-nepal/">City Motorbike</a></td><td>Nepal</td><td>NPR ~3,000</td><td>Helmet included</td></tr>
+    <tr><td><a href="https://nepalmototours.com/rental/bike-rent-in-pokhara">Nepal Moto Tours</a></td><td>Pokhara</td><td>~$20–30</td><td>Tour operator, may offer backup</td></tr>
+    <tr><td><a href="https://luxuryvehiclepokhara.com/bike-rent/">Luxury Vehicle Pokhara</a></td><td>Pokhara</td><td>~$20–30</td><td></td></tr>
+    <tr><td><a href="https://riderly.com/rentals/details/hero-xpulse-210-pokhara-nepal-m0hlwe89j1/">Riderly</a></td><td>Pokhara</td><td>Xpulse 210 ~€22</td><td>Book online. €88 deposit, age 21+</td></tr>
+  </table></div>
+  <p class="note">Most shop prices come from pages about a year old.</p>
+  <blockquote><strong>Copy, paste, send:</strong> Hi! 2 riders, need 2× Xpulse 200 from Nov 5 to Nov 8 (4 days), pickup &amp; return in Pokhara, riding to Jomsom/Muktinath. 1) Total price for both? 2) Includes helmet, luggage rack/bungee, phone mount? 3) Any insurance, and who pays for damage? 4) Can we leave a cash deposit instead of the passport (we need it for ACAP)? 5) Bangladeshi licence + IDP OK? 6) Support if it breaks down near Jomsom? 7) Tyre condition? Thanks!</blockquote>
+  <div class="card" style="margin-top:var(--bf-space-4)"><h3>At pickup</h3><ul>
+    <li>Take a video walk-around of the bike (scratches, mirrors, tyres) while the shop watches.</li>
+    <li>Check the brakes, chain slack, horn (you'll use it constantly) and lights.</li>
+    <li>Take a copy of the bluebook and the owner's WhatsApp number.</li>
+    <li><strong>Never leave your passport as the deposit.</strong> ACAP checkposts need it.</li>
+  </ul></div>
+</section>
+
+<!-- ============ BUDGET ============ -->
+<section id="budget">
+  <div class="eyebrow">Your share</div>
+  <h2>Budget: <span class="serif">~80k either way</span></h2>
+  <p class="note">Rates used: 1 USD ≈ 122 BDT, 1 BDT ≈ 1.15 NPR. Petrol is NPR ~200/L (NOC, reconfirmed Oct 1, 2026).</p>
+  <div class="scroll"><table>
+    <tr><th>Item</th><th>Assumption</th><th class="n">A (BDT)</th><th class="n">B (BDT)</th></tr>
+    <tr><td>Return flight DAC↔KTM</td><td>Today's quote, still rising</td><td class="n">43,000</td><td class="n">43,000</td></tr>
+    <tr><td>IDP</td><td>AAB, Dhaka</td><td class="n">2,500</td><td class="n">2,500</td></tr>
+    <tr><td>Xpulse, 4 days</td><td>NPR 3,000–3,500/day</td><td class="n">10,400–12,200</td><td class="n">10,400–12,200</td></tr>
+    <tr><td>Scooter, solo day</td><td>NPR ~1,200</td><td class="n">1,000</td><td class="n">1,000</td></tr>
+    <tr><td>Fuel</td><td>A ~650 km, B ~500 km at ~32 km/L</td><td class="n">3,500</td><td class="n">2,700</td></tr>
+    <tr><td>Night buses KTM↔Pokhara</td><td>2 × tourist bus</td><td class="n">2,200</td><td class="n">2,200</td></tr>
+    <tr><td>ACAP + TIMS</td><td>SAARC rates. Ghandruk needs them too.</td><td class="n">1,400</td><td class="n">1,400</td></tr>
+    <tr><td>Rooms (your half)</td><td>A: 5 nights in Pokhara · B: 2 in Pokhara + 3 teahouses</td><td class="n">5,200</td><td class="n">4,300</td></tr>
+    <tr><td>Food</td><td>7 days of momos and dal bhat. Food costs more up in Mustang.</td><td class="n">7,000</td><td class="n">8,000</td></tr>
+    <tr><td>SIM, taxis, hot springs, temples</td><td></td><td class="n">2,600</td><td class="n">2,600</td></tr>
+    <tr><td>Buffer</td><td>Puncture, fine, deposit</td><td class="n">3,000</td><td class="n">3,000</td></tr>
+    <tr class="total"><td>Total</td><td></td><td class="n">≈ 82,000</td><td class="n">≈ 82,000</td></tr>
+    <tr><td>Optional: paragliding</td><td>$80–95</td><td class="n">+10,000–11,500</td><td class="n">+10,000–11,500</td></tr>
+  </table></div>
+  <div class="grid">
+    <div class="card"><h3>Get under 78k</h3><ul><li>Book the flight this week</li><li>Negotiate NPR 3,000/day for 2 bikes</li><li>Eat dinner where you sleep (teahouses often discount the room)</li><li>Skip paragliding</li></ul></div>
+    <div class="card"><h3>Cash</h3><ul><li>Carry USD, endorsed on your passport in BD. BDT is hard to change in Nepal.</li><li>Draw NPR in Pokhara and Beni. Jomsom ATMs are unreliable.</li></ul></div>
+  </div>
+</section>
+
+<!-- ============ PREP ============ -->
+<section id="prep">
+  <div class="eyebrow">Pack</div>
+  <h2>Prep <span class="serif">checklist</span></h2>
+  <div class="grid">
+    <div class="card"><h3>Documents</h3><ul>
+      <li>Passport (6+ months valid) and a photocopy</li>
+      <li>BD driving licence <strong>with the motorcycle category</strong></li>
+      <li>IDP from <a href="https://aabangladesh.com/">AAB</a>: same day if you apply before noon, Sun–Thu. Bring passport and NID copies, your licence, 1 passport photo and 4 stamp-size photos.</li>
+      <li>4 extra passport photos for ACAP/TIMS</li>
+      <li>Printed tickets, and endorsed USD</li>
+    </ul></div>
+    <div class="card"><h3>Gear</h3><ul>
+      <li>Riding gloves, a buff or mask, sunglasses</li>
+      <li>Warm layer + windproof shell (about 0 °C at dawn up high)</li>
+      <li>Your own helmet if you can carry it</li>
+      <li>Power bank (Nabil needs one too), phone mount, 2 bungees, cable ties</li>
+      <li>One small soft bag each for Option B</li>
+      <li>ORS, paracetamol, anti-diarrhoea pills, sunscreen, lip balm</li>
+      <li>Offline maps: Google Maps for Pokhara–Muktinath, plus Maps.me</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ============ TODO ============ -->
+<section id="todo">
+  <div class="eyebrow">Next 7 days</div>
+  <h2>Do this <span class="serif">this week</span></h2>
+  <div class="card" style="margin-top:var(--bf-space-4)">
+    <ol class="todo">
+      <li>Ask Nabil for his exact ABC end date, and whether his flight can move to <strong>Nov 9</strong>.</li>
+      <li>Pick <strong>Option A or B</strong> together. My pick is B.</li>
+      <li>Ask your family for 80k. Show them the budget table.</li>
+      <li>Book DAC↔KTM: out Nov 3, back Nov 9.</li>
+      <li>Get the IDP at AAB (1 day). First check your licence has the motorcycle class.</li>
+      <li>Send the rental message to Wheels Nepal plus 2 other shops, and book the one with a clear deposit policy.</li>
+      <li>Buy gloves, a buff and a warm layer if you don't have them.</li>
+    </ol>
+  </div>
+  <div class="card" style="margin-top:var(--bf-space-4)"><h3>The Ladakh question</h3><p>Ladakh is <strong>not rideable in Feb–Mar</strong>: both roads into Leh are closed and it's −15 to −25 °C. The real window is June–September 2027, so you have 7–10 months to save, not 3. Don't pay a middleman upfront for an "India visa appointment in a month". Use the official IVAC portal, or an agent you can verify.</p></div>
+</section>
+
+<footer>
+  <p><strong>Sources</strong></p>
+  <ul>
+    <li>Rentals: <a href="https://rentalpokhara.com/">Rental Pokhara</a> · <a href="https://ramrental.com.np/">Ram Rental</a> · <a href="https://citymotorbike.com/motorbike-hire-rates-in-nepal/">City Motorbike rates</a> · <a href="https://nepalmototours.com/rental/bike-rent-in-pokhara">Nepal Moto Tours</a> · <a href="https://luxuryvehiclepokhara.com/bike-rent/">Luxury Vehicle Pokhara</a> · <a href="https://riderly.com/blog/guide-to-motorbike-hire-in-kathmandu-nepal/">Riderly guide</a></li>
+    <li>Fuel: <a href="https://evnewsnepal.com/petrol-price-in-nepal">Petrol price in Nepal</a> · <a href="https://www.sharesansar.com/newsdetail/nepal-oil-corporation-raises-fuel-prices-petrol-hits-rs-200-per-liter-in-kathmandu-2026-08-03">ShareSansar</a></li>
+    <li>Permits: <a href="https://shikharadventure.com/blog/acap-tims-permit-nepal-2026">ACAP &amp; TIMS 2026</a> · <a href="https://www.hopnepal.com/blog/lower-mustang-permit-cost-breakdown">Lower Mustang permits</a> · IDP: <a href="https://aabangladesh.com/wp-content/uploads/2025/03/FAQ-International-Driving-Permit-IDP.pdf">AAB FAQ</a></li>
+    <li>Places: <a href="https://en.wikipedia.org/wiki/Dhumba_lake">Dhumba Lake</a> · <a href="https://nepaltraveller.com/sidetrack/titi-lake-mustang-nepals-serene-alpine-secret-waiting-to-be-discovered">Titi Lake</a> · <a href="https://en.wikipedia.org/wiki/Rupse_Falls">Rupse Falls</a> · <a href="https://nepaltraveller.com/sidetrack/marpha-cultural-gem-of-mustang">Marpha</a> · <a href="https://manasluguide.com/mustang-nepal-hidden-gems/">Mustang gems</a> · <a href="https://www.kimkim.com/c/days-hikes-in-the-lower-mustang">Lower Mustang day hikes</a> · <a href="https://www.northwesttelegraph.com.au/travel/motorcycling-nepals-upper-mustang-straddling-the-himalayas-and-the-tibetan-plateau--c-7715474">Riding Mustang</a></li>
+    <li>Transport: <a href="https://www.inyourpocket.com/nepal/getting-from-kathmandu-to-pokhara_81101f">KTM → Pokhara</a> · Paragliding: <a href="https://www.himalayanhero.com/package/paragliding-in-pokhara">Himalayan Hero</a> · Ladakh roads: <a href="https://discoverwithdheeraj.com/manali-leh-highway-status-2026/">Manali–Leh 2026</a></li>
+    <li>Photos: Wikimedia Commons, linked from the source (needs internet).</li>
+  </ul>
+  <p>Not verified: the Wheels Nepal page, current Beni–Jomsom road status, the Jomsom fuel pump, bike access to Lubra and Titi Lake, Pumdikot, the 2026 Nepal visa rule for SAARC nationals, and hot-spring and boat prices. Distances are approximate. This page replaces <code>1_nepal_bike_trip.md</code>, <code>1_a_nepal_full_plan.html</code> and <code>2_ride_details.html</code>.</p>
+</footer>
+
+</div>
+<script>
+// days until landing
+(function(){
+  var d = Math.ceil((new Date(2026,10,3) - new Date()) / 864e5);
+  document.getElementById('countdown').textContent = d > 0 ? d : (d === 0 ? 'Today' : 'Gone');
+})();
+// theme switch, same as the brand page; storage may be blocked
+(function(){
+  var root = document.documentElement, btns = document.querySelectorAll('[data-set-theme]');
+  function apply(t){
+    if (t) root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)); });
+  }
+  var saved = ''; try { saved = localStorage.getItem('np-theme') || ''; } catch(e){}
+  apply(saved);
+  btns.forEach(function(b){ b.addEventListener('click', function(){
+    apply(b.dataset.setTheme); try { localStorage.setItem('np-theme', b.dataset.setTheme); } catch(e){}
+  }); });
+})();
+// hide any photo that fails to load
+document.querySelectorAll('img').forEach(function(i){ i.addEventListener('error', function(){ (i.closest('figure') || i).style.display = 'none'; }); });
+</script>
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
