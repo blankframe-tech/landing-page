@@ -12,8 +12,8 @@ Every public-facing HTML page in this repository **MUST** include the GoatCounte
 ```
 
 ### B. Register in the Live Visit Counter Dashboard
-Every subpage **MUST** appear in the live breakdown dashboard at `visit-count/index.html` (as well as its aliases `stats/index.html` and `analytics/index.html`):
-1. **Add Route to `PATHS` Array** in the `<script>` section of `visit-count/index.html`:
+Every subpage **MUST** appear in the live breakdown dashboard at `tools/visit-count/index.html` (as well as its aliases `stats/index.html` and `analytics/index.html`):
+1. **Add Route to `PATHS` Array** in the `<script>` section of `tools/visit-count/index.html`:
    ```javascript
    { id: 'project_id', path: '/project-path/', name: 'Project Display Name' }
    ```
@@ -26,7 +26,7 @@ Every subpage **MUST** appear in the live breakdown dashboard at `visit-count/in
    - Percentage label: `<span class="bar-pct" id="pct-project_id">Calculating...</span>`
    - Count value: `<div class="count-val" id="count-project_id">—</div>`
 3. **Keep Aliases Synced**:
-   Copy the updated `visit-count/index.html` to `stats/index.html` and `analytics/index.html`.
+   Copy the updated `tools/visit-count/index.html` to `stats/index.html` and `analytics/index.html`.
 
 ### C. Feature on the Main Landing Page
 Add a card for the new project in the **Portfolio** section of `index.html` with its rank number, category tag, description, and link to the route.

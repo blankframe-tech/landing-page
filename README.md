@@ -17,7 +17,7 @@ Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out 
 | `experiments/`, `research/` | The experiments lab section and the research pages (including the Fuel Shock proposal pages generated from the FuelPriceHikeImpactResearch repo) |
 | `abraar/`, `shifa/` | Personal pages (`abraar/` is its own nested git repo) |
 | `terracotta-tales/` | Redirect to Terracotta Tales |
-| `visit-count/` | Live per-sub-site traffic dashboard (GoatCounter); `stats/` and `analytics/` are copies of it |
+| `tools/visit-count/` | Live per-sub-site traffic dashboard (GoatCounter); `stats/` and `analytics/` are copies of it |
 | `archived/` | The previous home page |
 | `EXTRAS/` | Reference images and palettes, not linked from the site |
 | `setup_previews.sh` | Creates the theme-preview git worktrees (now in `../0_archive/bft-previews/`) |
@@ -25,7 +25,7 @@ Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out 
 | `CNAME` | Serves the repo at `www.blankframe.tech` |
 
 **Rule for new pages** (see `AGENTS.md`): every public page includes the GoatCounter
-script before `</body>` and is registered in the `visit-count/` dashboard (and its
+script before `</body>` and is registered in the `tools/visit-count/` dashboard (and its
 `stats/` and `analytics/` copies).
 
 ## GitHub Pages setup (already done)

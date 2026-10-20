@@ -61,4 +61,4 @@ node build_site.js
   the corpus is biased and where the classifier fails; that is deliberate and should
   survive edits.
 - Every page carries the GoatCounter tag, and `/research/r1_Fuel/` is registered in
-  `visit-count/`, `stats/` and `analytics/` per the repository rules in `AGENTS.md`.
+  `tools/visit-count/`, `stats/` and `analytics/` per the repository rules in `AGENTS.md`.
