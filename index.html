@@ -278,6 +278,28 @@
     color: var(--faint);
   }
 
+  /* -------- Proof strip -------- */
+  .proof-strip{
+    margin: 40px auto 0;
+    max-width: 920px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .proof-strip > div{ padding: 22px 18px; border-left: 1px solid var(--line); }
+  .proof-strip > div:first-child{ border-left: none; }
+  .proof-strip dt{ font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.1; color: var(--ink); }
+  .proof-strip dd{ margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
+  @media (max-width: 720px){
+    .proof-strip{ grid-template-columns: repeat(2, 1fr); }
+    .proof-strip > div:nth-child(3){ border-left: none; }
+    .proof-strip > div:nth-child(n+3){ border-top: 1px solid var(--line); }
+  }
+
   /* -------- Marquee -------- */
   .marquee{
     border-top: 1px solid var(--line);
@@ -766,6 +788,13 @@
         <a class="btn light" href="#products">See our products</a>
       </div>
       <div class="micro-status reveal d3"><span class="dot" aria-hidden="true"></span> We build the frame. You create what matters.</div>
+      <!-- Proof strip: only figures already published on this site; source page in each comment -->
+      <dl class="proof-strip reveal d3">
+        <div><dt class="display">1,996</dt><dd>news articles in the r1_Fuel corpus</dd></div><!-- research/ -->
+        <div><dt class="display">5</dt><dd>costed study designs for the fuel shock</dd></div><!-- research/ -->
+        <div><dt class="display">30</dt><dd>checks in the MacBook pre-purchase checker</dd></div><!-- mac-check/ checklist -->
+        <div><dt class="display">৳2.5L</dt><dd>earned in year one by Terracotta Tales, a collaborator</dd></div><!-- collaborators card -->
+      </dl>
     </div>
   </section>
 

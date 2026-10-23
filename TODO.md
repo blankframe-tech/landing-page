@@ -9,7 +9,7 @@ Trust and professionalism pass on `index.html`. Benchmark: https://li.fi, which 
   Original item: Make the subhead concrete: name the product types and the user. Cut the repeated "cognitive load / invisible / ambient / quiet" wording across the page.
 
 ## 2. Show proof above the fold
-- [ ] Add a strip of real numbers under the hero, e.g. ThrottleIQ km or testers, the r1_Fuel 1,996-article corpus, Terracotta Tales ৳2.5L. They're buried in cards 05 and 07 today.
+- [x] Add a strip of real numbers under the hero, e.g. ThrottleIQ km or testers, the r1_Fuel 1,996-article corpus, Terracotta Tales ৳2.5L. They're buried in cards 05 and 07 today. _(2026-10-24: four figures already on the site: 1,996 articles and 5 costed study designs (r1_Fuel, `research/`), 30 checks (the MacBook checker's rendered checklist; its static "0 of 28" placeholder is stale), ৳2.5L (Terracotta Tales, labelled as a collaborator). **Owner:** no ThrottleIQ km, rider or tester totals exist in the repo; add one to the strip when you have a real figure.)_
 - [ ] Get one or two named quotes (name + role) from ThrottleIQ beta riders or MacBook Checker users.
 
 ## 3. Focus the portfolio
