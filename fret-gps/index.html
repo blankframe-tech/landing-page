@@ -1,21 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FretGPS — BlankFrame</title>
-    <style>
-        body { background: #F2F1ED; color: #131313; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
-        h1 { font-size: 3rem; letter-spacing: -0.04em; margin-bottom: 10px; }
-        p { color: #6F6E6A; font-size: 1.2rem; }
-        a { margin-top: 20px; color: #FF4A1F; text-decoration: none; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FretGPS — A positioning system for your fretboard · BlankFrame</title>
+<meta name="description" content="FretGPS shows which string and fret every note came from, how far you bent it and which strings you muted, as a live fret map. Idea stage: the phone-only experiment is built and measured.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/fret-gps/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="FretGPS — A positioning system for your fretboard">
+<meta property="og:description" content="Audio knows the pitch, not the place. FretGPS measures which string and fret you played. Phone-only experiment measured on GuitarSet; String-ID clip hardware planned.">
+<meta property="og:url" content="https://www.blankframe.tech/fret-gps/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/fret-gps/string-id-overview.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 960px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2, h3{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.4rem, 8vw, 4rem); margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  h2{ font-size: 1.6rem; margin-bottom: var(--bf-space-3); }
+  h3{ font-size: 1.05rem; letter-spacing: -0.01em; }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; max-width: 660px; margin: 0; }
+  .lede + .lede{ margin-top: var(--bf-space-3); }
+  .note{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-3) 0 0; }
+  section{ margin-top: var(--bf-space-16); }
+  code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86em; }
+  pre{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); padding: var(--bf-space-4); overflow-x: auto; margin: var(--bf-space-3) 0 0; line-height: 1.5; }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible, .btn:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  .tag{ display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bf-muted); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px 10px; margin: var(--bf-space-6) 6px 0 0; }
+  .row{ display: flex; flex-wrap: wrap; gap: var(--bf-space-3); align-items: center; margin-top: var(--bf-space-6); }
+  .btn{ display: inline-flex; align-items: center; gap: 10px; border-radius: var(--bf-radius-pill); padding: 11px 20px; font: 600 14px var(--bf-font-body); letter-spacing: -0.01em; text-decoration: none; border: 1px solid transparent; transition: transform var(--bf-dur-fast) var(--bf-ease), box-shadow var(--bf-dur-fast) var(--bf-ease); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--bf-shadow-pill); }
+  .btn.ink{ background: var(--bf-ink); color: var(--bf-bg); }
+  .btn.light{ background: var(--bf-card); color: var(--bf-ink); border-color: var(--bf-line); }
+
+  figure{ margin: var(--bf-space-8) 0 0; }
+  figure img{ display: block; width: 100%; height: auto; border-radius: var(--bf-radius-sm); border: 1px solid var(--bf-line); box-shadow: var(--bf-shadow-card); }
+  figure a{ display: block; }
+  figure.tall img{ max-width: 520px; margin: 0 auto; }
+  figcaption{ color: var(--bf-muted); font-size: 0.86rem; margin-top: var(--bf-space-2); }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--bf-space-4); margin-top: var(--bf-space-6); }
+  .card{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-md); padding: var(--bf-space-6); box-shadow: var(--bf-shadow-card); min-width: 0; }
+  .card p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.94rem; }
+  .card ul{ margin: var(--bf-space-2) 0 0; padding-left: 1.1rem; color: var(--bf-muted); font-size: 0.94rem; }
+  .card li{ margin-bottom: 6px; }
+  .num{ font: 700 2rem var(--bf-font-display); letter-spacing: -0.03em; color: var(--bf-ink); }
+  .warn{ border-left: 3px solid var(--bf-accent-text); padding: var(--bf-space-2) var(--bf-space-4); background: var(--bf-card); border-radius: 0 var(--bf-radius-sm) var(--bf-radius-sm) 0; margin-top: var(--bf-space-6); font-size: 0.92rem; color: var(--bf-ink-soft); }
+
+  .table{ overflow-x: auto; margin-top: var(--bf-space-6); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-sm); background: var(--bf-card); }
+  table{ width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th, td{ text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--bf-line); }
+  tr:last-child td{ border-bottom: 0; }
+  th{ font-weight: 600; color: var(--bf-muted); font-size: 0.8rem; letter-spacing: 0.03em; text-transform: uppercase; }
+  td strong{ color: var(--bf-ink); }
+
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+</style>
 </head>
 <body>
-    <h1>FretGPS</h1>
-    <p>Coming soon. High-fidelity tracking infrastructure for the real world.</p>
-    <a href="/">← Back to BlankFrame</a>
-    <!-- GoatCounter Analytics -->
-    <script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<header>
+  <h1>FretGPS</h1>
+  <p class="lede"><span class="serif">A positioning system for your fretboard.</span> You play, and your phone shows which string and fret every note came from, how far you bent it, and which strings you muted, as a live animated fret map.</p>
+  <span class="tag">Idea stage</span><span class="tag">Phase 0 measured</span><span class="tag">Open source</span>
+  <div class="row">
+    <a class="btn ink" href="https://github.com/the-abraar/FretGPS">Source on GitHub</a>
+    <a class="btn light" href="https://github.com/the-abraar/FretGPS/blob/main/docs/PLAN.md">Read the plan</a>
+  </div>
+  <figure>
+    <a href="string-id-overview.jpg"><img src="string-id-overview.jpg" width="1536" height="1024" alt="Concept art for the String-ID smart pickup: a black clip with six piezo sensors sitting on an acoustic guitar bridge, a system diagram from six piezos through a preamp and ADC to an ESP32, a per-channel analog schematic, the companion app mockup, a six-step build roadmap and a prototype cost table."></a>
+    <figcaption>Concept art for the String-ID clip. It gets a few details wrong (disc size, preamp, ADC, the app's fret); the corrections are <a href="#hardware">below</a>.</figcaption>
+  </figure>
+</header>
+
+<section id="problem">
+  <h2>Audio knows the pitch, <span class="serif">not the place</span></h2>
+  <p class="lede">On a guitar the same E4 can be played in five spots: e 0, B 5, G 9, D 14, A 19. Every tuner, tab app and learning app has to guess which one you used.</p>
+  <p class="lede">FretGPS measures the place. A removable clip at the bridge holds one sensor per string, so the string is measured instead of guessed. The pitch on that channel gives the fret, and the pitch curve gives the bend.</p>
+  <pre aria-label="Example fret map frame"><code> t = 12.48 s       0   1   2   3   4   5   6   7
+ 1  e   ‖───┼───┼───┼───┼───┼───┼───┼───
+ 2  B   ‖───┼───┼───┼───┼───┼───┼───┼───
+ 3  G   ‖───┼───┼───┼───┼───┼─●─┼───┼───    C4, bending +100¢ → C♯4
+ 4  D   ‖───┼───┼───┼───┼───┼───┼───┼───
+ 5  A   ✕                                    muted
+ 6  E   ✕                                    muted</code></pre>
+  <p class="note">Every sensing source, phone or hardware, emits the same note event, so the app doesn't care where it came from:</p>
+  <pre><code>{"t": 12.48, "dur": 0.31, "string": 3, "fret": 5, "note": "C4", "hz": 261.6, "bend_cents": 100}</code></pre>
+</section>
+
+<section id="experiment">
+  <h2>Can a phone <span class="serif">skip the hardware?</span></h2>
+  <p class="lede">Phase 0 tested whether a plain recording of the guitar can produce the fret map. The prototype, <code>fretmap.py</code>, was scored against <a href="https://zenodo.org/records/3371780">GuitarSet</a>: 360 real acoustic-guitar recordings with the true string and fret of every note.</p>
+  <div class="grid">
+    <div class="card"><div class="num">82%</div><h3>Notes found</h3><p>Single notes, note F1 with Basic Pitch. 71% for chord notes. A simulated cheap phone costs only 3.6 points.</p></div>
+    <div class="card"><div class="num">43%</div><h3>Right string, audio alone</h3><p>On lead lines, even with perfect pitches, using a least-hand-movement rule. A tuner app's "lowest fret" gets 31%.</p></div>
+    <div class="card"><div class="num">79–89%</div><h3>With a position hint</h3><p>One "I'm around fret N" per take gives 79%; a rolling hint, like a camera would see, gives 89%. Ideal hints, so upper bounds.</p></div>
+  </div>
+  <div class="table">
+    <table>
+      <thead><tr><th>Signal</th><th>From a phone recording alone</th></tr></thead>
+      <tbody>
+        <tr><td>Which notes, single lines</td><td>✅ <strong>Mostly</strong>: 82% F1</td></tr>
+        <tr><td>Which notes, chords</td><td>⚠️ <strong>Partly</strong>: 71% F1</td></tr>
+        <tr><td>Which string and fret</td><td>❌ <strong>A guess</strong>: 43% on solos · ⚠️ 79–89% with a hand-position hint</td></tr>
+        <tr><td>Bend amount in cents</td><td>✅ Straight from the pitch curve</td></tr>
+        <tr><td>Which strings are muted</td><td>❌ Audio only shows that a note stopped</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figure>
+    <a href="fretmap-example.png"><img src="fretmap-example.png" width="1800" height="1230" alt="Three fret-map timelines of the same 12-second GuitarSet solo. Top: the ground truth. Middle: fretmap.py from the mic alone puts 10 of 30 notes on the right string. Bottom: the same audio with the hint 'around fret 6' puts 23 of 30 on the right string." loading="lazy"></a>
+    <figcaption>One GuitarSet solo. Mic alone: 10 of 30 notes on the right string, the shape right and the place wrong. Add "around fret 6": 23 of 30.</figcaption>
+  </figure>
+  <p class="lede" style="margin-top:var(--bf-space-8)"><strong>Verdict:</strong> a phone gets you the notes and the bends, but only guesses the string. The string guess is mostly a "where is the hand" problem, which gives three tiers worth building in this order:</p>
+  <div class="grid">
+    <div class="card"><h3>1 · Phone only</h3><p>Free. Notes, bends, replay. The app's first data source.</p></div>
+    <div class="card"><h3>2 · Phone + position hint</h3><p>Tap the neck, let the camera watch your hand, or add a few-dollar distance sensor on the headstock. Tested next.</p></div>
+    <div class="card"><h3>3 · The String-ID clip</h3><p>Muting, exactly which strings rang, and a ≥ 95% string ID. The premium tier.</p></div>
+  </div>
+  <p class="note">Full write-up, recording protocol and sources: <a href="https://github.com/the-abraar/FretGPS/blob/main/docs/phone-audio-experiment.md">phone-audio-experiment.md</a>.</p>
+</section>
+
+<section id="hardware">
+  <h2>The String-ID <span class="serif">clip</span></h2>
+  <p class="lede">Six piezo sensors, one per string, feed a buffer and band-pass filter, a multichannel audio ADC and an ESP32-S3 that tracks pitch per string and streams note events to the app over BLE.</p>
+  <div class="grid">
+    <div class="card"><h3>No modification</h3><p>Clips onto the bridge. No drilling or glue, and it moves between guitars.</p></div>
+    <div class="card"><h3>String before pitch</h3><p>Each channel tracks one string, so a chord becomes six easy monophonic problems instead of one hard polyphonic one.</p></div>
+    <div class="card"><h3>Muting becomes visible</h3><p>A muted string's channel goes quiet, something no phone-only method can report.</p></div>
+  </div>
+  <figure class="tall">
+    <a href="string-id-poster.jpg"><img src="string-id-poster.jpg" width="1024" height="1536" alt="String-ID smart pickup poster: the clip on a guitar bridge, the signal chain from six piezo sensors to a preamp, ADC, ESP32 and app, the hardware features, the app experience, a build roadmap, success metrics and a cost estimate under $50." loading="lazy"></a>
+    <figcaption>The concept poster. Treat its numbers as the starting point, not the spec.</figcaption>
+  </figure>
+  <div class="warn"><strong>What the concept art gets wrong.</strong> Six 20–27 mm discs don't fit in the ~55 mm across the strings at the bridge. A TL072 isn't rated for 3.3 V, and 40–60 dB of gain would likely clip a piezo. An 80 Hz high-pass cuts the low E (82.4 Hz); use ~60 Hz. The ADS1115 is far too slow for audio. The app mock's "196.0 Hz, fret 3" on the G string is the open string. The real build is an MCP6004-class rail-to-rail op-amp, audio ADCs, an ESP32-S3, and a budget of ~$60–100, not "&lt; $50". Details in <a href="https://github.com/the-abraar/FretGPS/blob/main/docs/PLAN.md#6-hardware-v0-the-concept-art-corrected">PLAN.md §6</a>.</div>
+</section>
+
+<section id="roadmap">
+  <h2>Roadmap</h2>
+  <p class="lede">Every phase ends with a measurement, not a demo.</p>
+  <div class="table">
+    <table>
+      <thead><tr><th>Phase</th><th>What</th><th>Exit criterion</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Phone only: audio → notes → string and fret guess</td><td>Note F1 ≥ 80% on single-note lines from your own phone</td><td>✅ Prototype + GuitarSet measurement · ⏭ own recordings</td></tr>
+        <tr><td>0b</td><td>Real position hints: your "around N", phone camera, headstock distance sensor</td><td>Right string ≥ 85% on your riffs</td><td>⬜ Next</td></tr>
+        <tr><td>1</td><td>One piezo on the bench</td><td>Clean pitch on all six open strings and the 12th fret</td><td>⬜</td></tr>
+        <tr><td>2</td><td>Two-channel crosstalk go/no-go</td><td>≥ 12 dB separation between adjacent strings at the attack</td><td>⬜</td></tr>
+        <tr><td>3</td><td>Six-channel clip + ESP32-S3 + BLE event stream</td><td>≥ 95% string + fret · ≤ 50 ms pluck to screen · moves between guitars in &lt; 10 s</td><td>⬜</td></tr>
+        <tr><td>4</td><td>App: live fret map, bend meter, mute markers, replay, tab export</td><td>The replay matches what you played in a real practice session</td><td>⬜ Can start now on phone-audio events</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Parked until Phase 3 passes: the capacitive fretboard overlay, teacher dashboard, AI coach, analytics and cloud. "GPS" is a metaphor; there is no GPS module.</p>
+</section>
+
+<section id="try">
+  <h2>Try the phone-only prototype</h2>
+  <p class="lede">Python 3.11 and ffmpeg. Record a riff on your phone and get ASCII tab or JSON note events.</p>
+  <pre><code>git clone https://github.com/the-abraar/FretGPS && cd FretGPS/experiments/phone-audio
+python3.11 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt          # also needs ffmpeg (brew install ffmpeg)
+python test_fretmap.py                    # self-check on a synthesized riff
+python fretmap.py ~/Downloads/riff.m4a    # any phone recording → ASCII tab
+python fretmap.py ~/Downloads/riff.m4a --around 7   # tell it roughly where your hand is
+python fretmap.py ~/Downloads/riff.m4a --json</code></pre>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <a href="https://github.com/the-abraar/FretGPS">FretGPS on GitHub</a>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
