@@ -22,7 +22,7 @@ Trust and professionalism pass on `index.html`. Benchmark: https://li.fi, which 
 
 ## 4. Show that a company is behind it
 - [ ] Add the founder's name, photo and a one-line bio.
-- [ ] Footer: GitHub, LinkedIn, X, plus Privacy (and Terms if we collect anything). Today it's only © and a mailto.
+- [ ] Footer: GitHub, LinkedIn, X, plus Privacy (and Terms if we collect anything). Today it's only © and a mailto. _(2026-10-24: GitHub added, linking the `blankframe-tech` org that ThrottleIQ, Indriyo, ITL-Reserver and this repo live under. **Owner, still open:** no company LinkedIn or X account appears in this repo or `ai-job-search-Abraar` (the only LinkedIn URLs are personal, and they disagree: `in/abraar73` on `/abraar/`, `in/abraar3` in the CV repo); there is no privacy page. Supply the URLs, or the privacy text (GoatCounter, no cookies; tools run in the browser), and they go in the footer.)_
 - [ ] Consider an About page and a changelog or "What's new" link.
 
 ## 5. Clear next step
