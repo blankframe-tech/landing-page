@@ -68,6 +68,7 @@ function footer() {
         <a href="${SITE.repo}">Source repo</a>
         <a href="mailto:${SITE.contact}?subject=r1_Fuel">Email</a>
         <a href="/">BlankFrame</a>
+        <a href="/privacy/">Privacy</a>
       </div>
     </div>
     <p class="fnote">

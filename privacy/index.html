@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy · BlankFrame</title>
+<meta name="description" content="What blankframe.tech collects: cookie-free page counts with GoatCounter, and nothing from the tools, which run in your browser.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/privacy/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Privacy · BlankFrame">
+<meta property="og:description" content="Cookie-free page counts with GoatCounter. The tools run in your browser and send nothing to us.">
+<meta property="og:url" content="https://www.blankframe.tech/privacy/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.4rem, 8vw, 4rem); margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  h2{ font-size: 1.4rem; margin-bottom: var(--bf-space-3); }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-3) 0 0; }
+  section{ margin-top: var(--bf-space-12); }
+  p, ul{ color: var(--bf-ink-soft); }
+  ul{ padding-left: 1.2rem; margin: var(--bf-space-3) 0 0; }
+  li{ margin-bottom: var(--bf-space-2); }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<main>
+<header>
+  <h1>Privacy</h1>
+  <p class="lede"><span class="serif">The short version:</span> no cookies, no accounts, no ads. We count page views with GoatCounter, and nothing you put into our tools leaves your browser.</p>
+  <p class="note">Covers www.blankframe.tech. Last updated 28 October 2026.</p>
+</header>
+
+<section id="counting">
+  <h2>What we count</h2>
+  <p>Pages on this site load <a href="https://www.goatcounter.com/help/privacy">GoatCounter</a>, an open-source, cookie-free page counter. By default, for each visit it records the page and the site that linked you here, and, as separate totals that can't be joined up, your browser, operating system, language, screen width and country (worked out from your IP address).</p>
+  <p>GoatCounter says it never writes your IP address or browser string to disk. It keeps them in memory for up to eight hours only to tell a new visit from a reload. The view count for each page is public on our <a href="/stats/">stats page</a>.</p>
+</section>
+
+<section id="others">
+  <h2>Who else sees your request</h2>
+  <ul>
+    <li><strong>Hosting.</strong> GitHub Pages serves the site and may log visitor IP addresses for security. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</li>
+    <li><strong>Fonts.</strong> Most pages load their fonts from Google Fonts, so your browser asks Google for them. See the <a href="https://developers.google.com/fonts/faq/privacy">Google Fonts privacy FAQ</a>.</li>
+    <li><strong>A few pages load more.</strong> The PoreDekho try-on demo loads Google's model-viewer and Tailwind's CDN, ReserveMyTokens loads Tailwind's CDN, Bijoy to Unicode loads JSZip from cdnjs, and the Nepal ride plan shows photos from Wikimedia Commons.</li>
+    <li><strong>Links out.</strong> Sites we link to, like GitHub or LinkedIn, have their own policies.</li>
+  </ul>
+</section>
+
+<section id="browser">
+  <h2>What stays in your browser</h2>
+  <ul>
+    <li>Your theme choice, the Taka Check language, and your MacBook checker progress are saved in your browser's local storage. They are never sent to us. Clearing this site's data removes them.</li>
+    <li>The MacBook checker stores itself for offline use. Its microphone and camera tests run on your device: the short sound clip it records is for you to play back and is never uploaded.</li>
+    <li>Bijoy to Unicode converts your .docx files on your device. The files never leave it.</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Email and questions</h2>
+  <p>No form on this site sends anything to us. If you email <a href="mailto:hello@blankframe.tech">hello@blankframe.tech</a>, we see your address and message and use them only to reply. Our apps, such as ThrottleIQ, handle their own data; this page covers the website. Questions, or a request to delete something you sent us, go to the same address.</p>
+</section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <span><a href="/">blankframe.tech</a> · <a href="https://github.com/blankframe-tech">GitHub</a> · <a href="https://www.linkedin.com/in/abraar3/">LinkedIn</a> · <a href="/privacy/" aria-current="page">Privacy</a></span>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

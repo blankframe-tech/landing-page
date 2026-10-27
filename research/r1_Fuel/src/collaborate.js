@@ -92,7 +92,7 @@ const ROLES = [
     tag: 'Technical',
     title: 'Bangla NLP / computational social scientist',
     own: 'P4 — where there is already a corpus, a pipeline and a known problem.',
-    body: `1,996 articles are collected and a v0 frame classifier runs, but it is a keyword dictionary and it is
+    body: `3,883 articles are collected and a v0 frame classifier runs, but it is a keyword dictionary and it is
       <strong>not good enough</strong>: against a single-coder pass it scores F1 0.36 on government-failure framing and
       0.20 on apology/empathy. It needs a BanglaBERT-class model, a validated sentiment layer, and two human coders
       to get kappa above 0.7. The corpus is built; the hard part is open.`,
@@ -180,7 +180,7 @@ function body() {
           <li>A sourced impact analysis across inflation, fares, agriculture, industry, power and macro, with every derived figure marked and its method shown</li>
           <li>A full audit log &mdash; every search, every figure, its source, and every derivation behind the analysis</li>
           <li>Six costed study designs with sampling, instruments, analysis plans and ethics</li>
-          <li>P4&rsquo;s corpus: <strong>1,996 articles</strong> across Prothom Alo, Samakal and The Daily Star, 2022 and 2026 windows, collected politely with robots.txt and crawl-delay respected</li>
+          <li>P4&rsquo;s corpus: <strong>3,883 articles</strong> across Prothom Alo, Samakal and The Daily Star, 2022 and 2026 windows, collected politely with robots.txt and crawl-delay respected</li>
           <li>A working pipeline &mdash; volume timeline, frame shares with Wilson intervals, exploratory NMF topics, a stratified coding sample and a validation script</li>
           <li>A mapped landscape of institutions, adjacent researchers and funder eligibility</li>
         </ul>

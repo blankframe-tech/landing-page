@@ -4,7 +4,7 @@ const C = require('./charts');
 const WEEKLY = require('../content/coverage_weekly.json');
 
 const DESC =
-  'Everything r1_Fuel has built: the impact analysis, the full audit log, a 1,996-article bilingual news corpus, ' +
+  'Everything r1_Fuel has built: the impact analysis, the full audit log, a 3,883-article bilingual news corpus, ' +
   'the discourse pipeline and its validation failures, and the data anyone can reuse without collecting anything.';
 
 /* Validation of the v0 keyword frame classifier against a single-coder pass,
@@ -92,7 +92,7 @@ function body() {
       <div class="card">
         <span class="tag accent">Corpus</span>
         <h3 style="font-size:18px;margin-top:12px;">P4 discourse corpus</h3>
-        <p class="muted small" style="margin-top:10px;">1,996 fuel articles across three outlets and two shock windows, with frame flags, plus the pipeline that produced them.</p>
+        <p class="muted small" style="margin-top:10px;">3,883 articles across three outlets and two shock windows, the pipeline that collected them, and a frame-flagged snapshot.</p>
         <p class="small" style="margin-top:12px;"><a href="#p4" style="color:var(--accent);text-decoration:none;">Details &rarr;</a></p>
       </div>
       <div class="card">
@@ -136,7 +136,7 @@ function body() {
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-kicker">P4 &middot; Discourse corpus</div>
-      <h2>1,996 articles, a working pipeline, and a classifier that isn&rsquo;t good enough</h2>
+      <h2>3,883 articles, a working pipeline, and a classifier that isn&rsquo;t good enough</h2>
       <p>
         P4 needs no fieldwork, so it started immediately. The corpus and infrastructure are real. The frame classifier
         is a keyword dictionary, and the validation below is the reason its frame shares are presented as pipeline
@@ -145,7 +145,7 @@ function body() {
     </div>
 
     <div class="grid g4" style="margin-bottom:34px;">
-      <div class="stat"><div class="val accent">1,996</div><div class="lbl">Articles collected</div><div class="note">20 Jul 2022 &ndash; 21 Sep 2026, all passing the fuel-relevance filter.</div></div>
+      <div class="stat"><div class="val accent">3,883</div><div class="lbl">Articles collected</div><div class="note">Corpus v1, 20 Jul 2022 &ndash; 30 Sep 2026. The breakdown and CSV on this page are the 21 Sep snapshot of 1,996 fuel-relevant articles.</div></div>
       <div class="stat"><div class="val">1,476</div><div class="lbl">Bangla / 520 English</div><div class="note">Prothom Alo 1,092 &middot; Daily Star 520 &middot; Samakal 384.</div></div>
       <div class="stat"><div class="val">2</div><div class="lbl">Shock windows</div><div class="note">561 articles around the 2022 record hike; 1,435 across March&ndash;September 2026.</div></div>
       <div class="stat"><div class="val">186</div><div class="lbl">Coding sample</div><div class="note">Stratified by language and period, awaiting two human coders.</div></div>
@@ -222,7 +222,7 @@ function body() {
         <table class="data">
           <thead><tr><th style="width:38%;">File</th><th>What it holds</th><th class="num">Size</th></tr></thead>
           <tbody>
-            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/articles_with_frames.csv" style="color:var(--accent);text-decoration:none;">articles_with_frames.csv</a></td><td class="small muted">All 1,996 articles: URL, date, source, language, window, headline and every frame flag with the terms that triggered it.</td><td class="num mono">972 KB</td></tr>
+            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/articles_with_frames.csv" style="color:var(--accent);text-decoration:none;">articles_with_frames.csv</a></td><td class="small muted">All 1,996 articles in the 21 Sep snapshot: URL, date, source, language, window, headline and every frame flag with the terms that triggered it.</td><td class="num mono">972 KB</td></tr>
             <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/frame_shares_by_period.csv" style="color:var(--accent);text-decoration:none;">frame_shares_by_period.csv</a></td><td class="small muted">Frame shares by language and period with Wilson confidence intervals. Pipeline output, not findings &mdash; read the table above first.</td><td class="num mono">10 KB</td></tr>
             <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/validation_C_bd.csv" style="color:var(--accent);text-decoration:none;">validation_C_bd.csv</a></td><td class="small muted">The validation run behind the table above, restricted to Bangladesh-relevant articles.</td><td class="num mono">&lt;1 KB</td></tr>
             <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/topics_exploratory.md" style="color:var(--accent);text-decoration:none;">topics_exploratory.md</a></td><td class="small muted">Exploratory NMF topics. Genuinely exploratory &mdash; not interpreted anywhere.</td><td class="num mono">2 KB</td></tr>

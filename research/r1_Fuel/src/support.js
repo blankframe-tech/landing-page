@@ -228,7 +228,7 @@ function body() {
           </tr>
           <tr>
             <td><strong>Can the team actually execute?</strong></td>
-            <td class="small">P4 is evidence rather than assertion: a 1,996-article bilingual corpus was collected, a pipeline built, an exploratory analysis run and a validation harness written &mdash; unfunded, inside a week.</td>
+            <td class="small">P4 is evidence rather than assertion: a 3,883-article bilingual corpus was collected, a pipeline built, an exploratory analysis run and a validation harness written &mdash; unfunded, inside a week.</td>
             <td class="small muted">No track record of running field survey operations. That is precisely why a survey partner and an institutional host are the first asks.</td>
           </tr>
           <tr>

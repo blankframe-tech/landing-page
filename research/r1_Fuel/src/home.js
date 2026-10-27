@@ -390,7 +390,7 @@ function body() {
               <td><strong>Who Gets the Blame?</strong><div class="small muted">Bangla + English news corpus, 2022 vs 2026</div></td>
               <td class="small">How responsibility and fairness are framed in public discourse, and which frames track offline protest.</td>
               <td class="num mono">$5&ndash;15k</td>
-              <td><span class="tag ok">Corpus built &middot; 1,996 articles</span></td>
+              <td><span class="tag ok">Corpus built &middot; 3,883 articles</span></td>
             </tr>
             <tr>
               <td class="mono hi">P5</td>
