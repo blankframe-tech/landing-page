@@ -9,6 +9,7 @@
 <!--
   Site-wide 404, which doubles as a tiny router. GitHub Pages can't rewrite
   paths and is case-sensitive, so links printed or encoded elsewhere land here:
+    /ThrottleIQ (any case)              -> /throttle-iq/ (poster text)
     /ThrottleIQ/install (other casings) -> /throttle-iq/install/ (poster links)
   (exact /ThrottleIQ/install/ is a real page: throttle-iq/old-install-link.html)
     /ThrottleIQ/u/<uid>, /u/<uid>       -> follow-a-rider page (in-app QR codes)
@@ -91,6 +92,11 @@
   (function () {
     var path = window.location.pathname;
     var qs = window.location.search;
+    // Bare /ThrottleIQ (printed on posters, any case) -> product page
+    if (/^\/throttle-?iq\/?$/i.test(path)) {
+      window.location.replace('/throttle-iq/' + qs);
+      return;
+    }
     if (/^\/throttle-?iq\/install\/?$/i.test(path)) {
       window.location.replace('/throttle-iq/install/' + qs);
       return;
