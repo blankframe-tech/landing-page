@@ -41,6 +41,8 @@ const LINK_MAP = {
   'research_collaborators.md': '/research/r1_Fuel/collaborate/',
   'reseach_pass_1.md': '/research/r1_Fuel/data/log/',
   '../research_proposals.md': '/research/r1_Fuel/proposal/',
+  'impact_analysis.md': '/research/r1_Fuel/findings/',
+  'research_log.md': '/research/r1_Fuel/data/log/',
   'Bangladesh_Fuel_Hike_Impact_2026.pdf': '/research/r1_Fuel/data/Bangladesh_Fuel_Hike_Impact_2026.pdf',
 };
 
