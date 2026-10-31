@@ -7,8 +7,8 @@
 <link rel="icon" href="assets/icon-dark.svg" type="image/svg+xml">
 <style>
   :root{
-    --bg: #F8FAFC; --bg2:#12161B; --panel:#14181F; --panel2:#191E26;
-    --line: #E4E4E7; --text:#F5F7FA; --muted: #71717A; --muted2:#6b7580;
+    --bg:#0B0D10; --bg2:#12161B; --panel:#14181F; --panel2:#191E26;
+    --line:#262F3D; --text:#F5F7FA; --muted:#9BA6B5; --muted2:#6b7580;
     --blue:#3B82F6; --blue2:#60A5FA; --orange:#FF6A00; --green:#22C55E;
     --radius:16px;
   }
@@ -88,12 +88,13 @@
 <main>
   <section class="wrap">
     <h1>Request Data Deletion</h1>
-    <p>If you'd like us to permanently delete your account and all associated data (rides, bikes, maintenance records, and places), fill in the form below. It opens an email to us in your mail app; send it to make the request. We will process your request within 7 business days.</p>
-    <p>No mail app? Email <a href="mailto:blankframe.technologies@gmail.com?subject=ThrottleIQ%20data%20deletion%20request">blankframe.technologies@gmail.com</a> from the address on your account, with the subject "ThrottleIQ data deletion request".</p>
+    <p>The fastest way is in the app: <strong>Settings → Delete account</strong>. Your sign-in and the data on your phone are deleted at once, and we delete your cloud data by hand within 30 days.</p>
+    <p>Can't open the app? Fill in the form below. It opens an email to us in your mail app; send it to make the request, and we delete your account and its data within 30 days. What we hold and delete is listed in the <a href="https://throttleiqfb.web.app/privacy.html" style="color:var(--blue2);">privacy policy</a>.</p>
+    <p>No mail app? Email <a href="mailto:hello@blankframe.tech?subject=ThrottleIQ%20data%20deletion%20request" style="color:var(--blue2);">hello@blankframe.tech</a> from the address on your account, with the subject "ThrottleIQ data deletion request".</p>
 
     <div class="form-container">
       <!-- Static site: no backend, so the request goes out as an email the rider sends. -->
-      <form action="#" onsubmit="event.preventDefault(); location.href = 'mailto:blankframe.technologies@gmail.com?subject=' + encodeURIComponent('ThrottleIQ data deletion request') + '&body=' + encodeURIComponent('Please delete my ThrottleIQ account and all associated data.\n\nAccount email: ' + this.email.value + '\nReason: ' + (this.reason.value || '-'));">
+      <form action="#" onsubmit="event.preventDefault(); location.href = 'mailto:hello@blankframe.tech?subject=' + encodeURIComponent('ThrottleIQ data deletion request') + '&body=' + encodeURIComponent('Please delete my ThrottleIQ account and all associated data.\n\nAccount email: ' + this.email.value + '\nReason: ' + (this.reason.value || '-'));">
         <div class="form-group">
           <label for="email">Email address associated with your account</label>
           <input type="email" id="email" name="email" required placeholder="rider@example.com">
@@ -110,10 +111,12 @@
 
 <footer>
   <div class="wrap">
-    <div>&copy; 2026 ThrottleIQ &middot; Source-Available (TSAL v1.0)</div>
+    <div>&copy; 2026 ThrottleIQ &middot; Source-Available (TSAL v1.1)</div>
     <div><a href="index.html">Back to Home</a></div>
   </div>
 </footer>
 
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

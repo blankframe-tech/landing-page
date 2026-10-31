@@ -1,452 +1,2404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ThrottleIQ — Machine Memory for Motorcycles</title>
-<meta name="description" content="ThrottleIQ turns a rider's phone into a black box and riding companion: ride recording, crash detection, maintenance tracking, and a rider community — offline-first.">
-<link rel="icon" href="assets/icon-dark.svg" type="image/svg+xml">
-<style>
-  :root{
-    --bg: #F8FAFC; --bg2:#12161B; --panel:#14181F; --panel2:#191E26;
-    --line: #E4E4E7; --text:#F5F7FA; --muted: #71717A; --muted2:#6b7580;
-    --blue:#3B82F6; --blue2:#60A5FA; --orange:#FF6A00; --green:#22C55E;
-    --radius:16px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg); color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.55; -webkit-font-smoothing:antialiased;
-  }
-  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
-  a{color:inherit;}
-  img{max-width:100%; display:block;}
-  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
-  section{padding:96px 0;}
-  @media (max-width:720px){ section{padding:64px 0;} }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThrottleIQ — Machine Memory for Motorcycles</title>
+  <meta name="description" content="ThrottleIQ is an offline-first motorcycle app built in Bangladesh: ride recording with a riding score, maintenance by the kilometre, 1,200+ rider places, group rides and forums. English and বাংলা. Android beta.">
+  <link rel="canonical" href="https://www.blankframe.tech/throttle-iq/">
+  
+  <meta name="theme-color" content="#1c1a17">
+  <meta name="color-scheme" content="dark light">
 
-  /* background texture */
-  body{
-    background-image:
-      radial-gradient(circle at 15% 0%, rgba(59,130,246,0.10), transparent 45%),
-      radial-gradient(circle at 90% 10%, rgba(255,106,0,0.08), transparent 40%);
-  }
+  <!-- Favicon / App Icons -->
+  <link rel="icon" href="assets/icon-dark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-light.svg">
 
-  /* nav */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(11,13,16,0.82); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
-  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.2px; font-size:17px;}
-  .brand img{width:28px; height:28px;}
-  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--muted);}
-  .navlinks a:hover{color:var(--text);}
-  .navcta{display:flex; gap:10px;}
-  @media (max-width:760px){ .navlinks{display:none;} }
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ThrottleIQ">
+  <meta property="og:url" content="https://www.blankframe.tech/throttle-iq/">
+  <meta property="og:title" content="ThrottleIQ — Machine Memory for Motorcycles">
+  <meta property="og:description" content="Every ride recorded, every service remembered, every rider connected. Offline-first, in English and বাংলা. Android beta.">
+  <meta property="og:image" content="https://www.blankframe.tech/throttle-iq/assets/feature_graphic.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ThrottleIQ — Machine Memory for Motorcycles">
+  <meta name="twitter:description" content="Every ride recorded, every service remembered, every rider connected. Offline-first motorcycle app, Android beta.">
+  <meta name="twitter:image" content="https://www.blankframe.tech/throttle-iq/assets/feature_graphic.png">
 
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:11px 20px; border-radius:999px; font-size:14px; font-weight:600;
-    border:1px solid var(--line); white-space:nowrap; transition:transform .15s ease, border-color .15s ease, background .15s ease;
-  }
-  .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:linear-gradient(135deg, var(--blue), var(--blue2)); border-color:transparent; color:#04101f;}
-  .btn-primary:hover{filter:brightness(1.08);}
-  .btn-ghost{background:transparent; color:var(--text);}
-  .btn-ghost:hover{border-color:#3a4250; background:rgba(255,255,255,0.03);}
+  <!-- Fonts: Plus Jakarta Sans (Headings/Body) + JetBrains Mono (Telemetry/Numbers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  /* hero */
-  .hero{padding-top:76px; padding-bottom:60px; text-align:center;}
-  .badge{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:7px 14px; border-radius:999px; background:var(--panel);
-    border:1px solid var(--line); font-size:12.5px; color:var(--muted); margin-bottom:28px;
-  }
-  .dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green);}
-  h1{
-    font-size:clamp(34px, 6vw, 62px); line-height:1.08; font-weight:800; letter-spacing:-1.2px;
-    max-width:820px; margin:0 auto 22px;
-  }
-  h1 .accent{background:linear-gradient(135deg, var(--blue2), var(--orange)); -webkit-background-clip:text; background-clip:text; color:transparent;}
-  .lede{max-width:620px; margin:0 auto 36px; color:var(--muted); font-size:18px;}
-  .herobtns{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:56px;}
+  <style>
+    /* ============================================================
+       THROTTLEIQ LANDING V2 — OFFROAD PILOT INSPIRED ARCHITECTURE
+       High-craft product-forward design, tactile paper + charcoal
+       ============================================================ */
+    :root {
+      /* Charcoal Dark Surfaces */
+      --charcoal: #1c1a17;
+      --charcoal-soft: #272420;
+      --charcoal-panel: #201e1a;
+      --charcoal-border: rgba(243, 239, 233, 0.12);
 
-  .stat-row{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
-    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden; max-width:900px; margin:0 auto;
-  }
-  .stat{background:var(--panel); padding:22px 14px; text-align:center;}
-  .stat b{display:block; font-size:26px; font-weight:800; margin-bottom:4px;}
-  .stat span{font-size:12.5px; color:var(--muted);}
-  @media (max-width:680px){ .stat-row{grid-template-columns:repeat(2,1fr);} }
+      /* Warm Paper Light Surfaces */
+      --paper: #faf9f7;
+      --paper-2: #f4f2ee;
+      --paper-3: #eeebe5;
+      --paper-line: #e6e2dc;
+      --paper-line-strong: #d7d2c8;
 
-  /* section heads */
-  .kicker{
-    font-size:12.5px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase;
-    color:var(--orange); margin-bottom:14px;
-  }
-  h2{font-size:clamp(26px,4vw,38px); font-weight:800; letter-spacing:-0.6px; margin-bottom:16px;}
-  .sec-lede{color:var(--muted); max-width:640px; font-size:16.5px; margin-bottom:48px;}
+      /* Precision Cockpit Accents */
+      --amber: #f4b23e;
+      --amber-strong: #d9971f;
+      --gold: #a16207;
+      --cyan: #38bdf8;
+      --blue-deep: #0284c7;
+      --green: #22c55e;
+      --green-dark: #15803d;
+      --alert: #ef4444;
+      --alert-soft: rgba(239, 68, 68, 0.14);
+      --slate: #475569;
+      --slate-soft: #64748b;
 
-  /* problem */
-  .problem-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-  .problem-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:26px; font-size:15px; color:var(--muted);
-  }
-  .problem-card .glyph{font-size:26px; margin-bottom:14px;}
-  .problem-card strong{display:block; color:var(--text); font-size:16px; margin-bottom:8px;}
-  @media (max-width:820px){ .problem-grid{grid-template-columns:1fr;} }
+      /* Typography & Inks */
+      --ink: #18181B;
+      --ink-mute: #5c5750;
+      --ink-faint: #7a746c;
+      --on-dark: #f3efe9;
+      --on-dark-mute: #b4ada2;
 
-  /* features */
-  .feat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  .feat-card{
-    background:linear-gradient(180deg, var(--panel2), var(--panel));
-    border:1px solid var(--line); border-radius:var(--radius); padding:26px;
-    transition:border-color .15s ease, transform .15s ease;
-  }
-  .feat-card:hover{border-color:#394050; transform:translateY(-3px);}
-  .feat-icon{
-    width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center;
-    font-size:20px; margin-bottom:16px; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.25);
-  }
-  .feat-card h3{font-size:17px; margin-bottom:10px; font-weight:700;}
-  .feat-card ul{color:var(--muted); font-size:14.5px; padding-left:18px;}
-  .feat-card li{margin-bottom:6px;}
-  .status-chip{
-    display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.4px;
-    padding:3px 9px; border-radius:6px; margin-left:8px; vertical-align:middle;
-  }
-  .status-live{background:rgba(34,197,94,0.15); color:var(--green); border:1px solid rgba(34,197,94,0.3);}
-  .status-new{background:rgba(255,106,0,0.15); color:var(--orange); border:1px solid rgba(255,106,0,0.3);}
-  @media (max-width:920px){ .feat-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:640px){ .feat-grid{grid-template-columns:1fr;} }
+      /* Shadows & Radii */
+      --shadow-sm: 0 1px 2px rgba(28,26,23,.06), 0 2px 6px rgba(28,26,23,.04);
+      --shadow-md: 0 4px 14px rgba(28,26,23,.08), 0 10px 30px rgba(28,26,23,.06);
+      --shadow-lg: 0 10px 30px rgba(28,26,23,.12), 0 24px 60px rgba(28,26,23,.10);
+      --shadow-amber: 0 8px 22px rgba(217,151,31,.28);
+      --shadow-cyan: 0 8px 24px rgba(56,189,248,.22);
 
-  /* architecture */
-  .arch{
-    display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:stretch;
-  }
-  .arch-box{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px;
-  }
-  .arch-box h4{font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--muted2); margin-bottom:14px;}
-  .arch-box ul{padding-left:18px; font-size:14.5px; color:var(--muted);}
-  .arch-box li{margin-bottom:8px;}
-  .arch-flow{
-    grid-column:1/-1; text-align:center; color:var(--muted2); font-size:13px; margin:2px 0;
-  }
-  @media (max-width:720px){ .arch{grid-template-columns:1fr;} }
+      --radius: 14px;
+      --radius-lg: 22px;
+      --radius-sm: 8px;
+      --radius-pill: 999px;
 
-  /* trust / security */
-  .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
-  .trust-card{border:1px solid var(--line); border-radius:var(--radius); padding:22px; background:var(--panel);}
-  .trust-card .glyph{font-size:22px; margin-bottom:12px;}
-  .trust-card h4{font-size:15px; margin-bottom:8px;}
-  .trust-card p{font-size:13.5px; color:var(--muted);}
-  @media (max-width:920px){ .trust-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:560px){ .trust-grid{grid-template-columns:1fr;} }
+      --container: 1180px;
+      --gutter: clamp(1.15rem, 4vw, 2.5rem);
 
-  /* roadmap */
-  .roadmap{border-left:2px solid var(--line); margin-left:10px; padding-left:32px;}
-  .rm-item{position:relative; padding-bottom:38px;}
-  .rm-item:last-child{padding-bottom:0;}
-  .rm-item::before{
-    content:""; position:absolute; left:-40px; top:4px; width:11px; height:11px; border-radius:50%;
-    background:var(--bg); border:2px solid var(--blue2);
-  }
-  .rm-item.done::before{background:var(--green); border-color:var(--green);}
-  .rm-item h4{font-size:16px; margin-bottom:6px;}
-  .rm-item p{color:var(--muted); font-size:14.5px; max-width:560px;}
-  .tag{font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px; margin-left:8px;}
-  .tag-done{background:rgba(34,197,94,0.15); color:var(--green);}
-  .tag-next{background:rgba(96,165,250,0.15); color:var(--blue2);}
-  .tag-vision{background:rgba(154,165,177,0.15); color:var(--muted);}
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* cta */
-  .cta{
-    text-align:center; border:1px solid var(--line); border-radius:24px; padding:64px 32px;
-    background:radial-gradient(circle at 50% 0%, rgba(59,130,246,0.14), transparent 60%), var(--panel);
-  }
-  .cta h2{margin-bottom:14px;}
-  .cta p{color:var(--muted); max-width:520px; margin:0 auto 32px;}
+      /* Fluid Typography */
+      --fs-eyebrow: clamp(.72rem, .68rem + .25vw, .82rem);
+      --fs-body: clamp(1rem, .96rem + .2vw, 1.1rem);
+      --fs-lead: clamp(1.1rem, 1.02rem + .55vw, 1.35rem);
+      --fs-h3: clamp(1.25rem, 1.1rem + .75vw, 1.75rem);
+      --fs-h2: clamp(1.85rem, 1.45rem + 1.8vw, 2.85rem);
+      --fs-h1: clamp(2.35rem, 1.6rem + 3.2vw, 4.4rem);
+    }
 
-  footer{border-top:1px solid var(--line); padding:40px 0; color:var(--muted2); font-size:13px;}
-  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center;}
-  footer a:hover{color:var(--text);}
-</style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: var(--fs-body);
+      line-height: 1.62;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: var(--gold); text-decoration: none; transition: color .15s ease; }
+    a:hover { color: var(--amber-strong); }
+
+    h1, h2, h3, h4 {
+      font-family: var(--sans);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--charcoal);
+    }
+    h1 { font-weight: 900; font-size: var(--fs-h1); letter-spacing: -.04em; }
+    h2 { font-weight: 800; font-size: var(--fs-h2); }
+    h3 { font-weight: 700; font-size: var(--fs-h3); }
+
+    .mono { font-family: var(--mono); font-feature-settings: "tnum" 1, "zero" 1; }
+    .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+
+    section { position: relative; }
+    .pad { padding-block: clamp(4.2rem, 3rem + 5vw, 7.2rem); }
+    .pad-sm { padding-block: clamp(2.5rem, 1.8rem + 3vw, 4.2rem); }
+
+    /* Surfaces */
+    .s-paper { background: var(--paper); }
+    .s-paper-2 { background: var(--paper-2); }
+    .s-dark { background: var(--charcoal); color: var(--on-dark); }
+    .s-dark h1, .s-dark h2, .s-dark h3 { color: #fff; }
+
+    /* Eyebrow badge */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: var(--fs-eyebrow);
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: .65em;
+      margin-bottom: 1.1rem;
+    }
+    .s-dark .eyebrow { color: var(--amber); }
+    .eyebrow::before {
+      content: "";
+      width: 1.8rem;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      opacity: .85;
+    }
+
+    .lead { font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-mute); max-width: 52ch; }
+    .s-dark .lead { color: var(--on-dark-mute); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6em;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: .96rem;
+      letter-spacing: -.01em;
+      padding: .9rem 1.6rem;
+      min-height: 48px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform .18s cubic-bezier(.2,.7,.3,1), box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+      will-change: transform;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn .arw { display: inline-block; transition: transform .2s cubic-bezier(.2,.7,.3,1); }
+    .btn:hover .arw { transform: translateX(3px); }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--charcoal);
+      box-shadow: var(--shadow-amber);
+    }
+    .btn-primary:hover {
+      background: var(--amber-strong);
+      color: var(--charcoal);
+      box-shadow: 0 12px 28px rgba(217,151,31,.38);
+    }
+
+    .btn-cyan {
+      background: var(--cyan);
+      color: #032136;
+      box-shadow: var(--shadow-cyan);
+    }
+    .btn-cyan:hover {
+      background: #7dd3fc;
+      color: #032136;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--charcoal);
+      border-color: var(--paper-line);
+    }
+    .s-dark .btn-ghost {
+      color: var(--on-dark);
+      border-color: var(--charcoal-border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--charcoal);
+      color: var(--charcoal);
+      box-shadow: var(--shadow-sm);
+    }
+    .s-dark .btn-ghost:hover {
+      border-color: var(--amber);
+      color: #fff;
+    }
+    .btn-lg { padding: 1.05rem 2rem; font-size: 1.05rem; min-height: 54px; }
+    .btn-sm { padding: .55rem 1rem; font-size: .84rem; min-height: 38px; }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .top-bar {
+      background: var(--charcoal-soft);
+      border-bottom: 1px solid var(--charcoal-border);
+      font-size: .78rem;
+      color: var(--on-dark-mute);
+      padding: .45rem 0;
+    }
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .top-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      color: var(--amber);
+    }
+    .top-pill .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.85); }
+    }
+    .top-links {
+      display: flex;
+      gap: 1.2rem;
+      font-family: var(--mono);
+    }
+    .top-links a { color: var(--on-dark-mute); font-size: .76rem; }
+    .top-links a:hover { color: #fff; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(250, 249, 247, 0.88);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--paper-line);
+      box-shadow: var(--shadow-sm);
+      background: rgba(250, 249, 247, 0.96);
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 68px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      text-decoration: none;
+      color: var(--charcoal);
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .brand-text {
+      font-weight: 900;
+      font-size: 1.18rem;
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+    .brand-text span { color: var(--amber-strong); }
+
+    .nav-links { display: flex; align-items: center; gap: .25rem; }
+    .nav-links a {
+      font-weight: 600;
+      font-size: .92rem;
+      color: var(--ink-mute);
+      padding: .5rem .8rem;
+      border-radius: 8px;
+      transition: color .15s ease, background .15s ease;
+    }
+    .nav-links a:hover { color: var(--charcoal); background: var(--paper-2); }
+    .nav-actions { display: flex; align-items: center; gap: .6rem; }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .top-links { display: none; }
+    }
+
+    /* ============================================================
+       HERO SECTION (s-dark)
+       ============================================================ */
+    .hero {
+      background:
+        radial-gradient(1100px 600px at 80% -10%, rgba(244,178,62,.10), transparent 60%),
+        radial-gradient(800px 500px at -10% 110%, rgba(56,189,248,.10), transparent 55%),
+        var(--charcoal);
+      color: var(--on-dark);
+      overflow: hidden;
+      isolation: isolate;
+      border-bottom: 1px solid var(--charcoal-border);
+    }
+    .hero-contour {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .45;
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr);
+      gap: clamp(2rem, 4vw, 4.5rem);
+      align-items: center;
+      padding-block: clamp(3rem, 2rem + 4vw, 5.5rem) clamp(3.5rem, 2.5rem + 5vw, 6rem);
+    }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2.8rem; }
+    }
+
+    .hero-tagline {
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      background: rgba(244, 178, 62, 0.12);
+      border: 1px solid rgba(244, 178, 62, 0.35);
+      padding: .4rem .85rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 { color: #fff; margin-bottom: 1.3rem; }
+    .hero h1 .accent {
+      color: var(--amber);
+      text-shadow: 0 0 40px rgba(244,178,62,.3);
+    }
+    .hero-lead { font-size: var(--fs-lead); color: var(--on-dark-mute); margin-bottom: 2rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: .85rem; margin-bottom: 2.2rem; }
+    .hero-pill-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--mono);
+      font-size: .76rem;
+      color: var(--on-dark-mute);
+    }
+    .hero-pill-meta span { display: inline-flex; align-items: center; gap: .35rem; }
+
+    /* ============================================================
+       SIGNATURE HERO TELEMETRY DEMO
+       ============================================================ */
+    .demo {
+      background: linear-gradient(180deg, #24211d, #1c1a17);
+      border: 1px solid rgba(243, 239, 233, 0.14);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    .demo-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      padding: .9rem 1.2rem;
+      border-bottom: 1px solid var(--charcoal-border);
+      background: rgba(36, 33, 29, 0.7);
+      flex-wrap: wrap;
+    }
+    .demo-modes {
+      display: inline-flex;
+      background: rgba(28, 26, 23, 0.85);
+      border: 1px solid var(--charcoal-border);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      gap: 3px;
+    }
+    .demo-modes button {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: .8rem;
+      color: var(--on-dark-mute);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: .45rem .85rem;
+      border-radius: var(--radius-pill);
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      transition: all .2s ease;
+    }
+    .demo-modes button .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--slate);
+    }
+    .demo-modes button.active {
+      color: #fff;
+      background: var(--charcoal-soft);
+      box-shadow: var(--shadow-sm);
+    }
+    .demo-modes button.active[data-mode="track"] .dot { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+    .demo-modes button.active[data-mode="commute"] .dot { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+    .demo-modes button.active[data-mode="offline"] .dot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+
+    .demo-live-badge {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .demo-canvas {
+      position: relative;
+      aspect-ratio: 16/11.5;
+      width: 100%;
+      background: radial-gradient(circle at 60% 30%, #292621, #181613);
+      overflow: hidden;
+    }
+    .demo-canvas svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Live Telemetry HUD Overlays */
+    .demo-hud {
+      position: absolute;
+      inset: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .demo-hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: .8rem;
+    }
+    .hud-card {
+      background: rgba(28, 26, 23, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(243, 239, 233, 0.12);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      box-shadow: var(--shadow-md);
+      pointer-events: auto;
+    }
+    .hud-speed-box { display: flex; align-items: baseline; gap: .35rem; }
+    .hud-speed {
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 1.8rem + 2vw, 3.2rem);
+      line-height: .95;
+      color: #fff;
+    }
+    .hud-unit { font-family: var(--mono); font-weight: 700; font-size: 1rem; color: var(--amber); }
+    .hud-label { font-size: .72rem; color: var(--on-dark-mute); margin-top: .2rem; font-weight: 500; }
+
+    .hud-grid-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      text-align: right;
+    }
+    .metric-cell .mv {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      line-height: 1;
+    }
+    .metric-cell .ml {
+      font-size: .65rem;
+      color: var(--on-dark-mute);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: .3rem;
+    }
+
+    .demo-hud-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .alert-pill {
+      font-family: var(--mono);
+      font-size: .74rem;
+      font-weight: 600;
+      padding: .4rem .85rem;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(34, 197, 94, 0.18);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #4ade80;
+    }
+    .alert-pill.warn {
+      background: rgba(244, 178, 62, 0.18);
+      border-color: rgba(244, 178, 62, 0.4);
+      color: var(--amber);
+    }
+    .alert-pill.danger {
+      background: rgba(239, 68, 68, 0.22);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #f87171;
+    }
+
+    /* Split Surface / Telemetry Bar */
+    .telemetry-bar-wrap {
+      padding: .75rem 1.2rem;
+      background: rgba(28, 26, 23, 0.95);
+      border-top: 1px solid var(--charcoal-border);
+    }
+    .telemetry-bar {
+      display: flex;
+      height: 8px;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      gap: 2px;
+      background: rgba(255,255,255,0.05);
+    }
+    .telemetry-bar .t-seg { height: 100%; transition: flex-grow .6s cubic-bezier(.4,0,.2,1); }
+    .t-seg.moving { background: var(--amber); }
+    .t-seg.idle { background: var(--slate); }
+
+    .demo-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .85rem 1.2rem;
+      background: rgba(28, 26, 23, 0.7);
+      border-top: 1px solid var(--charcoal-border);
+      flex-wrap: wrap;
+    }
+    .legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-family: var(--mono);
+      font-size: .74rem;
+      color: var(--on-dark-mute);
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: .45rem; }
+    .legend-swatch { width: 14px; height: 4px; border-radius: 2px; }
+    .swatch-amber { background: var(--amber); }
+    .swatch-cyan { background: var(--cyan); }
+    .swatch-slate { background: var(--slate); }
+    .swatch-pin { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+    /* ============================================================
+       HONEST STAT LEDGER STRIP (Offroad Pilot motif)
+       ============================================================ */
+    .ledger {
+      background: var(--charcoal);
+      color: var(--on-dark);
+      border-bottom: 1px solid var(--charcoal-border);
+    }
+    .ledger-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--charcoal-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--charcoal-border);
+    }
+    .ledger-cell {
+      background: var(--charcoal-soft);
+      padding: 1.7rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .ledger-cell .lv {
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: clamp(1.25rem, 1rem + .8vw, 1.65rem);
+      color: #fff;
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+    .ledger-cell .lv .accent { color: var(--amber); }
+    .ledger-cell .ll { font-size: .84rem; color: var(--on-dark-mute); }
+    @media (max-width: 760px) {
+      .ledger-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 440px) {
+      .ledger-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       FEATURE ZIG-ZAG (s-paper)
+       ============================================================ */
+    .section-head { max-width: 58ch; margin-bottom: clamp(2.4rem, 1.8rem + 2.5vw, 3.8rem); }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head.center .eyebrow { justify-content: center; }
+    .section-head .lead { margin-top: 1rem; }
+    .section-head.center .lead { margin-inline: auto; }
+
+    .zig { display: flex; flex-direction: column; gap: clamp(3.5rem, 2.5rem + 4vw, 6rem); }
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 3vw, 4.5rem);
+      align-items: center;
+    }
+    .feature.flip .f-media { order: 2; }
+    .feature.flip .f-copy { order: 1; }
+    @media (max-width: 860px) {
+      .feature { grid-template-columns: 1fr; gap: 2rem; }
+      .feature.flip .f-media, .feature.flip .f-copy { order: initial; }
+    }
+
+    .f-copy .ft-num {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: .8rem;
+      color: var(--gold);
+      letter-spacing: .12em;
+      margin-bottom: .85rem;
+      display: block;
+    }
+    .f-copy h3 { margin-bottom: .85rem; font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem); }
+    .f-copy p { color: var(--ink-mute); margin-bottom: 1.2rem; }
+    .f-bullets { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .f-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      font-size: .95rem;
+      color: var(--ink);
+    }
+    .f-bullets li::before {
+      content: "✓";
+      font-family: var(--mono);
+      font-weight: 800;
+      color: var(--amber-strong);
+      flex: none;
+    }
+
+    /* Tactical Mockup Cards */
+    .tactical-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--paper-line);
+      background: linear-gradient(180deg, #ffffff, #f7f6f3);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      padding: 1.8rem;
+    }
+    .tactical-card-dark {
+      background: linear-gradient(180deg, #24211d, #1c1a17);
+      border-color: rgba(243, 239, 233, 0.12);
+      color: #fff;
+    }
+
+    /* ============================================================
+       INTERACTIVE CRASH & GYRO SENSOR (The "Compass Rose" equivalent)
+       ============================================================ */
+    .crash-section {
+      background:
+        radial-gradient(800px 480px at 90% 0%, rgba(239,68,68,.08), transparent 60%),
+        var(--paper-2);
+      border-top: 1px solid var(--paper-line);
+      border-bottom: 1px solid var(--paper-line);
+    }
+    .crash-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(2rem, 4vw, 4.5rem);
+      align-items: center;
+    }
+    @media (max-width: 860px) { .crash-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .dial-wrap {
+      position: relative;
+      aspect-ratio: 1/1;
+      max-width: 440px;
+      margin-inline: auto;
+      width: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 45%, #ffffff, #f1efe9 72%);
+      border: 1.5px solid var(--paper-line-strong);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dial-svg { width: 100%; height: 100%; }
+
+    .crash-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+    }
+    .preset-btns { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .preset-btn {
+      font-family: var(--mono);
+      font-size: .8rem;
+      font-weight: 600;
+      padding: .6rem 1.1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--paper-line-strong);
+      background: #fff;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    .preset-btn:hover, .preset-btn.active {
+      background: var(--charcoal);
+      color: #fff;
+      border-color: var(--charcoal);
+    }
+    .preset-btn.danger {
+      border-color: rgba(239, 68, 68, 0.4);
+      color: var(--alert);
+    }
+    .preset-btn.danger.active, .preset-btn.danger:hover {
+      background: var(--alert);
+      color: #fff;
+      border-color: var(--alert);
+    }
+
+    /* Live Token Link Preview Box */
+    .token-preview {
+      background: #fff;
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .token-title {
+      font-family: var(--mono);
+      font-size: .74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gold);
+      margin-bottom: .4rem;
+    }
+    .token-link {
+      font-family: var(--mono);
+      font-size: .84rem;
+      color: var(--charcoal);
+      background: var(--paper-2);
+      padding: .5rem .75rem;
+      border-radius: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+      border: 1px dashed var(--paper-line);
+    }
+
+    /* Interactive Countdown Modal Widget */
+    .countdown-box {
+      margin-top: 1.2rem;
+      background: #fee2e2;
+      border: 1.5px solid #f87171;
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      display: none;
+      animation: alertPulse 1.2s infinite alternate;
+    }
+    .countdown-box.active { display: block; }
+    @keyframes alertPulse {
+      0% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 24px rgba(239, 68, 68, 0.35); }
+    }
+    .countdown-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+    }
+    .countdown-clock {
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #991b1b;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       DYNAMIC MAINTENANCE ODOMETER (s-paper-2)
+       ============================================================ */
+    .maint-calc {
+      background: #fff;
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 1.2rem + 2vw, 2.5rem);
+      box-shadow: var(--shadow-md);
+    }
+    .slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      margin-bottom: 2rem;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .odo-readout {
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: var(--charcoal);
+    }
+    .odo-readout span { font-size: 1rem; color: var(--gold); }
+    .custom-range {
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: var(--paper-2);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    .custom-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 3px solid #fff;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: transform .1s ease;
+    }
+    .custom-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 820px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 460px) { .service-grid { grid-template-columns: 1fr; } }
+
+    .service-item {
+      background: var(--paper-2);
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: .8rem;
+      transition: all .2s ease;
+    }
+    .service-item .s-name { font-weight: 700; font-size: .95rem; color: var(--charcoal); }
+    .service-item .s-int { font-family: var(--mono); font-size: .75rem; color: var(--ink-mute); }
+    .s-badge {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 700;
+      padding: .3rem .6rem;
+      border-radius: 6px;
+      text-align: center;
+      width: fit-content;
+    }
+    .s-ok { background: #dcfce7; color: #15803d; }
+    .s-due { background: #fef3c7; color: #b45309; }
+    .s-overdue { background: #fee2e2; color: #b91c1c; }
+
+    /* ============================================================
+       REAL APP UI GALLERY (Carbon Mono & Editorial)
+       ============================================================ */
+    .gallery-wrap {
+      margin-top: 2rem;
+    }
+    .theme-switch-tabs {
+      display: flex;
+      justify-content: center;
+      gap: .8rem;
+      margin-bottom: 2rem;
+    }
+    .theme-tab {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: .75rem 1.6rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--paper-line-strong);
+      background: #fff;
+      color: var(--ink-mute);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: all .2s ease;
+    }
+    .theme-tab.active {
+      background: var(--charcoal);
+      color: #fff;
+      border-color: var(--charcoal);
+      box-shadow: var(--shadow-sm);
+    }
+    .theme-tab .swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+    .category-pills {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.2rem;
+    }
+    .cat-pill {
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .45rem .95rem;
+      border-radius: var(--radius-pill);
+      background: var(--paper-2);
+      border: 1px solid var(--paper-line);
+      color: var(--ink-mute);
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    .cat-pill.active, .cat-pill:hover {
+      background: var(--amber);
+      color: var(--charcoal);
+      border-color: var(--amber);
+    }
+
+    .phone-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .phone-frame {
+      max-width: 360px;
+      width: 100%;
+      border-radius: 40px;
+      background: #000;
+      padding: 12px;
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .phone-screen {
+      border-radius: 30px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 9/19.5;
+      position: relative;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity .25s ease;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 22px;
+      background: #000;
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    /* ============================================================
+       DUO PANELS: GPX & PRIVACY ZONES (Offroad Pilot Style)
+       ============================================================ */
+    .duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.5rem, 2.5vw, 2.4rem);
+    }
+    @media (max-width: 780px) { .duo { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: #fff;
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .panel:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .panel .picon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.2rem;
+      background: rgba(244, 178, 62, 0.15);
+      border: 1px solid rgba(244, 178, 62, 0.35);
+      color: var(--amber-strong);
+    }
+    .panel h3 { margin-bottom: .7rem; font-size: var(--fs-h3); }
+    .panel p { color: var(--ink-mute); margin-bottom: 1.3rem; font-size: .95rem; }
+
+    .app-pill-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .app-pill {
+      font-family: var(--mono);
+      font-size: .76rem;
+      font-weight: 500;
+      color: var(--slate);
+      background: var(--paper-2);
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius-pill);
+      padding: .4rem .8rem;
+    }
+    .app-pill.hot {
+      color: var(--gold);
+      border-color: rgba(217,151,31,.35);
+      background: rgba(244,178,62,.12);
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       HOW IT WORKS — 3 STEP ROUTE SPINE
+       ============================================================ */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 2vw, 2.5rem);
+      position: relative;
+    }
+    @media (max-width: 820px) { .how-steps { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 1.5rem;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+    .step-num {
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: .85rem;
+      color: var(--gold);
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .step-num span {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(244, 178, 62, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber-strong);
+    }
+    .step-card h3 { font-size: 1.25rem; margin-bottom: .6rem; }
+    .step-card p { font-size: .92rem; color: var(--ink-mute); }
+
+    /* ============================================================
+       PILOT / FEEDBACK DARK BAND (s-dark)
+       ============================================================ */
+    .feedback-band {
+      background:
+        radial-gradient(900px 500px at 12% 120%, rgba(244,178,62,.10), transparent 55%),
+        var(--charcoal);
+      color: var(--on-dark);
+      overflow: hidden;
+      border-top: 1px solid var(--charcoal-border);
+      border-bottom: 1px solid var(--charcoal-border);
+    }
+    .fb-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 64ch;
+      margin-inline: auto;
+    }
+    .fb-inner h2 { margin-top: .6rem; }
+    .fb-inner .lead { margin-top: 1.1rem; color: var(--on-dark-mute); }
+    .fb-pill-row {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.8rem;
+    }
+    .fb-pill {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      color: var(--amber);
+      background: rgba(244, 178, 62, 0.12);
+      border: 1px solid rgba(244, 178, 62, 0.32);
+      border-radius: var(--radius-pill);
+      padding: .45rem 1rem;
+    }
+    .fb-actions {
+      display: flex;
+      gap: .9rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.2rem;
+    }
+
+    /* ============================================================
+       FAQ ACCORDION
+       ============================================================ */
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--paper-line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      padding: 1.25rem 1.5rem;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .faq-btn .icon {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      transition: transform .25s ease;
+      color: var(--gold);
+    }
+    .faq-item.open .faq-btn .icon { transform: rotate(45deg); }
+    .faq-ans {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s cubic-bezier(0,1,0,1);
+      padding: 0 1.5rem;
+      color: var(--ink-mute);
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-ans {
+      max-height: 500px;
+      padding-bottom: 1.3rem;
+      transition: max-height .35s ease-in;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: var(--charcoal);
+      color: var(--on-dark-mute);
+      padding: 3.5rem 0 2.5rem;
+      font-size: .88rem;
+      border-top: 1px solid var(--charcoal-border);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    .footer-brand h4 { color: #fff; font-size: 1.2rem; margin-bottom: .6rem; }
+    .footer-col h5 {
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-links a { color: var(--on-dark-mute); font-size: .86rem; }
+    .footer-links a:hover { color: #fff; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--charcoal-border);
+      padding-top: 1.8rem;
+      font-size: .8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Scroll Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s cubic-bezier(.2,.7,.3,1), transform .6s cubic-bezier(.2,.7,.3,1);
+      will-change: opacity, transform;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: .1s; }
+    .reveal.d2 { transition-delay: .2s; }
+    .reveal.d3 { transition-delay: .3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <nav class="wrap">
-    <div class="brand"><img src="assets/icon-dark.svg" alt="ThrottleIQ"> ThrottleIQ</div>
-    <div class="navlinks">
-      <a href="#features">Features</a>
-      <a href="#architecture">Architecture</a>
-      <a href="#trust">Safety &amp; Privacy</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="ui.html">UI Preview</a>
-      <a href="install/">Get the app</a>
-    </div>
-    <div class="navcta">
-      <a class="btn btn-ghost" href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-primary" href="#demo">Product Demo &darr;</a>
-    </div>
-  </nav>
-</header>
-
-<main>
-
-  <section class="hero wrap">
-    <div class="badge"><span class="dot"></span> Live beta v2.0.0-beta.5 &middot; iOS &amp; Android</div>
-    <h1>Machine memory<br>for <span class="accent">motorcycles.</span></h1>
-    <p class="lede">Every car has a black box. Every rider has a notebook, or nothing at all.
-      ThrottleIQ turns a phone into a black box and riding companion — recording every ride,
-      watching for crashes, and keeping the bike's maintenance on schedule.</p>
-    <div class="herobtns">
-      <a class="btn btn-primary" href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">Get the app on GitHub</a>
-      <a class="btn btn-ghost" href="#features">See what it does &darr;</a>
-    </div>
-    <div class="stat-row">
-      <div class="stat"><b>20+</b><span>data points / sec</span></div>
-      <div class="stat"><b>100%</b><span>works fully offline</span></div>
-      <div class="stat"><b>363</b><span>automated tests</span></div>
-      <div class="stat"><b>1</b><span>rider, built solo</span></div>
-    </div>
-  </section>
-
-  
-  <section id="demo" class="wrap">
-    <div class="kicker">Product Demo</div>
-    <h2>See ThrottleIQ in action.</h2>
-    <p class="sec-lede">Explore the core tracking experience of v1 and the newly shipped social and maintenance features of v2.</p>
-    <div class="arch">
-      <div class="arch-box">
-        <h4>v1: Tracking & Safety</h4>
-        <p style="color:var(--muted); font-size:14.5px; margin-bottom:12px;">Background ride tracking, crash detection, and offline-first SQLite sync.</p>
-        <a class="btn btn-ghost" href="ui.html">View v1 UI</a>
+  <!-- TOP UTILITY BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-pill">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>ANDROID BETA · BUILD 1.0.0-beta.4.12 · GOOGLE PLAY TESTING</span>
       </div>
-      <div class="arch-box">
-        <h4>v2: Social & Cloud Maintenance</h4>
-        <p style="color:var(--muted); font-size:14.5px; margin-bottom:12px;">Unified media collages, live follower visibility, and per-bike maintenance synced securely to Firestore.</p>
-        <a class="btn btn-primary" href="ui.html">View v2 UI</a>
+      <div class="top-links">
+        <a href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="/throttle-iq/install/">Get the app</a>
       </div>
     </div>
-  </section>
-
-  <section class="wrap">
-    <div class="kicker">The problem</div>
-    <h2>Riders fly blind.</h2>
-    <p class="sec-lede">Cars have had onboard computers for a decade. Motorcycles still don't —
-      and the ride-tracking apps built for cyclists and runners don't understand
-      motorcycle-specific risk or motorcycle-specific upkeep.</p>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="glyph">📓</div>
-        <strong>No black box</strong>
-        Speed, braking, and route data disappear the moment the ride ends — nothing
-        to review, nothing to learn from.
-      </div>
-      <div class="problem-card">
-        <div class="glyph">🛠️</div>
-        <strong>Maintenance by memory</strong>
-        Chain, oil, and tires are tracked in a notebook or not at all, instead of
-        against the distance actually ridden.
-      </div>
-      <div class="problem-card">
-        <div class="glyph">🚨</div>
-        <strong>No safety net</strong>
-        If a rider goes down alone on a back road, nobody knows until they're overdue.
-      </div>
-    </div>
-  </section>
-
-  <section id="features" class="wrap">
-    <div class="kicker">The solution</div>
-    <h2>Everything a rider needs, one app.</h2>
-    <p class="sec-lede">Offline-first ride tracking, safety, maintenance and community —
-      built rider-first, not adapted from a running app.</p>
-    <div class="feat-grid">
-
-      <div class="feat-card">
-        <div class="feat-icon">🛣️</div>
-        <h3>Ride Recording</h3>
-        <ul>
-          <li>Background tracking — keeps recording screen-locked or backgrounded</li>
-          <li>Live speed, acceleration, jerk, altitude, distance</li>
-          <li>Smart alerts: overspeed, hard braking, rapid accel, fatigue past 90 min</li>
-        </ul>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon">📊</div>
-        <h3>Ride Analysis</h3>
-        <ul>
-          <li>Per-ride summary: max speed, distance, duration, event counts</li>
-          <li>Separates moving time from stops automatically</li>
-          <li>Export any ride as JSON or GPX</li>
-        </ul>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon">🆘</div>
-        <h3>Crash Detection &amp; Emergency</h3>
-        <ul>
-          <li>Detects impact + speed-drop signature, starts a 60s cancel countdown</li>
-          <li>Live, token-based location link — contacts need no account</li>
-          <li>Up to 5 emergency contacts, revocable anytime</li>
-        </ul>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon">🏍️</div>
-        <h3>Garage &amp; Maintenance</h3>
-        <ul>
-          <li>Fleet view of every bike, its stats, and service history</li>
-          <li>Service intervals tracked against actual distance ridden</li>
-          <li>13 service types synced directly to Firestore per-bike</li>
-        </ul>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon">📍</div>
-        <h3>Rider Places</h3>
-        <ul>
-          <li>Fuel, garages, and parts shops — verified and user-contributed</li>
-          <li>Ratings and reviews with photos</li>
-          <li>One-tap nearest fuel stop while riding</li>
-        </ul>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon">👥</div>
-        <h3>Social &amp; Community <span class="status-chip status-new">NEW</span></h3>
-        <ul>
-          <li>Ride feed, forums, and per-ride audience controls</li>
-          <li>Group rides: invite up to 10 friends onto one shared live map</li>
-          <li>Save any ride as a reusable route with turn-by-turn guidance</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="architecture" class="wrap">
-    <div class="kicker">Under the hood</div>
-    <h2>Offline-first, syncs when it can.</h2>
-    <p class="sec-lede">Recording never depends on a signal. Everything lands in local SQLite
-      first; the cloud catches up when it's available.</p>
-    <div class="arch">
-      <div class="arch-box">
-        <h4>On the bike — Flutter app</h4>
-        <ul>
-          <li>Local SQLite is the source of truth, works with zero connectivity</li>
-          <li>Riverpod state — ride recording, live sync status</li>
-          <li>Material 3 UI + Flutter Map for routes and live tracking</li>
-        </ul>
-      </div>
-      <div class="arch-box">
-        <h4>In the cloud — Firebase</h4>
-        <ul>
-          <li>Firestore: rides, bikes, maintenance, POIs, reviews</li>
-          <li>Storage for photos, Auth for email + Google sign-in</li>
-          <li>Cloud Functions for crash notifications and exports</li>
-        </ul>
-      </div>
-      <div class="arch-flow">record → local SQLite → marked unsynced → auto-sync on resume &amp; every 5 min → Firestore</div>
-    </div>
-  </section>
-
-  <section id="trust" class="wrap">
-    <div class="kicker">Safety &amp; privacy</div>
-    <h2>Your ride, your data.</h2>
-    <p class="sec-lede">Privacy isn't a settings toggle bolted on afterward — it's enforced
-      where it matters: the database rules, not just the UI.</p>
-    <div class="trust-grid">
-      <div class="trust-card">
-        <div class="glyph">🔒</div>
-        <h4>User-owned data</h4>
-        <p>Every rider's data lives under their own account; Firestore rules enforce
-          user-only access, and deletes are permanent on request.</p>
-      </div>
-      <div class="trust-card">
-        <div class="glyph">🏠</div>
-        <h4>Privacy zones</h4>
-        <p>Shared rides auto-clip the first and last 200m of the route — home
-          location is never exposed.</p>
-      </div>
-      <div class="trust-card">
-        <div class="glyph">⏱️</div>
-        <h4>Time-limited sharing</h4>
-        <p>Live emergency links use an unguessable token and expire after 24 hours,
-          and can be revoked anytime.</p>
-      </div>
-      <div class="trust-card">
-        <div class="glyph">🙈</div>
-        <h4>No ad tracking</h4>
-        <p>No tracking cookies, no third-party analytics queried. Secrets and keys
-          are never committed to the repo.</p>
-      </div>
-    </div>
-    <div style="margin-top: 40px; text-align: center;">
-      <a class="btn btn-ghost" href="accdel.html" style="color: var(--orange); border-color: rgba(255, 106, 0, 0.3);">Delete all my data</a>
-    </div>
-  </section>
-
-  <section id="roadmap" class="wrap">
-    <div class="kicker">Where it's going</div>
-    <h2>Roadmap</h2>
-    <div class="roadmap">
-      <div class="rm-item done">
-        <h4>v1.0 — Live now <span class="tag tag-done">SHIPPED</span></h4>
-        <p>Background ride tracking, crash detection, POI directory, garage &amp;
-          maintenance, offline-first cloud sync — live in beta on iOS and Android.</p>
-      </div>
-      <div class="rm-item done">
-        <h4>v2.0 — Beta <span class="tag tag-done">LIVE BETA</span></h4>
-        <p>Open social graph with live follower visibility, unified media collages, group rides, and per-bike maintenance synced to Firestore.</p>
-      </div>
-      <div class="rm-item">
-        <h4>Next up <span class="tag tag-next">PLANNED</span></h4>
-        <p>Crash-detection escalation via SMS/email if an emergency contact doesn't
-          acknowledge in time, in-app weather, and leaderboards.</p>
-      </div>
-      <div class="rm-item">
-        <h4>The vision <span class="tag tag-vision">FUTURE</span></h4>
-        <p>Curvy-road turn-by-turn navigation on real routing, clubs and group
-          events, and a premium tier for riders who want more.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap">
-    <div class="cta">
-      <h2>Built by a rider, for riders.</h2>
-      <p>ThrottleIQ is a working solo-built beta with a real release pipeline —
-        looking for pilot riders, feedback, and partners to take it further.</p>
-      <div class="herobtns" style="margin-bottom:0;">
-        <a class="btn btn-primary" href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">View the source</a>
-        <a class="btn btn-ghost" href="https://github.com/blankframe-tech/ThrottleIQ/issues" target="_blank" rel="noopener">Report an issue / give feedback</a>
-        <a class="btn btn-ghost" href="/throttle-iq/crash/1/">Read Crash Report 001: the second rail →</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div>&copy; 2026 ThrottleIQ &middot; Source-Available (TSAL v1.0)</div>
-    <div><a href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">GitHub</a></div>
   </div>
-</footer>
 
-<!-- GoatCounter Analytics -->
-<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <!-- STICKY NAV -->
+  <header class="nav" id="mainNav">
+    <div class="container nav-row">
+      <a class="brand" href="#top" aria-label="ThrottleIQ Home">
+        <div class="brand-mark">
+          <!-- Vector telemetry cockpit icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#f4b23e" stroke="#f4b23e"/>
+          </svg>
+        </div>
+        <div class="brand-text">Throttle<span>IQ</span></div>
+      </a>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#features">Recording</a>
+        <a href="#safety">Safety</a>
+        <a href="#garage">Garage</a>
+        <a href="#more">Places &amp; Community</a>
+        <a href="#app-ui">Real UI</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-primary btn-sm" href="/throttle-iq/install/">
+          Join the beta <span class="arw" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         HERO SECTION
+         ============================================================ -->
+    <section class="hero pad s-dark" id="telemetry" aria-labelledby="hero-title">
+      <!-- Topographic contour curves in background -->
+      <svg class="hero-contour" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="#f4b23e" stroke-width="1.1" opacity=".09">
+          <path d="M-40 120 C220 60 420 200 700 150 C980 100 1180 220 1500 160"/>
+          <path d="M-40 240 C240 180 440 320 720 270 C1000 220 1200 340 1500 280"/>
+          <path d="M-40 360 C260 300 460 440 740 390 C1020 340 1220 460 1500 400"/>
+          <path d="M-40 480 C280 420 480 560 760 510 C1040 460 1240 580 1500 520"/>
+          <path d="M-40 600 C300 540 500 680 780 630 C1060 580 1260 700 1500 640"/>
+        </g>
+      </svg>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="hero-tagline">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+              <circle cx="8" cy="8" r="7" fill="none" stroke="#f4b23e" stroke-width="2"/>
+              <path d="M8 3v5l3 3" stroke="#f4b23e" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            MACHINE MEMORY FOR MOTORCYCLES · OFFLINE-FIRST
+          </span>
+          <h1 id="hero-title">
+            Every car has a black box.<br>
+            Now your <span class="accent">motorcycle</span> does too.
+          </h1>
+          <p class="hero-lead">
+            Cars get trip computers and service reminders. Riders get guesswork. ThrottleIQ turns your phone into your motorcycle's memory: background GPS plus motion sensors read 20 times a second, a riding score for every ride, maintenance tracked by the kilometre, and 1,200+ fuel stations, garages and parts shops around Dhaka. It works offline, in English and বাংলা.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="/throttle-iq/install/">
+              Join the Android beta <span class="arw" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#features">
+              See How It Works ↓
+            </a>
+          </div>
+
+          <div class="hero-pill-meta">
+            <span><strong>2,500+</strong> tests passing</span>
+            <span>&bull;</span>
+            <span><strong>20 Hz</strong> motion sensors</span>
+            <span>&bull;</span>
+            <span><strong>Zero</strong> ad SDKs</span>
+          </div>
+        </div>
+
+        <!-- HERO INTERACTIVE TELEMETRY BLACK BOX DEMO -->
+        <div class="demo reveal in" id="heroDemo" aria-label="Interactive ThrottleIQ Telemetry Player">
+          <div class="demo-top">
+            <div class="demo-modes" role="group" aria-label="Telemetry Simulation Profiles">
+              <button type="button" data-mode="track" id="modeTrack" class="active">
+                <span class="dot"></span> Canyon / Performance
+              </button>
+              <button type="button" data-mode="commute" id="modeCommute">
+                <span class="dot"></span> Urban Commute
+              </button>
+              <button type="button" data-mode="offline" id="modeOffline">
+                <span class="dot"></span> Off-Grid Trail
+              </button>
+            </div>
+            <div class="demo-live-badge mono" id="demoLiveStatus">
+              ● 20 Hz SENSOR RECORDING
+            </div>
+          </div>
+
+          <div class="demo-canvas" id="canvasContainer">
+            <!-- Detailed Curved Track SVG -->
+            <svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="trackGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f4b23e"/>
+                  <stop offset="50%" stop-color="#38bdf8"/>
+                  <stop offset="100%" stop-color="#22c55e"/>
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Map grid -->
+              <g stroke="rgba(243,239,233,0.06)" stroke-width="1" fill="none">
+                <path d="M0 80 H640 M0 180 H640 M0 280 H640 M0 380 H640 M120 0 V440 M260 0 V440 M400 0 V440 M540 0 V440"/>
+              </g>
+
+              <!-- Curvature elevation contours -->
+              <path d="M20 400 C180 370 240 320 380 340 C490 360 540 300 620 280" stroke="rgba(244,178,62,0.12)" stroke-width="32" fill="none" stroke-linecap="round"/>
+
+              <!-- Ghost inactive route -->
+              <path id="routeGhost" d="M60 370 C160 350 180 270 240 260 C320 250 360 140 460 120 C540 100 580 80 600 60"
+                    fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-dasharray="4 6"/>
+
+              <!-- Main Active Telemetry Route Line -->
+              <path id="routeBase" d="M60 370 C140 380 170 300 220 260 C270 220 250 170 330 180 C410 190 440 130 490 120 C540 110 560 70 600 60"
+                    fill="none" stroke="#2b2824" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path id="routeActive" d="M60 370 C140 380 170 300 220 260 C270 220 250 170 330 180 C410 190 440 130 490 120 C540 110 560 70 600 60"
+                    fill="none" stroke="url(#trackGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+              <!-- Start Pin -->
+              <circle cx="60" cy="370" r="9" fill="#15803d" stroke="#fff" stroke-width="2.5"/>
+              <text x="60" y="400" fill="#a1a1aa" font-size="10" font-family="JetBrains Mono" text-anchor="middle">START</text>
+
+              <!-- Finish Pin -->
+              <circle cx="600" cy="60" r="9" fill="#f4b23e" stroke="#fff" stroke-width="2.5"/>
+              <text x="600" y="42" fill="#a1a1aa" font-size="10" font-family="JetBrains Mono" text-anchor="middle">FINISH</text>
+
+              <!-- Animated Telemetry Cursor (Rider Dot) -->
+              <g id="riderCursor" transform="translate(60, 370)">
+                <circle r="14" fill="rgba(244, 178, 62, 0.25)" class="cursor-ping">
+                  <animate attributeName="r" values="8;20;8" dur="1.8s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values=".8;0;.8" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle r="7" fill="#f4b23e" stroke="#fff" stroke-width="2.5"/>
+              </g>
+            </svg>
+
+            <!-- Live HUD overlay -->
+            <div class="demo-hud">
+              <div class="demo-hud-top">
+                <div class="hud-card">
+                  <div class="hud-speed-box">
+                    <span class="hud-speed mono" id="hudSpeedVal">94</span>
+                    <span class="hud-unit">km/h</span>
+                  </div>
+                  <div class="hud-label">TELEMETRY SPEED</div>
+                </div>
+
+                <div class="hud-card">
+                  <div class="hud-grid-metrics">
+                    <div class="metric-cell">
+                      <div class="mv mono" id="hudLeanVal">38°</div>
+                      <div class="ml">Lean Angle</div>
+                    </div>
+                    <div class="metric-cell">
+                      <div class="mv mono" id="hudGVal">+1.12G</div>
+                      <div class="ml">Accel / G</div>
+                    </div>
+                    <div class="metric-cell">
+                      <div class="mv mono" id="hudPacketsVal">1,482</div>
+                      <div class="ml">SQLite Pkts</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-hud-bottom">
+                <div class="alert-pill warn" id="hudAlertPill">
+                  ⚡ HARD BRAKING MONITOR ACTIVE
+                </div>
+                <div class="hud-card" style="padding: .5rem .85rem;">
+                  <span class="mono" style="font-size: .74rem; color: #fff;" id="hudCoords">23.8103° N, 90.4125° E</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Split Surface / Dynamic Moving Time Bar -->
+          <div class="telemetry-bar-wrap">
+            <div class="telemetry-bar" id="hudBar">
+              <span class="t-seg moving" id="barMoving" style="flex-grow: 86;" title="Moving Time"></span>
+              <span class="t-seg idle" id="barIdle" style="flex-grow: 14;" title="Idle / Stopped"></span>
+            </div>
+          </div>
+
+          <div class="demo-foot">
+            <div class="legend" aria-hidden="true">
+              <span class="legend-item"><span class="legend-swatch swatch-amber"></span> Moving (Active)</span>
+              <span class="legend-item"><span class="legend-swatch swatch-slate"></span> Idle / Traffic Filtered</span>
+              <span class="legend-item"><span class="legend-swatch swatch-pin"></span> Local SQLite Verified</span>
+            </div>
+            <span class="mono" id="hudProfileNote" style="font-size: .72rem; color: var(--on-dark-mute);">
+              Canyon Run: 20Hz GPS + IMU Accelerometer
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HONEST STAT LEDGER STRIP (Offroad Pilot motif)
+         ============================================================ -->
+    <section class="ledger pad-sm" aria-label="Key Production Specifications">
+      <div class="container">
+        <div class="ledger-inner">
+          <div class="ledger-cell reveal">
+            <span class="lv mono"><span class="accent">2,500+</span> tests</span>
+            <span class="ll">Run before every push</span>
+          </div>
+          <div class="ledger-cell reveal d1">
+            <span class="lv mono"><span class="accent">20</span> / sec</span>
+            <span class="ll">Accelerometer &amp; gyroscope reads</span>
+          </div>
+          <div class="ledger-cell reveal d2">
+            <span class="lv mono"><span class="accent">100%</span> offline</span>
+            <span class="ll">Local SQLite source of truth</span>
+          </div>
+          <div class="ledger-cell reveal d3">
+            <span class="lv mono"><span class="accent">2</span> languages</span>
+            <span class="ll">English and বাংলা, offline</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURE ZIG-ZAG (s-paper)
+         ============================================================ -->
+    <section class="s-paper pad" id="features" aria-labelledby="feat-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">BUILT SPECIFICALLY FOR BIKES</span>
+          <h2 id="feat-title">Why cycling and running apps fail motorcyclists.</h2>
+          <p class="lead">
+            Motorcycles endure extreme lateral acceleration, rapid lean angles, high-speed braking zones, and strict mechanical upkeep. Generic sports trackers simply don't understand two-wheeled physics.
+          </p>
+        </div>
+
+        <div class="zig">
+          <!-- FEATURE 1: 20Hz Telemetry -->
+          <article class="feature reveal">
+            <div class="f-media">
+              <div class="tactical-card">
+                <svg viewBox="0 0 520 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#f4b23e" stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color="#f4b23e" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Background grid -->
+                  <g stroke="#e6e2dc" stroke-width="1" fill="none">
+                    <line x1="40" y1="50" x2="480" y2="50"/>
+                    <line x1="40" y1="120" x2="480" y2="120"/>
+                    <line x1="40" y1="190" x2="480" y2="190"/>
+                    <line x1="40" y1="260" x2="480" y2="260"/>
+                  </g>
+                  <!-- Acceleration curve with jerk events -->
+                  <path d="M40 260 Q100 240 140 180 T220 90 T310 140 T380 70 T480 200" fill="none" stroke="#d9971f" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M40 260 Q100 240 140 180 T220 90 T310 140 T380 70 T480 200 L480 260 L40 260 Z" fill="url(#areaGrad)"/>
+                  <!-- Hard Braking Alert marker -->
+                  <circle cx="310" cy="140" r="7" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+                  <rect x="260" y="155" width="100" height="26" rx="6" fill="#1c1a17"/>
+                  <text x="310" y="172" fill="#fff" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">-0.92G BRAKE</text>
+                  <!-- Peak lean marker -->
+                  <circle cx="380" cy="70" r="7" fill="#38bdf8" stroke="#fff" stroke-width="2"/>
+                  <rect x="330" y="24" width="100" height="26" rx="6" fill="#1c1a17"/>
+                  <text x="380" y="41" fill="#fff" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">44° PEAK LEAN</text>
+                </svg>
+              </div>
+            </div>
+            <div class="f-copy">
+              <span class="ft-num mono">CORE ARCHITECTURE · 01</span>
+              <h3>Hold to ride. Everything else is automatic.</h3>
+              <p>
+                Fitness apps are built for runners and cyclists. ThrottleIQ records GPS continuously in the background and reads the accelerometer and gyroscope 20 times a second, then turns it into a riding score, speed and elevation charts, jam time and ride cost.
+              </p>
+              <ul class="f-bullets">
+                <li><strong>Keeps recording:</strong> a foreground service records with the screen locked, and a ride survives the app being killed.</li>
+                <li><strong>Cockpit alerts:</strong> hard braking, harsh throttle, overspeed, and a break reminder after 90 minutes.</li>
+                <li><strong>Jitter Filtering:</strong> Discards poor-accuracy fixes (&gt;25m GPS drift) and cleanly separates idle stops from true moving velocity.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- FEATURE 2: Safety (Flipped) -->
+          <article class="feature flip reveal" id="safety">
+            <div class="f-media">
+              <div class="tactical-card tactical-card-dark">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+                  <span class="mono" style="font-size: .75rem; color: var(--amber);">SAFETY · WHAT SHIPS TODAY</span>
+                  <span class="s-badge s-ok">LIVE</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; text-align: center; margin-bottom: 1.5rem;">
+                  <div style="background: rgba(255,255,255,0.05); padding: .8rem; border-radius: 8px;">
+                    <div class="mono" style="font-size: 1.2rem; font-weight: 800; color: #4ade80;">Live link</div>
+                    <div style="font-size: .68rem; color: var(--on-dark-mute); margin-top: .2rem;">Position in any browser</div>
+                  </div>
+                  <div style="background: rgba(255,255,255,0.05); padding: .8rem; border-radius: 8px;">
+                    <div class="mono" style="font-size: 1.2rem; font-weight: 800; color: #fbbf24;">SafeQR</div>
+                    <div style="font-size: .68rem; color: var(--on-dark-mute); margin-top: .2rem;">Medical card</div>
+                  </div>
+                  <div style="background: rgba(255,255,255,0.05); padding: .8rem; border-radius: 8px;">
+                    <div class="mono" style="font-size: 1.2rem; font-weight: 800; color: #38bdf8;">Contacts</div>
+                    <div style="font-size: .68rem; color: var(--on-dark-mute); margin-top: .2rem;">Saved in the app</div>
+                  </div>
+                </div>
+                <div style="border-left: 3px solid var(--amber); padding-left: 1rem; font-size: .88rem; color: var(--on-dark-mute);">
+                  Crash detection is built but switched off while we calibrate it on real rides. It does not alert anyone yet. Don't rely on ThrottleIQ to call for help.
+                </div>
+              </div>
+            </div>
+            <div class="f-copy">
+              <span class="ft-num mono">SAFETY · 02</span>
+              <h3>Let people find you. Tell strangers how to help.</h3>
+              <p>
+                If a rider goes down on an empty road, the first question is where they are and who to call. ThrottleIQ answers both with tools that work today.
+              </p>
+              <ul class="f-bullets">
+                <li><strong>Live location link:</strong> share it from the ride screen. Family see your position in any browser, no app or account needed, and you can stop sharing at any time.</li>
+                <li><strong>SafeQR:</strong> a QR with your blood group, allergies, conditions, medications and first emergency contact. Any phone camera reads it.</li>
+                <li><strong>Crash detection, in testing:</strong> the detector runs in shadow mode on beta phones to collect calibration data. Alerts come after it is proven on real rides.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       PLACES, ROUTES & COMMUNITY
+       ============================================================ -->
+    <section class="s-paper-2 pad" id="more" aria-labelledby="more-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">PLACES, ROUTES &amp; COMMUNITY</span>
+          <h2 id="more-title">More than a ride log.</h2>
+          <p class="lead">
+            Five tabs: Social, Places, Record, Rides and Garage. Don't want some of it? Settings → Advanced → Your ThrottleIQ turns off the community, Places, or ride tracking itself, down to a maintenance-only app that never uses your location.
+          </p>
+        </div>
+
+        <div class="how-steps">
+          <div class="step-card reveal">
+            <div class="step-num"><span>1</span> NEW · YEAR IN REVIEW</div>
+            <h3>Your riding year on one card</h3>
+            <p>Total distance, ride time, your busiest month and the change on last year, with your favourite bike. Share it as a 9:16 image.</p>
+          </div>
+          <div class="step-card reveal d1">
+            <div class="step-num"><span>2</span> NEW · REPLAY &amp; IMPORT</div>
+            <h3>Replay any ride</h3>
+            <p>Watch a ride play back on the map. Bring old rides in from GPX, and mark a trip as "not a motorcycle ride" to keep your stats clean.</p>
+          </div>
+          <div class="step-card reveal d2">
+            <div class="step-num"><span>3</span> 1,200+ PLACES</div>
+            <h3>Fuel, garages, parts</h3>
+            <p>A rider-rated directory around Dhaka with tags like octane 95 or puncture repair. Saved places work offline, and nearby places show on the ride map.</p>
+          </div>
+          <div class="step-card reveal">
+            <div class="step-num"><span>4</span> ROUTES</div>
+            <h3>Save, discover, follow</h3>
+            <p>Save a ride as a route, browse routes other riders made public, and follow one with simple turn prompts while it records.</p>
+          </div>
+          <div class="step-card reveal d1">
+            <div class="step-num"><span>5</span> GROUP RIDES</div>
+            <h3>Ride together</h3>
+            <p>Start a group ride with a 6-letter code. Everyone shows on one live map, and push-to-talk voice notes keep the group in touch.</p>
+          </div>
+          <div class="step-card reveal d2">
+            <div class="step-num"><span>6</span> SOCIAL</div>
+            <h3>Feed, forums, chat</h3>
+            <p>Share rides with photos, ask owners of your bike model in the forums, follow riders by QR code and message them directly. Badges and streaks for the long haul.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DYNAMIC MAINTENANCE & GARAGE CALCULATOR
+         ============================================================ -->
+    <section class="s-paper pad" id="garage" aria-labelledby="garage-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">GARAGE FLEET &amp; MAINTENANCE</span>
+          <h2 id="garage-title">Track motorcycle upkeep by distance, not memory.</h2>
+          <p class="lead">
+            Pick your bike (Pulsar, Hornet, FZ, R15/MT-15, Gixxer, Apache, or a schedule by engine size) and ThrottleIQ counts every kilometre you ride. It tells you what's due next by km or by date, keeps service visits with receipts, warns before your papers expire, logs fuel for real km/L, and exports a PDF service record.
+          </p>
+        </div>
+
+        <div class="maint-calc reveal">
+          <div class="slider-row">
+            <div class="slider-header">
+              <span class="mono" style="font-weight: 700; font-size: .95rem; color: var(--charcoal);">
+                DRAG ODOMETER MILEAGE
+              </span>
+              <div class="odo-readout mono" id="odoDisplay">3,450 <span>KM</span></div>
+            </div>
+            <input type="range" class="custom-range" id="odoRange" min="0" max="10000" step="50" value="3450" aria-label="Simulated Odometer Distance">
+            <span class="mono" style="font-size: .75rem; color: var(--ink-mute);">
+              Example intervals. The app uses your bike's own schedule.
+            </span>
+          </div>
+
+          <div class="service-grid">
+            <!-- Service 1: Chain Lube -->
+            <div class="service-item" id="itemChain">
+              <div>
+                <div class="s-name">Chain Lubrication</div>
+                <div class="s-int">Every 500 km</div>
+              </div>
+              <div class="s-badge s-overdue" id="badgeChain">OVERDUE (+450 km)</div>
+            </div>
+
+            <!-- Service 2: Engine Oil -->
+            <div class="service-item" id="itemOil">
+              <div>
+                <div class="s-name">Engine Oil &amp; Filter</div>
+                <div class="s-int">Every 3,000 km</div>
+              </div>
+              <div class="s-badge s-due" id="badgeOil">DUE SOON (450 km past)</div>
+            </div>
+
+            <!-- Service 3: Brake Pads -->
+            <div class="service-item" id="itemBrakes">
+              <div>
+                <div class="s-name">Brake Fluid &amp; Pads</div>
+                <div class="s-int">Every 5,000 km</div>
+              </div>
+              <div class="s-badge s-ok" id="badgeBrakes">OK (1,550 km left)</div>
+            </div>
+
+            <!-- Service 4: Spark Plugs -->
+            <div class="service-item" id="itemSpark">
+              <div>
+                <div class="s-name">Spark Plugs &amp; Valve</div>
+                <div class="s-int">Every 8,000 km</div>
+              </div>
+              <div class="s-badge s-ok" id="badgeSpark">OK (4,550 km left)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       REAL APP UI GALLERY (Carbon Mono & Editorial Themes)
+       ============================================================ -->
+    <section class="s-paper-2 pad" id="app-ui" aria-labelledby="ui-title">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow">THE REAL APP</span>
+          <h2 id="ui-title">Screens from the current beta.</h2>
+          <p class="lead">
+            Two themes, Calming light and Carbon Mono dark, following your phone or set by hand. Every screen in English and বাংলা.
+          </p>
+        </div>
+
+        <div class="gallery-wrap">
+          <!-- Feature Category Pills -->
+          <div class="category-pills reveal d1" role="group" aria-label="App screens">
+            <button type="button" class="cat-pill active" data-cat="record.jpg">01. Hold to ride</button>
+            <button type="button" class="cat-pill" data-cat="ride-summary.jpg">02. Ride summary</button>
+            <button type="button" class="cat-pill" data-cat="stats.jpg">03. Rides analytics</button>
+            <button type="button" class="cat-pill" data-cat="garage.jpg">04. Garage</button>
+            <button type="button" class="cat-pill" data-cat="maintenance.jpg">05. What's due next</button>
+            <button type="button" class="cat-pill" data-cat="places.jpg">06. Places</button>
+          </div>
+
+          <!-- Phone Mockup Frame -->
+          <div class="phone-showcase reveal d2">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img id="activeScreenshot" src="assets/screenshots/record.jpg" alt="ThrottleIQ app screen: hold to ride" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       DUO CARDS: GPX EXPORT & PRIVACY ZONES (Offroad Pilot style)
+       ============================================================ -->
+    <section class="s-paper pad" aria-labelledby="export-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">PORTABILITY &amp; PRIVACY</span>
+          <h2 id="export-title">Your rides are yours. Your home stays off the map.</h2>
+        </div>
+
+        <div class="duo">
+          <article class="panel reveal">
+            <div class="picon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </div>
+            <h3>GPX, CSV and JSON, in and out</h3>
+            <p>
+              Export your rides as GPX, CSV or JSON, and import old rides from GPX. GPX opens in most navigation and mapping apps.
+            </p>
+            <div class="app-pill-row">
+              <span class="app-pill hot">Calimoto</span>
+              <span class="app-pill hot">Kurviger</span>
+              <span class="app-pill">OsmAnd</span>
+              <span class="app-pill">Garmin BaseCamp</span>
+              <span class="app-pill">Gaia GPS</span>
+              <span class="app-pill">TomTom Rider</span>
+            </div>
+          </article>
+
+          <article class="panel reveal d1">
+            <div class="picon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h3>Automatic privacy zones</h3>
+            <p>
+              When you share a ride to the feed, ThrottleIQ clips its start and end inside a 200–349 m zone, so your home and workplace aren't on the map. Private data is readable only by you.
+            </p>
+            <div class="app-pill-row">
+              <span class="app-pill hot">Auto-Clipped GPS</span>
+              <span class="app-pill">Stop sharing anytime</span>
+              <span class="app-pill">No ad SDK</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       HOW IT WORKS (3-Step Route Spine)
+       ============================================================ -->
+    <section class="s-paper-2 pad" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">THREE STEPS</span>
+          <h2 id="how-title">From helmet strap-on to post-ride debrief.</h2>
+        </div>
+
+        <div class="how-steps">
+          <div class="step-card reveal">
+            <div class="step-num"><span>1</span> START RIDE</div>
+            <h3>Pick your bike, hold to start</h3>
+            <p>
+              No signal needed: the ride is written to your phone first. Or turn on auto-tracking and ThrottleIQ logs your daily trips on its own.
+            </p>
+          </div>
+
+          <div class="step-card reveal d1">
+            <div class="step-num"><span>2</span> RIDE NORMALLY</div>
+            <h3>Mount it or pocket it</h3>
+            <p>
+              Recording carries on with the screen locked. You get cockpit alerts for hard braking and overspeed, and a break reminder after 90 minutes.
+            </p>
+          </div>
+
+          <div class="step-card reveal d2">
+            <div class="step-num"><span>3</span> MACHINE MEMORY</div>
+            <h3>Review, sync, and inspect</h3>
+            <p>
+              Hold to end. See your riding score, speed bands, jam time and ride cost. Your bike's odometer and service checks update by themselves.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       ARCHITECTURE / UNDER THE HOOD (s-dark)
+       ============================================================ -->
+    <section class="s-dark pad" id="architecture" aria-labelledby="arch-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">ENGINEERING INTEGRITY</span>
+          <h2 id="arch-title">Offline-first local SQLite, cloud-synced when ready.</h2>
+          <p class="lead">
+            Cellular service drops constantly on mountain twisties and forest roads. ThrottleIQ never drops a packet because the local database is the single source of truth.
+          </p>
+        </div>
+
+        <div class="duo">
+          <div class="tactical-card tactical-card-dark reveal">
+            <h3 style="margin-bottom: 1rem; color: var(--amber);">On The Bike — Flutter &amp; SQLite</h3>
+            <ul class="f-bullets">
+              <li style="color: var(--on-dark);"><strong>Local SQLite (`sqflite`):</strong> High-throughput motion points and metadata stored in real transactional SQLite.</li>
+              <li style="color: var(--on-dark);"><strong>Riverpod State:</strong> Independent providers managing ride recording, motion calculus, and live sync queues.</li>
+              <li style="color: var(--on-dark);"><strong>Accuracy Gating:</strong> Rejects inaccurate points (&gt;25m GPS spread) to prevent speed spikes.</li>
+            </ul>
+          </div>
+
+          <div class="tactical-card tactical-card-dark reveal d1">
+            <h3 style="margin-bottom: 1rem; color: var(--cyan);">In The Cloud — Firebase &amp; Cloudinary</h3>
+            <ul class="f-bullets">
+              <li style="color: var(--on-dark);"><strong>Firestore Sync:</strong> SyncManager detects unsynced records (`synced=0`) on app resume and 5-min intervals.</li>
+              <li style="color: var(--on-dark);"><strong>User-Owned Security Rules:</strong> Strict Firestore security rules verify rider ownership before allowing writes or queries.</li>
+              <li style="color: var(--on-dark);"><strong>Cloudinary CDN:</strong> Optimized storage for bike garage photos and community place reviews.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       FEEDBACK & PILOT RECRUITMENT DARK BAND (Offroad Pilot motif)
+       ============================================================ -->
+    <section class="feedback-band pad" aria-labelledby="fb-title">
+      <div class="container fb-inner reveal">
+        <span class="eyebrow">JOIN THE PILOT FLEET</span>
+        <h2 id="fb-title">Built by a rider, for riders.</h2>
+        <p class="lead">
+          ThrottleIQ is in a real-road beta on Android through Google Play testing. There is no public store listing yet. We're looking for riders in Bangladesh to test it, and contributors for code and Bangla review.
+        </p>
+        <div class="fb-pill-row">
+          <span class="fb-pill">TSAL v1.1 SOURCE-AVAILABLE</span>
+          <span class="fb-pill">2,500+ AUTOMATED TESTS</span>
+          <span class="fb-pill">ENGLISH + বাংলা</span>
+        </div>
+        <div class="fb-actions">
+          <a class="btn btn-primary btn-lg" href="/throttle-iq/install/">
+            Join the beta <span class="arw" aria-hidden="true">→</span>
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">
+            View source on GitHub
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/blankframe-tech/ThrottleIQ/issues" target="_blank" rel="noopener">
+            Report Issue / Feature Request
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       FAQ ACCORDION
+       ============================================================ -->
+    <section class="s-paper pad" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow">COMMON QUESTIONS</span>
+          <h2 id="faq-title">Everything you need to know.</h2>
+        </div>
+
+        <div class="faq-list reveal d1">
+          <!-- Question 1 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Does ThrottleIQ need cellular service while riding?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              No. ThrottleIQ was architected offline-first from day one. All GPS coordinates, accelerometer spikes, distance stats, and service logs are committed immediately to your phone's local SQLite database. When you return to cellular or Wi-Fi range, the app automatically uploads pending records to the cloud.
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Does ThrottleIQ detect crashes?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              Not yet. The detector is built and runs in shadow mode on beta phones so we can calibrate it on real rides, but it does not alert anyone. Don't rely on ThrottleIQ to call for help. What works today: the live location link, saved emergency contacts and the SafeQR medical card.
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Can my family see where I am during a ride?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              Yes. Tap Share live location on the ride screen to get a link that shows your position in any browser, with no app or account. You can stop sharing at any time.
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Can I manage maintenance for more than one motorcycle?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              Yes. The Garage feature allows you to register your entire bike fleet (e.g. daily commuter, adventure bike, track machine). Each motorcycle maintains its own odometer, service logs, and custom maintenance intervals.
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>How do I delete my data?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              In the app: Settings → Delete account. Your sign-in and the data on your phone go at once, and we remove your cloud data by hand within 30 days. You can also <a href="/throttle-iq/accdel.html">send a deletion request</a>. No ride data is sold to insurers or advertisers.
+            </div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Is there an iPhone version?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              Not in the App Store yet. Android testers get ThrottleIQ through Google Play testing; the iPhone version is in private testing. <a href="/throttle-iq/install/">Ask to join</a>.
+            </div>
+          </div>
+
+          <!-- Question 7 -->
+          <div class="faq-item">
+            <button type="button" class="faq-btn" aria-expanded="false">
+              <span>Can I use it only for maintenance?</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-ans">
+              Yes. Settings → Advanced → Your ThrottleIQ can turn off the community (or keep forums only), Places, or ride tracking. With tracking off, ThrottleIQ is a maintenance-only app that never uses your location.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>ThrottleIQ</h4>
+          <p style="color: var(--on-dark-mute); max-width: 32ch; font-size: .85rem; margin-bottom: 1.2rem;">
+            Machine memory for motorcycles. Every ride recorded, every service remembered, every rider connected.
+          </p>
+          <div class="top-pill" style="font-size: .75rem;">
+            <span class="pulse-dot"></span>
+            <span>ANDROID BETA</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul class="footer-links">
+            <li><a href="#features">Ride recording</a></li>
+            <li><a href="#safety">Safety</a></li>
+            <li><a href="#garage">Garage &amp; maintenance</a></li>
+            <li><a href="#more">Places &amp; community</a></li>
+            <li><a href="#app-ui">Real UI</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Source &amp; Docs</h5>
+          <ul class="footer-links">
+            <li><a href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="https://github.com/blankframe-tech/ThrottleIQ/releases/latest" target="_blank" rel="noopener">Release notes</a></li>
+            <li><a href="https://github.com/blankframe-tech/ThrottleIQ/issues" target="_blank" rel="noopener">Issue Tracker</a></li>
+            <li><a href="/throttle-iq/accdel.html">Account Data Deletion</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="/throttle-iq/install/">Get the app</a></li>
+            <li><a href="/throttle-iq/crash/1/">Crash Report 001</a></li>
+            <li><a href="/brand/throttle-iq/">Brand</a></li>
+            <li><a href="https://www.blankframe.tech">Blankframe Tech Home</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Blankframe Tech &middot; ThrottleIQ. Source-available under TSAL v1.1.</div>
+        <div>
+          <a href="https://throttleiqfb.web.app/privacy.html" style="color: var(--on-dark-mute); margin-right: 1.2rem;">Privacy policy</a>
+          <a href="/throttle-iq/accdel.html" style="color: var(--on-dark-mute); margin-right: 1.2rem;">Data deletion</a>
+          <a href="https://github.com/blankframe-tech/ThrottleIQ" target="_blank" rel="noopener" style="color: var(--on-dark-mute);">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       INTERACTIVE JAVASCRIPT LOGIC & ANIMATIONS
+       ============================================================ -->
+  <script>
+    (function() {
+      "use strict";
+
+      var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- 1. STICKY NAV SHADOW ON SCROLL ---------- */
+      var nav = document.getElementById("mainNav");
+      var handleScroll = function() {
+        if (window.scrollY > 20) { nav.classList.add("scrolled"); }
+        else { nav.classList.remove("scrolled"); }
+      };
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
+
+      /* ---------- 2. SCROLL REVEAL (IntersectionObserver) ---------- */
+      var reveals = Array.from(document.querySelectorAll(".reveal"));
+      if (prefersReduced || !("IntersectionObserver" in window)) {
+        reveals.forEach(function(el) { el.classList.add("in"); });
+      } else {
+        var revealObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+        reveals.forEach(function(el) { revealObserver.observe(el); });
+      }
+
+      /* ---------- 3. HERO TELEMETRY BLACK BOX PLAYER ---------- */
+      var PROFILES = {
+        track: {
+          speed: 118,
+          lean: "44°",
+          g: "+1.28G",
+          packets: "1,842",
+          movingPct: 92,
+          alert: "⚡ AGGRESSIVE CANYON RUN · 44° PEAK LEAN",
+          alertClass: "warn",
+          note: "Canyon Run: 20Hz GPS + Accelerometer derivatives",
+          coords: "23.8103° N, 90.4125° E",
+          path: "M60 370 C140 380 170 300 220 260 C270 220 250 170 330 180 C410 190 440 130 490 120 C540 110 560 70 600 60"
+        },
+        commute: {
+          speed: 48,
+          lean: "18°",
+          g: "+0.45G",
+          packets: "920",
+          movingPct: 68,
+          alert: "🛡️ URBAN CRUISE · STOP-AND-GO IDLE FILTERED",
+          alertClass: "alert-pill",
+          note: "City Commute: Idle segmentation &amp; fatigue timer",
+          coords: "23.7925° N, 90.4078° E",
+          path: "M60 370 C120 340 190 350 260 280 C320 220 380 240 450 160 C510 120 550 100 600 60"
+        },
+        offline: {
+          speed: 72,
+          lean: "29°",
+          g: "+0.82G",
+          packets: "2,310",
+          movingPct: 88,
+          alert: "🌧️ 100% OFFLINE SQLITE · ZERO CELL SIGNAL",
+          alertClass: "warn",
+          note: "Remote Trail: Local SQLite source of truth",
+          coords: "22.3569° N, 91.7832° E",
+          path: "M60 370 C100 300 200 340 280 220 C340 160 390 190 460 110 C520 80 570 90 600 60"
+        }
+      };
+
+      var activeMode = "track";
+      var hudSpeed = document.getElementById("hudSpeedVal");
+      var hudLean = document.getElementById("hudLeanVal");
+      var hudG = document.getElementById("hudGVal");
+      var hudPackets = document.getElementById("hudPacketsVal");
+      var hudAlert = document.getElementById("hudAlertPill");
+      var hudNote = document.getElementById("hudProfileNote");
+      var hudCoords = document.getElementById("hudCoords");
+      var barMoving = document.getElementById("barMoving");
+      var barIdle = document.getElementById("barIdle");
+      var routeActive = document.getElementById("routeActive");
+      var routeBase = document.getElementById("routeBase");
+      var riderCursor = document.getElementById("riderCursor");
+
+      var btnTrack = document.getElementById("modeTrack");
+      var btnCommute = document.getElementById("modeCommute");
+      var btnOffline = document.getElementById("modeOffline");
+
+      function updateTelemetryHUD(mode, animateNumber) {
+        var p = PROFILES[mode];
+        if (!p) return;
+
+        // Update active buttons
+        [btnTrack, btnCommute, btnOffline].forEach(function(b) {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
+        if (mode === "track") { btnTrack.classList.add("active"); btnTrack.setAttribute("aria-pressed", "true"); }
+        if (mode === "commute") { btnCommute.classList.add("active"); btnCommute.setAttribute("aria-pressed", "true"); }
+        if (mode === "offline") { btnOffline.classList.add("active"); btnOffline.setAttribute("aria-pressed", "true"); }
+
+        // Update values
+        hudLean.textContent = p.lean;
+        hudG.textContent = p.g;
+        hudPackets.textContent = p.packets;
+        hudAlert.className = "alert-pill " + (p.alertClass === "warn" ? "warn" : "");
+        hudAlert.textContent = p.alert;
+        hudNote.innerHTML = p.note;
+        hudCoords.textContent = p.coords;
+
+        // Split bar
+        barMoving.style.flexGrow = p.movingPct;
+        barIdle.style.flexGrow = (100 - p.movingPct);
+
+        // Path update
+        routeActive.setAttribute("d", p.path);
+        routeBase.setAttribute("d", p.path);
+
+        // Smooth speed ticker
+        var startSpeed = parseInt(hudSpeed.textContent, 10) || 0;
+        var endSpeed = p.speed;
+        if (animateNumber && !prefersReduced) {
+          var startTs = null;
+          var dur = 500;
+          function tick(ts) {
+            if (!startTs) startTs = ts;
+            var progress = Math.min((ts - startTs) / dur, 1);
+            hudSpeed.textContent = Math.round(startSpeed + (endSpeed - startSpeed) * progress);
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        } else {
+          hudSpeed.textContent = endSpeed;
+        }
+
+        activeMode = mode;
+      }
+
+      // Rider Dot moving animation along path
+      var pathProgress = 0;
+      function animateRiderCursor() {
+        if (!prefersReduced && routeActive) {
+          try {
+            var len = routeActive.getTotalLength();
+            pathProgress = (pathProgress + 0.0035) % 1;
+            var pt = routeActive.getPointAtLength(len * pathProgress);
+            if (riderCursor && pt) {
+              riderCursor.setAttribute("transform", "translate(" + pt.x + ", " + pt.y + ")");
+            }
+          } catch (e) {}
+        }
+        requestAnimationFrame(animateRiderCursor);
+      }
+      requestAnimationFrame(animateRiderCursor);
+
+      btnTrack.addEventListener("click", function() { updateTelemetryHUD("track", true); });
+      btnCommute.addEventListener("click", function() { updateTelemetryHUD("commute", true); });
+      btnOffline.addEventListener("click", function() { updateTelemetryHUD("offline", true); });
+
+      /* ---------- 5. DYNAMIC MAINTENANCE CALCULATOR ---------- */
+      var odoRange = document.getElementById("odoRange");
+      var odoDisplay = document.getElementById("odoDisplay");
+      var badgeChain = document.getElementById("badgeChain");
+      var badgeOil = document.getElementById("badgeOil");
+      var badgeBrakes = document.getElementById("badgeBrakes");
+      var badgeSpark = document.getElementById("badgeSpark");
+
+      function updateMaintenance(km) {
+        odoDisplay.innerHTML = km.toLocaleString() + " <span>KM</span>";
+
+        // Chain lube: every 500 km
+        var chainDist = km % 500;
+        if (chainDist > 400 || chainDist === 0) {
+          badgeChain.className = "s-badge s-overdue";
+          badgeChain.textContent = "OVERDUE (Service Now)";
+        } else if (chainDist > 250) {
+          badgeChain.className = "s-badge s-due";
+          badgeChain.textContent = "DUE SOON (" + (500 - chainDist) + " km left)";
+        } else {
+          badgeChain.className = "s-badge s-ok";
+          badgeChain.textContent = "OK (" + (500 - chainDist) + " km left)";
+        }
+
+        // Engine Oil: every 3,000 km
+        var oilDist = km % 3000;
+        if (oilDist > 2600 || oilDist === 0) {
+          badgeOil.className = "s-badge s-overdue";
+          badgeOil.textContent = "OVERDUE (3,000 km interval)";
+        } else if (oilDist > 2000) {
+          badgeOil.className = "s-badge s-due";
+          badgeOil.textContent = "DUE SOON (" + (3000 - oilDist) + " km left)";
+        } else {
+          badgeOil.className = "s-badge s-ok";
+          badgeOil.textContent = "OK (" + (3000 - oilDist) + " km left)";
+        }
+
+        // Brakes: every 5,000 km
+        var brakeDist = km % 5000;
+        if (brakeDist > 4500 || brakeDist === 0) {
+          badgeBrakes.className = "s-badge s-overdue";
+          badgeBrakes.textContent = "INSPECTION DUE";
+        } else if (brakeDist > 3500) {
+          badgeBrakes.className = "s-badge s-due";
+          badgeBrakes.textContent = "DUE SOON (" + (5000 - brakeDist) + " km)";
+        } else {
+          badgeBrakes.className = "s-badge s-ok";
+          badgeBrakes.textContent = "OK (" + (5000 - brakeDist) + " km left)";
+        }
+
+        // Spark plugs: every 8,000 km
+        if (km >= 8000) {
+          badgeSpark.className = "s-badge s-overdue";
+          badgeSpark.textContent = "REPLACE SPARK PLUGS";
+        } else if (km >= 6500) {
+          badgeSpark.className = "s-badge s-due";
+          badgeSpark.textContent = "DUE SOON (" + (8000 - km) + " km)";
+        } else {
+          badgeSpark.className = "s-badge s-ok";
+          badgeSpark.textContent = "OK (" + (8000 - km) + " km left)";
+        }
+      }
+
+      if (odoRange) {
+        odoRange.addEventListener("input", function() {
+          updateMaintenance(parseInt(odoRange.value, 10));
+        });
+        updateMaintenance(parseInt(odoRange.value, 10));
+      }
+
+      /* ---------- 6. REAL APP UI SCREENSHOT SWITCHER ---------- */
+      var activeScreenshot = document.getElementById("activeScreenshot");
+      var catPills = Array.from(document.querySelectorAll(".cat-pill"));
+
+      catPills.forEach(function(pill) {
+        pill.setAttribute("aria-pressed", pill.classList.contains("active") ? "true" : "false");
+        pill.addEventListener("click", function() {
+          catPills.forEach(function(p) { p.classList.remove("active"); p.setAttribute("aria-pressed", "false"); });
+          pill.classList.add("active");
+          pill.setAttribute("aria-pressed", "true");
+          if (!activeScreenshot) return;
+          activeScreenshot.style.opacity = "0.2";
+          setTimeout(function() {
+            activeScreenshot.src = "assets/screenshots/" + pill.dataset.cat;
+            activeScreenshot.alt = "ThrottleIQ app screen: " + pill.textContent.replace(/^\d+\.\s*/, "");
+            activeScreenshot.style.opacity = "1";
+          }, 120);
+        });
+      });
+
+      /* ---------- 7. FAQ ACCORDION INTERACTIVITY ---------- */
+      var faqItems = Array.from(document.querySelectorAll(".faq-item"));
+      faqItems.forEach(function(item) {
+        var btn = item.querySelector(".faq-btn");
+        btn.addEventListener("click", function() {
+          var isOpen = item.classList.contains("open");
+          faqItems.forEach(function(other) {
+            other.classList.remove("open");
+            other.querySelector(".faq-btn").setAttribute("aria-expanded", "false");
+          });
+          if (!isOpen) {
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+    })();
+  </script>
+
+  <!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+  <script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

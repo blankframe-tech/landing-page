@@ -10,7 +10,7 @@ Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out 
 | Path | What |
 |---|---|
 | `index.html`, `404.html`, `favicon.svg`, `og-image.png` | The BFT home page (structure, styles and script in one file), the not-found page and shared assets |
-| `throttle-iq/` | ThrottleIQ: product page, install page, QR routing, crash reports, `v2/` showcase. The canonical path; `throttleIQ/`, `throttle-iq-2/`, `throttleiq2/` and `thtorrleiq2/` only redirect here |
+| `throttle-iq/` | ThrottleIQ: product page, install page, data-deletion page, QR routing, crash reports. The canonical path; `throttle-iq/v2/` (the old showcase URL), `throttleIQ/`, `throttle-iq-2/`, `throttleiq2/` and `thtorrleiq2/` only redirect here |
 | `poredekho-vto/`, `reserve-my-tokens/`, `mac-check/`, `fret-gps/`, `itl-reserver/`, `indriyo/` | Product and project pages |
 | `tools/taka-check/` | Checklist for spotting fake new-series taka notes (৳1000, ৳100, ৳50, ৳20), from Bangladesh Bank's poster |
 | `brand/` | The brand page and the family design tokens: `tokens.json` (source), `build_tokens.py` (generator and `--check`), and the generated `tokens.css`, `tailwind.css` and `blankframe_tokens.dart` |
