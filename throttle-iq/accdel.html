@@ -4,19 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Request Data Deletion — ThrottleIQ</title>
-<link rel="icon" href="assets/icon-dark.svg" type="image/svg+xml">
+<link rel="icon" href="assets/app-icon.png" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B0D10; --bg2:#12161B; --panel:#14181F; --panel2:#191E26;
-    --line:#262F3D; --text:#F5F7FA; --muted:#9BA6B5; --muted2:#6b7580;
-    --blue:#3B82F6; --blue2:#60A5FA; --orange:#FF6A00; --green:#22C55E;
+    --bg:#0D0D0D; --bg2:#161616; --panel:#161616; --panel2:#1F1F1F;
+    --line:rgba(244,244,244,.12); --text:#F4F4F4; --muted:#A8A8A8; --muted2:#8D8D8D;
+    --blue:#C8FF3D; --blue2:#C8FF3D; --orange:#FF7A45; --green:#42BE65;
     --radius:16px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--bg); color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     line-height:1.55; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:800px; margin:0 auto; padding:0 24px;}
@@ -24,13 +27,13 @@
   
   body{
     background-image:
-      radial-gradient(circle at 15% 0%, rgba(59,130,246,0.10), transparent 45%),
-      radial-gradient(circle at 90% 10%, rgba(255,106,0,0.08), transparent 40%);
+      radial-gradient(circle at 15% 0%, rgba(200,255,61,0.06), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(214,51,255,0.06), transparent 40%);
   }
 
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(11,13,16,0.82); backdrop-filter:blur(10px);
+    background:rgba(13,13,13,0.85); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px;}
@@ -38,6 +41,7 @@
   .brand img{width:28px; height:28px;}
 
   h1{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
     font-size:clamp(28px, 5vw, 42px); line-height:1.1; font-weight:800; letter-spacing:-0.8px;
     margin-bottom:16px;
   }
@@ -80,7 +84,7 @@
 <header>
   <nav class="wrap">
     <a href="index.html" style="text-decoration:none; color:inherit;">
-      <div class="brand"><img src="assets/icon-dark.svg" alt="ThrottleIQ"> ThrottleIQ</div>
+      <div class="brand"><img src="assets/app-icon.png" alt="ThrottleIQ"> ThrottleIQ</div>
     </a>
   </nav>
 </header>
