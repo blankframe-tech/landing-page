@@ -3,7 +3,7 @@
 
 Usage:
   python3 tools/traffic-report.py              # append this week's rows to DOCS/traffic/weekly.csv
-  python3 tools/traffic-report.py --now-line   # print the one-line monthly summary for /now/
+  python3 tools/traffic-report.py --now-line   # print the monthly summary and write it into now/index.html
   python3 tools/traffic-report.py --self-test  # offline asserts, no network
 
 The counter only returns all-time totals, so each row stores the all-time count
@@ -23,7 +23,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = ROOT / "tools" / "visit-count" / "index.html"
-CSV_PATH = ROOT / "DOCS" / "traffic" / "weekly.csv"
+CSV_PATH = ROOT / "DOCS" / "traffic" / "weekly.csv"  # DOCS/ is excluded from the deploy in _config.yml
+NOW_PAGE = ROOT / "now" / "index.html"
+NOW_MARK = re.compile(r"(<!-- traffic:start -->).*?(<!-- traffic:end -->)", re.S)
 COUNTER = "https://blankframe.goatcounter.com/counter/{}.json"
 FIELDS = ["week", "date", "path", "count", "delta"]
 
@@ -84,6 +86,11 @@ def now_line(rows, month):
             f"+{gained} since {start['date']}{top_txt} (GoatCounter public counter).")
 
 
+def put_now_line(html, line):
+    """Swap the text between the traffic markers; html without markers is returned unchanged."""
+    return NOW_MARK.sub(lambda m: m.group(1) + line + m.group(2), html, count=1)
+
+
 def read_rows():
     if not CSV_PATH.exists():
         return []
@@ -115,6 +122,9 @@ def self_test():
     line = now_line([{k: str(v) for k, v in r.items()} for r in rows], "2026-11")
     assert line.startswith("2026-11: 250 views all-time") and "+25 since 2026-11-01" in line and "top page / (40)" in line, line
     assert now_line([], "2026-11") == "No traffic snapshots yet."
+    page = "<p><!-- traffic:start -->old<!-- traffic:end --></p>"
+    assert put_now_line(page, "new") == "<p><!-- traffic:start -->new<!-- traffic:end --></p>"
+    assert put_now_line("<p>no markers</p>", "new") == "<p>no markers</p>"
     print("self-test: ok")
 
 
@@ -123,7 +133,9 @@ def main(argv):
         return self_test()
     rows = read_rows()
     if "--now-line" in argv:
-        return print(now_line(rows, dt.date.today().strftime("%Y-%m")))
+        line = now_line(rows, dt.date.today().strftime("%Y-%m"))
+        NOW_PAGE.write_text(put_now_line(NOW_PAGE.read_text(), line))
+        return print(line)
     today = dt.date.today()
     paths = parse_paths(REGISTRY.read_text())
     counts = {p: fetch_count(p) for p in ["TOTAL"] + paths}
