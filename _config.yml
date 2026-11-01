@@ -2,3 +2,4 @@ include:
   - .well-known
 exclude:
   - TODO.md
+  - DOCS
