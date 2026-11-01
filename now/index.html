@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Now · BlankFrame</title>
+<meta name="description" content="What is happening at BlankFrame this month, starting with how many people read the site.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/now/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Now · BlankFrame">
+<meta property="og:description" content="What is happening at BlankFrame this month.">
+<meta property="og:url" content="https://www.blankframe.tech/now/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.15; margin: 0; }
+  h1{ font-size: clamp(2.4rem, 8vw, 4rem); margin: var(--bf-space-8) 0 var(--bf-space-3); }
+  h2{ font-size: 1.4rem; margin-bottom: var(--bf-space-3); }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.08rem; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-3) 0 0; }
+  section{ margin-top: var(--bf-space-12); }
+  p, ul{ color: var(--bf-ink-soft); }
+  ul{ padding-left: 1.2rem; margin: var(--bf-space-3) 0 0; }
+  li{ margin-bottom: var(--bf-space-2); }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); flex-wrap: wrap; }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+  .seg{ display: inline-flex; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); padding: 3px; background: var(--bf-card); }
+  .seg button{ font: 500 13px var(--bf-font-body); color: var(--bf-muted); background: none; border: 0; border-radius: var(--bf-radius-pill); padding: 6px 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"]{ background: var(--bf-ink); color: var(--bf-bg); }
+  .seg button:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="" aria-pressed="true">Auto</button>
+    <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</div>
+
+<main>
+<header>
+  <h1>Now</h1>
+  <p class="lede"><span class="serif">This month at BlankFrame.</span> Updated once a month.</p>
+</header>
+
+<section id="traffic">
+  <h2>Site traffic</h2>
+  <p><!-- traffic:start -->2026-11: 225 views all-time on blankframe.tech, +0 since 2026-11-01; top page /research/r1_Fuel/ (33) (GoatCounter public counter).<!-- traffic:end --></p>
+  <p class="note">From the public GoatCounter counter. Per-page totals are on the <a href="/stats/">stats page</a>.</p>
+</section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <span><a href="/">blankframe.tech</a> · <a href="https://github.com/blankframe-tech">GitHub</a> · <a href="https://www.linkedin.com/in/abraar3/">LinkedIn</a> · <a href="/privacy/">Privacy</a></span>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-set-theme]');
+  function setTheme(t){
+    t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme');
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setTheme === t)));
+    try { t ? localStorage.setItem('bf-theme', t) : localStorage.removeItem('bf-theme'); } catch (e) {}
+  }
+  let saved = '';
+  try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
+  setTheme(saved);
+  buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+</script>
+
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
