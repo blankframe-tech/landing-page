@@ -707,6 +707,31 @@
     .focus-tag, .status-chip, .btn-small{ justify-self: start; }
   }
 
+  /* -------- Newsletter -------- */
+  .newsletter-sub{
+    margin: 18px auto 0;
+    color: var(--muted);
+    max-width: 52ch;
+  }
+  .newsletter-points{
+    list-style: none;
+    margin: 28px auto 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .newsletter-points li{
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+  }
+  .newsletter-cta{ margin-top: 32px; }
+
   /* -------- Footer CTA -------- */
   .footer-cta{
     padding: 130px 0 110px;
@@ -770,6 +795,7 @@
       <a href="#products">Products</a>
       <a href="#philosophy">Philosophy</a>
       <a href="#capabilities">Capabilities</a>
+      <a href="#newsletter">Newsletter</a>
     </div>
     <a class="btn" href="mailto:hello@blankframe.tech">Get in touch</a>
   </nav>
@@ -1079,6 +1105,23 @@
           <span class="vtag">Build</span>
           <span class="vtag">Live</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="tight">
+    <div class="wrap center">
+      <span class="label-chip reveal">Newsletter</span>
+      <h2 class="section-h reveal d1">Build notes, <span class="dim">straight from the</span> <span class="serif-accent">workbench.</span></h2>
+      <p class="newsletter-sub reveal d2">Cool updates only: new products as they ship, and how they're built. Architecture, trade-offs and the parts that broke. Written for developers.</p>
+      <ul class="newsletter-points reveal d2">
+        <li>4 emails a month, max</li>
+        <li>New products + their architecture</li>
+        <li>No spam, unsubscribe anytime</li>
+      </ul>
+      <div class="newsletter-cta reveal d2">
+        <a class="btn" href="https://blankframe.substack.com/subscribe" rel="noopener">Subscribe on Substack</a>
       </div>
     </div>
   </section>
