@@ -12,7 +12,7 @@ Every public-facing HTML page in this repository **MUST** include the GoatCounte
 ```
 
 ### B. Register in the Live Visit Counter Dashboard
-Every subpage **MUST** appear in the live breakdown dashboard at `tools/visit-count/index.html` (as well as its aliases `stats/index.html` and `analytics/index.html`):
+Every subpage **MUST** appear in the live breakdown dashboard at `tools/visit-count/index.html` (`stats/` and `analytics/` only redirect there):
 1. **Add Route to `PATHS` Array** in the `<script>` section of `tools/visit-count/index.html`:
    ```javascript
    { id: 'project_id', path: '/project-path/', name: 'Project Display Name' }
@@ -25,11 +25,16 @@ Every subpage **MUST** appear in the live breakdown dashboard at `tools/visit-co
    - Proportion bar: `<div class="bar-fill" id="bar-project_id" style="width: 0%;"></div>`
    - Percentage label: `<span class="bar-pct" id="pct-project_id">Calculating...</span>`
    - Count value: `<div class="count-val" id="count-project_id">—</div>`
-3. **Keep Aliases Synced**:
-   Copy the updated `tools/visit-count/index.html` to `stats/index.html` and `analytics/index.html`.
+3. **Don't copy the dashboard**:
+   `stats/index.html` and `analytics/index.html` are redirect stubs; leave them as they are.
+
+Redirect stubs (a `<meta http-equiv="refresh">` page, like `throttleIQ/` or `stats/`) are the only pages without the tag.
 
 ### C. Feature on the Main Landing Page
 Add a card for the new project in the **Portfolio** section of `index.html` with its rank number, category tag, description, and link to the route.
+
+### D. Keep internal files off the site
+Notes, agent files, drafts and scripts that aren't meant for visitors go in the `exclude` list in `_config.yml` (GitHub Pages' Jekyll pass then doesn't publish them). Claims on a page must match what shipped: label lab work as lab work.
 
 ---
 

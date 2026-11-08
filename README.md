@@ -2,8 +2,10 @@
 
 The blankframe.tech site: the BlankFrame Technologies (BFT) home page plus a set of
 static product, research and personal sub-sites. Plain HTML, no build step; GitHub
-Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out and
-`.well-known` in). A push to `main` deploys.
+Pages serves it with its default Jekyll pass (`_config.yml` keeps `.well-known` in and
+keeps internal files out: `TODO.md`, `DOCS/`, `AGENTS.md`, `GEMINI.md`,
+`setup_previews.sh`, `brand/build_tokens.py`, the unreleased ThrottleIQ design drafts and
+`tools/nepal-viz/`). A push to `main` deploys.
 
 ## What's in this repo
 
@@ -11,22 +13,23 @@ Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out 
 |---|---|
 | `index.html`, `404.html`, `favicon.svg`, `og-image.png` | The BFT home page (structure, styles and script in one file), the not-found page and shared assets |
 | `throttle-iq/` | ThrottleIQ: product page, install page, data-deletion page, QR routing, crash reports. The canonical path; `throttle-iq/v2/` (the old showcase URL), `throttleIQ/`, `throttle-iq-2/`, `throttleiq2/` and `thtorrleiq2/` only redirect here |
-| `poredekho-vto/`, `reserve-my-tokens/`, `mac-check/`, `fret-gps/`, `itl-reserver/`, `indriyo/` | Product and project pages |
+| `poredekho-vto/`, `reserve-my-tokens/`, `mac-check/`, `fret-gps/`, `itl-reserver/` | Product and project pages |
+| `indriyo/` | Indriyo, an archived lab project (lab benchmark, not shipped); listed as "Lab (archived)" on the home page and in the lab |
 | `tools/taka-check/` | Checklist for spotting fake new-series taka notes (৳1000, ৳100, ৳50, ৳20), from Bangladesh Bank's poster |
 | `brand/` | The brand page and the family design tokens: `tokens.json` (source), `build_tokens.py` (generator and `--check`), and the generated `tokens.css`, `tailwind.css` and `blankframe_tokens.dart` |
 | `experiments/`, `research/` | The experiments lab section and the research pages (including the Fuel Shock proposal pages generated from the FuelPriceHikeImpactResearch repo) |
 | `abraar/`, `shifa/` | Personal pages (`abraar/` is its own nested git repo) |
 | `terracotta-tales/` | Redirect to Terracotta Tales |
-| `tools/visit-count/` | Live per-sub-site traffic dashboard (GoatCounter); `stats/` and `analytics/` are copies of it |
+| `tools/visit-count/` | Live per-sub-site traffic dashboard (GoatCounter); `stats/` and `analytics/` redirect to it |
 | `archived/` | The previous home page |
-| `EXTRAS/` | Reference images and palettes, not linked from the site |
-| `setup_previews.sh` | Creates the theme-preview git worktrees (now in `../0_archive/bft-previews/`) |
+| `setup_previews.sh` | Creates the theme-preview git worktrees (now in `../0_archive/bft-previews/`); not published |
 | `TODO.md` | The open trust and polish list for the home page |
 | `CNAME` | Serves the repo at `www.blankframe.tech` |
 
 **Rule for new pages** (see `AGENTS.md`): every public page includes the GoatCounter
-script before `</body>` and is registered in the `tools/visit-count/` dashboard (and its
-`stats/` and `analytics/` copies).
+script before `</body>` (redirect stubs are the only exception) and is registered in the
+`tools/visit-count/` dashboard. Anything not meant for visitors goes in `_config.yml`'s
+`exclude` list.
 
 ## GitHub Pages setup (already done)
 
