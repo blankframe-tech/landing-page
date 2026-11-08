@@ -3,3 +3,6 @@ include:
 exclude:
   - TODO.md
   - DOCS
+  - AGENTS.md
+  - GEMINI.md
+  - "throttle-iq/new designs to be implemented later"

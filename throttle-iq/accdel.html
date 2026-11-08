@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Request Data Deletion — ThrottleIQ</title>
+<!-- GitHub Pages can't send X-Frame-Options. Framed: hide the page (Chrome blocks the
+     top navigation from a cross-origin frame without a click) and try to break out. -->
+<script>if (self !== top) { document.documentElement.style.display = 'none'; top.location = self.location; }</script>
 <link rel="icon" href="assets/app-icon.png" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,8 +96,8 @@
   <section class="wrap">
     <h1>Request Data Deletion</h1>
     <p>The fastest way is in the app: <strong>Settings → Delete account</strong>. Your sign-in and the data on your phone are deleted at once, and we delete your cloud data by hand within 30 days.</p>
-    <p>Can't open the app? Fill in the form below. It opens an email to us in your mail app; send it to make the request, and we delete your account and its data within 30 days. What we hold and delete is listed in the <a href="https://throttleiqfb.web.app/privacy.html" style="color:var(--blue2);">privacy policy</a>.</p>
-    <p>No mail app? Email <a href="mailto:hello@blankframe.tech?subject=ThrottleIQ%20data%20deletion%20request" style="color:var(--blue2);">hello@blankframe.tech</a> from the address on your account, with the subject "ThrottleIQ data deletion request".</p>
+    <p>Can't open the app? Fill in the form below. It opens an email to us in your mail app; send it to make the request. We then send a confirmation code to the email address stored on your account, not to the address the request came from. Reply with that code from that mailbox, and we delete your account and its data within 30 days. Without the reply, nothing is deleted. What we hold and delete is listed in the <a href="https://throttleiqfb.web.app/privacy.html" style="color:var(--blue2);">privacy policy</a>.</p>
+    <p>No mail app? Email <a href="mailto:hello@blankframe.tech?subject=ThrottleIQ%20data%20deletion%20request" style="color:var(--blue2);">hello@blankframe.tech</a> with the subject "ThrottleIQ data deletion request" and the email address on your account. The confirmation code goes to that address.</p>
 
     <div class="form-container">
       <!-- Static site: no backend, so the request goes out as an email the rider sends. -->
