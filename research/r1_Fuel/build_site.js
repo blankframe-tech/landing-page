@@ -27,7 +27,7 @@ const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
 /* Claims withdrawn in the 8 November 2026 correction, plus the expired funding asks. A re-sync
  * from the research repo must not bring them back, so the build refuses to write them. */
-const WITHDRAWN = /Malawi|Extreme Fuel Poverty|33 lakh|Tk 18,000|Tk 9,000|\$12,000|expires in October|20 October|Source repo/i;
+const WITHDRAWN = /Malawi|Extreme Fuel Poverty|33 lakh|18,000|Tk 9,000|\$12,000|expires in October|20 October|next 2–4 weeks|Source repo/i;
 
 function write(rel, html) {
   const hit = html.match(WITHDRAWN);
