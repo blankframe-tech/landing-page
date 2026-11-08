@@ -5,7 +5,6 @@
 const SITE = {
   base: '/research/r1_Fuel/',
   origin: 'https://www.blankframe.tech',
-  repo: 'https://github.com/the-abraar/FuelPriceHikeImpactResearch',
   contact: 'hello@blankframe.tech',
   updated: '21 September 2026',
 };
@@ -15,7 +14,7 @@ const NAV = [
   { href: '/research/r1_Fuel/findings/',    label: 'The analysis', id: 'findings' },
   { href: '/research/r1_Fuel/proposal/',    label: 'Research plan',id: 'proposal' },
   { href: '/research/r1_Fuel/collaborate/', label: 'Collaborate',  id: 'collaborate' },
-  { href: '/research/r1_Fuel/support/',     label: 'Fund it',      id: 'support' },
+  { href: '/research/r1_Fuel/support/',     label: 'Funding',      id: 'support' },
   { href: '/research/r1_Fuel/data/',        label: 'Data & method',id: 'data' },
   { href: '/research/r1_Fuel/status/',      label: 'Status',       id: 'status' },
 ];
@@ -62,10 +61,9 @@ function footer() {
         <a href="/research/r1_Fuel/findings/">The analysis</a>
         <a href="/research/r1_Fuel/proposal/">Research plan</a>
         <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-        <a href="/research/r1_Fuel/support/">Fund it</a>
+        <a href="/research/r1_Fuel/support/">Funding</a>
         <a href="/research/r1_Fuel/data/">Data &amp; method</a>
         <a href="/research/r1_Fuel/data/log/">Audit log</a>
-        <a href="${SITE.repo}">Source repo</a>
         <a href="mailto:${SITE.contact}?subject=r1_Fuel">Email</a>
         <a href="/">BlankFrame</a>
         <a href="/privacy/">Privacy</a>
@@ -74,13 +72,32 @@ function footer() {
     <p class="fnote">
       Figures marked <span class="est">est.</span> are this project's own calculations from cited inputs, with the
       method shown inline; everything else is sourced and linked. Nothing here is peer-reviewed. Corrections are
-      welcome and will be logged &mdash; open an issue on the
-      <a href="${SITE.repo}">repository</a> or email
+      welcome and will be logged &mdash; email
       <a href="mailto:${SITE.contact}?subject=r1_Fuel%20correction">${SITE.contact}</a>.
     </p>
   </div>
 </footer>`;
 }
+
+/** Dated correction notice for pages that carried the withdrawn claims. */
+const CORRECTION = `<aside class="callout" role="note" style="margin:24px 0;">
+  <span class="k">Correction &middot; 8 November 2026</span>
+  After publication on 21 September, the figures in this analysis were checked against their sources. What changed:
+  <ul style="margin:10px 0 0 18px;">
+    <li><strong>Removed:</strong> a comparison that placed Bangladesh in a cross-country &ldquo;fuel poverty&rdquo; band
+      alongside named countries. It came from an earlier unverified pass and has no published source.</li>
+    <li><strong>Removed:</strong> share-of-income figures that relied on an average salary and a median income we could
+      not source. The tank price itself stands: 50 litres of octane at Tk 165 costs Tk 8,250.</li>
+    <li><strong>Corrected:</strong> the National Pay Scale 2026 covers about 24 lakh serving civilian and military
+      employees, plus about 9.25 lakh retirees and other beneficiaries. Earlier text counted all of them as employees.
+      Informal workers are about 5.8 crore, roughly 84% of the employed.</li>
+    <li><strong>Withdrawn:</strong> the illustrated PDF report, until it is corrected, and the frame-coded discourse CSVs,
+      until two human coders have validated the frames.</li>
+  </ul>
+  <p style="margin:10px 0 0;">Two more points were revised: furnace oil was cut back to Tk 96.86 in September (about 38%
+  above March, not +62%), and the pricing formula was applied in part in April and June rather than frozen. Everything
+  else is as published on 21 September and is being re-checked.</p>
+</aside>`;
 
 /**
  * Wrap body content in the full document shell.
@@ -128,4 +145,4 @@ ${footer()}
 `;
 }
 
-module.exports = { SITE, NAV, page, nav, footer };
+module.exports = { SITE, NAV, CORRECTION, page, nav, footer };

@@ -3,8 +3,8 @@
 Public site for the **Bangladesh 2026 fuel shock** research programme, served at
 <https://www.blankframe.tech/research/r1_Fuel/>.
 
-Research source of truth: <https://github.com/the-abraar/FuelPriceHikeImpactResearch>.
-This directory is the published surface of that work, not a second copy of it.
+Research source of truth: the private `FuelPriceHikeImpactResearch` repository (the site links to
+nothing in it). This directory is the published surface of that work, not a second copy of it.
 
 ## Routes
 
@@ -14,10 +14,28 @@ This directory is the published surface of that work, not a second copy of it.
 | `/research/r1_Fuel/findings/` | The full impact analysis | `content/analysis.md` |
 | `/research/r1_Fuel/proposal/` | Research questions and the five study designs | `content/proposals.md` |
 | `/research/r1_Fuel/collaborate/` | Five open roles, the field, terms and ethics | `src/collaborate.js` |
-| `/research/r1_Fuel/support/` | Costed funding tiers, due diligence, funder landscape | `src/support.js` |
+| `/research/r1_Fuel/support/` | Short note: the programme is independently funded | `src/support.js` |
 | `/research/r1_Fuel/data/` | What is built, conventions, P4 corpus and its validation failures | `src/data.js` |
 | `/research/r1_Fuel/data/log/` | The full audit trail | `content/audit_log.md` |
 | `/research/r1_Fuel/status/` | Phase, critical path, public changelog | `src/status.js` |
+
+## Correction of 8 November 2026
+
+The analysis was checked against its sources after publication. The site now carries a dated
+correction notice (`CORRECTION` in `src/shell.js`) on the overview, the analysis and the audit log, and:
+
+- the cross-country affordability band and the shares against an unsourced average salary and median
+  income are removed from `content/analysis.md`, `content/audit_log.md`, `src/home.js` and `src/charts.js`;
+- pay-scale coverage reads about 24 lakh serving employees plus about 9.25 lakh retirees and other
+  beneficiaries (also in the static `proposal/p4/` and `proposal/p6/` pages);
+- the illustrated PDF, the frame-coded CSVs and the frame-share figure under `p4_discourse/out/` are
+  withdrawn until the PDF is corrected and two human coders have validated the frames;
+- the funding tiers and every fixed October deadline are gone; `/support/` says the programme is
+  independently funded, and the baseline is timed to the next fuel-price event.
+
+`build_site.js` refuses to write a page that contains any withdrawn claim (the `WITHDRAWN` pattern),
+so a re-sync from the research repo cannot quietly bring them back. Re-syncing `content/*.md` will
+fail the build until the research repo's text is corrected too; fix the text, do not loosen the pattern.
 
 ## Build
 
@@ -46,7 +64,8 @@ cp "$SRC/README.md"               content/analysis.md
 cp "$SRC/research_proposals.md"   content/proposals.md
 cp "$SRC/reseach_pass_1.md"       content/audit_log.md
 rsync -a --delete --exclude data --exclude __pycache__ \
-      --exclude 'out/coding_sample.csv' "$SRC/p4_discourse/" p4_discourse/
+      --exclude 'out/*.csv' --exclude 'out/frames_by_period.png' \
+      "$SRC/p4_discourse/" p4_discourse/
 node build_site.js
 ```
 

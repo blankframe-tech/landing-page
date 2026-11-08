@@ -1,5 +1,7 @@
 # P4 — Who Gets the Blame? (computational discourse analysis)
 
+> **Published copy, 8 November 2026:** the frame-coded CSVs and the frame-share figure listed under `out/` are withdrawn from this site until two human coders have validated the frames.
+
 Implements the corpus + pipeline for **P4** in [`../research_proposals.md`](../research_proposals.md).
 Status: **corpus collection and v0 pipeline built; frame classifier NOT validated against humans.** A single-coder
 pass by Claude exists (below); it is a stand-in, not the two-human validation the codebook requires.

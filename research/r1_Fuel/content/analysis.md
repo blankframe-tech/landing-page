@@ -26,22 +26,18 @@ The Hormuz conflict. Strait throughput collapsed from 21.6 mbd to 4.9 mbd (Q4 20
 
 ---
 
-## 2. Where Bangladesh now sits on the affordability map
+## 2. Affordability, and why the 50-litre number misleads
 
-The earlier estimate of **~31% of monthly income per 50L tank** is now stale in two ways: the price rose, and the implied wage denominator (~$190/month) was too generous for Bangladesh.
+*Corrected 8 November 2026: an earlier version placed Bangladesh in a cross-country affordability band and gave shares against an average salary and a median income. Neither the bands nor those two income figures have a published source, so both were removed.*
 
 **50L of octane at Tk 165 = Tk 8,250 = $67.07** (at 123.0 BDT/USD).
 
 | Income denominator | Value | % of monthly income per 50L tank **[est.]** | Work-time per 1L **[est.]** |
 |---|---|---|---|
-| Average gross monthly salary | Tk 18,000 | **45.8%** | 1h 54m |
 | RMG minimum wage (unchanged since Dec 2023) | Tk 12,500 | **66.0%** | 2h 45m |
 | New govt lowest basic (fully phased) | Tk 20,000 | **41.3%** | 1h 43m |
-| **Median** monthly income | Tk 9,000 | **91.7%** | 3h 49m |
 
 *(Work-time at 208 hrs/month.)*
-
-Against the tier table from the earlier analysis, Bangladesh has left the "Severe Stress" band (20–35%, 40–60 min/L) and entered **"Extreme Fuel Poverty" (90–200+ min/L)** — the Malawi/Zimbabwe/Mozambique band — on any denominator at or below the average wage. A year ago at Tk 125/L it was ~35% of the average wage. It is now ~46%.
 
 **But the 50L index badly misdescribes Bangladesh's actual pain, and this is the analytical crux.** Private four-wheeler ownership is a top-decile phenomenon here; almost nobody in the affected population buys 50 litres of octane. The octane/petrol number is a *comparative index*, useful for ranking countries and useless for predicting household distress. The real transmission runs through three fuels the index ignores:
 
@@ -199,7 +195,7 @@ The two events are 48 hours apart and they are the same fiscal decision seen fro
 - **24 lakh employees + 9 lakh pensioners.** First pay award in 11 years.
 - Cost: **Tk 1,05,580 crore**, phased over three years (50% of the basic increase in year one, remainder in year two, allowances in year three).
 
-**What the private sector got:** no mechanism. There is no general increment system outside the public sector. National wage growth **8.05%** against **8.26%** inflation — real wages negative before this hike. The RMG minimum wage is still **Tk 12,500**, set December 2023, with a 9% annual increment against cumulative inflation well above that since. ~85% of Bangladeshi employment is informal, i.e. outside any wage-setting mechanism at all.
+**What the private sector got:** no mechanism. There is no general increment system outside the public sector. National wage growth **8.05%** against **8.26%** inflation — real wages negative before this hike. The RMG minimum wage is still **Tk 12,500**, set December 2023, with a 9% annual increment against cumulative inflation well above that since. About 84% of the employed, roughly 5.8 crore people, are in informal employment, outside any wage-setting mechanism at all.
 
 **The arithmetic of the wedge [est.]**, taking the first-year phased basic (Tk 8,250 + 50% of the Tk 11,750 award ≈ Tk 14,125) for a grade-20 employee versus an RMG worker on Tk 12,500:
 
@@ -210,7 +206,7 @@ The two events are 48 hours apart and they are the same fiscal decision seen fro
 | Real change after ~30% cumulative inflation | **positive** | **sharply negative** |
 | Bus-fare + food pass-through from this hike | absorbed by the award | absorbed by the household |
 
-And the connection is not merely rhetorical. The pay award costs Tk 1,05,580 crore against a revenue shortfall of **Tk 88,000 crore** on a Tk 5,03,000 crore target last year. A government that has just committed 1.05 lakh crore to its own payroll, cannot raise revenue, and is facing a Tk 31,000–40,000 crore annual BPC bleed **has no fiscal room left to keep absorbing the oil shock**. The pay rise did not cause the fuel hike — Hormuz did — but it removed the cushion that would have let the state phase the shock more gently, and it did so in favour of 33 lakh people (~2% of the population, ~4% of the labour force) who are also the group most insulated from the consequences.
+And the connection is not merely rhetorical. The pay award costs Tk 1,05,580 crore against a revenue shortfall of **Tk 88,000 crore** on a Tk 5,03,000 crore target last year. A government that has just committed 1.05 lakh crore to its own payroll, cannot raise revenue, and is facing BPC losses of Tk 22,876 crore in March–August 2026 (about Tk 45,700 crore a year annualised **[est.]**) **has no fiscal room left to keep absorbing the oil shock**. The pay rise did not cause the fuel hike — Hormuz did — but it removed the cushion that would have let the state phase the shock more gently, and it did so in favour of about 24 lakh serving employees (roughly 3.5% of the labour force) and about 9.25 lakh pensioners and other beneficiaries, who are also the group most insulated from the consequences.
 
 That is the honest form of the grievance: **the state indexed its own employees' incomes to inflation and left everyone else to absorb an imported shock at the pump.** The government's own framing — "keep the situation at a tolerable level" — should be read as a statement about whose tolerance.
 
@@ -252,9 +248,9 @@ Politically, the constraint is visible: the PM publicly apologised over the elec
 
 ## 8. Summary
 
-Bangladesh is absorbing an imported oil shock with no fiscal cushion, at the moment its export model loses its tariff preferences, with its grid running on the most expensive fuel it imports, and having just indexed 33 lakh public-sector incomes to inflation while leaving ~7.5 crore private and informal workers unindexed.
+Bangladesh is absorbing an imported oil shock with no fiscal cushion, at the moment its export model loses its tariff preferences, with its grid running on the most expensive fuel it imports, and having just given about 24 lakh public employees and 9 lakh pensioners a pay award while roughly 5.8 crore informal workers got none.
 
-The Tk 20 hike is **not the end of the adjustment — it is roughly a quarter of it on diesel.** The affordability numbers place Bangladesh in the world's most fuel-stressed tier. But the number that will actually determine how bad 2027 is isn't Tk 165 octane; it's whether Tk 135 diesel (or Tk 155, or Tk 180) is what a farmer in Rangpur faces when they decide in November how many bighas of Boro to plant.
+The Tk 20 hike is **not the end of the adjustment — it is roughly a quarter of it on diesel.** But the number that will actually determine how bad 2027 is isn't Tk 165 octane; it's whether Tk 135 diesel (or Tk 155, or Tk 180) is what a farmer in Rangpur faces when they decide in November how many bighas of Boro to plant.
 
 ---
 
