@@ -2,7 +2,8 @@
 
 The blankframe.tech site: the BlankFrame Technologies (BFT) home page plus a set of
 static product, research and personal sub-sites. Plain HTML, no build step; GitHub
-Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md` out and
+Pages serves it with its default Jekyll pass (`_config.yml` keeps `TODO.md`, `DOCS/`,
+`AGENTS.md`, `GEMINI.md` and the unreleased ThrottleIQ design drafts out, and
 `.well-known` in). A push to `main` deploys.
 
 ## What's in this repo
