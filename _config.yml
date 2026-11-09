@@ -3,6 +3,10 @@ include:
 exclude:
   - TODO.md
   - DOCS
+  - EXTRAS
   - AGENTS.md
   - GEMINI.md
+  - setup_previews.sh
+  - brand/build_tokens.py
   - "throttle-iq/new designs to be implemented later"
+  - tools/nepal-viz
