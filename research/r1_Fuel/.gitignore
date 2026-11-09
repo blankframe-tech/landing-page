@@ -4,3 +4,6 @@ node_modules/
 p4_discourse/data/
 __pycache__/
 p4_discourse/out/coding_sample.csv
+# withdrawn until the frames are validated by two human coders (8 Nov 2026)
+p4_discourse/out/*.csv
+p4_discourse/out/frames_by_period.png

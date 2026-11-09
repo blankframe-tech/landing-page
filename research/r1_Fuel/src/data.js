@@ -9,7 +9,7 @@ const DESC =
 
 /* Validation of the v0 keyword frame classifier against a single-coder pass,
    restricted to Bangladesh-relevant articles (n = 113). Source:
-   p4_discourse/out/validation_C_bd.csv */
+   p4_discourse/out/validation_C_bd.csv in the research repo (not published). */
 const VALIDATION = [
   ['protest', 0.90, 1.00, 0.947, 'Usable'],
   ['fairness &amp; pay scale', 0.625, 0.833, 0.714, 'Borderline'],
@@ -64,8 +64,6 @@ function body() {
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/research/r1_Fuel/data/log/">The full audit log</a>
-      <a class="btn btn-ghost" href="/research/r1_Fuel/data/Bangladesh_Fuel_Hike_Impact_2026.pdf">Illustrated PDF report</a>
-      <a class="btn btn-ghost" href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Code &amp; outputs</a>
     </div>
   </div>
 </header>
@@ -145,7 +143,7 @@ function body() {
     </div>
 
     <div class="grid g4" style="margin-bottom:34px;">
-      <div class="stat"><div class="val accent">3,883</div><div class="lbl">Articles collected</div><div class="note">Corpus v1, 20 Jul 2022 &ndash; 30 Sep 2026. The breakdown and CSV on this page are the 21 Sep snapshot of 1,996 fuel-relevant articles.</div></div>
+      <div class="stat"><div class="val accent">3,883</div><div class="lbl">Articles collected</div><div class="note">Corpus v1, 20 Jul 2022 &ndash; 30 Sep 2026. The breakdown on this page is the 21 Sep snapshot of 1,996 fuel-relevant articles.</div></div>
       <div class="stat"><div class="val">1,476</div><div class="lbl">Bangla / 520 English</div><div class="note">Prothom Alo 1,092 &middot; Daily Star 520 &middot; Samakal 384.</div></div>
       <div class="stat"><div class="val">2</div><div class="lbl">Shock windows</div><div class="note">561 articles around the 2022 record hike; 1,435 across March&ndash;September 2026.</div></div>
       <div class="stat"><div class="val">186</div><div class="lbl">Coding sample</div><div class="note">Stratified by language and period, awaiting two human coders.</div></div>
@@ -217,14 +215,12 @@ function body() {
       <h3 style="font-size:19px;">Download the outputs</h3>
       <p class="muted small" style="margin-top:10px;font-size:14.5px;">
         Served straight off this site &mdash; no account, no request. Article text is not included in any of them.
+        The frame-coded CSVs and the frame-share figure are withdrawn until two human coders have validated the frames.
       </p>
       <div class="table-wrap" style="margin-top:16px;">
         <table class="data">
           <thead><tr><th style="width:38%;">File</th><th>What it holds</th><th class="num">Size</th></tr></thead>
           <tbody>
-            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/articles_with_frames.csv" style="color:var(--accent);text-decoration:none;">articles_with_frames.csv</a></td><td class="small muted">All 1,996 articles in the 21 Sep snapshot: URL, date, source, language, window, headline and every frame flag with the terms that triggered it.</td><td class="num mono">972 KB</td></tr>
-            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/frame_shares_by_period.csv" style="color:var(--accent);text-decoration:none;">frame_shares_by_period.csv</a></td><td class="small muted">Frame shares by language and period with Wilson confidence intervals. Pipeline output, not findings &mdash; read the table above first.</td><td class="num mono">10 KB</td></tr>
-            <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/validation_C_bd.csv" style="color:var(--accent);text-decoration:none;">validation_C_bd.csv</a></td><td class="small muted">The validation run behind the table above, restricted to Bangladesh-relevant articles.</td><td class="num mono">&lt;1 KB</td></tr>
             <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/out/topics_exploratory.md" style="color:var(--accent);text-decoration:none;">topics_exploratory.md</a></td><td class="small muted">Exploratory NMF topics. Genuinely exploratory &mdash; not interpreted anywhere.</td><td class="num mono">2 KB</td></tr>
             <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/codebook.md" style="color:var(--accent);text-decoration:none;">codebook.md</a></td><td class="small muted">Frame definitions and the coding protocol, for anyone willing to be one of the two human coders.</td><td class="num mono">3 KB</td></tr>
             <tr><td class="small"><a href="/research/r1_Fuel/p4_discourse/README.md" style="color:var(--accent);text-decoration:none;">p4_discourse/README.md</a></td><td class="small muted">The pipeline's own notes on collection, politeness, validation status and known limits.</td><td class="num mono">5 KB</td></tr>
@@ -232,9 +228,8 @@ function body() {
         </table>
       </div>
       <p class="small muted" style="margin-top:14px;">
-        The pipeline&rsquo;s raw matplotlib figures are also on the server &mdash;
-        <a href="/research/r1_Fuel/p4_discourse/out/volume_timeline.png" style="color:var(--accent);text-decoration:none;">volume_timeline.png</a> and
-        <a href="/research/r1_Fuel/p4_discourse/out/frames_by_period.png" style="color:var(--accent);text-decoration:none;">frames_by_period.png</a>
+        The pipeline&rsquo;s raw volume figure is also on the server &mdash;
+        <a href="/research/r1_Fuel/p4_discourse/out/volume_timeline.png" style="color:var(--accent);text-decoration:none;">volume_timeline.png</a>
         &mdash; with the per-outlet breakdown the chart above pools together.
       </p>
     </div>
@@ -300,11 +295,11 @@ cd p4_discourse/src
       <div class="card">
         <h3 style="font-size:18px;">Corrections</h3>
         <p class="muted small" style="margin-top:10px;font-size:14.5px;">
-          A wrong number here is worth more to the project than agreement. Open an issue, or email with the figure and
+          A wrong number here is worth more to the project than agreement. Email the figure and
           what you think it should be. Corrections are logged in public on the
           <a href="/research/r1_Fuel/status/" style="color:var(--accent);">status page</a>, not quietly patched.
         </p>
-        <p class="small" style="margin-top:12px;"><a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch/issues" style="color:var(--accent);text-decoration:none;">Open an issue &rarr;</a></p>
+        <p class="small" style="margin-top:12px;"><a href="mailto:hello@blankframe.tech?subject=r1_Fuel%20correction" style="color:var(--accent);text-decoration:none;">Email a correction &rarr;</a></p>
       </div>
       <div class="card">
         <h3 style="font-size:18px;">Known caveat worth repeating</h3>

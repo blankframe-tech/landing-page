@@ -109,24 +109,6 @@ function figPriceLadder() {
   );
 }
 
-/* --- Figure 2 ------------------------------------------------------------ */
-function figAffordability() {
-  return hbar(
-    [
-      { label: 'Median income', sub: 'Tk 9,000/month', value: 91.7, display: '91.7%', tip: '50 litres of octane costs 91.7% of a median monthly income' },
-      { label: 'RMG minimum wage', sub: 'Tk 12,500, set Dec 2023', value: 66.0, display: '66.0%', tip: '50 litres of octane costs 66% of the RMG minimum wage' },
-      { label: 'Average gross salary', sub: 'Tk 18,000/month', value: 45.8, display: '45.8%', tip: '50 litres of octane costs 45.8% of the average gross monthly salary' },
-      { label: 'New govt lowest basic', sub: 'Tk 20,000, fully phased', value: 41.3, display: '41.3%', tip: '50 litres of octane costs 41.3% of the new government lowest basic pay' },
-    ],
-    {
-      max: 100,
-      caption:
-        'Cost of one 50-litre tank of octane as a share of monthly income: 91.7% at the median, 66% on the RMG minimum wage, 45.8% on the average salary, 41.3% on the new government lowest basic.',
-      marker: { value: 35, label: 'top of the "severe stress" band' },
-    }
-  );
-}
-
 /* --- Figure 3: the diesel gap -------------------------------------------- */
 function figDieselGap() {
   const W = 760;
@@ -264,10 +246,10 @@ function figLoop() {
 function figWedge() {
   return hbar(
     [
-      { label: 'Govt grades 11–20', sub: '~33 lakh people, incl. pensioners', value: 142, display: '+142%', tip: 'Government pay scale 2026: basic pay up to +142% for grades 11–20, phased over three years' },
+      { label: 'Govt grades 11–20', sub: '~24 lakh staff, plus ~9 lakh pensioners', value: 142, display: '+142%', tip: 'Government pay scale 2026: basic pay up to +142% for grades 11–20, phased over three years' },
       { label: 'Govt grades 1–10', sub: 'first pay award in 11 years', value: 100, display: '+100%', tip: 'Government pay scale 2026: basic pay up to +100% for grades 1–10' },
       { label: 'RMG minimum wage', sub: '~4 million garment workers', value: 0, display: 'Tk 0', tip: 'The RMG minimum wage has not been reset since December 2023', dim: true },
-      { label: 'Informal workers', sub: '~85% of all employment', value: 0, display: 'no mechanism', tip: 'About 85% of Bangladeshi employment sits outside any wage-setting mechanism at all', dim: true },
+      { label: 'Informal workers', sub: '~84% of the employed', value: 0, display: 'no mechanism', tip: 'About 84% of Bangladeshi employment sits outside any wage-setting mechanism at all', dim: true },
     ],
     {
       max: 150,
@@ -278,7 +260,7 @@ function figWedge() {
   );
 }
 
-module.exports = { figPriceLadder, figAffordability, figDieselGap, figLoop, figWedge, hbar, ACCENT, ALT };
+module.exports = { figPriceLadder, figDieselGap, figLoop, figWedge, hbar, ACCENT, ALT };
 
 /* --- Figure 6: P4 coverage volume ----------------------------------------
  * Weekly article counts from p4_discourse/out/articles_with_frames.csv, drawn

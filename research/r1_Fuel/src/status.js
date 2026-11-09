@@ -1,10 +1,11 @@
 'use strict';
 
 const DESC =
-  'Where r1_Fuel actually stands: what is done, what is blocked, the two deadlines that cannot slip, and a public ' +
+  'Where r1_Fuel actually stands: what is done, what is blocked, the timing rules, and a public ' +
   'changelog including corrections.';
 
 const CHANGELOG = [
+  ['8 Nov 2026', 'Correction: the cross-country affordability band and the shares against an unsourced average salary and median income removed; pay-scale coverage corrected to about 24 lakh serving employees plus about 9.25 lakh retirees and other beneficiaries. Illustrated PDF and frame-coded CSVs withdrawn. Funding requests withdrawn: the programme is independently funded. Baseline timing changed from a fixed October date to before the next fuel-price event.', 'done'],
   ['21 Sep 2026', 'Public site published — overview, analysis, research plan, collaboration, funding, data and method.', 'done'],
   ['21 Sep 2026', 'P4 corpus rebuilt on the full source set; Samakal footer boilerplate stripped and outputs refreshed.', 'done'],
   ['21 Sep 2026', 'Single-coder validation pass run against the v0 keyword classifier. Result: only the protest frame is usable.', 'done'],
@@ -16,7 +17,7 @@ function body() {
   return `
 <header class="hero" style="padding-bottom:20px;">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span> Status &middot; updated 21 September 2026</div>
+    <div class="eyebrow"><span class="dot"></span> Status &middot; updated 8 November 2026</div>
     <h1 class="display">Phase 1:<br><span class="serif">baseline and outreach.</span></h1>
     <p class="lede">
       The analysis is done and public. The designs are done and costed. Nothing has been collected from a household
@@ -24,7 +25,6 @@ function body() {
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/research/r1_Fuel/collaborate/">Unblock something</a>
-      <a class="btn btn-ghost" href="/research/r1_Fuel/support/">Fund a wave</a>
     </div>
   </div>
 </header>
@@ -32,9 +32,9 @@ function body() {
 <section style="padding-top:12px;">
   <div class="wrap">
     <div class="grid g4">
-      <div class="stat"><div class="val accent">2</div><div class="lbl">Hard deadlines</div><div class="note">W0 by ~20 October. P3 in villages in November. Neither can slip without losing the measurement.</div></div>
-      <div class="stat"><div class="val">1</div><div class="lbl">Binding constraint</div><div class="note">An institutional host. It gates IRB, most funders, and the sampling frame.</div></div>
-      <div class="stat"><div class="val">4 / 8</div><div class="lbl">Phase 1 milestones done</div><div class="note">Everything that could be done unfunded and alone is done.</div></div>
+      <div class="stat"><div class="val accent">2</div><div class="lbl">Timing rules</div><div class="note">W0 before the next fuel-price event. P3 in the villages before Boro planting.</div></div>
+      <div class="stat"><div class="val">1</div><div class="lbl">Binding constraint</div><div class="note">An institutional host. It gates ethics review and the sampling frame.</div></div>
+      <div class="stat"><div class="val">4 / 8</div><div class="lbl">Phase 1 milestones done</div><div class="note">Everything that could be done without a host is done.</div></div>
       <div class="stat"><div class="val">0</div><div class="lbl">Households surveyed</div><div class="note">The entire point of the programme, and entirely ahead of us.</div></div>
     </div>
   </div>
@@ -54,9 +54,9 @@ function body() {
         <ul class="check" style="margin-top:14px;">
           <li>Impact analysis across inflation, fares, agriculture, industry, power and macro</li>
           <li>Full audit trail: every search, figure, source and derivation</li>
-          <li>Illustrated PDF report</li>
+          <li>Illustrated PDF report (withdrawn 8 November 2026 until corrected)</li>
           <li>Six research proposals with designs, budgets and ethics</li>
-          <li>Collaborator and funder landscape mapped and flagged for verification</li>
+          <li>Collaborator landscape mapped and flagged for verification</li>
           <li>P4 corpus collected &mdash; 3,883 articles, three outlets, two windows</li>
           <li>P4 pipeline: volume, frame shares with Wilson intervals, exploratory topics</li>
           <li>Single-coder validation pass, showing exactly where the classifier fails</li>
@@ -74,7 +74,7 @@ function body() {
           <li class="off">Two human coders through the P4 sample for a real kappa</li>
           <li class="off">BanglaBERT-class frame classifier and a validated sentiment layer</li>
           <li class="off">ACLED registration and a real protest-event series</li>
-          <li class="off">P3 sites scoped ahead of November planting</li>
+          <li class="off">P3 sites scoped ahead of Boro planting</li>
         </ul>
       </div>
     </div>
@@ -87,40 +87,40 @@ function body() {
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-kicker">Critical path</div>
-      <h2>What has to happen, and by when</h2>
-      <p>Dates are set by the shock, not by preference. Anything after them measures a different thing.</p>
+      <h2>What has to happen, and in what order</h2>
+      <p>Timing is set by the shock, not by preference. A baseline taken after the next price event measures a different thing.</p>
     </div>
     <div class="grid g2">
       <div>
         <div class="tl">
           <div class="tl-item hot">
-            <div class="tl-when">This week</div>
+            <div class="tl-when">First</div>
             <div class="tl-what">Outreach to hosts and co-investigators</div>
             <div class="tl-why">Ask each partner for a sampling frame, an affiliation or host, and quick feedback on the W0 design. Start P4&rsquo;s human coding in parallel &mdash; it needs no permission from anyone.</div>
           </div>
           <div class="tl-item hot">
-            <div class="tl-when">By ~5 October</div>
+            <div class="tl-when">Before fieldwork</div>
             <div class="tl-what">W0 instrument finalised and ethics cleared</div>
             <div class="tl-why">Bilingual, piloted with 30 respondents, IRB through a host institution or a local ethics board. Fieldwork does not start before approval.</div>
           </div>
           <div class="tl-item hot">
-            <div class="tl-when">By ~20 October</div>
+            <div class="tl-when">Before the next price event</div>
             <div class="tl-what">W0 fieldwork complete</div>
-            <div class="tl-why">Ahead of the October BPC letter-of-credit cliff and whatever price or duty decision follows it. <strong>If W0 slips into November, P1 loses its baseline</strong> &mdash; that is the whole design.</div>
+            <div class="tl-why">The baseline is defined as data collected before the next fuel-price or duty decision. <strong>If that event comes first, the before/after design moves to the event after it.</strong></div>
           </div>
         </div>
       </div>
       <div>
         <div class="tl">
           <div class="tl-item hot">
-            <div class="tl-when">November</div>
+            <div class="tl-when">Before Boro planting</div>
             <div class="tl-what">P3 in the field before planting</div>
             <div class="tl-why">Boro acreage is decided in November&ndash;December. A survey after planting measures regret, not decision-making. P2 scoping runs alongside, in two or three pilot sites.</div>
           </div>
           <div class="tl-item">
-            <div class="tl-when">November &rarr; June 2027</div>
+            <div class="tl-when">After W0, through the Boro harvest</div>
             <div class="tl-what">Panel waves W1 through W4</div>
-            <div class="tl-why">November, January, March, then June after the Boro harvest &mdash; capturing the October cliff, LDC graduation, peak irrigation and the harvest in one dataset.</div>
+            <div class="tl-why">After the price event, then through peak irrigation to after the Boro harvest &mdash; capturing the event, LDC graduation, peak irrigation and the harvest in one dataset.</div>
           </div>
           <div class="tl-item">
             <div class="tl-when">Rolling</div>

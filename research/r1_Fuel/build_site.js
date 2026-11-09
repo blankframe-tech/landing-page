@@ -15,7 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
 
-const { page, SITE } = require('./src/shell');
+const { page, SITE, CORRECTION } = require('./src/shell');
 const home = require('./src/home');
 const collaborate = require('./src/collaborate');
 const support = require('./src/support');
@@ -25,7 +25,13 @@ const status = require('./src/status');
 const ROOT = __dirname;
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
+/* Claims withdrawn in the 8 November 2026 correction, plus the expired funding asks. A re-sync
+ * from the research repo must not bring them back, so the build refuses to write them. */
+const WITHDRAWN = /Malawi|Extreme Fuel Poverty|33 lakh|18,000|Tk 9,000|\$12,000|expires in October|20 October|next 2–4 weeks|Source repo/i;
+
 function write(rel, html) {
+  const hit = html.match(WITHDRAWN);
+  if (hit) throw new Error(`${rel}: withdrawn claim "${hit[0]}" — see the correction note in README.md`);
   const out = path.join(ROOT, rel);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);
@@ -43,7 +49,6 @@ const LINK_MAP = {
   '../research_proposals.md': '/research/r1_Fuel/proposal/',
   'impact_analysis.md': '/research/r1_Fuel/findings/',
   'research_log.md': '/research/r1_Fuel/data/log/',
-  'Bangladesh_Fuel_Hike_Impact_2026.pdf': '/research/r1_Fuel/data/Bangladesh_Fuel_Hike_Impact_2026.pdf',
 };
 
 const slug = (s) =>
@@ -198,18 +203,16 @@ write(
       'Retail diesel, petrol, octane and kerosene raised by Tk 20 a litre, effective 00:00 on 21 September 2026. ' +
       'Reported figures are cited; numbers marked <span class="est">est.</span> are this project’s own ' +
       'calculations from cited inputs, with the method shown inline.',
-    actions: actions([
+    actions: CORRECTION + actions([
       { href: '/research/r1_Fuel/data/log/', label: 'The audit log behind this' },
-      { href: '/research/r1_Fuel/data/Bangladesh_Fuel_Hike_Impact_2026.pdf', label: 'Illustrated PDF' },
       { href: '/research/r1_Fuel/proposal/', label: 'What to do about it' },
     ]),
     after: nextBlock(
       'This says what the hike does to prices. It cannot say what it does to people.',
-      'That gap — how households cope, what they give up first, whom they blame, whether they think it was fair — is what the research programme is built to measure, and the baseline has to be collected before late October.',
+      'That gap — how households cope, what they give up first, whom they blame, whether they think it was fair — is what the research programme is built to measure.',
       [
         { href: '/research/r1_Fuel/proposal/', label: 'The research plan' },
         { href: '/research/r1_Fuel/collaborate/', label: 'Collaborate' },
-        { href: '/research/r1_Fuel/support/', label: 'Fund it' },
       ]
     ),
     title: 'The analysis — Bangladesh Fuel Price Hike, September 2026 · r1_Fuel',
@@ -233,16 +236,12 @@ write(
       'stand alone. Sampling, instruments, analysis plans, budgets and ethics are all here.',
     actions: actions([
       { href: '/research/r1_Fuel/collaborate/', label: 'Six roles that are open' },
-      { href: '/research/r1_Fuel/support/', label: 'What each study costs' },
       { href: '/research/r1_Fuel/findings/', label: 'The analysis behind it' },
     ]),
     after: nextBlock(
       'None of this happens without a host, a lead, or a survey partner.',
-      'The binding constraint is not money — it is that almost every funder needs a PhD-holding PI or an institutional host. If you can supply one, or want to lead a strand, that is the conversation worth having this week.',
-      [
-        { href: '/research/r1_Fuel/collaborate/', label: 'Collaborate' },
-        { href: '/research/r1_Fuel/support/', label: 'Fund a wave' },
-      ]
+      'The binding constraint is an institutional host: fieldwork needs one for ethics review. If you can supply one, or want to lead a strand, that is the conversation worth having.',
+      [{ href: '/research/r1_Fuel/collaborate/', label: 'Collaborate' }]
     ),
     title: 'Research plan — six studies on the social life of a fuel shock · r1_Fuel',
     description:
@@ -265,7 +264,7 @@ write(
       'The working file behind the analysis: the originating question, every search run, every figure extracted with ' +
       'its source, and every derived calculation. Published so that any number on this site can be traced back or ' +
       'shown to be wrong.',
-    actions: actions([
+    actions: CORRECTION + actions([
       { href: '/research/r1_Fuel/findings/', label: 'The analysis it produced' },
       { href: '/research/r1_Fuel/data/', label: 'Data &amp; method' },
     ]),
@@ -292,8 +291,8 @@ write(
 write(
   'support/index.html',
   page({
-    title: 'Fund it — what $12,000 buys before the window closes · r1_Fuel',
-    ogTitle: '$12,000 buys a measurement that expires in October.',
+    title: 'Funding — independently funded · r1_Fuel',
+    ogTitle: 'r1_Fuel is independently funded.',
     description: support.DESC,
     active: 'support',
     depth: 1,
