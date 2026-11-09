@@ -1,10 +1,11 @@
 'use strict';
 
 const C = require('./charts');
+const { CORRECTION } = require('./shell');
 
 const DESC =
   'On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human ' +
-  'cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.';
+  'cost is not. r1_Fuel is an open research programme to measure it.';
 
 function stat(val, lbl, note, accent) {
   return `<div class="stat">
@@ -28,14 +29,13 @@ function body() {
       who gets blamed, and who quietly absorbs the shock on everyone else's behalf.
     </p>
     <p class="lede-sm">
-      <strong>r1_Fuel</strong> is an open, independent research programme built to measure that &mdash; and the window
-      to collect a pre-shock baseline closes in weeks, not months. Everything here is public: the analysis, the
-      derivations, the code, the limitations.
+      <strong>r1_Fuel</strong> is an open, independent research programme built to measure that. Everything here is
+      public: the analysis, the derivations, the limitations.
     </p>
+    ${CORRECTION}
     <div class="btn-row">
       <a class="btn btn-primary" href="/research/r1_Fuel/findings/">Read the analysis &rarr;</a>
       <a class="btn btn-ghost" href="/research/r1_Fuel/collaborate/">Work on it with me</a>
-      <a class="btn btn-ghost" href="/research/r1_Fuel/support/">Fund a wave</a>
       <a class="btn btn-plain" href="#share">Share it</a>
     </div>
   </div>
@@ -45,9 +45,9 @@ function body() {
   <div class="wrap">
     <div class="grid g4">
       ${stat('+35%', 'Diesel, since March', 'Tk 100 &rarr; Tk 135. Buses, trucks, irrigation pumps, generators, trawlers. This is the macro variable.', true)}
-      ${stat('91.7%', 'Of a median month&rsquo;s income', 'What one 50-litre tank of octane now costs against a Tk 9,000 median monthly income. <span class="est">est.</span>')}
+      ${stat('Tk 8,250', 'One 50-litre tank of octane', 'At Tk 165 a litre. Two-thirds of the RMG minimum wage of Tk 12,500. <span class="est">est.</span>')}
       ${stat('Tk 52', 'Still unclosed, per litre', 'BPC&rsquo;s own formula says diesel should be Tk 187. The Tk 20 hike closed 27.8% of the gap. <span class="est">est.</span>')}
-      ${stat('~4 weeks', 'To collect a baseline', 'BPC may run out of letter-of-credit funding in October. After that, there is no &ldquo;before&rdquo; left to measure.')}
+      ${stat('Tk 32.44', 'Duty and tax on diesel, per litre', 'In August: about 24% of the new pump price, a lever the state has not used.')}
     </div>
   </div>
 </section>
@@ -167,9 +167,9 @@ function body() {
         <span class="tag accent">05</span>
         <h3 style="font-size:20px;margin-top:14px;">Two policies landed 48 hours apart.</h3>
         <p class="muted" style="font-size:15px;margin-top:12px;">
-          The National Pay Scale was gazetted on 19 September; the hike took effect on the 21st. Roughly 33 lakh public
-          employees and pensioners were indexed to inflation &mdash; the first award in eleven years. Roughly 7.5 crore
-          private and informal workers were not. National wage growth is 8.05% against 8.26% inflation, so real wages
+          The National Pay Scale was published on 19 September; the hike took effect on the 21st. About 24 lakh serving
+          public employees, plus about 9.25 lakh pensioners and other beneficiaries, got a pay award &mdash; the first in
+          eleven years. The roughly 5.8 crore workers in informal employment did not. National wage growth is 8.05% against 8.26% inflation, so real wages
           were already negative <em>before</em> this hike. That is the honest form of the grievance, and it is also,
           for a researcher, an unusually clean natural split.
         </p>
@@ -182,8 +182,8 @@ function body() {
       ${C.figWedge()}
       <p class="fig-cap">
         The pay award did not cause the fuel hike &mdash; Hormuz did. It removed the fiscal cushion that would have let
-        the state phase the shock more gently, and it did so in favour of about 2% of the population who are also the
-        group most insulated from the consequences.
+        the state phase the shock more gently, and it did so in favour of about 24 lakh serving employees and 9 lakh
+        pensioners, the group most insulated from the consequences.
       </p>
     </div>
   </div>
@@ -257,7 +257,7 @@ function body() {
       <div>
         <div class="tl">
           <div class="tl-item hot">
-            <div class="tl-when">October 2026 &middot; now</div>
+            <div class="tl-when">October 2026</div>
             <div class="tl-what">BPC letter-of-credit funding runs out</div>
             <div class="tl-why">Forces a cash injection, a duty cut, or another hike. August import spend was Tk 7,603 crore against Tk 2,741 crore a year earlier &mdash; up 177%.</div>
           </div>
@@ -326,8 +326,8 @@ function body() {
         <div class="tag accent">Reason 1</div>
         <h3 style="font-size:19px;margin-top:14px;">A natural experiment fell out of the calendar</h3>
         <p class="muted small" style="margin-top:10px;font-size:14.5px;">
-          Two policies, 48 hours apart, split the population cleanly by occupation: ~33 lakh public employees indexed,
-          ~7.5 crore private and informal workers not. Relative deprivation is usually hard to identify. Here it was
+          Two policies, 48 hours apart, split the population cleanly by occupation: about 24 lakh public employees
+          given a pay award, about 5.8 crore informal workers not. Relative deprivation is usually hard to identify. Here it was
           handed to us, dated and gazetted.
         </p>
       </div>
@@ -335,9 +335,8 @@ function body() {
         <div class="tag accent">Reason 2</div>
         <h3 style="font-size:19px;margin-top:14px;">More is coming, which makes this a baseline moment</h3>
         <p class="muted small" style="margin-top:10px;font-size:14.5px;">
-          BPC cannot fund its October letters of credit, so another adjustment is near-certain, and Boro will pass
-          irrigation costs through after that. Anything measured in the next few weeks is a genuine pre-shock baseline.
-          <strong>That window closes fast.</strong>
+          Another adjustment is likely, and Boro will pass irrigation costs through after that. A household baseline
+          collected before the next price event is a genuine before-and-after.
         </p>
       </div>
       <div class="card">
@@ -369,7 +368,7 @@ function body() {
               <td><strong>The Fuel Shock Panel</strong><div class="small muted">1,500&ndash;2,500 households, 5 phone waves to mid-2027</div></td>
               <td class="small">How coping, well-being and trust in the state move over the shock cycle &mdash; and how that path differs between public, formal-private and informal households. Carries an embedded framing experiment on perceived fairness.</td>
               <td class="num mono">$35&ndash;60k</td>
-              <td><span class="tag warn">Needs a host + W0 by ~20 Oct</span></td>
+              <td><span class="tag warn">Needs a host + ethics approval</span></td>
             </tr>
             <tr>
               <td class="mono hi">P2</td>
@@ -383,7 +382,7 @@ function body() {
               <td><strong>Boro Decisions</strong><div class="small muted">6 villages, ~600 plots, pre-plant and post-harvest</div></td>
               <td class="small">How diesel cost, supply uncertainty and a frozen procurement price change how much Boro gets planted &mdash; and who in the agrarian hierarchy absorbs it.</td>
               <td class="num mono">$20&ndash;35k</td>
-              <td><span class="tag warn">Must field in November</span></td>
+              <td><span class="tag warn">Must field before planting</span></td>
             </tr>
             <tr>
               <td class="mono hi">P4</td>
@@ -410,8 +409,7 @@ function body() {
         </table>
       </div>
       <p class="small muted" style="margin-top:16px;">
-        Costs are indicative and built from per-interview rates, not a target. The full breakdown and what each
-        increment actually buys is on the <a href="/research/r1_Fuel/support/" style="color:var(--accent)">funding page</a>.
+        Costs are indicative and built from per-interview rates, not a target.
       </p>
     </div>
   </div>
@@ -428,7 +426,7 @@ function body() {
       <p>In rough order of how much difference it makes to whether W0 gets collected at all.</p>
     </div>
 
-    <div class="grid g3">
+    <div class="grid g2">
       <div class="card">
         <div class="tag accent">If you research</div>
         <h3 style="font-size:21px;margin-top:14px;">Bring an institutional home</h3>
@@ -443,24 +441,12 @@ function body() {
         </div>
       </div>
       <div class="card">
-        <div class="tag accent">If you fund</div>
-        <h3 style="font-size:21px;margin-top:14px;">Buy the baseline wave</h3>
-        <p class="muted" style="font-size:15px;margin-top:12px;">
-          A single 15-minute CATI wave across 1,500 households costs about $9&ndash;12k. It is the one piece that cannot
-          be bought later at any price, because after the next hike there is no &ldquo;before&rdquo; left to measure.
-          Everything downstream &mdash; the panel, the papers, the policy briefs &mdash; is worth less without it.
-        </p>
-        <div class="btn-row" style="margin-top:20px;">
-          <a class="btn btn-ghost" href="/research/r1_Fuel/support/">The funding case &rarr;</a>
-        </div>
-      </div>
-      <div class="card">
         <div class="tag accent">If you just read this</div>
         <h3 style="font-size:21px;margin-top:14px;">Send it to one person who can act</h3>
         <p class="muted" style="font-size:15px;margin-top:12px;">
-          A journalist covering the October CPI print. Someone at BIGD, SANEM, CPD or PPRC. A programme officer at a
+          A journalist covering the next CPI print. Someone at BIGD, SANEM, CPD or PPRC. A programme officer at a
           funder. A friend who farms. The single most useful thing a reader can do is get this in front of somebody
-          deciding what to measure in the next three weeks.
+          deciding what to measure.
         </p>
         <div class="copy-field" style="margin-top:20px;">
           <span>blankframe.tech/research/r1_Fuel/</span>
@@ -478,7 +464,6 @@ function body() {
       </div>
       <div class="btn-row" style="margin-top:0;">
         <a class="btn btn-primary" href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email the project</a>
-        <a class="btn btn-ghost" href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source &amp; issues</a>
       </div>
     </div>
   </div>

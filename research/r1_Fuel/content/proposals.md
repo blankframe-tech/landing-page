@@ -4,15 +4,15 @@
 
 The economic analysis says *what* the Tk 20 hike does to prices. It can't say how people experience it, how they cope, whom they blame, or how the shock changes social relations. That is the sociological gap. This matters for three reasons:
 
-1. **Two policies landed 48 hours apart.** The National Pay Scale 2026 was gazetted on 19 September and the fuel hike took effect on 21 September. This splits the population cleanly by occupation: ~33 lakh public employees got pay rises of up to +142%, while ~7.5 crore private and informal workers got nothing. This rarely happens in the real world and is unusually useful for research.
-2. **More is coming, which makes this a baseline moment.** BPC cannot fund its letters of credit in October, so another hike or a duty cut is near-certain. After that, the Boro season (Dec–Mar) will pass through irrigation costs. Anything measured **in the next 2–4 weeks** can serve as a pre-shock baseline. That window closes fast.
+1. **Two policies landed 48 hours apart.** The National Pay Scale 2026 was gazetted on 19 September and the fuel hike took effect on 21 September. This splits the population cleanly by occupation: about 24 lakh serving public employees (plus about 9.25 lakh pensioners and other beneficiaries) got pay rises of up to +142%, while roughly 5.8 crore workers in informal employment got nothing. This rarely happens in the real world and is unusually useful for research.
+2. **More is coming, which makes this a baseline moment.** Another adjustment is likely, and the Boro season (Dec–Mar) will pass irrigation costs through after that. A household baseline collected before the next price event is a genuine before-and-after.
 3. **Bangladesh's previous shock was not studied much.** The 2022 hike (diesel +42.5%, Tk 80→114) produced protests, fare disputes, and a lot of commentary. Very little systematic household-level sociology came out of it. 2026 can be studied properly and compared with 2022.
 
 ---
 
 ## Part A — Open research questions
 
-Grouped by theme. ★ marks questions that are time-critical (the baseline must be collected before late October 2026).
+Grouped by theme. ★ marks questions that are time-critical (the baseline must be collected before the next fuel-price event).
 
 ### A1. Coping, sacrifice and household bargaining
 - ★ How do households at different income levels cut back after a fuel/transport shock: food quantity, food quality, children's schooling, healthcare, remittances home, or savings? **In what order**, and does the order differ by who controls the household budget?
@@ -95,7 +95,7 @@ Six proposals, ordered by urgency and by feasibility for a small team. Each can 
 
 **Risk.** Phone surveys under-represent the poorest and women. Mitigate with quotas, asking for women respondents specifically, and a small in-person top-up.
 
-**Recent context (27 Sept).** The National Pay Scale (+142% for ~33 lakh public employees) landed 48 hours before the Tk 20/L hike, insulating public employees while ~85% of employment (informal) faces the shock unmitigated. The government's stated mitigation, the Family Card (a digital safety-net database, ~1 crore households, launched March 2026), is tracked wave by wave in P1 for coverage gaps — documentation barriers, missing mobile-money access, and Union Parishad-style political gatekeeping are the likely exclusion channels.
+**Recent context (27 Sept).** The National Pay Scale (+142% for about 24 lakh serving employees, plus about 9.25 lakh pensioners) landed 48 hours before the Tk 20/L hike, insulating public employees while about 84% of the employed (informal) faces the shock unmitigated. The government's stated mitigation, the Family Card (a pilot launched in March 2026), is tracked wave by wave in P1 for coverage gaps — documentation barriers, missing mobile-money access, and Union Parishad-style political gatekeeping are the likely exclusion channels.
 
 ---
 
@@ -218,13 +218,13 @@ Six proposals, ordered by urgency and by feasibility for a small team. Each can 
 
 ---
 
-## Part D — Sequencing (what to do this week)
+## Part D — Sequencing
 
-1. **This week:** send out outreach emails (see [`outreach/research_collaborators.md`](../outreach/research_collaborators.md)). Ask each partner for a sampling frame, affiliation or host, and quick feedback on P1 W0.
-2. **By ~5 October:** finalise the P1 W0 questionnaire (bilingual, piloted with 30 respondents) and the ethics plan. Get IRB approval through a host institution (BIGD, a DU department or a partner university), or a local ethics board.
-3. **By ~20 October:** complete W0 fieldwork. It has to be before the October price or LC events. **If W0 slips into November, P1 loses its baseline.** P6's paired-respondent recruitment (and hiring female interviewers) should be arranged alongside P1's fieldwork prep, not after, so the second respondent can be reached in the same W0 window rather than as a late add-on.
+1. **First:** send out outreach emails (see [`outreach/research_collaborators.md`](../outreach/research_collaborators.md)). Ask each partner for a sampling frame, affiliation or host, and quick feedback on P1 W0.
+2. **Before fieldwork:** finalise the P1 W0 questionnaire (bilingual, piloted with 30 respondents) and the ethics plan. Get IRB approval through a host institution (BIGD, a DU department or a partner university), or a local ethics board.
+3. **Before the next fuel-price event:** complete W0 fieldwork. The baseline is defined as data collected before the next price event, not by a fixed date; if that event comes first, the before/after design moves to the event after it. P6's paired-respondent recruitment (and hiring female interviewers) should be arranged alongside P1's fieldwork prep, not after, so the second respondent can be reached in the same W0 window rather than as a late add-on.
 4. **In parallel, starting now:** P4 needs no fieldwork, so begin scraping news and building the corpus immediately.
-5. **November:** P3 survey before Boro planting. Scope P2 with 2–3 pilot sites.
+5. **Before Boro planting:** P3 survey. Scope P2 with 2–3 pilot sites.
 
 ## Ethics notes
 

@@ -60,17 +60,7 @@ Four distinct claims to test — this drove the whole search plan:
 4. Load shedding spiking
 
 ### 1.4 Prior assistant's second response — tier placement
-Introduced a second benchmark, the **work-time metric** (hours/minutes of labour per litre), and placed Bangladesh at **~31% of average monthly income per 50L tank**, ranking it among the ~20–25 most fuel-stressed of 130+ tracked nations, but "not the single worst." Its tier table `[UNVERIFIED]`:
-
-| Tier | % of monthly income (50L) | Work time per 1L | Representative countries |
-|---|---|---|---|
-| Top (hyper-affordable) | 0.5–2.0% | 1–4 min | US, Qatar, UAE, Switzerland, Australia |
-| Upper middle | 2.0–5.0% | 5–9 min | UK, Germany, France, Japan, South Korea |
-| Middle stress | 5.0–15.0% | 10–25 min | China, Brazil, Mexico, India |
-| Severe stress | 20.0–35.0% | 40–60 min | **Bangladesh (~31%)**, Pakistan (~31%), Nigeria (~34%), Sri Lanka |
-| Extreme fuel poverty | 50% to >100% | 90–200+ min | Madagascar, Malawi, Rwanda, Zimbabwe, Mozambique |
-
-Also argued: landlocked transport premiums (Malawi fuel $3.00–3.80/L on sub-$100 wages) and post-subsidy shock plus currency collapse (Nigeria) explain the countries worse than Bangladesh. And for Bangladesh specifically — regional outlier in South Asia at roughly double India's ~15%; private four-wheeler use restricted to the top income decile; secondary transmission through diesel freight, logistics and backup generation into food prices and transit fares.
+Introduced a second benchmark, the **work-time metric** (hours/minutes of labour per litre), and placed Bangladesh at **~31% of average monthly income per 50L tank**, ranking it among the ~20–25 most fuel-stressed of 130+ tracked nations, but "not the single worst." Its tier table and the country comparison built on it had no published source. *[Withdrawn in the 8 November 2026 correction; not reproduced here.]*
 
 ### 1.5 The user's final instruction
 > "FROM THIS FIND OUT HOW TO RECENT SPIKE TO 145 then 165 taka for fuel in bd is gonna effect BD."
@@ -117,7 +107,7 @@ The April precedent, which became the pass-through benchmark. Bus fares **+11 pa
 The grid-load link. Estimates vary by source: ~500 MW daily for ~60 lakh vehicles; **CPD: e-three-wheelers ≈ 5% of total national generation, ~750 MW**; another range **800 MW–1 GW ≈ 5% of generation**. Per vehicle 4–9 kWh/day. In Dhaka: **3,300 authorised charging stations versus ~48,136 illegal charging points.** August 2026: government **mandated solar charging** for millions of electric rickshaws.
 
 ### S12. `Bangladesh average monthly income labour force survey BBS per capita income 2026 median wage taka`
-The denominators the inherited 31% lacked. Average gross monthly salary **Tk 18,000 (~$149)**; **median monthly income Tk 9,000 (~$75)**; minimum wage **Tk 12,500** (since 1 Dec 2023). GDP per capita $2,960 nominal / $10,850 PPP (2026 est.). Labour force 77.36 million (2024).
+The denominators the inherited 31% lacked. *[Withdrawn in the 8 November 2026 correction: an average salary and a median income that could not be traced to a published source.]* Minimum wage **Tk 12,500** (since 1 Dec 2023). GDP per capita $2,960 nominal / $10,850 PPP (2026 est.). Labour force 77.36 million (2024).
 
 ### S13. `Bangladesh furnace oil price 2026 power generation cost per unit diesel peaking plant taka kWh`
 The fuel nobody was discussing. **Furnace oil Tk 70.10 → 94.69 (April, +Tk 24) → 113.54 (May).** Private oil-fired plants received capacity payments of **BDT 9.5/kWh** in FY2024-25. Average generation cost rose BDT 6.61 → 11.33/kWh between FY2020-21 and FY2022-23. Bangladesh runs **10.7% of generation on oil** versus India 0.02%, Pakistan 0.6%, Vietnam 0.06%. Government spending ~**Tk 1.2bn/day** on fuel-oil generation.
@@ -232,8 +222,6 @@ The distributional case. 24 lakh employees and 9 lakh pensioners gain after an 1
 | Cost / phasing | Tk 1,05,580 crore over 3 years | 50% of basic in year 1 | S5 |
 | RMG minimum wage | Tk 12,500 (since Dec 2023) | +9%/yr increment only | S14 |
 | Private sector generally | no mechanism | employer discretion | S14 |
-| Average gross salary | Tk 18,000 (~$149) | — | S12 |
-| Median monthly income | Tk 9,000 (~$75) | — | S12 |
 
 ### 3.5 Power and e-rickshaws
 
@@ -279,14 +267,12 @@ Every number in `impact_analysis.md` marked `[est.]` is defined here.
 **D1 — Pre-April baseline prices.** April hike deltas subtracted from April levels: diesel 115−15=**100**; petrol 135−19=**116**; octane 140−20=**120**; kerosene 130−18=**112**. → Cumulative since March: diesel **+35.0%**, petrol **+37.9%**, octane **+37.5%**, kerosene **+38.4%**. *Note: the user recalled octane at 125 a year ago; 120 is the immediate pre-April level. Both are consistent with a formula drifting in the 120–131 band through 2025. Octane 125 → 165 = +32% year-on-year.*
 
 **D2 — 50L octane affordability.** 50 × 165 = Tk 8,250 = **$67.07** at 123.0 BDT/USD.
-- ÷ 18,000 avg gross = **45.8%**
 - ÷ 12,500 RMG minimum = **66.0%**
 - ÷ 20,000 new govt lowest basic (fully phased) = **41.3%**
-- ÷ 9,000 median = **91.7%**
-- A year ago at Tk 125: 6,250 ÷ 18,000 = **34.7%**
-- *Reconciliation of the inherited 31%:* 8,250 ÷ 0.31 implies a monthly wage of **Tk 26,600 (~$216)** — above Bangladesh's average gross salary and roughly 3× the median. The inherited figure was not wrong so much as computed against an undisclosed and unrepresentative denominator.
+- *[Withdrawn in the 8 November 2026 correction: the shares against the average salary and the median income, whose denominators are unsourced.]*
+- *Reconciliation of the inherited 31%:* 8,250 ÷ 0.31 implies a monthly wage of **Tk 26,600 (~$216)**. The inherited figure was computed against an undisclosed denominator.
 
-**D3 — Work-time per litre.** At 208 hrs/month: avg wage Tk 86.54/hr → 165 ÷ 86.54 = **1.91 hrs = 1h 54m**. Median Tk 43.27/hr → **3.81 hrs = 3h 49m**. RMG Tk 60.10/hr → **2h 45m**. Diesel at avg wage: 135 ÷ 86.54 = **1.56 hrs = 94 min**. → Places Bangladesh in the inherited table's *Extreme Fuel Poverty* band (90–200+ min/L), not *Severe Stress* (40–60 min).
+**D3 — Work-time per litre.** At 208 hrs/month on the RMG minimum wage: Tk 60.10/hr → 165 ÷ 60.10 = **2h 45m** per litre of octane. *[Withdrawn in the 8 November 2026 correction: work time at the average and median wage, and the band placement drawn from it.]*
 
 **D4 — Diesel gap closure.** BPC formula price 187 − pre-hike 115 = **Tk 72 gap**; Tk 20 passed = **27.8% closed**; **Tk 52 remaining**. Note the flat Tk 20 *over*-recovers on petrol (160 vs 150 proposed), octane (165 vs 154) and kerosene (155 vs 146) — a cross-subsidy from those three to diesel that still leaves diesel short.
 
@@ -320,7 +306,7 @@ Every number in `impact_analysis.md` marked `[est.]` is defined here.
 
 **D15 — Smuggling arbitrage.** Pre-hike: India 134.76 − Bangladesh 115 = **Tk 19.76/L** incentive to move subsidised diesel out. Post-hike: 134.76 − 135 = **−Tk 0.24/L**. Arbitrage eliminated. This rationale is sound.
 
-**D16 — Wage wedge.** Year-one phased grade-20 basic = 8,250 + 50% × (20,000 − 8,250) = **Tk 14,125** (+71%, reaching +142% by year two). RMG worker: **Tk 12,500**, +0% since Dec 2023 (9%/yr increment aside). Against ~30% cumulative inflation since 2023 `[ASSUMED]`, the first is real-positive and the second sharply real-negative. Covered population 33 lakh ≈ **2% of population, ~4% of the 77.4m labour force**.
+**D16 — Wage wedge.** Year-one phased grade-20 basic = 8,250 + 50% × (20,000 − 8,250) = **Tk 14,125** (+71%, reaching +142% by year two). RMG worker: **Tk 12,500**, +0% since Dec 2023 (9%/yr increment aside). Against ~30% cumulative inflation since 2023 `[ASSUMED]`, the first is real-positive and the second sharply real-negative. Covered population: about 24 lakh serving employees (≈ 3.5% of a labour force of about 6.9 crore) plus about 9.25 lakh retirees and other beneficiaries. *[Corrected 8 November 2026: this line added the two groups and counted all of them as employees.]*
 
 ---
 

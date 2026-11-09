@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>r1_Fuel — Bangladesh’s 2026 fuel shock, and the part nobody is measuring</title>
-<meta name="description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.">
+<meta name="description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it.">
 <link rel="canonical" href="https://www.blankframe.tech/research/r1_Fuel/">
 
 <meta property="og:title" content="Tk 20 a litre, overnight. The part nobody is measuring.">
-<meta property="og:description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.">
+<meta property="og:description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it.">
 <meta property="og:url" content="https://www.blankframe.tech/research/r1_Fuel/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="BlankFrame Research">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tk 20 a litre, overnight. The part nobody is measuring.">
-<meta name="twitter:description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it — and the baseline has to be collected before late October.">
+<meta name="twitter:description" content="On 21 September 2026 Bangladesh raised fuel prices by Tk 20 a litre. The economics are documented; the human cost is not. r1_Fuel is an open research programme to measure it.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%231B365D'/%3E%3Crect x='28' y='28' width='44' height='44' fill='none' stroke='%23FFFFFF' stroke-width='7'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
       <a href="/research/r1_Fuel/findings/">The analysis</a>
       <a href="/research/r1_Fuel/proposal/">Research plan</a>
       <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-      <a href="/research/r1_Fuel/support/">Fund it</a>
+      <a href="/research/r1_Fuel/support/">Funding</a>
       <a href="/research/r1_Fuel/data/">Data & method</a>
       <a href="/research/r1_Fuel/status/">Status</a>
     </nav>
@@ -56,14 +56,30 @@
       who gets blamed, and who quietly absorbs the shock on everyone else's behalf.
     </p>
     <p class="lede-sm">
-      <strong>r1_Fuel</strong> is an open, independent research programme built to measure that &mdash; and the window
-      to collect a pre-shock baseline closes in weeks, not months. Everything here is public: the analysis, the
-      derivations, the code, the limitations.
+      <strong>r1_Fuel</strong> is an open, independent research programme built to measure that. Everything here is
+      public: the analysis, the derivations, the limitations.
     </p>
+    <aside class="callout" role="note" style="margin:24px 0;">
+  <span class="k">Correction &middot; 8 November 2026</span>
+  After publication on 21 September, the figures in this analysis were checked against their sources. What changed:
+  <ul style="margin:10px 0 0 18px;">
+    <li><strong>Removed:</strong> a comparison that placed Bangladesh in a cross-country &ldquo;fuel poverty&rdquo; band
+      alongside named countries. It came from an earlier unverified pass and has no published source.</li>
+    <li><strong>Removed:</strong> share-of-income figures that relied on an average salary and a median income we could
+      not source. The tank price itself stands: 50 litres of octane at Tk 165 costs Tk 8,250.</li>
+    <li><strong>Corrected:</strong> the National Pay Scale 2026 covers about 24 lakh serving civilian and military
+      employees, plus about 9.25 lakh retirees and other beneficiaries. Earlier text counted all of them as employees.
+      Informal workers are about 5.8 crore, roughly 84% of the employed.</li>
+    <li><strong>Withdrawn:</strong> the illustrated PDF report, until it is corrected, and the frame-coded discourse CSVs,
+      until two human coders have validated the frames.</li>
+  </ul>
+  <p style="margin:10px 0 0;">Two more points were revised: furnace oil was cut back to Tk 96.86 in September (about 38%
+  above March, not +62%), and the pricing formula was applied in part in April and June rather than frozen. Everything
+  else is as published on 21 September and is being re-checked.</p>
+</aside>
     <div class="btn-row">
       <a class="btn btn-primary" href="/research/r1_Fuel/findings/">Read the analysis &rarr;</a>
       <a class="btn btn-ghost" href="/research/r1_Fuel/collaborate/">Work on it with me</a>
-      <a class="btn btn-ghost" href="/research/r1_Fuel/support/">Fund a wave</a>
       <a class="btn btn-plain" href="#share">Share it</a>
     </div>
   </div>
@@ -78,9 +94,9 @@
         <div class="note">Tk 100 &rarr; Tk 135. Buses, trucks, irrigation pumps, generators, trawlers. This is the macro variable.</div>
       </div>
       <div class="stat">
-        <div class="val">91.7%</div>
-        <div class="lbl">Of a median month&rsquo;s income</div>
-        <div class="note">What one 50-litre tank of octane now costs against a Tk 9,000 median monthly income. <span class="est">est.</span></div>
+        <div class="val">Tk 8,250</div>
+        <div class="lbl">One 50-litre tank of octane</div>
+        <div class="note">At Tk 165 a litre. Two-thirds of the RMG minimum wage of Tk 12,500. <span class="est">est.</span></div>
       </div>
       <div class="stat">
         <div class="val">Tk 52</div>
@@ -88,9 +104,9 @@
         <div class="note">BPC&rsquo;s own formula says diesel should be Tk 187. The Tk 20 hike closed 27.8% of the gap. <span class="est">est.</span></div>
       </div>
       <div class="stat">
-        <div class="val">~4 weeks</div>
-        <div class="lbl">To collect a baseline</div>
-        <div class="note">BPC may run out of letter-of-credit funding in October. After that, there is no &ldquo;before&rdquo; left to measure.</div>
+        <div class="val">Tk 32.44</div>
+        <div class="lbl">Duty and tax on diesel, per litre</div>
+        <div class="note">In August: about 24% of the new pump price, a lever the state has not used.</div>
       </div>
     </div>
   </div>
@@ -263,9 +279,9 @@
         <span class="tag accent">05</span>
         <h3 style="font-size:20px;margin-top:14px;">Two policies landed 48 hours apart.</h3>
         <p class="muted" style="font-size:15px;margin-top:12px;">
-          The National Pay Scale was gazetted on 19 September; the hike took effect on the 21st. Roughly 33 lakh public
-          employees and pensioners were indexed to inflation &mdash; the first award in eleven years. Roughly 7.5 crore
-          private and informal workers were not. National wage growth is 8.05% against 8.26% inflation, so real wages
+          The National Pay Scale was published on 19 September; the hike took effect on the 21st. About 24 lakh serving
+          public employees, plus about 9.25 lakh pensioners and other beneficiaries, got a pay award &mdash; the first in
+          eleven years. The roughly 5.8 crore workers in informal employment did not. National wage growth is 8.05% against 8.26% inflation, so real wages
           were already negative <em>before</em> this hike. That is the honest form of the grievance, and it is also,
           for a researcher, an unusually clean natural split.
         </p>
@@ -282,7 +298,7 @@
     </pattern></defs>
   <line x1="172" y1="6" x2="172" y2="182" stroke="#E6E4DE" stroke-width="1"/>
   <text x="160" y="22" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Govt grades 11–20</text>
-  <text x="160" y="36" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~33 lakh people, incl. pensioners</text>
+  <text x="160" y="36" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~24 lakh staff, plus ~9 lakh pensioners</text>
   <path d="M173,10 H593.1066666666667 A4,4 0 0 1 597.1066666666667,14 V28 A4,4 0 0 1 593.1066666666667,32 H173 Z" fill="#FF4A1F" ><title>Government pay scale 2026: basic pay up to +142% for grades 11–20, phased over three years</title></path>
   <text x="608.1" y="22" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#131313">+142%</text>
   <text x="160" y="66" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Govt grades 1–10</text>
@@ -294,14 +310,14 @@
   <path d="M173,98 h0.5 v22 h-0.5 Z" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"><title>The RMG minimum wage has not been reset since December 2023</title></path>
   <text x="184.0" y="110" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#6F6E6A">Tk 0</text>
   <text x="160" y="154" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#131313">Informal workers</text>
-  <text x="160" y="168" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~85% of all employment</text>
-  <path d="M173,142 h0.5 v22 h-0.5 Z" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"><title>About 85% of Bangladeshi employment sits outside any wage-setting mechanism at all</title></path>
+  <text x="160" y="168" text-anchor="end" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#6F6E6A">~84% of the employed</text>
+  <path d="M173,142 h0.5 v22 h-0.5 Z" fill="url(#hatch)" stroke="#A5A39D" stroke-width="1"><title>About 84% of Bangladeshi employment sits outside any wage-setting mechanism at all</title></path>
   <text x="184.0" y="154" dominant-baseline="middle" font-family="Inter Tight, Inter, sans-serif" font-size="14.5" font-weight="700" fill="#6F6E6A">no mechanism</text>
 </svg>
       <p class="fig-cap">
         The pay award did not cause the fuel hike &mdash; Hormuz did. It removed the fiscal cushion that would have let
-        the state phase the shock more gently, and it did so in favour of about 2% of the population who are also the
-        group most insulated from the consequences.
+        the state phase the shock more gently, and it did so in favour of about 24 lakh serving employees and 9 lakh
+        pensioners, the group most insulated from the consequences.
       </p>
     </div>
   </div>
@@ -410,7 +426,7 @@
       <div>
         <div class="tl">
           <div class="tl-item hot">
-            <div class="tl-when">October 2026 &middot; now</div>
+            <div class="tl-when">October 2026</div>
             <div class="tl-what">BPC letter-of-credit funding runs out</div>
             <div class="tl-why">Forces a cash injection, a duty cut, or another hike. August import spend was Tk 7,603 crore against Tk 2,741 crore a year earlier &mdash; up 177%.</div>
           </div>
@@ -479,8 +495,8 @@
         <div class="tag accent">Reason 1</div>
         <h3 style="font-size:19px;margin-top:14px;">A natural experiment fell out of the calendar</h3>
         <p class="muted small" style="margin-top:10px;font-size:14.5px;">
-          Two policies, 48 hours apart, split the population cleanly by occupation: ~33 lakh public employees indexed,
-          ~7.5 crore private and informal workers not. Relative deprivation is usually hard to identify. Here it was
+          Two policies, 48 hours apart, split the population cleanly by occupation: about 24 lakh public employees
+          given a pay award, about 5.8 crore informal workers not. Relative deprivation is usually hard to identify. Here it was
           handed to us, dated and gazetted.
         </p>
       </div>
@@ -488,9 +504,8 @@
         <div class="tag accent">Reason 2</div>
         <h3 style="font-size:19px;margin-top:14px;">More is coming, which makes this a baseline moment</h3>
         <p class="muted small" style="margin-top:10px;font-size:14.5px;">
-          BPC cannot fund its October letters of credit, so another adjustment is near-certain, and Boro will pass
-          irrigation costs through after that. Anything measured in the next few weeks is a genuine pre-shock baseline.
-          <strong>That window closes fast.</strong>
+          Another adjustment is likely, and Boro will pass irrigation costs through after that. A household baseline
+          collected before the next price event is a genuine before-and-after.
         </p>
       </div>
       <div class="card">
@@ -522,7 +537,7 @@
               <td><strong>The Fuel Shock Panel</strong><div class="small muted">1,500&ndash;2,500 households, 5 phone waves to mid-2027</div></td>
               <td class="small">How coping, well-being and trust in the state move over the shock cycle &mdash; and how that path differs between public, formal-private and informal households. Carries an embedded framing experiment on perceived fairness.</td>
               <td class="num mono">$35&ndash;60k</td>
-              <td><span class="tag warn">Needs a host + W0 by ~20 Oct</span></td>
+              <td><span class="tag warn">Needs a host + ethics approval</span></td>
             </tr>
             <tr>
               <td class="mono hi">P2</td>
@@ -536,7 +551,7 @@
               <td><strong>Boro Decisions</strong><div class="small muted">6 villages, ~600 plots, pre-plant and post-harvest</div></td>
               <td class="small">How diesel cost, supply uncertainty and a frozen procurement price change how much Boro gets planted &mdash; and who in the agrarian hierarchy absorbs it.</td>
               <td class="num mono">$20&ndash;35k</td>
-              <td><span class="tag warn">Must field in November</span></td>
+              <td><span class="tag warn">Must field before planting</span></td>
             </tr>
             <tr>
               <td class="mono hi">P4</td>
@@ -563,8 +578,7 @@
         </table>
       </div>
       <p class="small muted" style="margin-top:16px;">
-        Costs are indicative and built from per-interview rates, not a target. The full breakdown and what each
-        increment actually buys is on the <a href="/research/r1_Fuel/support/" style="color:var(--accent)">funding page</a>.
+        Costs are indicative and built from per-interview rates, not a target.
       </p>
     </div>
   </div>
@@ -581,7 +595,7 @@
       <p>In rough order of how much difference it makes to whether W0 gets collected at all.</p>
     </div>
 
-    <div class="grid g3">
+    <div class="grid g2">
       <div class="card">
         <div class="tag accent">If you research</div>
         <h3 style="font-size:21px;margin-top:14px;">Bring an institutional home</h3>
@@ -596,24 +610,12 @@
         </div>
       </div>
       <div class="card">
-        <div class="tag accent">If you fund</div>
-        <h3 style="font-size:21px;margin-top:14px;">Buy the baseline wave</h3>
-        <p class="muted" style="font-size:15px;margin-top:12px;">
-          A single 15-minute CATI wave across 1,500 households costs about $9&ndash;12k. It is the one piece that cannot
-          be bought later at any price, because after the next hike there is no &ldquo;before&rdquo; left to measure.
-          Everything downstream &mdash; the panel, the papers, the policy briefs &mdash; is worth less without it.
-        </p>
-        <div class="btn-row" style="margin-top:20px;">
-          <a class="btn btn-ghost" href="/research/r1_Fuel/support/">The funding case &rarr;</a>
-        </div>
-      </div>
-      <div class="card">
         <div class="tag accent">If you just read this</div>
         <h3 style="font-size:21px;margin-top:14px;">Send it to one person who can act</h3>
         <p class="muted" style="font-size:15px;margin-top:12px;">
-          A journalist covering the October CPI print. Someone at BIGD, SANEM, CPD or PPRC. A programme officer at a
+          A journalist covering the next CPI print. Someone at BIGD, SANEM, CPD or PPRC. A programme officer at a
           funder. A friend who farms. The single most useful thing a reader can do is get this in front of somebody
-          deciding what to measure in the next three weeks.
+          deciding what to measure.
         </p>
         <div class="copy-field" style="margin-top:20px;">
           <span>blankframe.tech/research/r1_Fuel/</span>
@@ -631,7 +633,6 @@
       </div>
       <div class="btn-row" style="margin-top:0;">
         <a class="btn btn-primary" href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email the project</a>
-        <a class="btn btn-ghost" href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source &amp; issues</a>
       </div>
     </div>
   </div>
@@ -650,10 +651,9 @@
         <a href="/research/r1_Fuel/findings/">The analysis</a>
         <a href="/research/r1_Fuel/proposal/">Research plan</a>
         <a href="/research/r1_Fuel/collaborate/">Collaborate</a>
-        <a href="/research/r1_Fuel/support/">Fund it</a>
+        <a href="/research/r1_Fuel/support/">Funding</a>
         <a href="/research/r1_Fuel/data/">Data &amp; method</a>
         <a href="/research/r1_Fuel/data/log/">Audit log</a>
-        <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source repo</a>
         <a href="mailto:hello@blankframe.tech?subject=r1_Fuel">Email</a>
         <a href="/">BlankFrame</a>
         <a href="/privacy/">Privacy</a>
@@ -662,8 +662,7 @@
     <p class="fnote">
       Figures marked <span class="est">est.</span> are this project's own calculations from cited inputs, with the
       method shown inline; everything else is sourced and linked. Nothing here is peer-reviewed. Corrections are
-      welcome and will be logged &mdash; open an issue on the
-      <a href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">repository</a> or email
+      welcome and will be logged &mdash; email
       <a href="mailto:hello@blankframe.tech?subject=r1_Fuel%20correction">hello@blankframe.tech</a>.
     </p>
   </div>

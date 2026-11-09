@@ -81,7 +81,7 @@ const ROLES = [
   {
     tag: 'Co-lead',
     title: 'Agricultural economist / agrarian sociologist',
-    own: 'P3, the Boro strand — and it has a hard November deadline.',
+    own: 'P3, the Boro strand, which has to run before planting.',
     body: `This is the channel most likely to turn into a 2027 food-price and foreign-exchange problem, and almost
       nobody is watching it. Planting decisions get made in November at Tk 135 diesel against a frozen procurement
       price. If nobody is in the field by then, the decision that sets 2027 goes unmeasured and can only be
@@ -104,8 +104,8 @@ const ROLES = [
     own: 'Fielding W0 within the window.',
     body: `A CATI-capable survey firm or research centre that can run a 15&ndash;20 minute bilingual instrument across
       1,500&ndash;2,500 households, stratified by the main earner&rsquo;s sector, with quotas that do not quietly
-      exclude women and the poorest. Speed matters more than scale here: a smaller W0 fielded in October beats a
-      larger one fielded in December, because the larger one is no longer a baseline.`,
+      exclude women and the poorest. Speed matters more than scale here: a smaller W0 fielded before the next price
+      event beats a larger one fielded after it, because the larger one is no longer a baseline.`,
     ask: 'A quote and an honest answer on the earliest realistic field date.',
   },
 ];
@@ -135,7 +135,6 @@ function body() {
     <div class="btn-row">
       <a class="btn btn-primary" href="mailto:hello@blankframe.tech?subject=r1_Fuel%20collaboration">Start a conversation</a>
       <a class="btn btn-ghost" href="/research/r1_Fuel/proposal/">Read the full designs</a>
-      <a class="btn btn-ghost" href="https://github.com/the-abraar/FuelPriceHikeImpactResearch">Source repo</a>
     </div>
   </div>
 </header>
@@ -143,11 +142,10 @@ function body() {
 <section>
   <div class="wrap">
     <div class="callout">
-      <span class="k">The deadline is real, and it is not negotiable</span>
-      BPC may run out of letter-of-credit funding in <strong>October</strong>, which makes a second hike or a duty cut
-      near-certain. A baseline collected after that is not a baseline. <strong>W0 has to be in the field by around
-      20 October</strong>; P3 has to be in villages in <strong>November</strong>, before planting. Everything else can slip.
-      These two cannot.
+      <span class="k">Timing</span>
+      The household baseline (W0) is timed to the <strong>next fuel-price event</strong>, not a fixed date: it has to be
+      in the field before that event. P3 has to be in the villages <strong>before Boro planting</strong>. Both need a
+      host institution and ethics approval first.
     </div>
   </div>
 </section>
@@ -268,8 +266,7 @@ function body() {
         Dear Professor [Name],<br><br>
         I&rsquo;m [name], an independent researcher in [city] studying how the 21 September fuel price hike, which came
         two days after the National Pay Scale gazette, affects households and informal workers. Because a further
-        adjustment looks likely once BPC&rsquo;s October LC funding runs out, there is a 3&ndash;4 week window to
-        collect a pre-shock baseline.<br><br>
+        adjustment looks likely, the aim is to collect a household baseline before the next price change.<br><br>
         I&rsquo;ve drafted a short proposal for a 5-wave household phone panel stratified by public, formal-private and
         informal sector, with an embedded framing experiment on perceived fairness [attach 2-page summary + link].
         Your work on [specific paper] is directly relevant, particularly [one sentence].<br><br>
@@ -283,7 +280,6 @@ function body() {
       </p>
       <div class="btn-row">
         <a class="btn btn-primary" href="mailto:hello@blankframe.tech?subject=r1_Fuel%20collaboration">Email the project</a>
-        <a class="btn btn-ghost" href="/research/r1_Fuel/support/">If you fund rather than research</a>
       </div>
     </div>
   </div>
