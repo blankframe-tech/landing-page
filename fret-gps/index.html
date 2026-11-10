@@ -73,6 +73,17 @@
   th{ font-weight: 600; color: var(--bf-muted); font-size: 0.8rem; letter-spacing: 0.03em; text-transform: uppercase; }
   td strong{ color: var(--bf-ink); }
 
+  .ask{ max-width: 660px; }
+  .ask fieldset{ border: 0; padding: 0; margin: var(--bf-space-6) 0 0; min-width: 0; }
+  .ask legend{ font: 600 1rem var(--bf-font-display); letter-spacing: -0.01em; padding: 0; margin-bottom: var(--bf-space-2); }
+  .opts{ display: flex; flex-wrap: wrap; gap: var(--bf-space-2); }
+  .opts label{ display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border: 1px solid var(--bf-line); border-radius: var(--bf-radius-pill); background: var(--bf-card); cursor: pointer; font-size: 0.95rem; }
+  .opts input{ accent-color: var(--bf-accent-text); width: 18px; height: 18px; margin: 0; }
+  .opts label:has(input:checked){ border-color: var(--bf-accent-text); }
+  .opts label:has(input:focus-visible){ outline: 2px solid var(--bf-accent-text); outline-offset: 2px; }
+  .ask button{ cursor: pointer; margin-top: var(--bf-space-6); }
+  .ask button:disabled{ opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
   footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
 </style>
 </head>
@@ -98,6 +109,7 @@
   <div class="row">
     <a class="btn ink" href="https://github.com/the-abraar/FretGPS">Source on GitHub</a>
     <a class="btn light" href="https://github.com/the-abraar/FretGPS/blob/main/docs/PLAN.md">Read the plan</a>
+    <a class="btn light" href="#interest">Would you use it?</a>
   </div>
   <figure>
     <a href="string-id-overview.jpg"><img src="string-id-overview.jpg" width="1536" height="1024" alt="Concept art for the String-ID smart pickup: a black clip with six piezo sensors sitting on an acoustic guitar bridge, a system diagram from six piezos through a preamp and ADC to an ESP32, a per-channel analog schematic, the companion app mockup, a six-step build roadmap and a prototype cost table."></a>
@@ -187,6 +199,38 @@
   <p class="note">Parked until Phase 3 passes: the capacitive fretboard overlay, teacher dashboard, AI coach, analytics and cloud. "GPS" is a metaphor; there is no GPS module.</p>
 </section>
 
+<section id="interest">
+  <h2>Would you use it? <span class="serif">Three taps.</span></h2>
+  <p class="lede">Before we build any hardware, we want to know who wants this. No name and no email. Just three answers.</p>
+  <form class="ask" id="interest-form">
+    <fieldset>
+      <legend>Do you want an app that shows the string and fret of every note you play?</legend>
+      <div class="opts">
+        <label><input type="radio" name="want" value="yes" required> Yes</label>
+        <label><input type="radio" name="want" value="maybe"> Maybe</label>
+        <label><input type="radio" name="want" value="no"> No</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Which would you use?</legend>
+      <div class="opts">
+        <label><input type="radio" name="tier" value="phone" required> Phone only, free</label>
+        <label><input type="radio" name="tier" value="clip"> A clip-on sensor for BDT 3,000–5,000</label>
+        <label><input type="radio" name="tier" value="neither"> Neither</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Are you a learner or a teacher?</legend>
+      <div class="opts">
+        <label><input type="radio" name="role" value="learner" required> Learner</label>
+        <label><input type="radio" name="role" value="teacher"> Teacher</label>
+      </div>
+    </fieldset>
+    <button class="btn ink" type="submit" id="interest-send">Send</button>
+    <p class="note" id="interest-status" role="status">This form isn't collecting answers yet.</p>
+  </form>
+</section>
+
 <section id="try">
   <h2>Try the phone-only prototype</h2>
   <p class="lede">Python 3.11 and ffmpeg. Record a riff on your phone and get ASCII tab or JSON note events.</p>
@@ -219,6 +263,32 @@ python fretmap.py ~/Downloads/riff.m4a --json</code></pre>
   try { saved = localStorage.getItem('bf-theme') || ''; } catch (e) {}
   setTheme(saved);
   buttons.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
+
+  // PLACEHOLDER: no form service is chosen yet, so nothing is sent. To go live, paste a Formspree
+  // endpoint (https://formspree.io/f/<id>) here. That service then receives only want/tier/role.
+  // A Google Form instead needs its entry.<id> field names and fetch mode 'no-cors'.
+  // When it goes live, also update /privacy/: it currently says nothing you type leaves your browser.
+  const FORM_ENDPOINT = '';
+  const form = document.getElementById('interest-form');
+  const send = document.getElementById('interest-send');
+  const status = document.getElementById('interest-status');
+  if (FORM_ENDPOINT) status.textContent = ''; else send.disabled = true;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!FORM_ENDPOINT) return;
+    send.disabled = true;
+    status.textContent = 'Sending…';
+    try {
+      const r = await fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error(r.status);
+      window.goatcounter && window.goatcounter.count && window.goatcounter.count({ path: 'fret-gps-form-sent', title: 'FretGPS demand form sent', event: true });
+      status.textContent = 'Thanks! Got it.';
+      form.querySelectorAll('input').forEach(i => { i.disabled = true; });
+    } catch (err) {
+      send.disabled = false;
+      status.textContent = 'That didn\'t go through. Please try again.';
+    }
+  });
 </script>
 
 <!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
