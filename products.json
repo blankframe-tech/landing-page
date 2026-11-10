@@ -1,0 +1,20 @@
+{
+  "_readme": "Status chips on index.html come from here. Statuses: Live (public and usable for its real job), Beta (public but marked beta, demo or pre-release), Lab (experiment, not shipped), Archived (stopped). Change a status only with the evidence line updated, then run python3 tools/build_products.py.",
+  "statuses": ["Live", "Beta", "Lab", "Archived"],
+  "products": [
+    {"id": "throttle-iq", "name": "ThrottleIQ", "status": "Beta",
+     "evidence": "2026-11-10: blankframe-tech/ThrottleIQ release beta-v4.15.0 (1.0.0-beta.4.15.0), Google Play testing track"},
+    {"id": "suggest-bike", "name": "Suggest.Bike", "status": "Live",
+     "evidence": "2026-11-10: https://suggest.bike/ returns 200 and lists 107 bikes (88 on sale, 19 used-only), no beta label"},
+    {"id": "mac-check", "name": "MacBook Pre-Purchase Checker", "status": "Live",
+     "evidence": "2026-11-10: https://www.blankframe.tech/mac-check/ returns 200"},
+    {"id": "bijoy-to-unicode", "name": "Bijoy to Unicode", "status": "Live",
+     "evidence": "2026-11-10: served from this repo at /tools/bijoy-to-unicode/"},
+    {"id": "taka-check", "name": "Taka Note Check", "status": "Live",
+     "evidence": "2026-11-10: https://www.blankframe.tech/tools/taka-check/ returns 200"},
+    {"id": "tracon", "name": "TRACON", "status": "Beta",
+     "evidence": "2026-11-10: the-abraar/TRACON pre-release beta_0.1 (2026-10-16), macOS only"},
+    {"id": "with-love", "name": "With Love", "status": "Beta",
+     "evidence": "2026-11-10: https://blankframe.space/ says 'Demo preview, not taking real orders yet'"}
+  ]
+}
