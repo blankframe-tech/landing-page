@@ -1,299 +1,231 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReserveMyTokens - AI Capacity Cooperative</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        coop: {
-                            charcoal: '#1A1A1A',
-                            panel: '#242424',
-                            amber: '#FFB800',
-                            amberDark: '#CC9300',
-                            offwhite: '#F4F4F5',
-                            muted: '#A1A1AA'
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #1A1A1A;
-            color: #F4F4F5;
-        }
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        }
-        .metric-ticker { font-variant-numeric: tabular-nums; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReserveMyTokens Post-mortem</title>
+<meta name="description" content="ReserveMyTokens was a lab idea for a volunteer GPU token ledger. It was stopped before launch. This page shows the ledger that worked and the flaw that killed it.">
+<style>
+:root{--bg:#F8FAFC;--card:#FFFFFF;--ink:#18181B;--muted:#52525B;--line:#E4E4E7;--accent:#2563EB;--ok:#15803D;--bad:#B91C1C;--warn-bg:#FEF3C7;--warn-ink:#78350F;--hi:#DBEAFE}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1115;--card:#181B21;--ink:#F4F4F5;--muted:#A1A1AA;--line:#2E323A;--accent:#60A5FA;--ok:#4ADE80;--bad:#F87171;--warn-bg:#3A2E10;--warn-ink:#FDE68A;--hi:#1E3A5F}}
+:root[data-theme="dark"]{--bg:#0F1115;--card:#181B21;--ink:#F4F4F5;--muted:#A1A1AA;--line:#2E323A;--accent:#60A5FA;--ok:#4ADE80;--bad:#F87171;--warn-bg:#3A2E10;--warn-ink:#FDE68A;--hi:#1E3A5F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:880px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.15;margin:.4em 0 .3em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em}
+p,li{color:var(--ink)}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em}
+.banner{background:var(--warn-bg);color:var(--warn-ink);border-radius:12px;padding:12px 16px;font-size:.95rem}
+.banner strong{color:inherit}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:inherit;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button[aria-pressed="true"]{outline:2px solid var(--accent)}
+button:disabled{opacity:.5;cursor:default}
+.taccts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+@media (max-width:600px){.taccts{grid-template-columns:1fr}}
+.tacct{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tacct h3{margin:0;padding:8px 10px;font-size:.9rem;border-bottom:2px solid var(--ink)}
+.tcols{display:grid;grid-template-columns:1fr 1fr;min-height:84px}
+.tcols>div{padding:6px 10px}
+.tcols>div:first-child{border-right:2px solid var(--ink)}
+.tcols small{display:block;color:var(--muted);font-size:.75rem}
+.post{font-family:ui-monospace,Menlo,monospace;font-size:.9rem;transition:background .4s}
+.post.new{background:var(--hi)}
+.bal{padding:6px 10px;border-top:1px solid var(--line);font-weight:600}
+.txlog{font-family:ui-monospace,Menlo,monospace;font-size:.85rem;margin-top:10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}
+label{display:block;font-size:.85rem;color:var(--muted);margin-top:8px}
+input{font:inherit;width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.wrap{overflow-wrap:anywhere;word-break:break-all}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid var(--line)}
+.tablewrap{overflow-x:auto}
+footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
+</style>
 </head>
-<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
-    
-    <!-- Background grid -->
-    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-50"></div>
-    
-    <!-- Navbar -->
-    <nav class="relative z-10 border-b border-coop-panel bg-coop-charcoal/80 backdrop-blur-md sticky top-0">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-4 h-4 bg-coop-amber rounded-sm animate-pulse-slow"></div>
-                <span class="font-bold text-lg tracking-tight">ReserveMyTokens</span>
-            </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-coop-muted">
-                <a href="#network" class="hover:text-coop-offwhite transition-colors">Network Status</a>
-            </div>
-            <button class="bg-coop-amber text-coop-charcoal px-4 py-2 rounded-md text-sm font-bold hover:bg-coop-amberDark transition-colors">
-                Connect Worker
-            </button>
-        </div>
-    </nav>
+<body>
+<main>
+<p class="banner" role="note"><strong>Post-mortem, not a product.</strong> ReserveMyTokens was stopped before launch: there is no network, no workers and no users, and credits never had cash value. The ledger rows and receipts below were exported by running the real coordinator code on a throwaway database with a scripted worker that replays one real Ollama job. The animations run in your browser.</p>
 
-    <!-- Hero Section -->
-    <main class="relative z-10 flex-grow pt-24 pb-16 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coop-panel border border-coop-muted/20 text-xs font-semibold text-coop-amber mb-6 uppercase tracking-wider">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-coop-amber opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-coop-amber"></span>
-                </span>
-                Network is Live
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                An AI Capacity <br/>
-                <span class="text-coop-amber">Cooperative.</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-coop-muted mb-10 max-w-2xl mx-auto font-medium">
-                Give when idle. Use when needed. Donate what matters. <br/> 
-                Turn your unused AI subscription and local compute into a shared public good.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button class="w-full sm:w-auto px-8 py-3.5 bg-coop-amber text-coop-charcoal font-bold rounded-lg hover:bg-coop-amberDark transition-colors text-lg">
-                    Download Worker CLI
-                </button>
-                <button class="w-full sm:w-auto px-8 py-3.5 bg-coop-panel border border-coop-muted/30 text-coop-offwhite font-bold rounded-lg hover:bg-coop-muted/10 transition-colors text-lg">
-                    Browse Projects
-                </button>
-            </div>
-        </div>
+<h1>ReserveMyTokens: the ledger worked, the workers could lie</h1>
+<p>A lab project from October 2026: volunteers run a local open-weight model, a coordinator sends them prompts, and they earn test credits per completion token. The accounting held up under every race we threw at it. The project still had to stop, because a worker is paid on a number it reports itself, and nobody had asked for the capacity in the first place.</p>
 
-        <!-- DAU & Network Simulation Dashboard -->
-        <div id="network" class="max-w-6xl mx-auto mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold mb-2">Live Network Status</h2>
-                <p class="text-coop-muted">Simulating a high-scale network with 240,000+ Daily Active Users (DAU).</p>
-            </div>
-            
-            <!-- Key Metrics -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-coop-panel p-6 rounded-xl border border-coop-muted/10">
-                    <div class="text-coop-muted text-sm font-medium mb-1">Active Workers Online</div>
-                    <div class="text-3xl font-bold font-mono text-coop-offwhite flex items-center gap-2">
-                        <span id="metric-workers" class="metric-ticker">241,830</span>
-                    </div>
-                </div>
-                <div class="bg-coop-panel p-6 rounded-xl border border-coop-muted/10">
-                    <div class="text-coop-muted text-sm font-medium mb-1">Tokens Reserved Today</div>
-                    <div class="text-3xl font-bold font-mono text-coop-amber flex items-center gap-2">
-                        <span id="metric-reserved" class="metric-ticker">14,892,100</span>
-                    </div>
-                </div>
-                <div class="bg-coop-panel p-6 rounded-xl border border-coop-muted/10">
-                    <div class="text-coop-muted text-sm font-medium mb-1">Compute Donated (TFLOPS)</div>
-                    <div class="text-3xl font-bold font-mono text-emerald-400 flex items-center gap-2">
-                        <span id="metric-donated" class="metric-ticker">8,942</span>
-                    </div>
-                </div>
-                <div class="bg-coop-panel p-6 rounded-xl border border-coop-muted/10">
-                    <div class="text-coop-muted text-sm font-medium mb-1">SpareCycles Failovers</div>
-                    <div class="text-3xl font-bold font-mono text-purple-400 flex items-center gap-2">
-                        <span id="metric-failover" class="metric-ticker">1,204</span>
-                    </div>
-                </div>
-            </div>
+<h2>1. One job, as double-entry postings</h2>
+<p class="muted">Job: "What is the capital of France? Answer in one word.", <code>max_tokens</code> 64, model <code>qwen2.5:0.5b</code>. On a real Ollama 0.40.6 run on 2026-10-21 it answered "Paris" with 41 prompt and 2 completion tokens. The consumer starts with 1000 test credits.</p>
+<div class="card">
+  <div class="row" role="group" aria-label="Which worker">
+    <button id="w-honest" aria-pressed="true">Honest worker</button>
+    <button id="w-lying" aria-pressed="false">Lying worker</button>
+  </div>
+  <p id="w-desc" class="muted"></p>
+  <div class="row"><button id="step" class="primary">Next posting</button><button id="reset">Reset</button></div>
+  <div class="taccts" id="taccts"></div>
+  <div class="txlog" id="txlog" aria-live="polite"></div>
+</div>
 
-            <!-- Ledger Feed & Node Map -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <!-- Live Transactions Feed -->
-                <div class="lg:col-span-1 bg-coop-panel rounded-xl border border-coop-muted/10 overflow-hidden flex flex-col h-96">
-                    <div class="p-4 border-b border-coop-muted/10 bg-coop-panel/50 backdrop-blur-sm">
-                        <h3 class="font-semibold text-sm">Live Ledger Settlements</h3>
-                    </div>
-                    <div class="flex-grow overflow-hidden relative">
-                        <!-- Fade overlay for top -->
-                        <div class="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-coop-panel to-transparent z-10"></div>
-                        <div id="tx-feed" class="p-4 flex flex-col-reverse gap-3 font-mono text-xs overflow-hidden h-full">
-                            <!-- JS injected elements -->
-                        </div>
-                    </div>
-                </div>
+<h2>2. Check the worker's signed receipt yourself</h2>
+<p>Each worker signs <code>job | worker | sha256(output) | prompt tokens | completion tokens | duration</code> with its own Ed25519 key. Your browser checks the signature below with WebCrypto. Nothing is sent anywhere. Change a number and check again.</p>
+<div class="card">
+  <p class="muted" id="rc-which"></p>
+  <label for="rc-out">Output the worker returned</label><input id="rc-out">
+  <label for="rc-ct">Completion tokens it claimed</label><input id="rc-ct" inputmode="numeric">
+  <label>Worker public key</label><div class="mono wrap" id="rc-key"></div>
+  <label>Signature</label><div class="mono wrap" id="rc-sig"></div>
+  <label>Payload your browser rebuilds</label><div class="mono wrap" id="rc-payload"></div>
+  <div class="row" style="margin-top:12px"><button id="verify" class="primary">Verify signature</button></div>
+  <p id="rc-result" aria-live="polite"></p>
+</div>
+<p>The catch: switch to the lying worker in section 1 and verify its receipt. It is valid. A signature proves <em>which</em> worker made a claim, not that the claim is true. The lying worker returned an empty answer, signed a claim of 64 tokens, and the coordinator paid it 64, because the charge is <code>min(reported tokens, max_tokens)</code>. Spot checks (re-running a sample on a second worker, known-answer probes) only catch some of it, and two workers run by one person agree with each other.</p>
 
-                <!-- Global Activity Log -->
-                <div class="lg:col-span-2 bg-coop-panel rounded-xl border border-coop-muted/10 p-6 flex flex-col justify-between h-96">
-                    <div>
-                        <h3 class="font-semibold text-sm mb-4">Open-Source Project Routing (Live)</h3>
-                        <div class="space-y-4">
-                            
-                            <div class="flex items-center justify-between bg-coop-charcoal/50 p-3 rounded-lg border border-coop-muted/10">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded bg-blue-900/50 flex items-center justify-center text-blue-400">MB</div>
-                                    <div>
-                                        <div class="font-medium text-sm">MusicBrainz Official Web Translation</div>
-                                        <div class="text-xs text-coop-muted">Routing to 430 distributed local workers...</div>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-emerald-400 font-mono text-sm" id="route-1">45% complete</div>
-                                </div>
-                            </div>
+<h2>3. What the tests proved</h2>
+<ul>
+  <li>Every ledger transaction sums to zero in integer units, and each write has a fixed idempotency key, so a retry is a no-op.</li>
+  <li>Two workers racing for one job: exactly one gets it. Six identical results fired at once: one settles, five are no-ops. A late result racing the lease timeout either settles or refunds, never both.</li>
+  <li>The whole backend suite passed on Postgres 15 (38 tests) and on SQLite (36, plus 2 Postgres-only skips), in normal and reversed file order. Removing the compare-and-set on results makes the race test fail.</li>
+</ul>
 
-                            <div class="flex items-center justify-between bg-coop-charcoal/50 p-3 rounded-lg border border-coop-muted/10">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded bg-orange-900/50 flex items-center justify-center text-orange-400">OL</div>
-                                    <div>
-                                        <div class="font-medium text-sm">OpenLibrary Author Deduplication</div>
-                                        <div class="text-xs text-coop-muted">SpareCycles API Failover Active</div>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-purple-400 font-mono text-sm" id="route-2">98 tasks/sec</div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between bg-coop-charcoal/50 p-3 rounded-lg border border-coop-muted/10">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded bg-green-900/50 flex items-center justify-center text-green-400">OSM</div>
-                                    <div>
-                                        <div class="font-medium text-sm">OSM name:zh Tag Completion</div>
-                                        <div class="text-xs text-coop-muted">Consuming donated API credits (Claude 3.5 Sonnet)</div>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-coop-amber font-mono text-sm" id="route-3">Settling ledger...</div>
-                                </div>
-                            </div>
+<h2>4. Someone already runs this: AI Horde</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th></th><th>AI Horde</th><th>ReserveMyTokens</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Status</th><td>A "free, community-run service for AI image generation and text generation", running</td><td>Stopped before launch; never deployed</td></tr>
+    <tr><th scope="row">Who serves</th><td>Volunteers' own GPUs; KoboldCpp has a built-in Horde worker</td><td>Volunteers' Ollama, local open-weight models only</td></tr>
+    <tr><th scope="row">Reward</th><td>Kudos for work done; kudos "cannot be bought or sold"</td><td>Test credits per completion token; no cash value</td></tr>
+    <tr><th scope="row">License</th><td>AGPL-3.0 or later</td><td>MIT</td></tr>
+  </tbody>
+</table></div>
+<p class="muted">Source: <a href="https://github.com/Haidra-Org/AI-Horde">github.com/Haidra-Org/AI-Horde</a>, accessed 2026-11-10.</p>
 
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-coop-muted/10 flex justify-between items-center text-xs text-coop-muted">
-                        <span>Powered by 240k+ community nodes</span>
-                        <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Network Healthy</span>
-                    </div>
-                </div>
+<h2>5. Why it stopped</h2>
+<ol>
+  <li><strong>Terms came after the pitch.</strong> The first page offered to pool people's AI subscriptions. The provider terms, read three days later, bar sharing an account or handing over API keys. The only clean supply left was local open-weight models, which are cheap to get elsewhere.</li>
+  <li><strong>No one was asked.</strong> No consumer or donor interview happened before or during the build.</li>
+  <li><strong>Payouts rest on what the worker says</strong> (section 2).</li>
+  <li><strong>Prior art found late</strong> (section 4).</li>
+</ol>
+<p>The full write-up, with sources for every number: <a href="https://github.com/the-abraar/ReserveMyTokens/blob/main/LEARNINGS.md">LEARNINGS.md</a> in the repo.</p>
 
-            </div>
-        </div>
-    </main>
+<footer>Data on this page: <code>demo/data/jobs.json</code>, made by <code>demo/tools/export_job.py</code> in the ReserveMyTokens repo. Real-run numbers: the repo's <code>judge.md</code>, Update 13.</footer>
+</main>
 
-    <footer class="border-t border-coop-panel py-8 mt-12 text-center text-sm text-coop-muted relative z-10">
-        ReserveMyTokens Cooperative — Built for the Agentic Commons.
-    </footer>
+<script id="jobs" type="application/json">[{"label":"honest","max_tokens":64,"reported":{"output":"Paris","prompt_tokens":41,"completion_tokens":2},"settle_reply":{"status":"completed","settled":true,"charged":2},"postings":[{"tx":"reserve","key":"job:1:reserve","account":"consumer-honest:user_available","amount":-64},{"tx":"reserve","key":"job:1:reserve","account":"consumer-honest:user_held","amount":64},{"tx":"settle","key":"job:1:settle","account":"consumer-honest:user_held","amount":-64},{"tx":"settle","key":"job:1:settle","account":"contributor-honest:user_available","amount":2},{"tx":"settle","key":"job:1:settle","account":"consumer-honest:user_available","amount":62}],"receipt":{"job_id":1,"worker_id":1,"model":"qwen2.5:0.5b","prompt_tokens":41,"completion_tokens":2,"eval_duration_ns":0,"charged":2,"usage_source":"worker_reported","signed":true,"signature":"Q9rj4gMtKTI5MSUdgk/KWf9iCgYE+i1y1TjtGI3JmHCtVAggfV9ZMwNViK0frJffQ2aKO+fUt71BtlnrUYD7Dg==","worker_public_key":"Wc9wH5DqAzKzI1QteLQMhCkEW1N3Iwv97TsbrGHreQg=","payload":"rmt-receipt-v1|1|1|5dd272b4f316b776a7b8e3d0894b37e1e42be3d5d3b204b8a5836cc50597a6b1|41|2|0"}},{"label":"lying","max_tokens":64,"reported":{"output":"","prompt_tokens":41,"completion_tokens":64},"settle_reply":{"status":"completed","settled":true,"charged":64},"postings":[{"tx":"reserve","key":"job:2:reserve","account":"consumer-lying:user_available","amount":-64},{"tx":"reserve","key":"job:2:reserve","account":"consumer-lying:user_held","amount":64},{"tx":"settle","key":"job:2:settle","account":"consumer-lying:user_held","amount":-64},{"tx":"settle","key":"job:2:settle","account":"contributor-lying:user_available","amount":64}],"receipt":{"job_id":2,"worker_id":2,"model":"qwen2.5:0.5b","prompt_tokens":41,"completion_tokens":64,"eval_duration_ns":0,"charged":64,"usage_source":"worker_reported","signed":true,"signature":"uPVNYeTajY0+5waCHGHXRNJ/nBWUsbDXElA+pWZIzdusVAicQ+NQQ0t8AG60jVs4ekyotndDjs7U9QSNsPWaBQ==","worker_public_key":"UNNTWZjT7aORNTqW7tF+MBlWt5YM/10mVUsmmAe9MHo=","payload":"rmt-receipt-v1|2|2|e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855|41|64|0"}}]</script>
+<script>
+const JOBS = JSON.parse(document.getElementById('jobs').textContent);
+const ACCTS = [['consumer', 'user_available', 'Consumer: available'], ['consumer', 'user_held', 'Consumer: held'], ['contributor', 'user_available', 'Contributor: available']];
+const DESC = {
+  honest: 'Reports what Ollama said: "Paris", 2 completion tokens.',
+  lying: 'Returns an empty answer and claims 64 completion tokens. It signs that claim with its real key.'
+};
+let job, shown, opening;
+const $ = id => document.getElementById(id);
+const acctKey = a => a.split(':')[0].split('-')[0] + ':' + a.split(':')[1];
 
-    <!-- Simulation Script -->
-    <script>
-        // Format numbers with commas
-        const fmt = (num) => num.toLocaleString();
+function pick(label) {
+  job = JOBS.find(j => j.label === label);
+  $('w-honest').setAttribute('aria-pressed', label === 'honest');
+  $('w-lying').setAttribute('aria-pressed', label === 'lying');
+  $('w-desc').textContent = DESC[label];
+  reset();
+  loadReceipt();
+}
 
-        // Metrics logic
-        let workers = 241830;
-        let reserved = 14892100;
-        let donated = 8942;
-        let failovers = 1204;
-        let progress1 = 45.0;
+function reset() { shown = 0; draw(); }
 
-        function updateMetrics() {
-            // Random fluctuations for workers
-            workers += Math.floor(Math.random() * 5) - 2;
-            
-            // Rapid increase in tokens
-            reserved += Math.floor(Math.random() * 500) + 100;
-            
-            // Slow increase in TFLOPS
-            donated += Math.random() > 0.5 ? 1 : 0;
-            
-            // Occasional failovers
-            failovers += Math.random() > 0.8 ? 1 : 0;
-            
-            // Progress bars
-            progress1 += 0.01;
+function draw() {
+  const box = $('taccts');
+  box.replaceChildren();
+  for (const [who, type, title] of ACCTS) {
+    const key = who + ':' + type;
+    let bal = key === 'consumer:user_available' ? 1000 : 0;
+    const out = [], inn = [];
+    job.postings.slice(0, shown).forEach((p, i) => {
+      if (acctKey(p.account) !== key) return;
+      bal += p.amount;
+      const el = document.createElement('div');
+      el.className = 'post' + (i === shown - 1 ? ' new' : '');
+      el.textContent = p.tx + ' ' + Math.abs(p.amount);
+      (p.amount < 0 ? out : inn).push(el);
+    });
+    const t = document.createElement('div'); t.className = 'tacct';
+    const h = document.createElement('h3'); h.textContent = title;
+    const cols = document.createElement('div'); cols.className = 'tcols';
+    const c1 = document.createElement('div'), c2 = document.createElement('div');
+    const lbl = s => Object.assign(document.createElement('small'), { textContent: s });
+    c1.append(lbl('out'), ...out); c2.append(lbl('in'), ...inn);
+    const b = document.createElement('div'); b.className = 'bal'; b.textContent = 'Balance ' + bal;
+    cols.append(c1, c2); t.append(h, cols, b); box.append(t);
+  }
+  const lines = [];
+  for (const tx of ['reserve', 'settle']) {
+    const ps = job.postings.slice(0, shown).filter(p => p.tx === tx);
+    if (!ps.length) continue;
+    const total = job.postings.filter(p => p.tx === tx);
+    const sum = ps.reduce((s, p) => s + p.amount, 0);
+    lines.push(`${total[0].key}: ${ps.map(p => (p.amount > 0 ? '+' : '') + p.amount).join(' ')}` +
+      (ps.length === total.length ? `  sum ${sum}` : '  ...'));
+  }
+  if (shown === job.postings.length) {
+    const r = job.settle_reply;
+    lines.push(`Settled: charged ${r.charged}, refunded ${job.max_tokens - r.charged}. Worker output: "${job.reported.output}"`);
+  }
+  $('txlog').textContent = lines.join('\n') || 'No postings yet. Press "Next posting".';
+  $('step').disabled = shown === job.postings.length;
+}
 
-            document.getElementById('metric-workers').innerText = fmt(workers);
-            document.getElementById('metric-reserved').innerText = fmt(reserved);
-            document.getElementById('metric-donated').innerText = fmt(donated);
-            document.getElementById('metric-failover').innerText = fmt(failovers);
-            document.getElementById('route-1').innerText = progress1.toFixed(1) + '% complete';
-            
-            // Fluctuating rates
-            document.getElementById('route-2').innerText = (Math.floor(Math.random() * 20) + 90) + ' tasks/sec';
-        }
+$('step').onclick = () => { if (shown < job.postings.length) { shown++; draw(); } };
+$('reset').onclick = reset;
+$('w-honest').onclick = () => pick('honest');
+$('w-lying').onclick = () => pick('lying');
 
-        setInterval(updateMetrics, 200);
+// Receipt check. Payload format: backend/app/receipts.py (rmt-receipt-v1).
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const hex = buf => [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, '0')).join('');
 
-        // Ledger Feed Logic
-        const feed = document.getElementById('tx-feed');
-        const actions = ["RESERVED", "DONATED", "CONSUMED", "SETTLED"];
-        const providers = ["Ollama/Llama-3", "Claude-3.5", "SpareCycles-Pool", "Local-GPU"];
-        
-        function addTransaction() {
-            const action = actions[Math.floor(Math.random() * actions.length)];
-            const provider = providers[Math.floor(Math.random() * providers.length)];
-            const amount = Math.floor(Math.random() * 2000) + 50;
-            const hash = Math.random().toString(16).slice(2, 10).toUpperCase();
-            
-            let color = "text-coop-muted";
-            if(action === "RESERVED") color = "text-coop-amber";
-            if(action === "DONATED") color = "text-emerald-400";
-            if(action === "CONSUMED") color = "text-red-400";
-            
-            const tx = document.createElement('div');
-            tx.className = "flex justify-between items-center bg-coop-charcoal p-2 rounded border border-coop-muted/5 opacity-0 transition-opacity duration-300";
-            tx.innerHTML = `
-                <div>
-                    <span class="${color} font-bold">[${action}]</span> 
-                    <span class="text-coop-muted">0x${hash}</span>
-                </div>
-                <div class="text-right">
-                    <div class="text-coop-offwhite">+${amount} cr</div>
-                    <div class="text-[10px] text-coop-muted">${provider}</div>
-                </div>
-            `;
-            
-            // Add to top (which is visually bottom due to flex-col-reverse)
-            feed.prepend(tx);
-            
-            // Fade in
-            setTimeout(() => { tx.classList.remove('opacity-0'); }, 50);
-            
-            // Keep only latest 10
-            if (feed.children.length > 8) {
-                feed.removeChild(feed.lastChild);
-            }
-            
-            // Random next interval (fast, simulating high DAU)
-            setTimeout(addTransaction, Math.random() * 600 + 100);
-        }
+function loadReceipt() {
+  const r = job.receipt;
+  $('rc-which').textContent = `Receipt for job ${r.job_id} (${job.label} worker), as the coordinator returned it.`;
+  $('rc-out').value = job.reported.output;
+  $('rc-ct').value = r.completion_tokens;
+  $('rc-key').textContent = r.worker_public_key;
+  $('rc-sig').textContent = r.signature;
+  $('rc-result').textContent = '';
+  rebuild();
+}
 
-        // Start ledger feed
-        addTransaction();
-    </script>
+async function rebuild() {
+  const r = job.receipt;
+  const digest = crypto.subtle ? hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode($('rc-out').value))) : '(needs WebCrypto)';
+  const p = `rmt-receipt-v1|${r.job_id}|${r.worker_id}|${digest}|${r.prompt_tokens}|${$('rc-ct').value.trim()}|${r.eval_duration_ns}`;
+  $('rc-payload').textContent = p;
+  return p;
+}
+
+$('rc-out').oninput = $('rc-ct').oninput = () => { $('rc-result').textContent = ''; rebuild(); };
+
+$('verify').onclick = async () => {
+  const res = $('rc-result');
+  const r = job.receipt;
+  try {
+    if (!crypto.subtle) throw new Error('nosubtle');
+    const key = await crypto.subtle.importKey('raw', b64(r.worker_public_key), { name: 'Ed25519' }, false, ['verify']);
+    const ok = await crypto.subtle.verify({ name: 'Ed25519' }, key, b64(r.signature), new TextEncoder().encode(await rebuild()));
+    res.className = ok ? 'ok' : 'bad';
+    res.textContent = ok
+      ? (job.label === 'lying' ? 'Valid signature. The worker really did sign "empty answer, 64 tokens", and it was paid 64.' : 'Valid signature: this worker signed exactly these numbers.')
+      : 'Invalid: the signature does not cover these values. The coordinator rejects a result like this with HTTP 400.';
+  } catch (e) {
+    res.className = 'bad';
+    res.textContent = 'Your browser cannot check Ed25519 signatures (WebCrypto Ed25519 needs Chrome 137+, Firefox 129+ or Safari 17+, on https or a local file). The receipt itself is in demo/data/jobs.json.';
+  }
+};
+
+pick('honest');
+</script>
 <!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
 <script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
