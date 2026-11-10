@@ -31,7 +31,7 @@ Every subpage **MUST** appear in the live breakdown dashboard at `tools/visit-co
 Redirect stubs (a `<meta http-equiv="refresh">` page, like `throttleIQ/` or `stats/`) are the only pages without the tag.
 
 ### C. Feature on the Main Landing Page
-Add a card for the new project in the **Portfolio** section of `index.html` with its rank number, category tag, description, and link to the route.
+Add a card for the new project in the **Portfolio** section of `index.html` with its rank number, category tag, description, and link to the route. Its status chip carries `data-product="<id>"` and gets its text from `products.json` (Live / Beta / Lab / Archived, with an evidence line): add the product there, then run `python3 tools/build_products.py` (`--check` fails when a chip drifts).
 
 ### D. Keep internal files off the site
 Notes, agent files, drafts and scripts that aren't meant for visitors go in the `exclude` list in `_config.yml` (GitHub Pages' Jekyll pass then doesn't publish them). Claims on a page must match what shipped: label lab work as lab work.

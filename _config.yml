@@ -8,5 +8,7 @@ exclude:
   - GEMINI.md
   - setup_previews.sh
   - brand/build_tokens.py
+  - tools/build_products.py
+  - products.json
   - "throttle-iq/new designs to be implemented later"
   - tools/nepal-viz
