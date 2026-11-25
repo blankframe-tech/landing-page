@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="28 22 64 82" role="img" aria-label="Farzana monogram">
+  <!-- Demo mark: high-contrast baroque F; its stem descends into a lowercase f's volute tail. Aubergine, antique gold, rose, sage. -->
+  <defs>
+    <path id="leaf" d="M0 0C3-3.2 8.5-3.4 12 0C8.5 3.4 3 3.2 0 0Z"/>
+    <path id="rpetal" d="M0 0C-3.6-1.5-4.4-6.2-2.2-8.2C-1.2-9.1 0-8.6 0-7.6C0-8.6 1.2-9.1 2.2-8.2C4.4-6.2 3.6-1.5 0 0Z"/>
+  </defs>
+
+
+  <!-- the F -->
+  <g fill="none" stroke="#3B1E33" stroke-linecap="round">
+    <!-- top bar: hairline swash from a volute, over the stem head, out to a pearl terminal -->
+    <path d="M42 39.5C35.5 40 32.5 34 36.5 30.6C40 27.6 45 30.6 51 32.6C62 36 73 33.5 83.5 28" stroke-width="1.7"/>
+    <!-- descender: lowercase f tail curling into a volute -->
+    <path d="M56 84.5C53.8 95.5 46.5 99.6 41 96.8C36.8 94.6 38.2 89 42.6 89.8C45.2 90.3 45.6 93.2 43.6 94.2" stroke-width="1.7"/>
+    <!-- middle bar -->
+    <path d="M47.5 62C54 60.6 61 60 68 59.6" stroke-width="2"/>
+  </g>
+  <!-- stem: thick-thin lens, slightly italic -->
+  <path fill="#3B1E33" d="M62 30.5C65.2 33 64.8 45 62.9 60C61.5 71.5 59.4 79.5 56.3 85C55 79.5 55.6 71.5 56.7 60C58.2 45 58.6 34.5 62 30.5Z"/>
+  <circle cx="84.6" cy="27.4" r="2.4" fill="#3B1E33"/>
+
+  <!-- Tudor-style rose at the end of the middle bar, sage sepals between the petals -->
+  <g transform="translate(76 59.4)">
+    <g fill="#7E9470">
+      <use href="#leaf" transform="rotate(-54) translate(4 0) scale(.62)"/>
+      <use href="#leaf" transform="rotate(18) translate(4 0) scale(.62)"/>
+      <use href="#leaf" transform="rotate(90) translate(4 0) scale(.62)"/>
+      <use href="#leaf" transform="rotate(162) translate(4 0) scale(.62)"/>
+      <use href="#leaf" transform="rotate(234) translate(4 0) scale(.62)"/>
+    </g>
+    <g fill="#B5566A">
+      <use href="#rpetal"/>
+      <use href="#rpetal" transform="rotate(72)"/>
+      <use href="#rpetal" transform="rotate(144)"/>
+      <use href="#rpetal" transform="rotate(216)"/>
+      <use href="#rpetal" transform="rotate(288)"/>
+    </g>
+    <g fill="#E3A3AE" transform="rotate(36) scale(.55)">
+      <use href="#rpetal"/>
+      <use href="#rpetal" transform="rotate(72)"/>
+      <use href="#rpetal" transform="rotate(144)"/>
+      <use href="#rpetal" transform="rotate(216)"/>
+      <use href="#rpetal" transform="rotate(288)"/>
+    </g>
+    <circle r="1.6" fill="#A9824B"/>
+  </g>
+
+  <!-- acanthus sprig off the stem, lower left -->
+  <path d="M57.6 74C51.5 73.2 46.5 76 43.5 80.5" fill="none" stroke="#A9824B" stroke-width="0.9"/>
+  <g fill="#A9824B">
+    <use href="#leaf" transform="translate(52.2 73.8) rotate(-158) scale(.75)"/>
+    <use href="#leaf" transform="translate(47.4 76.4) rotate(162) scale(.65)"/>
+  </g>
+</svg>
