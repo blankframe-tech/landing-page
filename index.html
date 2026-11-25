@@ -268,38 +268,9 @@
     flex-wrap: wrap;
   }
 
-  .micro-status{
-    margin-top: 22px;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--faint);
-  }
-
-  /* -------- Proof strip -------- */
-  .proof-strip{
-    margin: 28px 0 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
-    overflow: hidden;
-  }
-  .proof-strip > div{ padding: 20px 18px; border-left: 1px solid var(--line); }
-  .proof-strip > div:nth-child(odd){ border-left: none; }
-  .proof-strip > div:nth-child(n+3){ border-top: 1px solid var(--line); }
-  .proof-strip dt{ font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.1; color: var(--ink); }
-  .proof-strip dd{ margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
-
   /* -------- Marquee -------- */
   .marquee{
-    margin-top: 16px;
+    margin-top: 28px;
     border: 1px solid var(--line);
     border-radius: 999px;
     overflow: hidden;
@@ -398,15 +369,32 @@
   .split{
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 56px;
-    align-items: start;
+    gap: 32px;
+    align-items: stretch;
   }
-  .split.stretch{ align-items: stretch; }
   .split .section-h{ font-size: clamp(1.8rem, 3.2vw, 2.5rem); }
   @media (max-width: 900px){
-    .split{ grid-template-columns: minmax(0, 1fr); gap: 72px; }
+    .split{ grid-template-columns: minmax(0, 1fr); gap: 24px; }
   }
   .stack{ display: grid; gap: 12px; margin-top: 36px; }
+
+  /* each half is a panel; on hover it lifts up-left onto a solid offset shadow (Codecademy-style raised block) */
+  .split > *{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px, 3.5vw, 40px);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+  @media (hover: hover){
+    .split > *:hover{
+      transform: translate(-6px, -6px);
+      box-shadow: 6px 6px 0 var(--ink);
+      border-color: var(--ink);
+    }
+  }
+  /* cards inside a white panel sit flat on the page tint so they don't read as card-on-card */
+  .split .p-card, .split .cap-card, .split .principle, .split .logo-tile:not(.invite){ background: var(--bg); box-shadow: none; }
 
   /* -------- Philosophy -------- */
   .philosophy-statement{
@@ -519,7 +507,7 @@
     color: #fff;
     position: relative;
     overflow: hidden;
-    height: 100%;
+    border-color: #141413;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -874,15 +862,7 @@
   .wm-farzana{ font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 24px; color: #5B2A4E; letter-spacing: 0; }
   .logo-tile.invite{ border-style: dashed; background: transparent; box-shadow: none; justify-content: center; color: var(--muted); font-size: 13px; font-weight: 600; text-align: center; }
 
-  /* -------- Newsletter -------- */
-  .news-card{
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    padding: clamp(28px, 4vw, 44px);
-    box-shadow: var(--shadow-card);
-    height: 100%;
-  }
+  /* -------- Newsletter (panel look comes from .split > *) -------- */
   .newsletter-sub{ margin: 18px 0 0; color: var(--muted); max-width: 52ch; }
   .newsletter-points{
     list-style: none;
@@ -987,14 +967,6 @@
           <a class="btn" href="mailto:hello@blankframe.tech?subject=Work%20with%20BlankFrame">Work with us</a>
           <a class="btn light" href="#products">See our products</a>
         </div>
-        <div class="micro-status reveal d2"><span class="dot" aria-hidden="true"></span> We build the frame. You create what matters.</div>
-        <!-- Proof strip: only figures already published on this site; source page in each comment -->
-        <dl class="proof-strip reveal d3">
-          <div><dt class="display">3,883</dt><dd>news articles in the r1_Fuel corpus</dd></div><!-- research/ -->
-          <div><dt class="display">5</dt><dd>costed study designs for the fuel shock</dd></div><!-- research/ -->
-          <div><dt class="display">30</dt><dd>checks in the MacBook pre-purchase checker</dd></div><!-- mac-check/ checklist -->
-          <div><dt class="display">৳2.5L</dt><dd>earned in year one by Terracotta Tales, a collaborator</dd></div><!-- collaborators card -->
-        </dl>
         <div class="marquee reveal d3" aria-hidden="true">
           <div class="marquee-track">
             <div class="marquee-group">
@@ -1313,7 +1285,7 @@
         </div>
       </div>
 
-      <div id="vision" class="vision-card reveal d1">
+      <div id="vision" class="vision-card">
         <span class="label-chip">Vision</span>
         <p class="big">
           A future where intelligent systems quietly coordinate in the background — <span class="dim">so people can spend their attention on</span> <span class="serif-accent">life itself.</span>
@@ -1375,7 +1347,7 @@
         </div>
       </div>
 
-      <div id="newsletter" class="news-card reveal d1">
+      <div id="newsletter" class="news-card">
         <span class="label-chip">Newsletter</span>
         <h2 class="section-h">Build notes, <span class="dim">straight from the</span> <span class="serif-accent">workbench.</span></h2>
         <p class="newsletter-sub">Cool updates only: new products as they ship, and how they're built. Architecture, trade-offs and the parts that broke. Written for developers.</p>
