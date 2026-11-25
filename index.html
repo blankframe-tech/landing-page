@@ -45,6 +45,7 @@
 
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
+  [id]{ scroll-margin-top: 90px; }
 
   body{
     margin: 0;
@@ -84,7 +85,7 @@
 
   /* motion reduction */
   @media (prefers-reduced-motion: reduce){
-    *{ animation: none !important; transition: none !important; }
+    *, *::before, *::after{ animation: none !important; transition: none !important; }
     .marquee-track{ transform: none !important; }
   }
 
@@ -123,7 +124,7 @@
     padding: 10px 10px 10px 18px;
     box-shadow: var(--shadow-pill);
     transition: box-shadow 300ms ease;
-    max-width: 720px;
+    max-width: 760px;
     width: 100%;
     justify-content: space-between;
   }
@@ -201,16 +202,25 @@
     box-shadow: 0 10px 24px -12px rgba(19,19,19,0.25);
   }
 
-  @media (max-width: 720px){
+  @media (max-width: 760px){
     .nav-links{ display: none; }
     .nav-pill{ max-width: none; width: auto; gap: 16px; }
   }
 
-  /* -------- Hero -------- */
-  .hero{
-    padding: 168px 0 84px;
-    text-align: center;
-    position: relative;
+  /* -------- Hero: actions + proof on the left, headline on the right -------- */
+  .hero{ padding: 150px 0 84px; }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-copy{ order: 2; text-align: right; }
+  .hero-act{ order: 1; }
+  @media (max-width: 900px){
+    .hero{ padding-top: 128px; }
+    .hero-grid{ grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .hero-copy{ order: 0; text-align: left; }
   }
 
   .chip{
@@ -240,34 +250,26 @@
   }
 
   .hero h1{
-    margin: 30px auto 0;
-    font-size: clamp(2.7rem, 7.4vw, 5.4rem);
+    margin: 28px 0 0 auto;
+    font-size: clamp(2.6rem, 6vw, 5rem);
     font-weight: 700;
     line-height: 1.02;
-    max-width: 15ch;
+    max-width: 13ch;
     color: var(--ink);
   }
   .hero h1 .dim{ color: var(--faint); }
   .hero h1 .serif-accent{ font-size: 1.04em; }
-
-  .hero .sub{
-    margin: 28px auto 0;
-    max-width: 46ch;
-    font-size: clamp(1rem, 1.5vw, 1.14rem);
-    color: var(--muted);
-  }
+  @media (max-width: 900px){ .hero h1{ margin-left: 0; } }
 
   .hero .cta-row{
-    margin-top: 40px;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 14px;
     flex-wrap: wrap;
   }
 
   .micro-status{
-    margin-top: 26px;
+    margin-top: 22px;
     display: inline-flex;
     align-items: center;
     gap: 9px;
@@ -280,32 +282,28 @@
 
   /* -------- Proof strip -------- */
   .proof-strip{
-    margin: 40px auto 0;
-    max-width: 920px;
+    margin: 28px 0 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
     overflow: hidden;
   }
-  .proof-strip > div{ padding: 22px 18px; border-left: 1px solid var(--line); }
-  .proof-strip > div:first-child{ border-left: none; }
-  .proof-strip dt{ font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.1; color: var(--ink); }
+  .proof-strip > div{ padding: 20px 18px; border-left: 1px solid var(--line); }
+  .proof-strip > div:nth-child(odd){ border-left: none; }
+  .proof-strip > div:nth-child(n+3){ border-top: 1px solid var(--line); }
+  .proof-strip dt{ font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.1; color: var(--ink); }
   .proof-strip dd{ margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
-  @media (max-width: 720px){
-    .proof-strip{ grid-template-columns: repeat(2, 1fr); }
-    .proof-strip > div:nth-child(3){ border-left: none; }
-    .proof-strip > div:nth-child(n+3){ border-top: 1px solid var(--line); }
-  }
 
   /* -------- Marquee -------- */
   .marquee{
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    margin-top: 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
     overflow: hidden;
-    padding: 20px 0;
+    padding: 14px 0;
     position: relative;
     background: rgba(255,255,255,0.4);
   }
@@ -313,7 +311,7 @@
     content: '';
     position: absolute;
     top: 0; bottom: 0;
-    width: 120px;
+    width: 56px;
     z-index: 2;
     pointer-events: none;
   }
@@ -322,7 +320,6 @@
 
   .marquee-track{
     display: flex;
-    gap: 0;
     width: max-content;
     animation: scroll 36s linear infinite;
   }
@@ -340,10 +337,10 @@
   .m-item{
     display: flex;
     align-items: center;
-    gap: 28px;
-    padding: 0 28px;
+    gap: 22px;
+    padding: 0 22px;
     font-family: 'Inter Tight', sans-serif;
-    font-size: 14px;
+    font-size: 12.5px;
     font-weight: 600;
     letter-spacing: 0.13em;
     text-transform: uppercase;
@@ -352,7 +349,7 @@
   }
   .m-item::after{
     content: '✳';
-    font-size: 12px;
+    font-size: 11px;
     color: var(--accent);
     opacity: 0.65;
   }
@@ -397,38 +394,38 @@
     font-size: 1.02rem;
   }
 
-  .center{ text-align: center; }
-  .center .section-h, .center .section-sub{ margin-left: auto; margin-right: auto; }
+  /* -------- Two-column pairs (philosophy/capabilities, principles/vision, clients/newsletter) -------- */
+  .split{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 56px;
+    align-items: start;
+  }
+  .split.stretch{ align-items: stretch; }
+  .split .section-h{ font-size: clamp(1.8rem, 3.2vw, 2.5rem); }
+  @media (max-width: 900px){
+    .split{ grid-template-columns: minmax(0, 1fr); gap: 72px; }
+  }
+  .stack{ display: grid; gap: 12px; margin-top: 36px; }
 
   /* -------- Philosophy -------- */
   .philosophy-statement{
     font-family: 'Inter Tight', sans-serif;
-    font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.14;
     max-width: 21ch;
-    margin: 0 auto;
-    text-align: center;
+    margin: 0;
   }
   .philosophy-statement .dim{ color: var(--faint); }
   .philosophy-statement .serif-accent{ font-size: 1.05em; }
-
-  .philosophy-cards{
-    margin-top: 64px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  @media (max-width: 800px){
-    .philosophy-cards{ grid-template-columns: 1fr; }
-  }
 
   .p-card{
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    padding: 28px;
+    padding: 22px 24px;
     box-shadow: var(--shadow-card);
   }
   .p-card .k{
@@ -438,7 +435,7 @@
     text-transform: uppercase;
     color: var(--faint);
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .p-card p{
     margin: 0;
@@ -448,66 +445,38 @@
     letter-spacing: -0.01em;
   }
 
-  /* -------- Capabilities bento -------- */
-  .cap-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 56px;
-  }
-  @media (max-width: 900px){
-    .cap-grid{ grid-template-columns: 1fr; }
-  }
-
+  /* -------- Capabilities -------- */
   .cap-card{
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    padding: 30px 28px 32px;
+    border-radius: var(--radius-md);
+    padding: 20px;
     box-shadow: var(--shadow-card);
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    gap: 20px;
+    align-items: flex-start;
     transition: transform 300ms cubic-bezier(.22,.61,.36,1), box-shadow 300ms ease;
   }
   .cap-card:hover{
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: 0 2px 4px rgba(19,19,19,0.04), 0 24px 48px -18px rgba(19,19,19,0.16);
   }
-
   .cap-visual{
-    height: 150px;
-    border-radius: var(--radius-md);
+    width: 84px; height: 84px;
+    flex-shrink: 0;
+    border-radius: 16px;
     background: var(--bg);
     border: 1px solid var(--line);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 26px;
     color: var(--ink);
-    overflow: hidden;
-    position: relative;
   }
-  .cap-visual svg{ width: 76px; height: 76px; }
+  .cap-visual svg{ width: 52px; height: 52px; }
+  .cap-card h3{ font-size: 1.12rem; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .cap-card p{ color: var(--muted); font-size: 0.93rem; margin: 0 0 14px; }
 
-  .cap-card h3{
-    font-size: 1.22rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-  }
-  .cap-card > p{
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin: 0 0 20px;
-    flex: 1;
-  }
-
-  .tag-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  .tag-row{ display: flex; flex-wrap: wrap; gap: 8px; }
   .tag{
     font-size: 12px;
     font-weight: 500;
@@ -519,16 +488,6 @@
   }
 
   /* -------- Principles -------- */
-  .principles-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 56px;
-  }
-  @media (max-width: 720px){
-    .principles-grid{ grid-template-columns: 1fr; }
-  }
-
   .principle{
     display: flex;
     gap: 20px;
@@ -536,10 +495,9 @@
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    padding: 26px 28px;
+    padding: 22px 26px;
     box-shadow: var(--shadow-card);
   }
-
   .principle-num{
     font-family: 'Instrument Serif', serif;
     font-style: italic;
@@ -549,60 +507,52 @@
     flex-shrink: 0;
     min-width: 34px;
   }
-
-  .principle h3{
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    margin-bottom: 6px;
-  }
-  .principle p{
-    color: var(--muted);
-    font-size: 0.92rem;
-    margin: 0;
-  }
+  .principle h3{ font-size: 1.05rem; letter-spacing: -0.015em; margin-bottom: 4px; }
+  .principle p{ color: var(--muted); font-size: 0.92rem; margin: 0; }
 
   /* -------- Vision (dark card) -------- */
   .vision-card{
     background: #141413;
     border-radius: var(--radius-lg);
-    padding: clamp(56px, 8vw, 100px) clamp(24px, 6vw, 80px);
+    padding: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 56px);
     text-align: center;
     color: #fff;
     position: relative;
     overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .vision-card::before{
     content: '';
     position: absolute;
     top: -40%; left: 50%;
     transform: translateX(-50%);
-    width: 70%; height: 80%;
+    width: 90%; height: 80%;
     background: radial-gradient(ellipse at center, rgba(255,74,31,0.14), transparent 70%);
     pointer-events: none;
   }
-
   .vision-card .label-chip{
     background: rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.12);
     color: rgba(255,255,255,0.6);
   }
-
   .vision-card .big{
     font-family: 'Inter Tight', sans-serif;
-    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.2;
-    max-width: 24ch;
+    max-width: 22ch;
     margin: 0 auto;
     position: relative;
   }
   .vision-card .big .dim{ color: rgba(255,255,255,0.42); }
   .vision-card .big .serif-accent{ font-size: 1.06em; }
-
   .vision-tags{
-    margin-top: 42px;
+    margin-top: 36px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -621,38 +571,80 @@
   }
   .vtag:hover{ background: rgba(255,255,255,0.12); color: #fff; }
 
-  /* -------- Products (was Current Focus) -------- */
-  .focus-card{
-    margin-top: 56px;
+  /* -------- Products carousel -------- */
+  .prod-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .prod-nav{ display: flex; align-items: center; gap: 10px; }
+  .prod-nav span{ font-size: 13px; color: var(--faint); margin-right: 6px; }
+  .prod-nav button{
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: transform 200ms ease, background 200ms ease;
+  }
+  .prod-nav button:hover{ transform: translateY(-1px); background: #fff; }
+  .prod-nav button:disabled{ opacity: 0.35; cursor: default; transform: none; }
+
+  .prod-track{
+    --gutter: max(24px, calc((100vw - var(--max-w)) / 2 + 24px));
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding: 6px var(--gutter) 30px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+  @media (max-width: 640px){ .prod-track{ --gutter: 16px; } }
+
+  .prod{
+    flex: 0 0 min(340px, 82vw);
+    scroll-snap-align: start;
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-    overflow: hidden;
+    padding: 12px 12px 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 300ms cubic-bezier(.22,.61,.36,1), box-shadow 300ms ease;
   }
-
-  .focus-item{
-    display: grid;
-    /* Extra column at the end for the link */
-    grid-template-columns: 64px 176px 1fr 1.1fr auto auto; /* 176px: the longest tags ("Economic Fieldwork") overran 130px into the title */
-    gap: 24px;
-    padding: 30px 32px;
-    align-items: center;
-    border-top: 1px solid var(--line);
-    transition: background 250ms ease;
+  .prod:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 2px 4px rgba(19,19,19,0.04), 0 28px 50px -20px rgba(19,19,19,0.22);
   }
-  .focus-item:first-child{ border-top: none; }
-  .focus-item:hover{ background: #FCFBF9; }
+  .prod-body{ padding: 18px 10px 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .prod-meta{ display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .prod h3{ font-size: 1.16rem; letter-spacing: -0.02em; }
+  .prod .desc{ margin: 0; color: var(--muted); font-size: 0.9rem; flex: 1; }
+  .prod-foot{ display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; }
+  .prod-go{ font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .prod-go::after{ content: ' →'; display: inline-block; transition: transform 200ms ease; }
+  .prod:hover .prod-go::after{ transform: translateX(4px); }
 
   .focus-num{
     font-family: 'Instrument Serif', serif;
     font-style: italic;
     font-size: 1.4rem;
+    line-height: 1;
     color: var(--faint);
   }
-
   .focus-tag{
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -660,22 +652,9 @@
     background: var(--bg);
     border: 1px solid var(--line);
     border-radius: 999px;
-    padding: 6px 12px;
-    text-align: center;
+    padding: 5px 11px;
     white-space: nowrap;
   }
-
-  .focus-item h3{
-    font-size: 1.06rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-  }
-  .focus-item .desc{
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
   .status-chip{
     display: inline-flex;
     align-items: center;
@@ -686,51 +665,242 @@
     background: var(--bg);
     border: 1px solid var(--line);
     border-radius: 999px;
-    padding: 7px 14px;
+    padding: 6px 12px;
     white-space: nowrap;
   }
   .status-chip .dot{ width: 6px; height: 6px; }
 
-  .focus-item .btn-small{
-    padding: 6px 14px;
-    font-size: 12px;
-    border-radius: 8px;
+  /* ---- Product demos: small CSS-only previews of each product ---- */
+  .demo{
+    height: 200px;
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 11.5px;
   }
+  .mono{ font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
 
-  @media (max-width: 960px){
-    .focus-item{
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 26px 24px;
-    }
-    .focus-num{ display: none; }
-    .focus-tag, .status-chip, .btn-small{ justify-self: start; }
+  /* ThrottleIQ */
+  .d-tiq{ background: #1c1a17; border-color: #1c1a17; color: #f6efe4; gap: 4px; }
+  .tiq-gauge{ width: 150px; height: 84px; }
+  .tiq-arc{ stroke-dasharray: 100; animation: tiq 3.6s ease-out infinite; }
+  @keyframes tiq{ 0%{ stroke-dashoffset: 100; } 45%, 100%{ stroke-dashoffset: 14; } }
+  .tiq-read{ margin-top: -46px; text-align: center; color: #b9b0a2; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tiq-read b{ display: block; font-family: 'Inter Tight', sans-serif; font-size: 28px; color: #fff; letter-spacing: -0.02em; line-height: 1; }
+  .tiq-bar{ margin-top: 18px; width: 78%; background: #2a2621; border-radius: 10px; padding: 8px 12px 10px; display: flex; justify-content: space-between; position: relative; overflow: hidden; }
+  .tiq-bar i{ position: absolute; left: 0; bottom: 0; height: 3px; width: 65%; background: #f4b23e; }
+
+  /* MacPreCheck */
+  .win{ width: 84%; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-card); }
+  .win-bar{ display: flex; gap: 5px; align-items: center; padding: 7px 10px; border-bottom: 1px solid var(--line); background: #FAFAFA; }
+  .win-bar i{ width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .win-bar span{ margin-left: 6px; color: var(--muted); font-weight: 600; }
+  .checks{ list-style: none; margin: 0; padding: 9px 10px; display: grid; gap: 6px; color: var(--ink-soft); }
+  .checks li{ display: flex; gap: 8px; align-items: center; }
+  .checks li::before{ content: '✓'; width: 15px; height: 15px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 9px; display: grid; place-items: center; animation: tick 4s infinite both; }
+  .checks li:nth-child(2)::before{ animation-delay: .35s; }
+  .checks li:nth-child(3)::before{ animation-delay: .7s; }
+  .checks li:nth-child(4)::before{ animation-delay: 1.05s; }
+  @keyframes tick{ 0%, 8%{ opacity: 0; transform: scale(.4); } 16%, 92%{ opacity: 1; transform: scale(1); } 100%{ opacity: 0; } }
+  .win-foot{ padding: 8px 10px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+  .win-foot b{ width: 64px; height: 5px; border-radius: 5px; background: linear-gradient(90deg, #16A34A 90%, var(--line) 0); }
+
+  /* r1_Fuel */
+  .bars{ position: absolute; inset: 34px 18px 30px; display: flex; align-items: flex-end; gap: 5px; border-bottom: 1px solid var(--line); }
+  .bars i{ flex: 1; height: var(--h); background: #CBD5E1; border-radius: 3px 3px 0 0; transform-origin: bottom; animation: grow 4s ease-out infinite; }
+  .bars i.hot{ background: var(--accent); }
+  @keyframes grow{ 0%{ transform: scaleY(.08); } 30%, 100%{ transform: scaleY(1); } }
+  .fuel-mark{ position: absolute; top: 10px; right: 14px; font-weight: 600; color: var(--accent); }
+  .fuel-cap{ position: absolute; bottom: 7px; left: 18px; color: var(--muted); }
+
+  /* Bijoy to Unicode */
+  .bij-in{ font-size: 13px; color: var(--muted); background: #fff; border: 1px dashed #D4D4D8; padding: 7px 14px; border-radius: 10px; }
+  .bij-arrow{ color: var(--accent); font-weight: 700; font-size: 15px; line-height: 1; }
+  .bij-out{ font-size: 20px; font-weight: 600; background: #fff; border: 1px solid var(--line); padding: 6px 16px; border-radius: 10px; box-shadow: var(--shadow-card); animation: bij 3.2s ease-in-out infinite; }
+  @keyframes bij{ 0%, 15%{ opacity: 0; transform: translateY(-6px); } 30%, 85%{ opacity: 1; transform: none; } 100%{ opacity: 0; } }
+  .demo-note{ position: absolute; bottom: 8px; color: var(--faint); font-size: 10.5px; }
+
+  /* Taka Note Check */
+  .d-taka{ perspective: 600px; gap: 16px; }
+  .note{ width: 170px; height: 84px; border-radius: 8px; background: linear-gradient(135deg, #D1FAE5, #6EE7B7); position: relative; overflow: hidden; box-shadow: 0 12px 24px -12px rgba(6,78,59,.55); animation: tilt 4s ease-in-out infinite; }
+  @keyframes tilt{ 0%, 100%{ transform: rotateY(-16deg) rotateX(6deg); } 50%{ transform: rotateY(16deg) rotateX(-4deg); } }
+  .note-v{ position: absolute; right: 10px; bottom: 6px; font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 20px; color: #064E3B; }
+  .note-strip{ position: absolute; top: 0; bottom: 0; left: 48px; width: 6px; background: linear-gradient(180deg, #A7F3D0, #fff, #34D399, #fff, #A7F3D0); background-size: 100% 200%; animation: shimmer 1.8s linear infinite; }
+  @keyframes shimmer{ to{ background-position: 0 200%; } }
+  .note-wm{ position: absolute; left: 12px; top: 14px; width: 26px; height: 26px; border-radius: 50%; border: 2px dashed rgba(6,78,59,.3); }
+  .chips{ display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .chips span{ font-weight: 600; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; color: var(--ink-soft); }
+
+  /* TRACON */
+  .d-tracon{ background: #0B1220; border-color: #0B1220; flex-direction: row; gap: 18px; }
+  .radar{ width: 128px; height: 128px; border-radius: 50%; position: relative; overflow: hidden; background: repeating-radial-gradient(circle, transparent 0 20px, rgba(96,165,250,.22) 21px 22px); border: 1px solid rgba(96,165,250,.35); }
+  .sweep{ position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(96,165,250,.45), transparent 25%); animation: spin 3s linear infinite; }
+  .radar b{ position: absolute; left: var(--x); top: var(--y); width: 7px; height: 7px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 8px #60A5FA; }
+  .radar b.wait{ background: #FBBF24; animation: ping 1.6s ease-out infinite; }
+  @keyframes ping{ 0%{ box-shadow: 0 0 0 0 rgba(251,191,36,.7); } 100%{ box-shadow: 0 0 0 12px rgba(251,191,36,0); } }
+  .tracon-log{ display: grid; gap: 6px; font-size: 11px; color: #93C5FD; }
+  .tracon-log .w{ color: #FBBF24; }
+
+  /* PoreDekho VTO */
+  .d-vto{ background: #FDF2F4; border-color: #FCE7EB; }
+  .face{ width: 84px; height: 106px; border-radius: 50% 50% 46% 46%; background: #F1D3C2; position: relative; margin-bottom: 26px; }
+  .ear{ position: absolute; top: 56px; width: 10px; transform-origin: top center; animation: swing 2.2s ease-in-out infinite alternate; }
+  .ear.l{ left: -6px; } .ear.r{ right: -6px; animation-delay: -1.1s; }
+  .ear::before{ content: ''; display: block; width: 2px; height: 10px; background: #C99A12; margin: 0 auto; }
+  .ear::after{ content: ''; display: block; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF6C9, #C99A12); }
+  @keyframes swing{ from{ transform: rotate(-12deg); } to{ transform: rotate(12deg); } }
+  .neck{ position: absolute; left: 50%; bottom: -26px; width: 70px; height: 26px; transform: translateX(-50%); border: 2px solid #C99A12; border-top: none; border-radius: 0 0 40px 40px; }
+  .scan{ position: absolute; inset: 22px 30%; border: 1.5px dashed rgba(217,115,139,.5); border-radius: 14px; }
+  .pill-btn{ position: absolute; bottom: 12px; right: 12px; font-weight: 600; background: var(--ink); color: #fff; padding: 5px 12px; border-radius: 999px; }
+
+  /* FretGPS */
+  .d-fret{ background: #231C17; border-color: #231C17; }
+  .board{ position: absolute; inset: 30px 16px 50px; border-top: 1px solid #D6C7B0;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 calc(20% - 1px), #D6C7B0 0 20%),
+      repeating-linear-gradient(90deg, transparent 0 calc(16.66% - 2px), #6B5A48 0 16.66%); }
+  .board b{ position: absolute; left: calc((var(--f) - .5) * 16.66%); top: calc(var(--s) * 20%); width: 13px; height: 13px; border-radius: 50%; background: #FBBF24; transform: translate(-50%, -50%); box-shadow: 0 0 10px rgba(251,191,36,.8); opacity: 0; animation: fret 3.2s infinite; }
+  .board b:nth-child(2){ animation-delay: .5s; } .board b:nth-child(3){ animation-delay: 1s; } .board b:nth-child(4){ animation-delay: 1.5s; }
+  @keyframes fret{ 0%, 100%{ opacity: 0; } 8%, 40%{ opacity: 1; } 55%{ opacity: 0; } }
+  .fret-cap{ position: absolute; bottom: 14px; color: #E7DCCB; }
+
+  /* ReserveMyTokens */
+  .d-rmt{ flex-direction: row; gap: 22px; }
+  .pool{ width: 112px; height: 112px; border-radius: 50%; position: relative; display: grid; place-content: center; text-align: center; background: #fff; }
+  .pool::before{ content: ''; position: absolute; inset: 0; border-radius: 50%; border: 8px solid #DBEAFE; border-top-color: var(--accent); border-right-color: var(--accent); animation: spin 5s linear infinite; }
+  .pool span{ color: var(--muted); font-size: 10px; }
+  .pool b{ font-family: 'Inter Tight', sans-serif; font-size: 22px; line-height: 1.1; }
+  .flows{ display: grid; gap: 8px; }
+  .flows span{ font-weight: 600; border-radius: 999px; padding: 4px 12px; background: #fff; border: 1px solid var(--line); }
+  .flows .in{ color: #15803D; } .flows .out{ color: #C2410C; } .flows .give{ color: var(--accent); }
+
+  /* The lab */
+  .lab-grid{ display: grid; grid-template-columns: repeat(7, 14px); gap: 12px; }
+  .lab-grid i{ width: 14px; height: 14px; border-radius: 4px; background: var(--line); animation: blink 3.6s infinite; }
+  .lab-grid i:nth-child(3n){ animation-delay: .7s; }
+  .lab-grid i:nth-child(4n+1){ animation-delay: 1.4s; }
+  .lab-grid i:nth-child(5n+2){ animation-delay: 2.1s; }
+  .lab-grid i:nth-child(7n+3){ animation-delay: 2.8s; }
+  @keyframes blink{ 0%, 70%, 100%{ background: var(--line); } 80%{ background: var(--accent); } }
+
+  /* Indriyo */
+  .d-ind{ background: #1F2937; border-color: #1F2937; }
+  .road{ position: absolute; inset: 0; background: linear-gradient(180deg, #1F2937 0 42%, #111827 42%); }
+  .road::before{ content: ''; position: absolute; inset: 42% 0 0; background: #374151; clip-path: polygon(46% 0, 54% 0, 92% 100%, 8% 100%); }
+  .road::after{ content: ''; position: absolute; inset: 42% 0 0; background: repeating-linear-gradient(180deg, #E5E7EB 0 9px, transparent 9px 18px); clip-path: polygon(49.6% 0, 50.4% 0, 51.6% 100%, 48.4% 100%); }
+  .bbox{ position: absolute; left: 50%; transform: translate(-50%, -50%); border: 2px solid currentColor; border-radius: 3px; animation: approach 3.2s ease-in infinite; }
+  .bbox span{ position: absolute; bottom: calc(100% + 3px); left: -2px; white-space: nowrap; font-size: 10px; font-weight: 600; }
+  @keyframes approach{ 0%{ width: 28px; height: 20px; top: 50%; color: #22C55E; } 100%{ width: 112px; height: 78px; top: 68%; color: #EF4444; } }
+  .rec{ position: absolute; top: 10px; left: 12px; font-size: 10px; font-weight: 600; letter-spacing: .1em; color: #EF4444; }
+
+  /* -------- Collaborators list -------- */
+  .collab{
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
+  @media (max-width: 800px){ .collab{ grid-template-columns: 1fr; } }
+  .collab a{
+    display: grid;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    transition: transform 250ms ease;
+  }
+  .collab a:hover{ transform: translateY(-3px); }
+  .collab .focus-tag{ justify-self: start; }
+  .collab h3{ font-size: 1.05rem; letter-spacing: -0.015em; }
+  .collab p{ margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+  /* -------- Clients -------- */
+  .logo-grid{
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  @media (max-width: 520px){ .logo-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .logo-tile{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    min-height: 136px;
+    padding: 16px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    text-decoration: none;
+    box-shadow: var(--shadow-card);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+  .logo-tile:hover, .logo-tile:focus-visible{
+    transform: translateY(-3px);
+    box-shadow: 0 2px 4px rgba(19,19,19,0.04), 0 22px 40px -18px rgba(19,19,19,0.2);
+  }
+  .logo-art{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter 250ms ease, opacity 250ms ease;
+  }
+  .logo-tile:hover .logo-art, .logo-tile:focus-visible .logo-art{ filter: none; opacity: 1; }
+  .logo-art img{ display: block; max-height: 64px; max-width: 120px; }
+  .logo-url{ font-size: 11px; color: var(--faint); font-weight: 500; }
+  .wm{ font-family: 'Inter Tight', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; text-align: left; }
+  .wm small{ display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.04em; color: var(--muted); }
+  .logo-art img.app-icon{ border-radius: 22%; } /* rounds off the navy corners left in the cropped app icon */
+  .wm-maya{ font-size: 15px; color: #0F172A; }
+  .wm-helix{ font-size: 15px; color: #121212; }
+  .wm-njn{ font-size: 15px; color: #1E3A5F; }
+  .wm-farzana{ font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 24px; color: #5B2A4E; letter-spacing: 0; }
+  .logo-tile.invite{ border-style: dashed; background: transparent; box-shadow: none; justify-content: center; color: var(--muted); font-size: 13px; font-weight: 600; text-align: center; }
 
   /* -------- Newsletter -------- */
-  .newsletter-sub{
-    margin: 18px auto 0;
-    color: var(--muted);
-    max-width: 52ch;
+  .news-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 4vw, 44px);
+    box-shadow: var(--shadow-card);
+    height: 100%;
   }
+  .newsletter-sub{ margin: 18px 0 0; color: var(--muted); max-width: 52ch; }
   .newsletter-points{
     list-style: none;
-    margin: 28px auto 0;
+    margin: 26px 0 0;
     padding: 0;
     display: flex;
-    justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
   }
   .newsletter-points li{
     font-size: 13px;
     color: var(--muted);
-    background: var(--card);
+    background: var(--bg);
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 7px 14px;
   }
-  .newsletter-cta{ margin-top: 32px; }
+  .newsletter-cta{ margin-top: 30px; }
 
   /* -------- Footer CTA -------- */
   .footer-cta{
@@ -781,6 +951,7 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
+  .prod:focus-visible, .logo-tile:focus-visible{ border-radius: var(--radius-md); }
 </style>
 </head>
 <body>
@@ -795,6 +966,7 @@
       <a href="#products">Products</a>
       <a href="#philosophy">Philosophy</a>
       <a href="#capabilities">Capabilities</a>
+      <a href="#clients">Clients</a>
       <a href="#newsletter">Newsletter</a>
     </div>
     <a class="btn" href="mailto:hello@blankframe.tech">Get in touch</a>
@@ -803,295 +975,345 @@
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero" style="padding-bottom: 96px;">
-    <div class="wrap">
-      <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Dhaka, Bangladesh</span>
-      <h1 class="reveal d1">AI software and edge hardware, <span class="dim">built and tested in</span> <span class="serif-accent">Bangladesh.</span></h1>
-      <p class="sub reveal d2">ThrottleIQ for motorcycle riders, a MacBook pre-purchase checker for the BD market, and r1_Fuel, an open research programme on the 2026 fuel price shock.</p>
-      <div class="cta-row reveal d3">
-        <a class="btn" href="mailto:hello@blankframe.tech?subject=Work%20with%20BlankFrame">Work with us</a>
-        <a class="btn light" href="#products">See our products</a>
+  <!-- HERO: headline right, actions + proof + marquee left (headline comes first on mobile) -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Dhaka, Bangladesh</span>
+        <h1 class="reveal d1">AI software and edge hardware, <span class="dim">built and tested in</span> <span class="serif-accent">Bangladesh.</span></h1>
       </div>
-      <div class="micro-status reveal d3"><span class="dot" aria-hidden="true"></span> We build the frame. You create what matters.</div>
-      <!-- Proof strip: only figures already published on this site; source page in each comment -->
-      <dl class="proof-strip reveal d3">
-        <div><dt class="display">3,883</dt><dd>news articles in the r1_Fuel corpus</dd></div><!-- research/ -->
-        <div><dt class="display">5</dt><dd>costed study designs for the fuel shock</dd></div><!-- research/ -->
-        <div><dt class="display">30</dt><dd>checks in the MacBook pre-purchase checker</dd></div><!-- mac-check/ checklist -->
-        <div><dt class="display">৳2.5L</dt><dd>earned in year one by Terracotta Tales, a collaborator</dd></div><!-- collaborators card -->
-      </dl>
+      <div class="hero-act">
+        <div class="cta-row reveal d2">
+          <a class="btn" href="mailto:hello@blankframe.tech?subject=Work%20with%20BlankFrame">Work with us</a>
+          <a class="btn light" href="#products">See our products</a>
+        </div>
+        <div class="micro-status reveal d2"><span class="dot" aria-hidden="true"></span> We build the frame. You create what matters.</div>
+        <!-- Proof strip: only figures already published on this site; source page in each comment -->
+        <dl class="proof-strip reveal d3">
+          <div><dt class="display">3,883</dt><dd>news articles in the r1_Fuel corpus</dd></div><!-- research/ -->
+          <div><dt class="display">5</dt><dd>costed study designs for the fuel shock</dd></div><!-- research/ -->
+          <div><dt class="display">30</dt><dd>checks in the MacBook pre-purchase checker</dd></div><!-- mac-check/ checklist -->
+          <div><dt class="display">৳2.5L</dt><dd>earned in year one by Terracotta Tales, a collaborator</dd></div><!-- collaborators card -->
+        </dl>
+        <div class="marquee reveal d3" aria-hidden="true">
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <span class="m-item">Agentic workflows</span>
+              <span class="m-item">Embedded systems</span>
+              <span class="m-item">On-device LLMs</span>
+              <span class="m-item">Ambient intelligence</span>
+              <span class="m-item">Edge computing</span>
+              <span class="m-item">Cognitive load, reduced</span>
+            </div>
+            <div class="marquee-group">
+              <span class="m-item">Agentic workflows</span>
+              <span class="m-item">Embedded systems</span>
+              <span class="m-item">On-device LLMs</span>
+              <span class="m-item">Ambient intelligence</span>
+              <span class="m-item">Edge computing</span>
+              <span class="m-item">Cognitive load, reduced</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="marquee-group">
-        <span class="m-item">Agentic workflows</span>
-        <span class="m-item">Embedded systems</span>
-        <span class="m-item">On-device LLMs</span>
-        <span class="m-item">Ambient intelligence</span>
-        <span class="m-item">Edge computing</span>
-        <span class="m-item">Cognitive load, reduced</span>
+  <!-- PRODUCTS: horizontal scroll-snap carousel, each card has a live mini demo -->
+  <section id="products" class="tight">
+    <div class="wrap prod-head">
+      <div>
+        <span class="label-chip reveal">Portfolio</span>
+        <h2 class="section-h reveal d1">What we're <span class="dim">building.</span></h2>
+        <p class="section-sub reveal d2">Products in beta, live tools and lab work. Swipe or scroll sideways to see them all.</p>
       </div>
-      <div class="marquee-group">
-        <span class="m-item">Agentic workflows</span>
-        <span class="m-item">Embedded systems</span>
-        <span class="m-item">On-device LLMs</span>
-        <span class="m-item">Ambient intelligence</span>
-        <span class="m-item">Edge computing</span>
-        <span class="m-item">Cognitive load, reduced</span>
+      <div class="prod-nav reveal d2">
+        <span>11 projects</span>
+        <button type="button" data-dir="-1" aria-label="Previous products" aria-controls="prod-track">&larr;</button>
+        <button type="button" data-dir="1" aria-label="Next products" aria-controls="prod-track">&rarr;</button>
       </div>
     </div>
-  </div>
 
-  <!-- PRODUCTS (Formerly Focus) -->
-  <section id="products" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Portfolio</span>
-      <h2 class="section-h reveal d1">What we're <span class="dim">building.</span></h2>
-      <p class="section-sub reveal d2">Products in beta, and lab work.</p>
+    <div class="prod-track reveal d2" id="prod-track" role="region" aria-label="Products" tabindex="0">
 
-      <div class="focus-card reveal d2" style="text-align:left;">
-        
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">01</span>
-          <span class="focus-tag">Mobility</span>
+      <a class="prod" href="/throttle-iq/">
+        <div class="demo d-tiq" aria-hidden="true">
+          <svg class="tiq-gauge" viewBox="0 0 120 70"><path d="M10 64 A50 50 0 0 1 110 64" stroke="#3a352e" stroke-width="8" fill="none" stroke-linecap="round"/><path class="tiq-arc" d="M10 64 A50 50 0 0 1 110 64" stroke="#f4b23e" stroke-width="8" fill="none" stroke-linecap="round" pathLength="100"/></svg>
+          <div class="tiq-read"><b>86</b>riding score</div>
+          <div class="tiq-bar"><span>Oil change</span><span>in 420 km</span><i></i></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">01</span><span class="focus-tag">Mobility</span></div>
           <h3>ThrottleIQ</h3>
-          <p class="desc">Ride recording, maintenance by the kilometre, rider places and group rides. Offline-first, in English and বাংলা.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Android beta</span>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
-            <a href="/throttle-iq/" class="btn light btn-small" style="background: #f4b23e; color: #1c1a17; border-color: transparent; font-weight: 700;">See ThrottleIQ &rarr;</a>
+          <p class="desc">Ride recording with a riding score, maintenance by the kilometre, rider places and group rides. Offline-first, in English and বাংলা.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Android beta</span><span class="prod-go">See ThrottleIQ</span></div>
+        </div>
+      </a>
+
+      <a class="prod" href="/mac-check/">
+        <div class="demo d-mac" aria-hidden="true">
+          <div class="win">
+            <div class="win-bar"><i></i><i></i><i></i><span>MacPreCheck</span></div>
+            <ul class="checks"><li>Battery cycle count</li><li>Keyboard, every key</li><li>Display dead pixels</li><li>iCloud / MDM lock</li></ul>
+            <div class="win-foot"><span>27 / 30 passed</span><b></b></div>
           </div>
         </div>
-
-
-
-
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">02</span>
-          <span class="focus-tag">Diagnostic</span>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">02</span><span class="focus-tag">Diagnostic</span></div>
           <h3>MacBook Pre-Purchase Checker</h3>
-          <p class="desc">Field inspection guide, hardware stress testers, model benchmarks, and cash negotiation calculator for the BD market.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Live Tool</span>
-          <a href="/mac-check/" class="btn light btn-small">Launch Checker &rarr;</a>
+          <p class="desc">Field inspection guide, hardware stress testers, model benchmarks and a cash negotiation calculator for the BD market.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Live tool</span><span class="prod-go">Launch checker</span></div>
         </div>
+      </a>
 
-
-
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">03</span>
-          <span class="focus-tag">Open Research</span>
-          <h3>r1_Fuel &mdash; Bangladesh&rsquo;s Fuel Shock</h3>
-          <p class="desc">Open research programme on the 21 September 2026 Tk 20/litre fuel hike: a sourced impact analysis, five costed study designs, and a 3,883-article discourse corpus. Independently funded; looking for collaborators and a host institution.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Seeking Collaborators</span>
-          <a href="/research/r1_Fuel/" class="btn light btn-small">Read the Research &rarr;</a>
+      <a class="prod" href="/research/r1_Fuel/">
+        <div class="demo d-fuel" aria-hidden="true">
+          <span class="fuel-mark">21 Sep · Tk +20/L</span>
+          <div class="bars">
+            <i style="--h:14%"></i><i style="--h:10%"></i><i style="--h:18%"></i><i style="--h:12%"></i><i style="--h:16%"></i><i style="--h:20%"></i><i style="--h:15%"></i>
+            <i class="hot" style="--h:92%"></i><i class="hot" style="--h:74%"></i><i class="hot" style="--h:58%"></i><i class="hot" style="--h:46%"></i><i class="hot" style="--h:40%"></i><i class="hot" style="--h:34%"></i>
+          </div>
+          <span class="fuel-cap">Fuel coverage, articles per week</span>
         </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">03</span><span class="focus-tag">Open research</span></div>
+          <h3>r1_Fuel</h3>
+          <p class="desc">Open research on the 21 September 2026 Tk 20/litre fuel hike: a sourced impact analysis, five costed study designs and a 3,883-article discourse corpus.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Seeking collaborators</span><span class="prod-go">Read it</span></div>
+        </div>
+      </a>
 
-
-
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">04</span>
-          <span class="focus-tag">Utility</span>
+      <a class="prod" href="/tools/bijoy-to-unicode/">
+        <div class="demo d-bij" aria-hidden="true">
+          <div class="bij-in mono">Avgvi †mvbvi evsjv</div>
+          <div class="bij-arrow">&darr;</div>
+          <div class="bij-out" lang="bn">আমার সোনার বাংলা</div>
+          <span class="demo-note">Runs in your browser. Nothing is uploaded.</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">04</span><span class="focus-tag">Utility</span></div>
           <h3>Bijoy to Unicode</h3>
           <p class="desc">Turns Bijoy-encoded Word files into Unicode Bangla in your browser. Files are never uploaded.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Live Tool</span>
-          <a href="/tools/bijoy-to-unicode/" class="btn light btn-small">Open Converter &rarr;</a>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Live tool</span><span class="prod-go">Open converter</span></div>
         </div>
+      </a>
 
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">05</span>
-          <span class="focus-tag">Utility</span>
+      <a class="prod" href="/tools/taka-check/">
+        <div class="demo d-taka" aria-hidden="true">
+          <div class="note"><span class="note-wm"></span><span class="note-strip"></span><span class="note-v">&#2547;1000</span></div>
+          <div class="chips"><span>Feel</span><span>Tilt</span><span>Hold to light</span></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">05</span><span class="focus-tag">Utility</span></div>
           <h3>Taka Note Check</h3>
           <p class="desc">Is this note real? A feel-tilt-hold checklist for the new &#2547;1000, &#2547;100, &#2547;50 and &#2547;20 notes, from Bangladesh Bank&rsquo;s own guide.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Live Tool</span>
-          <a href="/tools/taka-check/" class="btn light btn-small">Check a Note &rarr;</a>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Live tool</span><span class="prod-go">Check a note</span></div>
         </div>
+      </a>
 
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">06</span>
-          <span class="focus-tag">Developer Tool</span>
+      <a class="prod" href="/tracon/">
+        <div class="demo d-tracon" aria-hidden="true">
+          <div class="radar"><i class="sweep"></i><b style="--x:28%;--y:34%"></b><b class="wait" style="--x:66%;--y:56%"></b><b style="--x:40%;--y:72%"></b></div>
+          <div class="tracon-log mono"><span>3 sessions</span><span>0 file clashes</span><span class="w">1 waiting on you</span></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">06</span><span class="focus-tag">Developer tool</span></div>
           <h3>TRACON</h3>
-          <p class="desc">Air traffic control for your AI coding agents: a local, read-only radar for Claude Code and Antigravity sessions that flags who&rsquo;s waiting on you, with prompts you can answer from your phone.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Beta</span>
-          <a href="/tracon/" class="btn light btn-small">Meet TRACON &rarr;</a>
+          <p class="desc">Air traffic control for your AI coding agents: a local, read-only radar for Claude Code and Antigravity sessions that flags who&rsquo;s waiting on you.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Beta</span><span class="prod-go">Meet TRACON</span></div>
         </div>
+      </a>
 
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">&#9879;</span>
-          <span class="focus-tag">Experiments</span>
+      <a class="prod" href="/poredekho-vto/">
+        <div class="demo d-vto" aria-hidden="true">
+          <span class="scan"></span>
+          <div class="face"><i class="ear l"></i><i class="ear r"></i><i class="neck"></i></div>
+          <span class="pill-btn">Try on</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">07</span><span class="focus-tag">Retail</span></div>
+          <h3>PoreDekho VTO</h3>
+          <p class="desc">Phone-camera try-on for earrings and necklaces, in the browser. Testing with Bangladeshi online jewellery sellers.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Free pilot</span><span class="prod-go">See the pilot</span></div>
+        </div>
+      </a>
+
+      <a class="prod" href="/fret-gps/">
+        <div class="demo d-fret" aria-hidden="true">
+          <div class="board"><b style="--s:2;--f:3"></b><b style="--s:3;--f:2"></b><b style="--s:1;--f:4"></b><b style="--s:4;--f:5"></b></div>
+          <span class="fret-cap mono">G string · fret 7 · bend ½</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">08</span><span class="focus-tag">Music R&amp;D</span></div>
+          <h3>FretGPS</h3>
+          <p class="desc">A positioning system for your fretboard: which string and fret every note came from, bends and mutes, as a live fret map.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Idea stage</span><span class="prod-go">View project</span></div>
+        </div>
+      </a>
+
+      <a class="prod" href="/reserve-my-tokens/">
+        <div class="demo d-rmt" aria-hidden="true">
+          <div class="pool"><span>shared pool</span><b>1.2M</b><span>tokens</span></div>
+          <div class="flows"><span class="in">+ contribute</span><span class="out">&minus; borrow</span><span class="give">&hearts; donate</span></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">09</span><span class="focus-tag">AI infra</span></div>
+          <h3>ReserveMyTokens</h3>
+          <p class="desc">A community resource bank for AI developers: contribute unused tokens, borrow capacity later, or donate to open source.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Concept</span><span class="prod-go">View preview</span></div>
+        </div>
+      </a>
+
+      <a class="prod" href="/experiments/">
+        <div class="demo d-lab" aria-hidden="true">
+          <div class="lab-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">&#9879;</span><span class="focus-tag">Experiments</span></div>
           <h3>The lab</h3>
           <p class="desc">Early work that hasn&rsquo;t earned a spot up front yet. Everything new starts here and graduates to products once it matures.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Early-stage</span>
-          <a href="/experiments/" class="btn light btn-small">Experiments &rarr;</a>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Early-stage</span><span class="prod-go">Experiments</span></div>
         </div>
+      </a>
 
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">&#9879;</span>
-          <span class="focus-tag">Lab (archived)</span>
+      <a class="prod" href="/indriyo/">
+        <div class="demo d-ind" aria-hidden="true">
+          <div class="road"></div>
+          <div class="bbox"><span class="mono">closing vehicle</span></div>
+          <span class="rec mono">&#9679; REAR CAM</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-meta"><span class="focus-num">&#9879;</span><span class="focus-tag">Lab (archived)</span></div>
           <h3>Indriyo (ইন্দ্রিয়)</h3>
-          <p class="desc">Rear blind-spot and closing-vehicle warnings for motorcyclists, from a tail camera. A lab benchmark on recorded dashcam clips, not shipped.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Lab benchmark, not shipped</span>
-          <a href="/indriyo/" class="btn light btn-small">See the lab notes</a>
+          <p class="desc">Rear blind-spot and closing-vehicle warnings for motorcyclists, from a tail camera. A lab benchmark on recorded dashcam clips.</p>
+          <div class="prod-foot"><span class="status-chip"><span class="dot" aria-hidden="true"></span> Not shipped</span><span class="prod-go">Lab notes</span></div>
         </div>
-      </div>
-      <p class="section-sub reveal" style="margin-top:40px;">From our collaborators</p>
-      <div class="focus-card reveal d2" style="text-align:left;">
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">01</span>
-          <span class="focus-tag">Enterprise &amp; Craft</span>
-          <h3>Terracotta Tales</h3>
-          <p class="desc">Artisanal terracotta micro-enterprise founded by Farzana Reza Shifa. Generated ৳2.5L in one year to self-fund her university education through sustainable maker commerce.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Self-Funded Venture</span>
-          <a href="/shifa/terracotta-tales/" class="btn light btn-small">Explore Showcase &rarr;</a>
-        </div>
-        <div class="focus-item">
-          <span class="focus-num" aria-hidden="true">02</span>
-          <span class="focus-tag">Economic Fieldwork</span>
-          <h3>Field Research &amp; Ethnography</h3>
-          <p class="desc">Applied field study by Farzana Reza Shifa on migratory beekeeping entrepreneurs and informal litchi honey value chains in Panchagarh, Bangladesh.</p>
-          <span class="status-chip"><span class="dot" aria-hidden="true"></span> Published Fieldwork</span>
-          <a href="/shifa/research/" class="btn light btn-small">Read Field Study &rarr;</a>
-        </div>
-      </div>
+      </a>
     </div>
-  </section>
 
-  <!-- PHILOSOPHY -->
-  <section id="philosophy">
-    <div class="wrap center">
-      <span class="label-chip reveal">Philosophy</span>
-      <p class="philosophy-statement reveal d1">
-        <span class="dim">The best infrastructure is</span> <span class="serif-accent">invisible.</span><br>
-        We build it, it disappears, <span class="dim">and what's left is your time.</span>
-      </p>
-
-      <div class="philosophy-cards">
-        <div class="p-card reveal">
-          <span class="k">What we build</span>
-          <p>Infrastructure that carries context, so you don't have to repeat yourself.</p>
-        </div>
-        <div class="p-card reveal d1">
-          <span class="k">What it does</span>
-          <p>Automates the repetitive thinking that sits between you and the work.</p>
-        </div>
-        <div class="p-card reveal d2">
-          <span class="k">What you get back</span>
-          <p>Time — for building, exploring, riding, making, and living.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAPABILITIES -->
-  <section id="capabilities" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Capabilities</span>
-      <h2 class="section-h reveal d1">Three layers, one intent — <span class="dim">reduce cognitive load.</span></h2>
-      <p class="section-sub reveal d2">Software, hardware, and the systems that connect them — designed to disappear once they're working.</p>
-
-      <div class="cap-grid" style="text-align:left;">
-        <div class="cap-card reveal">
-          <div class="cap-visual" aria-hidden="true">
-            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="14" y="20" width="40" height="10" rx="5" opacity="0.28"/>
-              <rect x="14" y="34" width="48" height="10" rx="5"/>
-              <rect x="14" y="48" width="30" height="10" rx="5" opacity="0.55"/>
-              <circle cx="61" cy="25" r="4" fill="currentColor" stroke="none" opacity="0.85"/>
-            </svg>
-          </div>
-          <h3>Intelligent Software</h3>
-          <p>Agentic workflows and AI-assisted tools that handle the decisions and busywork standing between an idea and its execution.</p>
-          <div class="tag-row">
-            <span class="tag">Agents</span>
-            <span class="tag">Automation</span>
-            <span class="tag">AI tooling</span>
-          </div>
-        </div>
-
-        <div class="cap-card reveal d1">
-          <div class="cap-visual" aria-hidden="true">
-            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="22" y="22" width="32" height="32" rx="6"/>
-              <rect x="32" y="32" width="12" height="12" rx="2" opacity="0.55"/>
-              <path d="M30 12v10M38 12v10M46 12v10M30 54v10M38 54v10M46 54v10M12 30h10M12 38h10M12 46h10M54 30h10M54 38h10M54 46h10"/>
-            </svg>
-          </div>
-          <h3>Embedded Systems</h3>
-          <p>Sensors, controllers, and edge devices built to run reliably in the physical world — from a single board to a full deployment.</p>
-          <div class="tag-row">
-            <span class="tag">Sensors</span>
-            <span class="tag">Edge devices</span>
-            <span class="tag">Firmware</span>
-          </div>
-        </div>
-
-        <div class="cap-card reveal d2">
-          <div class="cap-visual" aria-hidden="true">
-            <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="38" cy="38" r="6" fill="currentColor" stroke="none" opacity="0.85"/>
-              <circle cx="38" cy="38" r="15" opacity="0.6"/>
-              <circle cx="38" cy="38" r="24" opacity="0.35"/>
-              <circle cx="38" cy="38" r="33" opacity="0.15"/>
-            </svg>
-          </div>
-          <h3>Ambient Intelligence</h3>
-          <p>Devices and services that coordinate with each other in the background, surfacing only when a decision actually needs a human.</p>
-          <div class="tag-row">
-            <span class="tag">Coordination</span>
-            <span class="tag">Quiet systems</span>
-            <span class="tag">Context</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRINCIPLES -->
-  <section id="principles" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Principles</span>
-      <h2 class="section-h reveal d1">What we optimize for.</h2>
-      <p class="section-sub reveal d2">Not features — commitments that decide what we build and what we say no to.</p>
-
-      <div class="principles-grid" style="text-align:left;">
-        <div class="principle reveal">
-          <span class="principle-num" aria-hidden="true">01</span>
-          <div>
-            <h3>Human first</h3>
-            <p>Systems answer to the person using them, not the other way around.</p>
-          </div>
-        </div>
-        <div class="principle reveal d1">
-          <span class="principle-num" aria-hidden="true">02</span>
-          <div>
-            <h3>Invisible by design</h3>
-            <p>The best infrastructure is the kind you stop noticing.</p>
-          </div>
-        </div>
-        <div class="principle reveal d2">
-          <span class="principle-num" aria-hidden="true">03</span>
-          <div>
-            <h3>Built to last</h3>
-            <p>Reliability over novelty. Calm over hype.</p>
-          </div>
-        </div>
-        <div class="principle reveal d3">
-          <span class="principle-num" aria-hidden="true">04</span>
-          <div>
-            <h3>Own your infrastructure</h3>
-            <p>Long-term ownership over vendor lock-in, always.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VISION -->
-  <section id="vision" class="tight">
     <div class="wrap">
-      <div class="vision-card reveal">
+      <p class="section-sub reveal" style="margin-top:28px;">From our collaborators</p>
+      <div class="collab reveal d1">
+        <a href="/shifa/terracotta-tales/">
+          <span class="focus-tag">Enterprise &amp; craft</span>
+          <h3>Terracotta Tales</h3>
+          <p>Artisanal terracotta micro-enterprise founded by Farzana Reza Shifa. Generated ৳2.5L in one year to self-fund her university education.</p>
+        </a>
+        <a href="/shifa/research/">
+          <span class="focus-tag">Economic fieldwork</span>
+          <h3>Field Research &amp; Ethnography</h3>
+          <p>Applied field study by Farzana Reza Shifa on migratory beekeeping entrepreneurs and informal litchi honey value chains in Panchagarh.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY | CAPABILITIES -->
+  <section class="tight">
+    <div class="wrap split">
+      <div id="philosophy">
+        <span class="label-chip reveal">Philosophy</span>
+        <p class="philosophy-statement reveal d1">
+          <span class="dim">The best infrastructure is</span> <span class="serif-accent">invisible.</span>
+          We build it, it disappears, <span class="dim">and what's left is your time.</span>
+        </p>
+        <div class="stack">
+          <div class="p-card reveal">
+            <span class="k">What we build</span>
+            <p>Infrastructure that carries context, so you don't have to repeat yourself.</p>
+          </div>
+          <div class="p-card reveal d1">
+            <span class="k">What it does</span>
+            <p>Automates the repetitive thinking that sits between you and the work.</p>
+          </div>
+          <div class="p-card reveal d2">
+            <span class="k">What you get back</span>
+            <p>Time — for building, exploring, riding, making, and living.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="capabilities">
+        <span class="label-chip reveal">Capabilities</span>
+        <h2 class="section-h reveal d1">Three layers, one intent — <span class="dim">reduce cognitive load.</span></h2>
+        <div class="stack">
+          <div class="cap-card reveal">
+            <div class="cap-visual" aria-hidden="true">
+              <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="14" y="20" width="40" height="10" rx="5" opacity="0.28"/>
+                <rect x="14" y="34" width="48" height="10" rx="5"/>
+                <rect x="14" y="48" width="30" height="10" rx="5" opacity="0.55"/>
+                <circle cx="61" cy="25" r="4" fill="currentColor" stroke="none" opacity="0.85"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Intelligent Software</h3>
+              <p>Agentic workflows and AI-assisted tools that handle the decisions and busywork standing between an idea and its execution.</p>
+              <div class="tag-row"><span class="tag">Agents</span><span class="tag">Automation</span><span class="tag">AI tooling</span></div>
+            </div>
+          </div>
+          <div class="cap-card reveal d1">
+            <div class="cap-visual" aria-hidden="true">
+              <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="22" y="22" width="32" height="32" rx="6"/>
+                <rect x="32" y="32" width="12" height="12" rx="2" opacity="0.55"/>
+                <path d="M30 12v10M38 12v10M46 12v10M30 54v10M38 54v10M46 54v10M12 30h10M12 38h10M12 46h10M54 30h10M54 38h10M54 46h10"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Embedded Systems</h3>
+              <p>Sensors, controllers, and edge devices built to run reliably in the physical world — from a single board to a full deployment.</p>
+              <div class="tag-row"><span class="tag">Sensors</span><span class="tag">Edge devices</span><span class="tag">Firmware</span></div>
+            </div>
+          </div>
+          <div class="cap-card reveal d2">
+            <div class="cap-visual" aria-hidden="true">
+              <svg viewBox="0 0 76 76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="38" cy="38" r="6" fill="currentColor" stroke="none" opacity="0.85"/>
+                <circle cx="38" cy="38" r="15" opacity="0.6"/>
+                <circle cx="38" cy="38" r="24" opacity="0.35"/>
+                <circle cx="38" cy="38" r="33" opacity="0.15"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Ambient Intelligence</h3>
+              <p>Devices and services that coordinate with each other in the background, surfacing only when a decision actually needs a human.</p>
+              <div class="tag-row"><span class="tag">Coordination</span><span class="tag">Quiet systems</span><span class="tag">Context</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES | VISION -->
+  <section class="tight">
+    <div class="wrap split stretch">
+      <div id="principles">
+        <span class="label-chip reveal">Principles</span>
+        <h2 class="section-h reveal d1">What we optimize for.</h2>
+        <p class="section-sub reveal d2">Not features — commitments that decide what we build and what we say no to.</p>
+        <div class="stack">
+          <div class="principle reveal">
+            <span class="principle-num" aria-hidden="true">01</span>
+            <div><h3>Human first</h3><p>Systems answer to the person using them, not the other way around.</p></div>
+          </div>
+          <div class="principle reveal d1">
+            <span class="principle-num" aria-hidden="true">02</span>
+            <div><h3>Invisible by design</h3><p>The best infrastructure is the kind you stop noticing.</p></div>
+          </div>
+          <div class="principle reveal d2">
+            <span class="principle-num" aria-hidden="true">03</span>
+            <div><h3>Built to last</h3><p>Reliability over novelty. Calm over hype.</p></div>
+          </div>
+          <div class="principle reveal d3">
+            <span class="principle-num" aria-hidden="true">04</span>
+            <div><h3>Own your infrastructure</h3><p>Long-term ownership over vendor lock-in, always.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="vision" class="vision-card reveal d1">
         <span class="label-chip">Vision</span>
         <p class="big">
           A future where intelligent systems quietly coordinate in the background — <span class="dim">so people can spend their attention on</span> <span class="serif-accent">life itself.</span>
@@ -1109,19 +1331,62 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section id="newsletter" class="tight">
-    <div class="wrap center">
-      <span class="label-chip reveal">Newsletter</span>
-      <h2 class="section-h reveal d1">Build notes, <span class="dim">straight from the</span> <span class="serif-accent">workbench.</span></h2>
-      <p class="newsletter-sub reveal d2">Cool updates only: new products as they ship, and how they're built. Architecture, trade-offs and the parts that broke. Written for developers.</p>
-      <ul class="newsletter-points reveal d2">
-        <li>4 emails a month, max</li>
-        <li>New products + their architecture</li>
-        <li>No spam, unsubscribe anytime</li>
-      </ul>
-      <div class="newsletter-cta reveal d2">
-        <a class="btn" href="https://blankframe.substack.com/subscribe" rel="noopener">Subscribe on Substack</a>
+  <!-- CLIENTS | NEWSLETTER -->
+  <section class="tight">
+    <div class="wrap split stretch">
+      <div id="clients">
+        <span class="label-chip reveal">Clients</span>
+        <h2 class="section-h reveal d1">People we've <span class="dim">worked with.</span></h2>
+        <p class="section-sub reveal d2">Tap a logo to visit their site.</p>
+        <div class="logo-grid reveal d2">
+          <a class="logo-tile" href="https://mayaride.com.bd/" target="_blank" rel="noopener" aria-label="Maya Ride (opens mayaride.com.bd in a new tab)">
+            <span class="logo-art">
+              <img class="app-icon" src="/img/clients/mayaride.png" alt="" width="48" height="48" loading="lazy">
+              <span class="wm wm-maya">Maya<br>Ride</span>
+            </span>
+            <span class="logo-url">mayaride.com.bd ↗</span>
+          </a>
+          <a class="logo-tile" href="https://bdmotocross.com/" target="_blank" rel="noopener" aria-label="Bangladesh Motocross Club and Academy (opens bdmotocross.com in a new tab)">
+            <span class="logo-art"><img src="/img/clients/bdmotocross.png" alt="" width="120" height="96" loading="lazy"></span>
+            <span class="logo-url">bdmotocross.com ↗</span>
+          </a>
+          <a class="logo-tile" href="https://helixbiology.sch.ac/" target="_blank" rel="noopener" aria-label="Helix Biology (opens helixbiology.sch.ac in a new tab)">
+            <span class="logo-art">
+              <svg width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="20" fill="#121212"/><g fill="none" stroke-linecap="round" transform="translate(50 50) scale(0.95) translate(-50 -50)"><path stroke="#FFFFFF" stroke-width="7" d="M27 14V86M73 14V86"/><path stroke="#E8414A" stroke-width="5" d="M27 36C50 36 50 64 73 64"/><path stroke="#121212" stroke-width="11" d="M45.04 55.73C48.52 52.11 51.48 47.89 54.96 44.27"/><path stroke="#E8414A" stroke-width="5" d="M27 64C50 64 50 36 73 36"/></g></svg>
+              <span class="wm wm-helix">Helix<br>Biology</span>
+            </span>
+            <span class="logo-url">helixbiology.sch.ac ↗</span>
+          </a>
+          <a class="logo-tile" href="https://njndental.com/" target="_blank" rel="noopener" aria-label="NJN Perio and Implant Center (opens njndental.com in a new tab)">
+            <span class="logo-art">
+              <img src="/img/clients/njn-dental.png" alt="" width="44" height="38" loading="lazy">
+              <span class="wm wm-njn">NJN Dental<small>Perio &amp; Implant</small></span>
+            </span>
+            <span class="logo-url">njndental.com ↗</span>
+          </a>
+          <a class="logo-tile" href="https://farzana.sch.ac/" target="_blank" rel="noopener" aria-label="Farzana Reza Shifa (opens farzana.sch.ac in a new tab)">
+            <span class="logo-art">
+              <img src="/img/clients/farzana.svg" alt="" width="45" height="58" loading="lazy">
+              <span class="wm wm-farzana">farzana</span>
+            </span>
+            <span class="logo-url">farzana.sch.ac ↗</span>
+          </a>
+          <a class="logo-tile invite" href="mailto:hello@blankframe.tech?subject=Work%20with%20BlankFrame">Your logo here?<br>Work with us &rarr;</a>
+        </div>
+      </div>
+
+      <div id="newsletter" class="news-card reveal d1">
+        <span class="label-chip">Newsletter</span>
+        <h2 class="section-h">Build notes, <span class="dim">straight from the</span> <span class="serif-accent">workbench.</span></h2>
+        <p class="newsletter-sub">Cool updates only: new products as they ship, and how they're built. Architecture, trade-offs and the parts that broke. Written for developers.</p>
+        <ul class="newsletter-points">
+          <li>4 emails a month, max</li>
+          <li>New products + their architecture</li>
+          <li>No spam, unsubscribe anytime</li>
+        </ul>
+        <div class="newsletter-cta">
+          <a class="btn" href="https://blankframe.substack.com/subscribe" rel="noopener">Subscribe on Substack</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1169,6 +1434,20 @@
   } else {
     revealEls.forEach(el => el.classList.add('in'));
   }
+
+  // products carousel: arrow buttons page through the track, and grey out at either end
+  const track = document.getElementById('prod-track');
+  const navBtns = document.querySelectorAll('.prod-nav button');
+  const syncNav = () => {
+    navBtns[0].disabled = track.scrollLeft < 8;
+    navBtns[1].disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
+  };
+  navBtns.forEach(b => b.addEventListener('click', () => {
+    track.scrollBy({ left: b.dataset.dir * track.clientWidth * 0.8, behavior: 'smooth' });
+  }));
+  track.addEventListener('scroll', syncNav, { passive: true });
+  window.addEventListener('resize', syncNav);
+  syncNav();
 </script>
 
 <!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
