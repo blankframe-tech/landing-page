@@ -198,35 +198,11 @@
     .nav-pill{ max-width: none; width: auto; gap: 16px; }
   }
 
-  /* -------- Hero: actions + proof on the left, headline on the right -------- */
-  .hero{ padding: 150px 0 84px; }
-  .hero-grid{
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
-    gap: 56px;
-    align-items: center;
-  }
-  .hero-copy{ order: 2; text-align: right; }
-  .hero-act{ order: 1; }
-  @media (max-width: 900px){
-    .hero{ padding-top: 128px; }
-    .hero-grid{ grid-template-columns: minmax(0, 1fr); gap: 40px; }
-    .hero-copy{ order: 0; text-align: left; }
-  }
-
-  .chip{
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 8px 16px;
-    font-size: 13.5px;
-    font-weight: 500;
-    color: var(--muted);
-    box-shadow: 0 1px 2px rgba(19,19,19,0.04);
-  }
+  /* -------- Hero: right-aligned headline, CTAs and marquee stacked below -------- */
+  .hero{ padding: 160px 0 84px; }
+  .hero-grid{ display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero-copy{ text-align: right; }
+  @media (max-width: 900px){ .hero{ padding-top: 128px; } }
 
   .dot{
     width: 7px; height: 7px;
@@ -241,19 +217,19 @@
   }
 
   .hero h1{
-    margin: 28px 0 0 auto;
-    font-size: clamp(2.6rem, 6vw, 5rem);
+    margin: 0 0 0 auto;
+    font-size: clamp(2.6rem, 6.4vw, 5.4rem);
     font-weight: 700;
     line-height: 1.02;
-    max-width: 13ch;
+    max-width: 14ch;
     color: var(--ink);
   }
   .hero h1 .dim{ color: var(--faint); }
   .hero h1 .serif-accent{ font-size: 1.04em; }
-  @media (max-width: 900px){ .hero h1{ margin-left: 0; } }
 
   .hero .cta-row{
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 14px;
     flex-wrap: wrap;
@@ -946,12 +922,11 @@
 
 <main id="top">
 
-  <!-- HERO: headline right, actions + proof + marquee left (headline comes first on mobile) -->
+  <!-- HERO: right-aligned headline, then CTAs and marquee below it -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="chip reveal"><span class="dot" aria-hidden="true"></span> Dhaka, Bangladesh</span>
-        <h1 class="reveal d1">AI software and edge hardware, <span class="dim">built and tested in</span> <span class="serif-accent">Bangladesh.</span></h1>
+        <h1 class="reveal">AI software and edge hardware, <span class="dim">built and tested in</span> <span class="serif-accent">Bangladesh.</span></h1>
       </div>
       <div class="hero-act">
         <div class="cta-row reveal d2">
