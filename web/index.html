@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your business online in 7 days · ৳15,000 · BlankFrame</title>
+<meta name="description" content="A fast website for your business in 7 days: works on every phone, shows on Google Maps, sends customers to your WhatsApp. Fixed price ৳15,000, optional care ৳2,000/month.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://www.blankframe.tech/web/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Your business online in 7 days, for ৳15,000">
+<meta property="og:description" content="Works on every phone, shows on Google Maps, one tap to your WhatsApp. Fixed price, fixed date, and you own it.">
+<meta property="og:url" content="https://www.blankframe.tech/web/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlankFrame">
+<meta property="og:image" content="https://www.blankframe.tech/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/tokens.css">
+
+<style>
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior: auto; } }
+  body{ margin: 0; background: var(--bf-bg); color: var(--bf-ink); font: 16px/1.6 var(--bf-font-body); -webkit-font-smoothing: antialiased; }
+  .wrap{ max-width: 1040px; margin: 0 auto; padding: var(--bf-space-8) var(--bf-space-6) var(--bf-space-16); }
+  @media (max-width: 640px){ .wrap{ padding: var(--bf-space-6) var(--bf-space-4) var(--bf-space-12); } }
+  a{ color: var(--bf-accent-text); }
+  h1, h2, h3{ font-family: var(--bf-font-display); letter-spacing: -0.03em; line-height: 1.12; margin: 0; }
+  h1{ font-size: clamp(2.6rem, 9vw, 4.8rem); margin: var(--bf-space-6) 0 var(--bf-space-3); }
+  h2{ font-size: clamp(1.6rem, 4.5vw, 2.3rem); margin-bottom: var(--bf-space-3); }
+  h3{ font-size: 1.06rem; letter-spacing: -0.01em; }
+  .serif{ font-family: var(--bf-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .lede{ color: var(--bf-muted); font-size: 1.1rem; max-width: 660px; margin: 0; }
+  .note{ color: var(--bf-muted); font-size: 0.9rem; margin: var(--bf-space-4) 0 0; }
+  .bn{ font-size: 1.2rem; color: var(--bf-ink-soft); margin: 0 0 var(--bf-space-3); }
+  section{ margin-top: var(--bf-space-24); }
+  @media (max-width: 640px){ section{ margin-top: var(--bf-space-16); } }
+  .sr-only{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  .top{ display: flex; justify-content: space-between; align-items: center; gap: var(--bf-space-3); }
+  .home{ display: inline-flex; align-items: center; gap: 10px; color: var(--bf-ink); text-decoration: none; font: 600 15px var(--bf-font-display); }
+
+  .eyebrow{ margin: var(--bf-space-12) 0 0; }
+  .chip{ display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.03em; color: var(--bf-ink-soft); border: 1px solid var(--bf-line); background: var(--bf-card); border-radius: var(--bf-radius-pill); padding: 5px 12px; }
+  .row{ display: flex; flex-wrap: wrap; gap: var(--bf-space-3); align-items: center; margin-top: var(--bf-space-8); }
+  .btn{ display: inline-flex; align-items: center; gap: 10px; border-radius: var(--bf-radius-pill); padding: 13px 22px; font: 600 15px var(--bf-font-body); letter-spacing: -0.01em; text-decoration: none; border: 1px solid transparent; transition: transform var(--bf-dur-fast) var(--bf-ease), box-shadow var(--bf-dur-fast) var(--bf-ease); }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--bf-shadow-pill); }
+  .btn:focus-visible, summary:focus-visible, .site:focus-visible{ outline: 2px solid var(--bf-accent-text); outline-offset: 3px; }
+  .btn.ink{ background: var(--bf-ink); color: var(--bf-bg); }
+  .btn.light{ background: var(--bf-card); color: var(--bf-ink); border-color: var(--bf-line); }
+  .btn.small{ padding: 9px 16px; font-size: 14px; }
+
+  .price-strip{ display: flex; flex-wrap: wrap; gap: var(--bf-space-2) var(--bf-space-6); margin-top: var(--bf-space-6); color: var(--bf-ink-soft); font-size: 0.98rem; }
+  .price-strip strong{ font-family: var(--bf-font-display); font-size: 1.25rem; color: var(--bf-ink); letter-spacing: -0.02em; }
+  .ticks{ list-style: none; padding: 0; margin: var(--bf-space-6) 0 0; display: flex; flex-wrap: wrap; gap: var(--bf-space-2) var(--bf-space-6); color: var(--bf-muted); font-size: 0.94rem; }
+  .ticks li::before, .card li::before, .plan li::before{ content: "✓"; color: var(--bf-accent-text); font-weight: 700; margin-right: 8px; }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: var(--bf-space-4); margin-top: var(--bf-space-8); }
+  .card{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-md); padding: var(--bf-space-6); box-shadow: var(--bf-shadow-card); min-width: 0; }
+  .card p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.95rem; }
+  .card ul, .plan ul{ list-style: none; padding: 0; margin: var(--bf-space-4) 0 0; font-size: 0.95rem; color: var(--bf-ink-soft); }
+  .card li, .plan li{ margin-bottom: 8px; padding-left: 1.4em; text-indent: -1.4em; }
+
+  /* Pricing: the build card is inverted so it reads first */
+  .plans{ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: var(--bf-space-4); margin-top: var(--bf-space-8); align-items: start; }
+  .plan{ border-radius: var(--bf-radius-lg); padding: var(--bf-space-8); }
+  .plan.main{ background: var(--bf-ink); color: var(--bf-bg); box-shadow: var(--bf-shadow-pill); }
+  .plan.main p, .plan.main li{ color: var(--bf-bg); }
+  .plan.main li::before{ color: inherit; }
+  .plan .amount{ font: 800 clamp(2.4rem, 7vw, 3.2rem)/1 var(--bf-font-display); letter-spacing: -0.04em; margin: var(--bf-space-3) 0 var(--bf-space-1); }
+  .plan .amount small{ font-size: 1rem; font-weight: 600; letter-spacing: 0; opacity: 0.75; }
+  .plan .btn{ margin-top: var(--bf-space-6); }
+  .plan.main .btn{ background: var(--bf-bg); color: var(--bf-ink); }
+  .plan .fine{ font-size: 0.86rem; opacity: 0.8; margin-top: var(--bf-space-4); }
+
+  .start{ background: var(--bf-card); border: 1px solid var(--bf-line); border-radius: var(--bf-radius-lg); padding: clamp(var(--bf-space-6), 5vw, var(--bf-space-12)); }
+  .start ul{ columns: 2 260px; column-gap: var(--bf-space-8); padding: 0; list-style: none; margin: var(--bf-space-6) 0 0; color: var(--bf-ink-soft); }
+  .start li{ break-inside: avoid; margin-bottom: var(--bf-space-3); padding-left: 1.4em; text-indent: -1.4em; }
+  .start li::before{ content: "✓"; color: var(--bf-accent-text); font-weight: 700; margin-right: 8px; }
+
+  ol.days{ list-style: none; padding: 0; margin: var(--bf-space-8) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: var(--bf-space-4); }
+  ol.days li{ border-top: 3px solid var(--bf-line); padding-top: var(--bf-space-4); }
+  ol.days li:last-child{ border-top-color: var(--bf-accent-text); }
+  .day{ display: block; font: 700 0.8rem var(--bf-font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--bf-accent-text); }
+  ol.days h3{ margin-top: var(--bf-space-1); }
+  ol.days p{ margin: var(--bf-space-2) 0 0; color: var(--bf-muted); font-size: 0.94rem; }
+  .promise{ margin-top: var(--bf-space-8); border-left: 3px solid var(--bf-accent-text); padding: var(--bf-space-3) var(--bf-space-4); background: var(--bf-card); border-radius: 0 var(--bf-radius-sm) var(--bf-radius-sm) 0; color: var(--bf-ink-soft); }
+
+  .grid.sites{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+  .site{ display: block; text-decoration: none; color: inherit; transition: transform var(--bf-dur-fast) var(--bf-ease); }
+  .site:hover{ transform: translateY(-2px); }
+  .site .url{ display: block; margin-top: var(--bf-space-4); color: var(--bf-accent-text); font-weight: 600; font-size: 0.92rem; }
+
+  /* FAQ: native details, marker before the label */
+  .faq{ margin-top: var(--bf-space-8); max-width: 760px; }
+  .faq details{ border-bottom: 1px solid var(--bf-line); }
+  .faq summary{ list-style: none; display: flex; align-items: center; gap: 1ch; padding: var(--bf-space-4) 0; font: 600 1.04rem var(--bf-font-display); letter-spacing: -0.01em; cursor: pointer; }
+  .faq summary::-webkit-details-marker{ display: none; }
+  .faq summary::before{
+    content: ""; inline-size: 0.9em; block-size: 0.9em; flex-shrink: 0; background-color: var(--bf-accent-text);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 6l5 5 5-5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+    rotate: -90deg;
+  }
+  .faq details[open] > summary::before{ rotate: 0deg; }
+  .faq details p{ margin: 0 0 var(--bf-space-4); padding-left: calc(0.9em + 1ch); color: var(--bf-muted); }
+  .faq details::details-content{ interpolate-size: allow-keywords; overflow: clip; contain: layout; }
+  .faq details:not([open])::details-content{ block-size: 0; }
+  @media (prefers-reduced-motion: no-preference){
+    .faq summary::before{ transition: rotate 0.2s; }
+    .faq details::details-content{ transition: block-size, content-visibility; transition-duration: 0.3s; transition-timing-function: ease-in-out; transition-behavior: allow-discrete; }
+  }
+
+  .final{ text-align: center; background: var(--bf-ink); color: var(--bf-bg); border-radius: var(--bf-radius-lg); padding: clamp(var(--bf-space-8), 7vw, var(--bf-space-16)) var(--bf-space-6); }
+  .final p{ color: var(--bf-bg); opacity: 0.8; max-width: 520px; margin: var(--bf-space-3) auto 0; }
+  .final .row{ justify-content: center; }
+  .final .btn.ink{ background: var(--bf-bg); color: var(--bf-ink); }
+  .final .contact{ font-size: 0.92rem; margin-top: var(--bf-space-6); }
+  .final .contact a{ color: inherit; }
+  .final .btn.light{ background: transparent; color: var(--bf-bg); border-color: currentColor; }
+
+  footer{ margin-top: var(--bf-space-16); padding-top: var(--bf-space-6); border-top: 1px solid var(--bf-line); color: var(--bf-muted); font-size: 0.86rem; display: flex; justify-content: space-between; gap: var(--bf-space-3); flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <a class="home" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="">
+    <span>BlankFrame</span>
+  </a>
+  <a class="btn ink small" href="#start">Start my website</a>
+</div>
+
+<header>
+  <p class="eyebrow"><span class="chip">For shops, clinics, workshops and new businesses in Bangladesh</span></p>
+  <h1>Your business online in <span class="serif">7 days.</span></h1>
+  <p class="bn" lang="bn">আপনার ব্যবসার ওয়েবসাইট, ৭ দিনে।</p>
+  <p class="lede">A fast website that works on every phone, shows up on Google Maps and sends customers straight to your WhatsApp. One fixed price, one fixed date, and it's yours.</p>
+  <div class="price-strip">
+    <span><strong>৳15,000</strong> one-time build</span>
+    <span><strong>৳2,000</strong>/month care, optional</span>
+  </div>
+  <div class="row">
+    <a class="btn ink" href="https://wa.me/8801327045005?text=Hi%20BlankFrame%2C%20I%20want%20a%20website%20for%20my%20business.">Chat on WhatsApp</a>
+    <a class="btn light" href="#included">See what's included</a>
+  </div>
+  <ul class="ticks">
+    <li>Bangla and English</li>
+    <li>Your own .com</li>
+    <li>On Google Maps</li>
+    <li>One tap to WhatsApp</li>
+  </ul>
+</header>
+
+<section id="why" aria-labelledby="why-h">
+  <h2 id="why-h">A Facebook page isn't <span class="serif">enough</span> any more.</h2>
+  <p class="lede">Customers look you up before they walk in. When they search your name, or "near me", what do they find?</p>
+  <div class="grid">
+    <div class="card"><h3>Found on Google</h3><p>A website plus a Google Business Profile puts you on Maps and in search, with your photos, hours and a button to call.</p></div>
+    <div class="card"><h3>Answers before they ask</h3><p>Prices, hours, location and photos behind one link. Fewer "price koto?" messages, more customers who already know what they want.</p></div>
+    <div class="card"><h3>Looks like a real business</h3><p>Your own address on your visiting card, signboard and Facebook bio. People trust a business that has one.</p></div>
+  </div>
+</section>
+
+<section id="included" aria-labelledby="inc-h">
+  <h2 id="inc-h">Everything that's <span class="serif">included</span>.</h2>
+  <p class="lede">All of this is in the ৳15,000. No hidden extras: the only other cost is your domain, which we buy in your name at cost.</p>
+  <div class="grid">
+    <div class="card"><h3>Up to 5 pages</h3><p>Home, services and prices, about, gallery, contact. Designed around your business, not a template with your name dropped in.</p></div>
+    <div class="card"><h3>Fast on every phone</h3><p>Built phone-first and kept light, so it opens quickly even on weak mobile data.</p></div>
+    <div class="card"><h3>Bangla and English</h3><p>One tap to switch. We write the text with you from a short call, in both languages.</p></div>
+    <div class="card"><h3>WhatsApp, call, Messenger</h3><p>A button on every page, so a customer is one tap from talking to you.</p></div>
+    <div class="card"><h3>Google Maps listing</h3><p>We set up or fix your Google Business Profile so you show on Maps with photos, hours and your site.</p></div>
+    <div class="card"><h3>Enquiry or booking form</h3><p>Customers leave their name, number and what they need. It lands in your email.</p></div>
+    <div class="card"><h3>Looks right when shared</h3><p>Share your link on Facebook or WhatsApp and it shows your photo, name and a line about you, not a bare URL.</p></div>
+    <div class="card"><h3>Your domain, secure</h3><p>Your .com (or .com.bd) connected with HTTPS, the padlock browsers expect.</p></div>
+    <div class="card"><h3>Two rounds of changes</h3><p>See it on your own phone and tell us what to change. Twice, before it goes live.</p></div>
+  </div>
+</section>
+
+<section id="pricing" aria-labelledby="price-h">
+  <h2 id="price-h">Simple <span class="serif">pricing</span>.</h2>
+  <div class="plans">
+    <div class="plan main">
+      <h3>Website build</h3>
+      <p class="amount">৳15,000 <small>one-time</small></p>
+      <p>Live on your domain in 7 days.</p>
+      <ul>
+        <li>Up to 5 pages, Bangla and English</li>
+        <li>WhatsApp, call and Messenger buttons</li>
+        <li>Google Business Profile set up</li>
+        <li>Enquiry or booking form</li>
+        <li>Two rounds of changes</li>
+      </ul>
+      <a class="btn" href="#start">Start my website</a>
+      <p class="fine">৳10,000 to start, ৳5,000 when your site goes live.</p>
+    </div>
+    <div class="plan card">
+      <h3>Monthly care</h3>
+      <p class="amount">৳2,000 <small>/month</small></p>
+      <p>We keep it running, you keep working.</p>
+      <ul>
+        <li>Hosting and HTTPS looked after</li>
+        <li>Up to 5 small changes a month: prices, photos, offers, hours</li>
+        <li>Monthly check of your site and Google listing</li>
+        <li>Backups, and domain renewal handled</li>
+        <li>Reply within one working day</li>
+      </ul>
+      <p class="fine">Optional. Skip it and we hand you the files and show you how to host them for free.</p>
+    </div>
+  </div>
+</section>
+
+<section id="new" aria-labelledby="new-h">
+  <div class="start">
+    <h2 id="new-h">Just <span class="serif">starting</span> your business?</h2>
+    <p class="lede">No signboard yet? Best time to get it right. Along with your site, we set up the basics with you at no extra cost:</p>
+    <ul>
+      <li>Check your business name is free as a .com and on Facebook</li>
+      <li>Register the domain in your name, so it's always yours</li>
+      <li>Google Business Profile, so you're on Maps from day one</li>
+      <li>A WhatsApp link that opens a chat with you in one tap</li>
+      <li>Your colours and fonts on one sheet, for the signboard printer and your Facebook page</li>
+      <li>Need a logo too? Ask, and we'll quote it before we start</li>
+    </ul>
+  </div>
+</section>
+
+<section id="how" aria-labelledby="how-h">
+  <h2 id="how-h">How the <span class="serif">7 days</span> go.</h2>
+  <ol class="days">
+    <li><span class="day">Day 0</span><h3>Talk</h3><p>A 15-minute call. We send a short checklist: photos, prices, hours. Phone photos are fine.</p></li>
+    <li><span class="day">Day 1–2</span><h3>Design</h3><p>You see the first design on your own phone.</p></li>
+    <li><span class="day">Day 3–5</span><h3>Build</h3><p>Pages, both languages, buttons and form. Your two rounds of changes.</p></li>
+    <li><span class="day">Day 6</span><h3>Check</h3><p>Tested on real phones. Google listing and share previews set up.</p></li>
+    <li><span class="day">Day 7</span><h3>Live</h3><p>On your domain, ready for your card, your signboard and your Facebook page.</p></li>
+  </ol>
+  <p class="promise"><strong>Our promise:</strong> the 7 days start once we have your photos, text and the advance. If we're late because of us, your first month of care is free.</p>
+</section>
+
+<section id="work" aria-labelledby="work-h">
+  <h2 id="work-h">Sites we've <span class="serif">built</span>.</h2>
+  <p class="lede">Live today. Open them on your phone.</p>
+  <div class="grid sites">
+    <a class="card site" href="https://bdmotocross.com/" target="_blank" rel="noopener"><h3>Bangladesh Motocross Club &amp; Academy</h3><p>Club and rider academy with riders across five districts.</p><span class="url">bdmotocross.com ↗<span class="sr-only"> (opens in a new tab)</span></span></a>
+    <a class="card site" href="https://njndental.com/" target="_blank" rel="noopener"><h3>NJN Perio &amp; Implant Center</h3><p>Dental clinic in Azimpur, Dhaka, with appointment booking.</p><span class="url">njndental.com ↗<span class="sr-only"> (opens in a new tab)</span></span></a>
+    <a class="card site" href="https://rafatemon.site/" target="_blank" rel="noopener"><h3>Rafat Emon</h3><p>Portfolio for a film and video editor in Dhaka.</p><span class="url">rafatemon.site ↗<span class="sr-only"> (opens in a new tab)</span></span></a>
+    <a class="card site" href="https://helixbiology.sch.ac/" target="_blank" rel="noopener"><h3>Helix Biology</h3><p>Biology coaching for classes 9 to 12 in Mohammadpur, Dhaka.</p><span class="url">helixbiology.sch.ac ↗<span class="sr-only"> (opens in a new tab)</span></span></a>
+    <a class="card site" href="https://farzana.sch.ac/" target="_blank" rel="noopener"><h3>Farzana Reza Shifa</h3><p>A researcher's personal site, in Bangla and English.</p><span class="url">farzana.sch.ac ↗<span class="sr-only"> (opens in a new tab)</span></span></a>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">Questions</h2>
+  <div class="faq">
+    <details>
+      <summary>Is it really 7 days?</summary>
+      <p>Yes, counted from the day we have your photos, text and the ৳10,000 advance. If we're late because of us, your first month of care is free.</p>
+    </details>
+    <details>
+      <summary>What do I need to send?</summary>
+      <p>Your logo if you have one, 5 to 15 photos (phone photos are fine), your services and prices, opening hours, address and the number customers should call. We send you a checklist after the first call.</p>
+    </details>
+    <details>
+      <summary>Do I own the website?</summary>
+      <p>Yes. The domain is registered in your name and the content is yours. If you ever leave, we hand over everything.</p>
+    </details>
+    <details>
+      <summary>Who writes the text?</summary>
+      <p>We do, from what you tell us on the call, in Bangla and English. You read it and approve it before launch.</p>
+    </details>
+    <details>
+      <summary>Can customers pay online?</summary>
+      <p>Not in the ৳15,000 package. Online payment (bKash or card checkout) and shops with a cart are quoted separately, before we start.</p>
+    </details>
+    <details>
+      <summary>I need more than 5 pages.</summary>
+      <p>Tell us on the call. We'll quote the extra pages up front, so the price is still fixed before work starts.</p>
+    </details>
+    <details>
+      <summary>Do I have to take monthly care?</summary>
+      <p>No. Without it, we hand you the site files and show you how to host them for free. With it, you just send us changes and we handle the rest.</p>
+    </details>
+    <details>
+      <summary>How do I pay?</summary>
+      <p>bKash or bank transfer. ৳10,000 to start, ৳5,000 when your site goes live. Care is billed monthly from the month after launch.</p>
+    </details>
+  </div>
+  <p class="note">Something else? <a href="https://wa.me/8801327045005?text=Hi%20BlankFrame%2C%20I%20want%20a%20website%20for%20my%20business.">Ask us on WhatsApp</a>.</p>
+</section>
+
+<section id="start" aria-labelledby="start-h">
+  <div class="final">
+    <h2 id="start-h">Online by <span class="serif">next week</span>.</h2>
+    <p>Tell us your business name and what you sell. We reply within one working day.</p>
+    <div class="row">
+      <a class="btn ink" href="https://wa.me/8801327045005?text=Hi%20BlankFrame%2C%20I%20want%20a%20website%20for%20my%20business.">Chat on WhatsApp</a>
+      <a class="btn light" href="mailto:hello@blankframe.tech?subject=Website%20in%207%20days&amp;body=Hi%20BlankFrame%2C%0A%0ABusiness%20name%3A%0AWhat%20we%20sell%3A%0AArea%20/%20city%3A%0APhone%20or%20WhatsApp%3A%0ADo%20we%20have%20a%20domain%20already%3F%20%28yes%20/%20no%29%0ADo%20we%20have%20a%20logo%3F%20%28yes%20/%20no%29%0AWhen%20we%20want%20to%20go%20live%3A%0A">Email us</a>
+    </div>
+    <p class="contact">WhatsApp <a href="tel:+8801327045005">01327 045005</a> · <a href="mailto:hello@blankframe.tech">hello@blankframe.tech</a></p>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> BlankFrame Technologies</span>
+  <span><a href="/">BlankFrame</a> · <a href="/privacy/">Privacy</a></span>
+</footer>
+</div>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<!-- GoatCounter Analytics (Privacy-friendly, 0 cookies) -->
+<script data-goatcounter="https://blankframe.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
